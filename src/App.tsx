@@ -1674,8 +1674,10 @@ function CompassGraphic({
 
       {/* Rotating needle — glows when moving or hovered */}
       <g
-        transform={`rotate(${activeRotation} 400 400)`}
+        
         style={{
+          transformOrigin: '400px 400px',
+          transform: `rotate(${activeRotation}deg)`,
           transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
           filter: needleGlowing
             ? 'drop-shadow(0 0 8px rgba(248,223,160,0.95)) drop-shadow(0 0 18px rgba(197,157,60,0.7))'
