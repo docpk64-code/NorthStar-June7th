@@ -67,17 +67,29 @@ async function prerender() {
   const server = await startServer();
   console.log(`📡  Static server → http://localhost:${PORT}`);
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-gpu',
-      '--mute-audio',
-      '--disable-dev-shm-usage',   // prevents crashes in low-memory envs
-      '--disable-web-security',
-    ],
-  });
+  let browser;
+  try {
+    browser = await puppeteer.launch({
+      headless: 'new',
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-gpu',
+        '--mute-audio',
+        '--disable-dev-shm-usage',   // prevents crashes in low-memory envs
+        '--disable-web-security',
+      ],
+    });
+  } catch (err) {
+    // Chrome may be unavailable in some build environments (e.g. when the
+    // Puppeteer browser download was skipped). Prerendering is a progressive
+    // SEO enhancement — the SPA ships and works without it — so skip the
+    // step gracefully instead of failing the whole build.
+    server.close();
+    console.warn(`\n⚠️   Skipping prerender — could not launch Chrome:\n     ${err.message}\n`);
+    console.warn('     The built SPA in dist/ is unaffected and will be deployed as-is.\n');
+    return;
+  }
 
   let ok = 0;
   const failed = [];
