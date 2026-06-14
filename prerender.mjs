@@ -1,10 +1,9 @@
 /**
- * prerender.mjs  —  NorthStar Implant Dentistry  (v2)
+ * prerender.mjs  —  NorthStar Implant Dentistry  (v3)
  * Place at the PROJECT ROOT (same folder as package.json).
  *
- * v2 fixes: blocks external requests that hang in Netlify's build
- * environment, waits for React to actually mount before capturing,
- * and uses domcontentloaded instead of networkidle0.
+ * v3 fix: replaces localhost:3456 URLs baked in by Puppeteer
+ * with the real domain before saving each HTML file.
  */
 
 import puppeteer from 'puppeteer';
@@ -16,6 +15,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const DIST = resolve(__dirname, 'dist');
 const PORT = 3456;
+const DOMAIN = 'https://northstarimplants.com';   // ← real domain replaces localhost
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'application/javascript',
@@ -58,7 +58,7 @@ function startServer() {
 }
 
 async function prerender() {
-  console.log('\n🦷  NorthStar Prerender v2 — starting\n');
+  console.log('\n🦷  NorthStar Prerender v3 — starting\n');
   if (!existsSync(DIST)) {
     console.error('❌  dist/ not found. Run "npm run build" first.');
     process.exit(1);
@@ -74,7 +74,7 @@ async function prerender() {
       '--disable-setuid-sandbox',
       '--disable-gpu',
       '--mute-audio',
-      '--disable-dev-shm-usage',   // prevents crashes in low-memory envs
+      '--disable-dev-shm-usage',
       '--disable-web-security',
     ],
   });
@@ -87,29 +87,21 @@ async function prerender() {
     page.on('console', () => {});
     page.on('pageerror', () => {});
 
-    // Set a proper desktop viewport so the compass wheel renders
     await page.setViewport({ width: 1280, height: 800 });
 
-    // Block external requests — Google Fonts, analytics, CDN scripts
-    // all hang in Netlify's build environment and prevent rendering
+    // Block external requests that hang in Netlify's build environment
     await page.setRequestInterception(true);
     page.on('request', req => {
-      const url = req.url();
-      if (url.startsWith(`http://localhost:${PORT}`)) {
-        req.continue();
-      } else {
-        req.abort();   // abort anything external
-      }
+      req.url().startsWith(`http://localhost:${PORT}`) ? req.continue() : req.abort();
     });
 
     try {
-      // Use domcontentloaded — doesn't wait for external resources to load
       await page.goto(`http://localhost:${PORT}${route}`, {
         waitUntil: 'domcontentloaded',
         timeout: 20_000,
       });
 
-      // Wait for React to actually mount something inside #root
+      // Wait for React to mount into #root
       await page.waitForFunction(
         () => {
           const root = document.getElementById('root');
@@ -118,22 +110,25 @@ async function prerender() {
         { timeout: 15_000 }
       );
 
-      // Let animations and lazy-loaded content settle
+      // Let animations and lazy content settle
       await new Promise(r => setTimeout(r, 1500));
 
       const html = await page.content();
 
-      // Verify the snapshot actually has content before saving
-      if (!html.includes('id="root"><')) {
+      // ── v3 fix: replace every localhost reference with the real domain ──
+      const cleanHtml = html.replaceAll(`http://localhost:${PORT}`, DOMAIN);
+
+      // Verify React actually rendered content
+      if (!cleanHtml.includes('id="root"><')) {
         throw new Error('React did not render into #root');
       }
 
       if (route === '/') {
-        writeFileSync(join(DIST, 'index.html'), html, 'utf8');
+        writeFileSync(join(DIST, 'index.html'), cleanHtml, 'utf8');
       } else {
         const outDir = join(DIST, route);
         mkdirSync(outDir, { recursive: true });
-        writeFileSync(join(outDir, 'index.html'), html, 'utf8');
+        writeFileSync(join(outDir, 'index.html'), cleanHtml, 'utf8');
       }
 
       ok++;
