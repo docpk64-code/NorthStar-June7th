@@ -12,7 +12,63 @@ import { createServer } from 'node:http';
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { resolve, join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+/**
+ * prerender.mjs  —  NorthStar Implant Dentistry  (v3)
+ * Place at the PROJECT ROOT (same folder as package.json).
+ *
+ * v3 fix: replaces localhost:3456 URLs baked in by Puppeteer
+ * with the real domain before saving each HTML file.
+ */
 
+import puppeteer from 'puppeteer';
+import { createServer } from 'node:http';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { resolve, join, extname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const DIST = resolve(__dirname, 'dist');
+const PORT = 3456;
+const DOMAIN = 'https://northstarimplants.com';
+
+const MIME = {
+  '.html': 'text/html; charset=utf-8', '.js': 'application/javascript',
+  '.mjs': 'application/javascript', '.css': 'text/css', '.json': 'application/json',
+  '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
+  '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.webp': 'image/webp',
+  '.woff2': 'font/woff2', '.woff': 'font/woff', '.mp3': 'audio/mpeg',
+};
+
+const ROUTES = [
+  '/',
+  '/about', '/procedures', '/dental-implants', '/full-arch', '/wisdom-teeth',
+  '/sedation', '/patient-information', '/patient-forms', '/technology',
+  '/testimonials', '/contact', '/locations',
+  '/procedure/tooth-extractions', '/procedure/bone-grafting',
+  '/procedure/sinus-lifts', '/procedure/implant-placement',
+  '/procedure/ridge-preservation', '/procedure/restorative-coordination',
+  '/procedure/remote-anchorage-implant', '/procedure/wisdom-teeth-extractions',
+  '/procedure/full-mouth-reconstruction', '/procedure/oral-medicine-pathology',
+  '/procedure/pre-prosthetic-surgery', '/procedure/impacted-unerupted-teeth',
+  '/procedure/maxillary-expansion-marpe', '/procedure/technology',
+  '/specialized/cant-get-implants', '/specialized/botched-smile',
+  '/specialized/sub-periosteal-implant',
+  '/hydrafacial', '/emface',
+];
+
+function startServer() {
+  const server = createServer((req, res) => {
+    const url = new URL(req.url, `http://localhost:${PORT}`);
+    let filePath = join(DIST, url.pathname);
+    if (!extname(filePath)) {
+      const idx = join(filePath, 'index.html');
+      filePath = existsSync(idx) ? idx : join(DIST, 'index.html');
+    }
+    if (!existsSync(filePath)) { res.writeHead(404); return res.end('Not found'); }
+    res.writeHead(200, { 'Content-Type': MIME[extname(filePath).toLowerCase()] ?? 'application/octet-stream' });
+    res.end(readFileSync(filePath));
+  });
+  return new Promise(r =>
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const DIST = resolve(__dirname, 'dist');
 const PORT = 3456;
