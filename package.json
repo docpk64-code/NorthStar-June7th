@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "postbuild": "node prerender.mjs",    
+    "postbuild": "node prerender.mjs",
+    "postinstall": "npx puppeteer browsers install chrome",
     "preview": "vite preview"
   },
   "dependencies": {
