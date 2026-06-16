@@ -1,3 +1,5 @@
-# Fallback for any route not yet prerendered — serves the SPA shell.
-# Prerendered routes (31 pages) take priority automatically.
+# Strip trailing slashes — makes /about canonical instead of /about/
+/*/  /:splat  301!
+
+# Fallback for any non-prerendered route
 /*  /index.html  200
