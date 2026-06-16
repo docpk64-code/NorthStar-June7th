@@ -1551,15 +1551,14 @@ export function ContactPage() {
             <p>
               <strong>Hours:</strong>
               <br />
-              [EDIT: Add office hours here]
+              Mon-Fri: 9am-9pm | Sat: 9am-3pm | Sun: Emergency only, call 631-315-1400
             </p>
           </div>
           <div className="page-section">
             <p className="page-kicker">Directions</p>
             <h2>Getting Here</h2>
             <p>
-              [EDIT: Add parking information, nearby landmarks, or public
-              transit directions for each location.]
+            Briarwood: Accessible by E and F subway lines (Briarwood/Van Wyck Blvd station). Public parking garage nearby. New York: Accessible by the 6 train (33rd St) and M/N/Q/R/W trains (34th St - Herald Square). Public parking garage on 34th Street. Commack: Free on-site parking. Easily accessible from the Northern State Parkway.
             </p>
             <div
               style={{
@@ -1725,7 +1724,7 @@ export function ContactPage() {
                 />
                 <ValidationError
                   field="email"
-                  prefix="Email"
+                  prefix="Email"      
                   errors={formState.errors}
                   style={{ color: '#dc2626', fontSize: '0.82rem' }}
                 />
@@ -1818,8 +1817,8 @@ export function LocationsPage() {
       phone: '631-315-1400',
       tel: '6313151400',
       maps: 'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY',
-      parking: '[EDIT: Add parking / transit info for this location]',
-      hours: '[EDIT: Add office hours for this location]',
+      parking: 'Accessible by E and F subway lines (Briarwood/Van Wyck Blvd station). Public parking garage available nearby.',
+      hours: 'Mon-Fri: 9am-9pm | Sat: 9am-3pm | Sun: Emergency only, call 631-315-1400',
     },
     {
       name: 'New York, NY',
@@ -1828,8 +1827,8 @@ export function LocationsPage() {
       phone: '631-315-1400',
       tel: '6313151400',
       maps: 'https://maps.google.com/?q=333+East+34th+Street+Suite+M1+New+York+NY+10016',
-      parking: '[EDIT: Add parking / transit info for this location]',
-      hours: '[EDIT: Add office hours for this location]',
+      parking: 'Accessible by the 6 train (33rd St station) and M/N/Q/R/W trains (34th St - Herald Square). Public parking garage on 34th Street.',
+      hours: 'Mon-Fri: 9am-9pm | Sat: 9am-3pm | Sun: Emergency only, call 631-315-1400',
     },
     {
       name: 'Commack, NY',
@@ -1838,8 +1837,8 @@ export function LocationsPage() {
       phone: '631-315-1400',
       tel: '6313151400',
       maps: 'https://maps.google.com/?q=283+Commack+Road+Suite+130+Commack+NY+11725',
-      parking: '[EDIT: Add parking / transit info for this location]',
-      hours: '[EDIT: Add office hours for this location]',
+      parking: 'Free on-site parking available. Easily accessible from the Northern State Parkway.',
+      hours: 'Mon-Fri: 9am-9pm | Sat: 9am-3pm | Sun: Emergency only, call 631-315-1400',
     },
   ];
 
