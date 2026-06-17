@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "postbuild": "node prerender.mjs",    
+    "postbuild": "node install-chrome.mjs && node prerender.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
