@@ -480,7 +480,7 @@ export function PageLayout({
           📞 631-315-1400
         </a>
         <span>·</span>
-        <span>Mon–Fri 9am–5pm</span>
+        <span>Mon–Fri 9am–9pm</span>
       </div>
 
       {/* ── Nav ── */}
