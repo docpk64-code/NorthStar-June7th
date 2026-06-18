@@ -92,7 +92,13 @@ function SEOHead({
             '@type': 'OpeningHoursSpecification',
             dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
             opens: '09:00',
-            closes: '17:00',
+            closes: '21:00',
+          },
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Saturday'],
+            opens: '09:00',
+            closes: '15:00',
           },
         ],
         sameAs: [
