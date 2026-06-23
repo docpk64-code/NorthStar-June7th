@@ -318,6 +318,7 @@ const pageStyles = `
       margin: 0;
       line-height: 1.6;
     }
+    .page-card-progress { display: none; }
     .page-back-bar {
       background: #fff;
       border-bottom: 1px solid #e8ecf2;
@@ -420,21 +421,75 @@ const pageStyles = `
     @media (max-width: 768px) {
       .page-nav-links { display: none; }
       .page-nav-toggle { display: block; }
-      .page-section { padding: 1.25rem 1rem; }
+      .page-section { padding: 1.25rem 1rem; position: relative; }
       .page-body { padding: 1.5rem 0.75rem 3rem; }
       .page-hero { padding: 2.5rem 1rem 2rem; }
       .page-hero-title { font-size: clamp(1.5rem, 6vw, 2.4rem); }
       .page-hero-subtitle { font-size: 0.95rem; }
       .page-call-bar { font-size: 0.78rem; gap: 0.5rem; padding: 0.5rem; }
-      .page-card-grid { grid-template-columns: 1fr; }
       .page-hero-cta { min-height: 44px; padding: 0.9rem 1.8rem; font-size: 0.95rem; }
       .page-back-bar { padding: 0.6rem 1rem; }
       .page-section h2 { font-size: clamp(1.3rem, 5vw, 2rem); }
       .page-section ul { padding-left: 1rem; }
       .page-nav-mobile button { min-height: 44px; display: flex; align-items: center; }
+
+      /* ── Card grid → swipeable horizontal carousel ──
+         Replaces the cramped single-column stack with a snap-scrolling
+         row that peeks the next card, signaling "there's more →" */
+      .page-card-grid {
+        display: flex;
+        grid-template-columns: unset;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0.85rem;
+        margin: 1.25rem -1rem 0.35rem;
+        padding: 0.15rem 1rem 0.85rem;
+      }
+      .page-card-grid::-webkit-scrollbar { display: none; }
+      .page-card-grid .page-card {
+        scroll-snap-align: start;
+        flex: 0 0 80%;
+        min-width: 80%;
+      }
+      /* Scroll-progress thumb under the carousel */
+      .page-card-progress {
+        display: block;
+        position: relative;
+        height: 4px;
+        background: #e2e8f0;
+        border-radius: 999px;
+        overflow: hidden;
+        margin: 0 0 1.1rem;
+      }
+      .page-card-progress-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: #c59d3c;
+        border-radius: 999px;
+        will-change: transform, width;
+      }
+      /* Edge fade hints that more cards exist off-screen */
+      .page-section::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 28px;
+        background: linear-gradient(to right, rgba(255,255,255,0), #fff);
+        pointer-events: none;
+        border-radius: 0 1.25rem 1.25rem 0;
+      }
+      .page-section:not(:has(.page-card-grid))::after { display: none; }
     }
     @media (max-width: 480px) {
-      .page-card-grid { grid-template-columns: 1fr; }
+      .page-card-grid .page-card { flex: 0 0 86%; min-width: 86%; }
       .page-section { padding: 1rem 0.85rem; }
       .page-hero-title { font-size: clamp(1.3rem, 7vw, 1.9rem); }
     }
@@ -468,6 +523,58 @@ export function PageLayout({
     });
     imgs.forEach((img) => observer.observe(img));
     return () => observer.disconnect();
+  }, []);
+
+  // Mobile card-carousel scroll progress indicator.
+  // Injects a thin "thumb" track under each .page-card-grid sized to the
+  // visible fraction of cards and positioned to match scroll progress —
+  // shows both "where am I" and "how much more" at a glance.
+  React.useEffect(() => {
+    const grids = Array.from(
+      document.querySelectorAll<HTMLElement>('.page-card-grid')
+    );
+    const teardowns: Array<() => void> = [];
+
+    grids.forEach((grid) => {
+      const track = document.createElement('div');
+      track.className = 'page-card-progress';
+      track.setAttribute('aria-hidden', 'true');
+      const thumb = document.createElement('div');
+      thumb.className = 'page-card-progress-bar';
+      track.appendChild(thumb);
+      grid.insertAdjacentElement('afterend', track);
+
+      let raf = 0;
+      const update = () => {
+        const max = grid.scrollWidth - grid.clientWidth;
+        const thumbPct = Math.max(
+          12,
+          (grid.clientWidth / grid.scrollWidth) * 100
+        );
+        const leftPct =
+          max > 0 ? (grid.scrollLeft / max) * (100 - thumbPct) : 0;
+        thumb.style.width = `${thumbPct}%`;
+        thumb.style.transform = `translateX(${leftPct}%)`;
+        // Hide entirely if everything fits (nothing to scroll, e.g. desktop)
+        track.style.display = max > 4 ? '' : 'none';
+      };
+      const onScroll = () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(update);
+      };
+
+      update();
+      grid.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', update);
+      teardowns.push(() => {
+        grid.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', update);
+        cancelAnimationFrame(raf);
+        track.remove();
+      });
+    });
+
+    return () => teardowns.forEach((fn) => fn());
   }, []);
 
   return (
