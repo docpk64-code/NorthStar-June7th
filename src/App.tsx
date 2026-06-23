@@ -103,9 +103,11 @@ const buildStyles = (heroBg: string) => `
    }
    
    * { box-sizing: border-box; }
-   html { scroll-behavior: smooth; }
+   html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
    body {
      margin: 0;
+     overflow-x: hidden;
+     width: 100%;
      font-family: "Aptos", "Segoe UI", sans-serif;
      color: var(--text);
      background:
@@ -535,6 +537,7 @@ const buildStyles = (heroBg: string) => `
    /* ── Care cards grid ── */
    .care-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; }
    .care-grid-progress { display: none; }
+   .signature-grid-progress { display: none; }
    .care-card {
      padding: 1.3rem;
      border-radius: 1.4rem;
@@ -910,6 +913,46 @@ const buildStyles = (heroBg: string) => `
      .testimonial-card, .inquiry-form, .care-card, .case-card,
      .compass-stage { border-radius: 1.45rem; }
      .field-grid, .case-grid { grid-template-columns: 1fr; }
+     /* ── Specialized Circumstances cards → swipeable horizontal carousel ──
+        Placed here (last matching declaration for this breakpoint) so it
+        definitively wins over the tablet/phablet 1fr rules above. */
+     .signature-grid {
+       display: flex;
+       grid-template-columns: unset;
+       flex-wrap: nowrap;
+       overflow-x: auto;
+       overflow-y: visible;
+       scroll-snap-type: x mandatory;
+       -webkit-overflow-scrolling: touch;
+       scrollbar-width: none;
+       gap: 0.85rem;
+       margin: 0 -0.75rem;
+       padding: 0.15rem 0.75rem 0.85rem;
+     }
+     .signature-grid::-webkit-scrollbar { display: none; }
+     .signature-grid .feature-card {
+       scroll-snap-align: start;
+       flex: 0 0 80%;
+       min-width: 80%;
+     }
+     .signature-grid-progress {
+       display: block;
+       position: relative;
+       height: 4px;
+       background: rgba(255,255,255,0.12);
+       border-radius: 999px;
+       overflow: hidden;
+       margin: -0.4rem 0.75rem 1.25rem;
+     }
+     .signature-grid-progress-bar {
+       position: absolute;
+       top: 0;
+       left: 0;
+       height: 100%;
+       background: #c59d3c;
+       border-radius: 999px;
+       will-change: transform, width;
+     }
      /* ── Homepage nav cards → swipeable horizontal carousel ── */
      .care-grid {
        display: flex;
@@ -963,6 +1006,7 @@ const buildStyles = (heroBg: string) => `
    /* ── Small phones ── */
    @media (max-width: 400px) {
      .care-card { flex: 0 0 86%; min-width: 86%; }
+     .signature-grid .feature-card { flex: 0 0 86%; min-width: 86%; }
      .hero-copy h1 { font-size: clamp(1.5rem, 8vw, 2rem); }
    }
    `;
@@ -2127,6 +2171,45 @@ export default function App() {
     };
   }, []);
 
+  // Same progress indicator for the Specialized Circumstances carousel
+  // (Wisdom Teeth, Sedation, Testimonials, Contact, etc.)
+  useEffect(() => {
+    const grid = document.querySelector<HTMLElement>('.signature-grid');
+    if (!grid) return;
+
+    const track = document.createElement('div');
+    track.className = 'signature-grid-progress';
+    track.setAttribute('aria-hidden', 'true');
+    const thumb = document.createElement('div');
+    thumb.className = 'signature-grid-progress-bar';
+    track.appendChild(thumb);
+    grid.insertAdjacentElement('afterend', track);
+
+    let raf = 0;
+    const update = () => {
+      const max = grid.scrollWidth - grid.clientWidth;
+      const thumbPct = Math.max(12, (grid.clientWidth / grid.scrollWidth) * 100);
+      const leftPct = max > 0 ? (grid.scrollLeft / max) * (100 - thumbPct) : 0;
+      thumb.style.width = `${thumbPct}%`;
+      thumb.style.transform = `translateX(${leftPct}%)`;
+      track.style.display = max > 4 ? '' : 'none';
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+
+    update();
+    grid.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      grid.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', update);
+      cancelAnimationFrame(raf);
+      track.remove();
+    };
+  }, []);
+
   // ── SEO: homepage meta tags + Schema.org ──────────────────────────────────
   useEffect(() => {
     document.title =
@@ -2468,60 +2551,68 @@ export default function App() {
                   flexWrap: 'wrap',
                 }}
               >
-                <span className="shooting-star-wrap">
-                  <span className="shooting-star" />
+                <span style={{ whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center' }}>
+                  <span className="shooting-star-wrap">
+                    <span className="shooting-star" />
+                    <span
+                      style={{
+                        fontSize: '200%',
+                        lineHeight: 1,
+                        display: 'inline-block',
+                        verticalAlign: 'middle',
+                        position: 'relative',
+                        zIndex: 1,
+                        background:
+                          'linear-gradient(90deg, #fff4d1 0%, #f3d37a 18%, #fff7e8 36%, #c59d3c 62%, #f6dea0 100%)',
+                        WebkitBackgroundClip: 'text',
+                        backgroundClip: 'text',
+                        color: 'transparent',
+                      }}
+                    >
+                      N
+                    </span>
+                  </span>
+                  orth
                   <span
                     style={{
                       fontSize: '200%',
                       lineHeight: 1,
                       display: 'inline-block',
                       verticalAlign: 'middle',
-                      position: 'relative',
-                      zIndex: 1,
-                      background:
-                        'linear-gradient(90deg, #fff4d1 0%, #f3d37a 18%, #fff7e8 36%, #c59d3c 62%, #f6dea0 100%)',
-                      WebkitBackgroundClip: 'text',
-                      backgroundClip: 'text',
-                      color: 'transparent',
                     }}
                   >
-                    N
+                    S
                   </span>
+                  tar
                 </span>
-                orth
-                <span
-                  style={{
-                    fontSize: '200%',
-                    lineHeight: 1,
-                    display: 'inline-block',
-                    verticalAlign: 'middle',
-                  }}
-                >
-                  S
+                &nbsp;
+                <span style={{ whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center' }}>
+                  <span
+                    style={{
+                      fontSize: '200%',
+                      lineHeight: 1,
+                      display: 'inline-block',
+                      verticalAlign: 'middle',
+                    }}
+                  >
+                    I
+                  </span>
+                  mplant
                 </span>
-                tar&nbsp;
-                <span
-                  style={{
-                    fontSize: '200%',
-                    lineHeight: 1,
-                    display: 'inline-block',
-                    verticalAlign: 'middle',
-                  }}
-                >
-                  I
+                &nbsp;
+                <span style={{ whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center' }}>
+                  <span
+                    style={{
+                      fontSize: '200%',
+                      lineHeight: 1,
+                      display: 'inline-block',
+                      verticalAlign: 'middle',
+                    }}
+                  >
+                    D
+                  </span>
+                  entistry
                 </span>
-                mplant&nbsp;
-                <span
-                  style={{
-                    fontSize: '200%',
-                    lineHeight: 1,
-                    display: 'inline-block',
-                    verticalAlign: 'middle',
-                  }}
-                >
-                  D
-                </span>
-                entistry
               </span>
             </h1>
             <TaglineGlow />
@@ -2632,7 +2723,7 @@ export default function App() {
               className="section-kicker"
               style={{
                 color: '#c59d3c',
-                fontSize: '3rem',
+                fontSize: 'clamp(1.5rem, 6vw, 3rem)',
                 fontWeight: 700,
                 fontStyle: 'italic',
                 letterSpacing: '0.1em',
