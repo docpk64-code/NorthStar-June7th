@@ -534,6 +534,7 @@ const buildStyles = (heroBg: string) => `
    
    /* ── Care cards grid ── */
    .care-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; }
+   .care-grid-progress { display: none; }
    .care-card {
      padding: 1.3rem;
      border-radius: 1.4rem;
@@ -908,7 +909,45 @@ const buildStyles = (heroBg: string) => `
      .hero-copy, .detail-panel, .info-card, .feature-card,
      .testimonial-card, .inquiry-form, .care-card, .case-card,
      .compass-stage { border-radius: 1.45rem; }
-     .field-grid, .care-grid, .case-grid { grid-template-columns: 1fr; }
+     .field-grid, .case-grid { grid-template-columns: 1fr; }
+     /* ── Homepage nav cards → swipeable horizontal carousel ── */
+     .care-grid {
+       display: flex;
+       grid-template-columns: unset;
+       flex-wrap: nowrap;
+       overflow-x: auto;
+       overflow-y: visible;
+       scroll-snap-type: x mandatory;
+       -webkit-overflow-scrolling: touch;
+       scrollbar-width: none;
+       gap: 0.85rem;
+       margin: 0 -0.75rem;
+       padding: 0.15rem 0.75rem 0.85rem;
+     }
+     .care-grid::-webkit-scrollbar { display: none; }
+     .care-card {
+       scroll-snap-align: start;
+       flex: 0 0 78%;
+       min-width: 78%;
+     }
+     .care-grid-progress {
+       display: block;
+       position: relative;
+       height: 4px;
+       background: rgba(10,20,36,0.1);
+       border-radius: 999px;
+       overflow: hidden;
+       margin: -0.4rem 0 1.25rem;
+     }
+     .care-grid-progress-bar {
+       position: absolute;
+       top: 0;
+       left: 0;
+       height: 100%;
+       background: #c59d3c;
+       border-radius: 999px;
+       will-change: transform, width;
+     }
      .detail-header, .footer-row { flex-direction: column; align-items: flex-start; }
      .button { width: 100%; justify-content: center; min-height: 44px; }
      .hero-actions { flex-direction: column; }
@@ -923,7 +962,7 @@ const buildStyles = (heroBg: string) => `
    }
    /* ── Small phones ── */
    @media (max-width: 400px) {
-     .care-grid { grid-template-columns: 1fr; }
+     .care-card { flex: 0 0 86%; min-width: 86%; }
      .hero-copy h1 { font-size: clamp(1.5rem, 8vw, 2rem); }
    }
    `;
@@ -2045,6 +2084,45 @@ export default function App() {
     document.head.appendChild(tag);
     return () => {
       document.head.removeChild(tag);
+    };
+  }, []);
+
+  // Mobile nav-card carousel scroll progress indicator (mirrors the one
+  // used on internal pages) — shows position/remaining across the 11 cards.
+  useEffect(() => {
+    const grid = document.querySelector<HTMLElement>('.care-grid');
+    if (!grid) return;
+
+    const track = document.createElement('div');
+    track.className = 'care-grid-progress';
+    track.setAttribute('aria-hidden', 'true');
+    const thumb = document.createElement('div');
+    thumb.className = 'care-grid-progress-bar';
+    track.appendChild(thumb);
+    grid.insertAdjacentElement('afterend', track);
+
+    let raf = 0;
+    const update = () => {
+      const max = grid.scrollWidth - grid.clientWidth;
+      const thumbPct = Math.max(12, (grid.clientWidth / grid.scrollWidth) * 100);
+      const leftPct = max > 0 ? (grid.scrollLeft / max) * (100 - thumbPct) : 0;
+      thumb.style.width = `${thumbPct}%`;
+      thumb.style.transform = `translateX(${leftPct}%)`;
+      track.style.display = max > 4 ? '' : 'none';
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+
+    update();
+    grid.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      grid.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', update);
+      cancelAnimationFrame(raf);
+      track.remove();
     };
   }, []);
 
