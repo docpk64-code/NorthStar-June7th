@@ -149,7 +149,7 @@ const buildStyles = (heroBg: string) => `
    .signature-section, .contact-section { position: relative; }
    
    .hero {
-     padding: 3rem 0 5rem;
+     padding: calc(3rem + env(safe-area-inset-top, 0px)) 0 5rem;
      background-image: url('${heroBg}');
      background-size: cover;
      background-position: center;
@@ -905,7 +905,7 @@ const buildStyles = (heroBg: string) => `
    }
    /* ── Mobile ── */
    @media (max-width: 720px) {
-     .hero { padding-top: 2rem; }
+     .hero { padding-top: calc(2rem + env(safe-area-inset-top, 0px)); }
      .hero-copy, .detail-panel, .info-card, .feature-card,
      .testimonial-card, .inquiry-form, .care-card, .case-card,
      .compass-stage { border-radius: 1.45rem; }
@@ -1253,7 +1253,7 @@ function DirectionsDropdown() {
     },
   ];
   return (
-    <div style={{ position: 'relative', minWidth: '160px' }}>
+    <div style={{ position: 'relative', minWidth: '160px', isolation: 'isolate', zIndex: 50 }}>
       <button
         className="button button-primary"
         style={{ width: '100%' }}
@@ -1269,12 +1269,13 @@ function DirectionsDropdown() {
             top: 'calc(100% + 0.5rem)',
             left: 0,
             right: 0,
-            background: '#fff',
+            background: '#ffffff',
             borderRadius: '1rem',
             border: '1px solid #e2e8f0',
             boxShadow: '0 12px 32px rgba(0,0,0,0.18)',
             overflow: 'hidden',
-            zIndex: 100,
+            zIndex: 9999,
+            isolation: 'isolate',
           }}
         >
           {locations.map((loc) => (
