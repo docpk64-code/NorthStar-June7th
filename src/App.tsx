@@ -111,9 +111,9 @@ const buildStyles = (heroBg: string) => `
      font-family: "Aptos", "Segoe UI", sans-serif;
      color: var(--text);
      background:
-       radial-gradient(circle at top left, rgba(127, 29, 29, 0.2), transparent 30%),
-       radial-gradient(circle at top right, rgba(224, 189, 112, 0.15), transparent 35%),
-       linear-gradient(180deg, #09121e 0%, #07111c 45%, #050d16 100%);
+       radial-gradient(circle at top left, rgba(127, 29, 29, 0.08), transparent 35%),
+       radial-gradient(circle at top right, rgba(224, 189, 112, 0.12), transparent 40%),
+       linear-gradient(180deg, #ffffff 0%, #f8f9fb 50%, #f3f5f7 100%);
    }
    body::before {
      content: "";
@@ -2420,7 +2420,7 @@ export default function App() {
       <div style={{ position: 'relative' as const }}>
         <div
           style={{
-            background: 'linear-gradient(90deg,#07111c,#0d1f32)',
+            background: '#f8f9fb',
             borderBottom: '1px solid rgba(197,157,60,0.2)',
             display: 'flex',
             alignItems: 'center',
@@ -2428,7 +2428,7 @@ export default function App() {
             gap: '1rem',
             padding: '0.5rem 3.5rem 0.5rem 1rem',
             fontSize: '0.82rem',
-            color: 'rgba(246,242,234,0.65)',
+            color: 'rgba(7,17,28,0.75)',
             flexWrap: 'wrap' as const,
             position: 'relative' as const,
           }}

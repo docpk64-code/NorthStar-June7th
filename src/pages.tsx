@@ -1425,7 +1425,7 @@ export function TestimonialsPage() {
             style={{
               display: 'inline-block',
               padding: '0.6rem 1.4rem',
-              background: '#07111c',
+              background: '#f8f9fb',
               color: '#c59d3c',
               border: '1.5px solid #c59d3c',
               borderRadius: '0.4rem',
@@ -1442,7 +1442,7 @@ export function TestimonialsPage() {
             style={{
               display: 'inline-block',
               padding: '0.6rem 1.4rem',
-              background: '#07111c',
+              background: '#f8f9fb',
               color: '#c59d3c',
               border: '1.5px solid #c59d3c',
               borderRadius: '0.4rem',
