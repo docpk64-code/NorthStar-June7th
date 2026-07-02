@@ -1,103 +1,78 @@
+import { useState } from 'react';
 
-import { navigate } from '../Root';
-import type { MenuItem } from '../types';
-import { careCardAnchors } from '../data/menuData';
-import { playCardClick } from '../utils/sound';
+// ─── Sub-components ───────────────────────────────────────────────────────────
 
-export default function CareCard({ item, isActive }: { item: MenuItem; isActive: boolean }) {
-  const slug = item.href.replace(/^\//, '');
+export default function DirectionsDropdown() {
+  const [open, setOpen] = useState(false);
+  const locations = [
+    {
+      name: 'Briarwood, NY',
+      maps: 'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY',
+    },
+    {
+      name: 'New York, NY',
+      maps: 'https://maps.google.com/?q=333+East+34th+Street+Suite+M1+New+York+NY+10016',
+    },
+    {
+      name: 'Commack, NY',
+      maps: 'https://maps.google.com/?q=283+Commack+Road+Suite+130+Commack+NY+11725',
+    },
+  ];
   return (
-    <article
-      className={`care-card care-card-link${isActive ? ' is-active' : ''}`}
-      id={careCardAnchors.has(slug) ? slug : undefined}
-      onClick={() => {
-        playCardClick();
-        setTimeout(() => navigate(item.href), 160);
-      }}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          playCardClick();
-          setTimeout(() => navigate(item.href), 160);
-        }
-      }}
-      style={{ cursor: 'pointer' }}
-    >
-      {/* ── Image / placeholder ── */}
-      {item.imageSrc ? (
-        <img
-          src={item.imageSrc}
-          alt={item.label}
-          style={{
-            width: '100%',
-            aspectRatio: '4/3',
-            objectFit: 'cover',
-            borderRadius: '0.9rem',
-            marginBottom: '0.9rem',
-            display: 'block',
-            flexShrink: 0,
-          }}
-        />
-      ) : (
+    <div style={{ position: 'relative', minWidth: '160px', isolation: 'isolate', zIndex: 50 }}>
+      <button
+        className="button button-primary"
+        style={{ width: '100%' }}
+        onClick={() => setOpen((o) => !o)}
+        type="button"
+      >
+        Directions ▾
+      </button>
+      {open && (
         <div
           style={{
-            width: '100%',
-            aspectRatio: '4/3',
-            borderRadius: '0.9rem',
-            marginBottom: '0.9rem',
-            background:
-              'linear-gradient(135deg, rgba(197,157,60,0.13) 0%, rgba(10,20,36,0.55) 100%)',
-            border: '1px dashed rgba(197,157,60,0.35)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.4rem',
-            color: 'rgba(197,157,60,0.6)',
-            fontSize: '0.72rem',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            flexShrink: 0,
+            position: 'absolute',
+            top: 'calc(100% + 0.5rem)',
+            left: 0,
+            right: 0,
+            background: '#ffffff',
+            borderRadius: '1rem',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 12px 32px rgba(0,0,0,0.18)',
+            overflow: 'hidden',
+            zIndex: 9999,
+            isolation: 'isolate',
           }}
         >
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <circle cx="8.5" cy="8.5" r="1.5" />
-            <polyline points="21 15 16 10 5 21" />
-          </svg>
-          Add Photo
+          {locations.map((loc) => (
+            <a
+              key={loc.name}
+              href={loc.maps}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setOpen(false)}
+              style={{
+                display: 'block',
+                padding: '0.75rem 1rem',
+                color: '#07111c',
+                fontWeight: 600,
+                fontSize: '0.88rem',
+                textDecoration: 'none',
+                borderBottom: '1px solid #f0f0f0',
+                transition: 'background 150ms',
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = '#f4f6f9')
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = 'transparent')
+              }
+            >
+              📍 {loc.name}
+            </a>
+          ))}
         </div>
       )}
-      <p className="section-kicker" style={{ textAlign: 'center' }}>
-        {item.eyebrow}
-      </p>
-      <h3 style={{ textAlign: 'center' }}>{item.label}</h3>
-      <p style={{ textAlign: 'center' }}>{item.description}</p>
-      <span
-        className="card-link"
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.4rem',
-          marginTop: '1rem',
-          color: '#f8e7b6',
-          fontWeight: 600,
-          width: '100%',
-          justifyContent: 'center',
-        }}
-      >
-        Explore {item.shortLabel} <span style={{ fontSize: '1.1rem' }}>→</span>
-      </span>
-    </article>
+    </div>
   );
 }
