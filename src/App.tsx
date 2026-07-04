@@ -423,23 +423,20 @@ export default function App() {
       </div>
 
       {/* ── Hero ── */}
-      {/* Dusk sky: was a 1MB embedded photo + a heavy dark overlay (rgba(7,17,28)
-          climbing to fully opaque). Replaced with a CSS gradient that still ends
-          on the same navy (#07111c) so it blends into the compass section below,
-          but is lighter and warmer through the upper/middle portion. */}
+      {/* Background: winter landscape with North Star photo (hero-bg.jpg, ~48KB).
+          A gradient overlay blends the bottom into the dark navy compass section. */}
       <header
         className="hero"
         id="top"
         style={{
-          background:
-            'backgroundImage: 'url(/assets/hero-bg.jpg)',
+          backgroundImage: 'url(/assets/hero-bg.jpg)',
           backgroundSize: 'cover',
-          backgroundPosition: 'top center',
+          backgroundPosition: 'center top',
           backgroundRepeat: 'no-repeat',
           position: 'relative',
         }}
       >
-       {/* Blend bottom of photo into the dark compass section below */}
+        {/* Blend bottom of photo into the dark compass section below */}
         <div
           aria-hidden="true"
           style={{
@@ -1161,34 +1158,6 @@ export default function App() {
               Back to top ↑
             </a>
           </div>
-        </div>
-        <div className="section-shell" style={{ marginTop: '0.75rem' }}>
-          <p
-            style={{
-              fontSize: '0.78rem',
-              color: 'rgba(197,157,60,0.5)',
-            }}
-          >
-            © {new Date().getFullYear()} NorthStar Implant Dentistry, P.C.
-            All rights reserved. NorthStar Implant Dentistry™, the NorthStar
-            compass wheel design, and &#8220;Guiding Patients One Smile at a
-            Time&#8221;™ are trademarks of NorthStar Implant Dentistry, P.C.{' '}
-            <button
-              onClick={() => navigate('/terms')}
-              style={{
-                background: 'none',
-                border: 'none',
-                padding: 0,
-                color: '#c59d3c',
-                textDecoration: 'underline',
-                cursor: 'pointer',
-                fontSize: 'inherit',
-              }}
-              aria-label="Terms of Use and Intellectual Property Notice"
-            >
-              Terms of Use
-            </button>
-          </p>
         </div>
       </footer>
     </>
