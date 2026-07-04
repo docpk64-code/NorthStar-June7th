@@ -432,14 +432,14 @@ export default function App() {
         id="top"
         style={{
           background:
-            'linear-gradient(180deg, #232a4d 0%, #3d4280 16%, #6c5a93 34%, #b97a8a 50%, #d99a6c 62%, #6b4a5c 76%, #1c2438 90%, #07111c 100%)',
+            'backgroundImage: 'url(/assets/hero-bg.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'top center',
           backgroundRepeat: 'no-repeat',
           position: 'relative',
         }}
       >
-        {/* Soft diagonal Milky Way band */}
+       {/* Blend bottom of photo into the dark compass section below */}
         <div
           aria-hidden="true"
           style={{
@@ -447,7 +447,7 @@ export default function App() {
             inset: 0,
             zIndex: 0,
             background:
-              'linear-gradient(108deg, transparent 28%, rgba(255,255,255,0.06) 42%, rgba(255,250,235,0.14) 50%, rgba(255,255,255,0.06) 58%, transparent 72%)',
+              'linear-gradient(to bottom, rgba(5,10,25,0.08) 0%, rgba(5,10,25,0.22) 55%, rgba(7,17,28,0.82) 78%, rgba(7,17,28,1) 92%)',
             pointerEvents: 'none',
           }}
         />
