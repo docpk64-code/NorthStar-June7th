@@ -57,32 +57,17 @@ export const buildStyles = (heroBg: string) => `
    
    .hero {
      padding: calc(3rem + env(safe-area-inset-top, 0px)) 0 5rem;
-     background-image: url('${heroBg}');
-     background-size: cover;
-     background-position: center;
-     background-repeat: no-repeat;
      overflow: hidden;
    }
    .hero::before {
      content: "";
      position: absolute;
      inset: 0;
-     background:
-       radial-gradient(circle at 82% 22%, rgba(255,255,255,0.16), rgba(255,255,255,0.02) 18%, rgba(7,17,28,0) 34%),
-       linear-gradient(to bottom, rgba(7,17,28,0.62), rgba(7,17,28,0.84));
-     z-index: 0;
-   }
-   .hero::after {
-     content: "";
-     position: absolute;
-     inset: -8% -12%;
-     background:
-       radial-gradient(circle at 84% 24%, rgba(255,245,214,0.08) 0%, rgba(255,245,214,0.02) 14%, rgba(0,0,0,0) 28%),
-       linear-gradient(112deg, rgba(255,255,255,0) 0%, rgba(255,248,220,0.06) 44%, rgba(255,255,255,0) 56%);
-     mix-blend-mode: screen;
-     opacity: 0.75;
-     animation: heroNebulaDrift 18s ease-in-out infinite alternate;
-     pointer-events: none;
+     background: linear-gradient(to bottom,
+       rgba(5,10,25,0.08) 0%,
+       rgba(5,10,25,0.18) 55%,
+       rgba(7,17,28,0.78) 80%,
+       rgba(7,17,28,1) 96%);
      z-index: 0;
    }
    .hero > * { position: relative; z-index: 1; }
@@ -98,7 +83,6 @@ export const buildStyles = (heroBg: string) => `
      border: 1px solid rgba(243,211,122,0.2);
    }
    
-   /* ── Shared glass panel style ── */
    .detail-panel,
    .info-card,
    .feature-card,
@@ -118,22 +102,16 @@ export const buildStyles = (heroBg: string) => `
      backdrop-filter: none;
      box-shadow: none;
      text-align: center;
-   }
-   
-   .hero-copy {
      padding: 3rem 2rem 3rem;
      border-radius: 2rem;
      width: 100%;
-     text-align: center;
      position: relative;
      display: flex;
      flex-direction: column;
      justify-content: flex-end;
      min-height: 480px;
    }
-   .hero-copy::before {
-     content: none;
-   }
+   .hero-copy::before { content: none; }
    .hero-copy::after {
      content: "";
      position: absolute;
@@ -147,7 +125,6 @@ export const buildStyles = (heroBg: string) => `
      border-radius: inherit;
    }
    
-   /* ── Starfield ── */
    .hero-starfield {
      position: absolute;
      inset: 0;
@@ -186,7 +163,6 @@ export const buildStyles = (heroBg: string) => `
      transform: translate(-50%, -50%);
    }
    
-   /* ── Streaks ── */
    .hero-streak {
      position: absolute;
      width: clamp(16rem, 28vw, 28rem);
@@ -209,7 +185,6 @@ export const buildStyles = (heroBg: string) => `
      animation: streakFloatTwo 20s ease-in-out infinite;
    }
    
-   /* ── Hero content ── */
    .hero-content {
      position: relative;
      z-index: 2;
@@ -224,7 +199,6 @@ export const buildStyles = (heroBg: string) => `
      line-height: 0.95;
    }
    
-   /* ── Serif headings ── */
    .hero-title,
    .section-heading h2,
    .feature-card h2,
@@ -237,7 +211,6 @@ export const buildStyles = (heroBg: string) => `
      font-family: "Cormorant Garamond", "Palatino Linotype", serif;
    }
    
-   /* ── Wordmark ── */
    .wordmark {
      position: relative;
      display: inline-block;
@@ -284,7 +257,6 @@ export const buildStyles = (heroBg: string) => `
    .hero-title > * { position: relative; z-index: 1; }
    .title-subtitle { font-size: inherit; color: #f8e7b6; }
    
-   /* ── Kickers / eyebrows ── */
    .eyebrow, .section-kicker, .feature-kicker, .info-label, .detail-kicker {
      margin: 0 0 0.75rem;
      font-size: 0.77rem;
@@ -293,7 +265,6 @@ export const buildStyles = (heroBg: string) => `
      color: var(--gold-strong);
    }
    
-   /* ── Body text ── */
    .hero-body, .section-heading p, .feature-card p,
    .testimonial-card p, .detail-description,
    .info-card p, .care-card p, .case-copy p {
@@ -302,7 +273,6 @@ export const buildStyles = (heroBg: string) => `
      line-height: 1.75;
    }
    
-   /* ── Buttons ── */
    .hero-actions, .detail-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.75rem; }
    .hero-actions { justify-content: center; }
    .button {
@@ -328,12 +298,10 @@ export const buildStyles = (heroBg: string) => `
      color: var(--text);
    }
    
-   /* ── Info cards (hero aside) ── */
    .hero-aside { display: flex; flex-direction: column; align-items: center; gap: 0; width: 100%; }
    .info-card { padding: 1.25rem 1.3rem; border-radius: 1.6rem; }
    .info-card h2 { margin: 0 0 0.35rem; font-size: 1.55rem; }
    
-   /* ── Sections ── */
    .services-section { background: #ffffff; padding: 2rem 0; }
    .services-section .section-shell { width: min(1380px, calc(100% - 1rem)); }
    .services-section .section-kicker { color: #c59d3c; }
@@ -351,17 +319,8 @@ export const buildStyles = (heroBg: string) => `
    .contact-section .section-heading p { color: #4a5668; }
    .compass-grid { grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr); align-items: center; }
    
-   /* ── Compass starfield ── */
-   .compass-section {
-     position: relative;
-     overflow: hidden;
-   }
-   .compass-starfield {
-     position: absolute;
-     inset: 0;
-     pointer-events: none;
-     z-index: 0;
-   }
+   .compass-section { position: relative; overflow: hidden; }
+   .compass-starfield { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
    .compass-starfield span {
      position: absolute;
      display: block;
@@ -426,7 +385,6 @@ export const buildStyles = (heroBg: string) => `
    .compass-segment { cursor: pointer; }
    .compass-segment:hover path:first-of-type { fill: rgba(127,29,29,0.28); }
    
-   /* ── Detail panel ── */
    .detail-panel { padding: 1.8rem; border-radius: 2rem; }
    .detail-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
    .detail-panel h2 { margin: 0; font-size: clamp(2rem, 4vw, 2.8rem); }
@@ -434,12 +392,10 @@ export const buildStyles = (heroBg: string) => `
    .detail-description { margin-top: 1rem; }
    .detail-tip { margin: 1rem 0 0; color: rgba(246,242,234,0.62); font-size: 0.92rem; }
    
-   /* ── Section headings ── */
    .section-heading { max-width: 42rem; margin-bottom: 1.6rem; }
    .section-heading h2 { margin: 0 0 0.6rem; font-size: clamp(2rem, 5vw, 3.2rem); }
    .left-aligned { margin-bottom: 1.3rem; }
    
-   /* ── Care cards grid ── */
    .care-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; }
    .care-grid-progress { display: none; }
    .signature-grid-progress { display: none; }
@@ -472,9 +428,7 @@ export const buildStyles = (heroBg: string) => `
      transform: translateY(-3px);
      box-shadow: 0 28px 70px rgba(0,0,0,0.48);
    }
-   .care-card-link:hover .card-link {
-     color: #f3d37a;
-   }
+   .care-card-link:hover .card-link { color: #f3d37a; }
    .care-card h3 { margin: 0 0 0.5rem; font-size: 1.35rem; }
    .care-card .card-link {
      display: inline-flex;
@@ -483,7 +437,6 @@ export const buildStyles = (heroBg: string) => `
      font-weight: 600;
    }
    
-   /* ── Case study cards ── */
    .case-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
    .case-card { border-radius: 1.6rem; overflow: hidden; }
    .case-stage { position: relative; min-height: 18rem; background: #0b1424; }
@@ -501,13 +454,7 @@ export const buildStyles = (heroBg: string) => `
        radial-gradient(circle at 68% 38%, rgba(127,29,29,0.26), transparent 22%),
        linear-gradient(135deg, var(--before-a), var(--before-b));
    }
-   .case-photo {
-     position: absolute;
-     inset: 0;
-     width: 100%;
-     height: 100%;
-     object-fit: cover;
-   }
+   .case-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
    .case-label {
      position: absolute;
      top: 1rem;
@@ -573,12 +520,10 @@ export const buildStyles = (heroBg: string) => `
    .case-copy { padding: 1rem 1.15rem 1.2rem; }
    .case-copy h3 { margin: 0 0 0.35rem; font-size: 1.18rem; }
    
-   /* ── Signature / feature cards ── */
    .signature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
    .feature-card { padding: 1.4rem; border-radius: 1.6rem; }
    .feature-card h2 { margin: 0 0 0.7rem; font-size: 1.8rem; }
    
-   /* ── Contact section ── */
    .contact-section { padding-bottom: 3rem; }
    .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr); align-items: start; }
    .testimonial-grid { display: grid; gap: 1rem; }
@@ -586,7 +531,6 @@ export const buildStyles = (heroBg: string) => `
    .testimonial-card h3 { margin: 1rem 0 0.15rem; font-size: 1.1rem; }
    .testimonial-card span { color: #f8e7b6; font-size: 0.92rem; }
    
-   /* ── Inquiry form ── */
    .inquiry-form { padding: 1.5rem; border-radius: 1.8rem; }
    .form-header { margin-bottom: 1rem; }
    .form-header h2 { margin: 0; font-size: 2rem; }
@@ -611,7 +555,6 @@ export const buildStyles = (heroBg: string) => `
    .submit-button { width: 100%; }
    .form-note { margin: 0.9rem 0 0; color: rgba(246,242,234,0.64); font-size: 0.9rem; }
    
-   /* ── Glass panels on white sections ── */
    .results-section .case-card,
    .signature-section .feature-card,
    .contact-section .testimonial-card,
@@ -646,14 +589,11 @@ export const buildStyles = (heroBg: string) => `
    }
    .footer-row a { color: #c59d3c; }
    
-   /* ── Animations ── */
    @keyframes flashButton {
      0%, 100% { opacity: 1; box-shadow: 0 0 18px rgba(243,211,122,0.8); }
      50% { opacity: 0.45; box-shadow: none; }
    }
-   .button-flash {
-     animation: flashButton 2s ease-in-out infinite;
-   }
+   .button-flash { animation: flashButton 2s ease-in-out infinite; }
    @keyframes flashRed {
      0%, 100% { opacity: 1; text-shadow: 0 0 12px rgba(255,40,40,0.9); }
      50%       { opacity: 0.25; text-shadow: none; }
@@ -673,11 +613,7 @@ export const buildStyles = (heroBg: string) => `
      10%, 90% { opacity: 1; transform: scale(1.2); }
      50%       { opacity: 0.9; transform: scale(1); }
    }
-   .shooting-star-wrap {
-     position: relative;
-     display: inline-block;
-     overflow: visible;
-   }
+   .shooting-star-wrap { position: relative; display: inline-block; overflow: visible; }
    .shooting-star {
      position: absolute;
      top: -4px;
@@ -706,6 +642,7 @@ export const buildStyles = (heroBg: string) => `
      animation: starGlow 3.2s ease-out infinite;
      animation-delay: 0.8s;
    }
+   @keyframes shimmer {
      0%   { background-position: 0% 50%; }
      50%  { background-position: 100% 50%; }
      100% { background-position: 0% 50%; }
@@ -733,10 +670,6 @@ export const buildStyles = (heroBg: string) => `
      75%  { opacity: calc(var(--opacity) * 1.3); transform: scale(1.15); }
      100% { opacity: calc(var(--opacity) * 0.35); transform: scale(0.7); }
    }
-   @keyframes heroNebulaDrift {
-     0%   { transform: translate3d(-1.5%, -1%, 0) scale(1); opacity: 0.68; }
-     100% { transform: translate3d(1.5%, 1%, 0) scale(1.03); opacity: 0.88; }
-   }
    @keyframes streakFloatOne {
      0%   { transform: rotate(-13deg) translateX(0); opacity: 0.32; }
      50%  { transform: rotate(-11deg) translateX(8px); opacity: 0.62; }
@@ -748,8 +681,6 @@ export const buildStyles = (heroBg: string) => `
      100% { transform: rotate(-23deg) translateX(0); opacity: 0.22; }
    }
    
-   /* ── Responsive ── */
-   /* ── Mobile hamburger for homepage ── */
    .app-nav-toggle {
      display: none;
      background: none;
@@ -793,7 +724,6 @@ export const buildStyles = (heroBg: string) => `
    }
    .app-nav-mobile a:hover, .app-nav-mobile button:hover { color: #f3d37a; background: rgba(243,211,122,0.06); }
    .app-nav-mobile .call-link { color: #f3d37a; font-weight: 700; font-size: 1rem; }
-   /* ── Tablet ── */
    @media (max-width: 1000px) {
      .hero-grid, .contact-grid, .signature-grid { grid-template-columns: 1fr; }
      .hero-bear { display: none; }
@@ -801,7 +731,6 @@ export const buildStyles = (heroBg: string) => `
      .case-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
      .signature-grid { grid-template-columns: 1fr; }
    }
-   /* ── Phablet ── */
    @media (max-width: 600px) {
      .signature-grid { grid-template-columns: 1fr; }
      .care-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -811,16 +740,12 @@ export const buildStyles = (heroBg: string) => `
      .results-section h2 { font-size: clamp(1rem, 4vw, 1.54rem); }
      .compass-badge { font-size: 0.72rem; padding: 0.4rem 0.9rem; }
    }
-   /* ── Mobile ── */
    @media (max-width: 720px) {
      .hero { padding-top: calc(2rem + env(safe-area-inset-top, 0px)); }
      .hero-copy, .detail-panel, .info-card, .feature-card,
      .testimonial-card, .inquiry-form, .care-card, .case-card,
      .compass-stage { border-radius: 1.45rem; }
      .field-grid, .case-grid { grid-template-columns: 1fr; }
-     /* ── Specialized Circumstances cards → swipeable horizontal carousel ──
-        Placed here (last matching declaration for this breakpoint) so it
-        definitively wins over the tablet/phablet 1fr rules above. */
      .signature-grid {
        display: flex;
        grid-template-columns: unset;
@@ -851,14 +776,12 @@ export const buildStyles = (heroBg: string) => `
      }
      .signature-grid-progress-bar {
        position: absolute;
-       top: 0;
-       left: 0;
+       top: 0; left: 0;
        height: 100%;
        background: #c59d3c;
        border-radius: 999px;
        will-change: transform, width;
      }
-     /* ── Homepage nav cards → swipeable horizontal carousel ── */
      .care-grid {
        display: flex;
        grid-template-columns: unset;
@@ -889,8 +812,7 @@ export const buildStyles = (heroBg: string) => `
      }
      .care-grid-progress-bar {
        position: absolute;
-       top: 0;
-       left: 0;
+       top: 0; left: 0;
        height: 100%;
        background: #c59d3c;
        border-radius: 999px;
@@ -908,7 +830,6 @@ export const buildStyles = (heroBg: string) => `
      .case-slider input[type="range"] { height: 44px; cursor: pointer; }
      .compass-badge { font-size: 0.68rem; }
    }
-   /* ── Small phones ── */
    @media (max-width: 400px) {
      .care-card { flex: 0 0 86%; min-width: 86%; }
      .signature-grid .feature-card { flex: 0 0 86%; min-width: 86%; }
