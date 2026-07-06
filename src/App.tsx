@@ -69,8 +69,7 @@ export default function App() {
     };
   }, []);
 
-  // Mobile nav-card carousel scroll progress indicator (mirrors the one
-  // used on internal pages) — shows position/remaining across the 11 cards.
+  // Mobile nav-card carousel scroll progress indicator
   useEffect(() => {
     const grid = document.querySelector<HTMLElement>('.care-grid');
     if (!grid) return;
@@ -109,7 +108,6 @@ export default function App() {
   }, []);
 
   // Same progress indicator for the Specialized Circumstances carousel
-  // (Wisdom Teeth, Sedation, Testimonials, Contact, etc.)
   useEffect(() => {
     const grid = document.querySelector<HTMLElement>('.signature-grid');
     if (!grid) return;
@@ -423,8 +421,6 @@ export default function App() {
       </div>
 
       {/* ── Hero ── */}
-      {/* Background: winter landscape with North Star photo (hero-bg.jpg, ~48KB).
-          A gradient overlay blends the bottom into the dark navy compass section. */}
       <header
         className="hero"
         id="top"
@@ -728,7 +724,6 @@ export default function App() {
                     {(f as any).description}
                   </p>
                 )}
-                {/* ── Photo placeholder or real image ── */}
                 {(f as any).imageSrc ? (
                   <img
                     src={(f as any).imageSrc}
@@ -1159,19 +1154,32 @@ export default function App() {
             </a>
           </div>
         </div>
-        <div className="section-shell" style={{ marginTop: '0.75rem', paddingBottom: '1rem' }}>
-          <p style={{ fontSize: '0.78rem', color: 'rgba(197,157,60,0.5)', lineHeight: '1.6' }}>
-            © {new Date().getFullYear()} NorthStar Implant Dentistry, P.C.{' '}
-            All rights reserved. NorthStar Implant Dentistry™, the NorthStar
-            compass wheel design, and "Guiding Patients One Smile at a
-            Time"™ are trademarks of NorthStar Implant Dentistry, P.C.
+        <div
+          className="section-shell"
+          style={{ marginTop: '0.75rem', paddingBottom: '1rem' }}
+        >
+          <p
+            style={{
+              fontSize: '0.78rem',
+              color: 'rgba(197,157,60,0.5)',
+              lineHeight: '1.6',
+            }}
+          >
+            {'\u00A9'} {new Date().getFullYear()} NorthStar Implant Dentistry, P.C.{' '}
+            All rights reserved. NorthStar Implant Dentistry{'\u2122'}, the NorthStar
+            compass wheel design, and {'\u201C'}Guiding Patients One Smile at a
+            Time{'\u201D'}{'\u2122'} are trademarks of NorthStar Implant Dentistry, P.C.
           </p>
           <p style={{ marginTop: '0.5rem' }}>
-            
+            <a
               href="/terms"
-              style={{ color: 'rgba(197,157,60,0.5)', fontSize: '0.78rem', textDecoration: 'underline' }}
+              style={{
+                color: 'rgba(197,157,60,0.5)',
+                fontSize: '0.78rem',
+                textDecoration: 'underline',
+              }}
             >
-            Terms of Use &amp; IP Notice
+              Terms of Use {'&'} IP Notice
             </a>
           </p>
         </div>
