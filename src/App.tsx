@@ -1167,11 +1167,11 @@ export default function App() {
             Time"™ are trademarks of NorthStar Implant Dentistry, P.C.
           </p>
           <p style={{ marginTop: '0.5rem' }}>
-            
+            <a
               href="/terms"
               style={{ color: 'rgba(197,157,60,0.5)', fontSize: '0.78rem', textDecoration: 'underline' }}
             >
-            Terms of Use &amp; IP Notice
+              Terms of Use &amp; IP Notice
             </a>
           </p>
         </div>
