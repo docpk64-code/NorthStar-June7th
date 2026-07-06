@@ -1159,6 +1159,22 @@ export default function App() {
             </a>
           </div>
         </div>
+        <div className="section-shell" style={{ marginTop: '0.75rem', paddingBottom: '1rem' }}>
+          <p style={{ fontSize: '0.78rem', color: 'rgba(197,157,60,0.5)', lineHeight: '1.6' }}>
+            © {new Date().getFullYear()} NorthStar Implant Dentistry, P.C.{' '}
+            All rights reserved. NorthStar Implant Dentistry™, the NorthStar
+            compass wheel design, and "Guiding Patients One Smile at a
+            Time"™ are trademarks of NorthStar Implant Dentistry, P.C.
+          </p>
+          <p style={{ marginTop: '0.5rem' }}>
+            
+              href="/terms"
+              style={{ color: 'rgba(197,157,60,0.5)', fontSize: '0.78rem', textDecoration: 'underline' }}
+            >
+              Terms of Use & IP Notice
+            </a>
+          </p>
+        </div>
       </footer>
     </>
   );
