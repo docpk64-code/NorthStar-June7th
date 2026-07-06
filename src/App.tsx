@@ -1171,7 +1171,7 @@ export default function App() {
               href="/terms"
               style={{ color: 'rgba(197,157,60,0.5)', fontSize: '0.78rem', textDecoration: 'underline' }}
             >
-              Terms of Use & IP Notice
+            Terms of Use &amp; IP Notice
             </a>
           </p>
         </div>
