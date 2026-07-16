@@ -126,8 +126,7 @@ export default function App() {
     if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical); }
     canonical.href = 'https://www.northstarimplants.com';
     if (!document.querySelector('link[rel="sitemap"]')) {
-      const sm = document.createElement('link');
-      sm.rel = 'sitemap'; sm.type = 'application/xml'; sm.href = '/sitemap.xml';
+      const sm = document.createElement('link'); sm.rel = 'sitemap'; sm.type = 'application/xml'; sm.href = '/sitemap.xml';
       document.head.appendChild(sm);
     }
     if (!document.getElementById('schema-northstar-home')) {
@@ -135,10 +134,8 @@ export default function App() {
       schema.id = 'schema-northstar-home';
       schema.type = 'application/ld+json';
       schema.textContent = JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Dentist',
-        name: 'NorthStar Implant Dentistry',
-        url: 'https://www.northstarimplants.com',
+        '@context': 'https://schema.org', '@type': 'Dentist',
+        name: 'NorthStar Implant Dentistry', url: 'https://www.northstarimplants.com',
         telephone: '+1-631-315-1400',
         description: 'Advanced dental implant surgery, bone grafting, full-arch restoration, zygomatic implants, wisdom teeth extraction, and sedation dentistry. Serving Briarwood, New York, and Commack.',
         priceRange: '$$$$',
@@ -163,8 +160,7 @@ export default function App() {
     () => menuItems.map((item, index) => {
       const centerAngle = START_ANGLE + index * STEP;
       return { item, index, centerAngle, startAngle: centerAngle - STEP / 2, endAngle: centerAngle + STEP / 2 };
-    }),
-    []
+    }), []
   );
 
   useEffect(() => {
@@ -207,17 +203,12 @@ export default function App() {
       <div style={{ position: 'relative' as const }}>
         <div
           style={{
-            background: '#f8f9fb',
+            background: '#07111c',
             borderBottom: '1px solid rgba(197,157,60,0.2)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '1rem',
-            padding: '0.5rem 3.5rem 0.5rem 1rem',
-            fontSize: '0.82rem',
-            color: 'rgba(7,17,28,0.75)',
-            flexWrap: 'wrap' as const,
-            position: 'relative' as const,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            gap: '1rem', padding: '0.5rem 3.5rem 0.5rem 1rem',
+            fontSize: '0.82rem', color: 'rgba(255,244,214,0.75)',
+            flexWrap: 'wrap' as const, position: 'relative' as const,
           }}
           role="banner"
           aria-label="Contact bar"
@@ -242,11 +233,7 @@ export default function App() {
             {mobileNavOpen ? '✕' : '☰'}
           </button>
         </div>
-        <nav
-          className={`app-nav-mobile${mobileNavOpen ? ' open' : ''}`}
-          role="navigation"
-          aria-label="Mobile navigation"
-        >
+        <nav className={`app-nav-mobile${mobileNavOpen ? ' open' : ''}`} role="navigation" aria-label="Mobile navigation">
           {menuItems.map((item) => (
             <button key={item.href} onClick={() => { navigate(item.href); setMobileNavOpen(false); }}>
               {item.label}
@@ -256,123 +243,130 @@ export default function App() {
         </nav>
       </div>
 
-      {/* ── Hero — photo background, title only (compass is in its own section below) ── */}
+      {/* ══════════════════════════════════════════════════════
+          SECTION 1 — Dark starry background with title & CTA
+          (no photo here — pure deep-space navy with star animations)
+      ══════════════════════════════════════════════════════ */}
       <header
-        className="hero"
         id="top"
         style={{
-          backgroundImage: 'url(/assets/hero-bg.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center 45%',
-          backgroundRepeat: 'no-repeat',
           position: 'relative',
-          minHeight: '560px',
+          background: 'linear-gradient(180deg, #060e1a 0%, #07111c 60%, #0b1830 100%)',
+          overflow: 'hidden',
+          paddingTop: 'calc(3.5rem + env(safe-area-inset-top, 0px))',
+          paddingBottom: '3.5rem',
         }}
       >
-        {/* Semi-transparent overlay for text legibility — lighter than before so the bear shows through */}
+        {/* Twinkling star field */}
         <div
           aria-hidden="true"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 0,
-            background: 'linear-gradient(to bottom, rgba(5,10,25,0.25) 0%, rgba(5,10,25,0.45) 55%, rgba(7,17,28,0.88) 100%)',
-            pointerEvents: 'none',
-          }}
-        />
+          style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}
+        >
+          {STARS.map((star, i) => (
+            <span
+              key={i}
+              className="hero-starfield-star"
+              style={{
+                position: 'absolute',
+                left: star.left,
+                top: star.top,
+                width: star.size,
+                height: star.size,
+                borderRadius: '999px',
+                background: 'rgba(255,255,255,0.95)',
+                boxShadow: '0 0 6px rgba(255,248,220,0.5)',
+                opacity: Number(star.opacity),
+                animation: `twinkle ${star.duration} ease-in-out infinite`,
+              } as React.CSSProperties}
+            />
+          ))}
+        </div>
 
-        <div className="section-shell">
-          {/* Starfield sparkles over the photo */}
-          <div className="hero-starfield" aria-hidden="true">
-            {STARS.map((star, i) => (
-              <span
-                key={i}
-                style={{ left: star.left, top: star.top, ['--size']: star.size, ['--opacity']: star.opacity, ['--duration']: star.duration } as React.CSSProperties}
-              />
-            ))}
-          </div>
-          <div className="hero-streak one" aria-hidden="true" />
-          <div className="hero-streak two" aria-hidden="true" />
+        {/* Light streaks */}
+        <div className="hero-streak one" aria-hidden="true" style={{ position: 'absolute', zIndex: 1 }} />
+        <div className="hero-streak two" aria-hidden="true" style={{ position: 'absolute', zIndex: 1 }} />
 
-          {/* ── Title block ── */}
-          <div
-            style={{
-              textAlign: 'center',
-              paddingTop: 'calc(3rem + env(safe-area-inset-top, 0px))',
-              paddingBottom: '3.5rem',
-              position: 'relative',
-              zIndex: 2,
-            }}
-          >
-            <h1 className="hero-title">
-              <span className="wordmark-glow" aria-hidden="true" />
-              <span className="title-subtitle" style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', letterSpacing: '0.18em' }}>
-                Welcome To
+        {/* Title content */}
+        <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '0 1rem' }}>
+          <h1 className="hero-title" style={{ marginBottom: '0.5rem' }}>
+            <span className="wordmark-glow" aria-hidden="true" />
+            <span
+              className="title-subtitle"
+              style={{ fontSize: 'clamp(0.85rem, 1.8vw, 1.05rem)', letterSpacing: '0.22em', display: 'block', marginBottom: '0.4rem' }}
+            >
+              Welcome To
+            </span>
+            <span
+              className="wordmark"
+              style={{
+                fontSize: 'clamp(2.6rem, 6vw, 4.2rem)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexWrap: 'wrap', gap: '0 0.18em',
+              }}
+            >
+              <span style={{ whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center' }}>
+                <span className="shooting-star-wrap">
+                  <span className="shooting-star" />
+                  <span style={{
+                    fontSize: '200%', lineHeight: 1, display: 'inline-block', verticalAlign: 'middle',
+                    position: 'relative', zIndex: 1,
+                    background: 'linear-gradient(90deg,#fff4d1 0%,#f3d37a 18%,#fff7e8 36%,#c59d3c 62%,#f6dea0 100%)',
+                    WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent',
+                  }}>N</span>
+                </span>
+                orth
+                <span style={{ fontSize: '200%', lineHeight: 1, display: 'inline-block', verticalAlign: 'middle' }}>S</span>
+                tar
               </span>
-              <span
-                className="wordmark"
-                style={{
-                  fontSize: 'clamp(2.4rem, 6vw, 4rem)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexWrap: 'wrap',
-                  gap: '0 0.25em',
-                }}
-              >
-                <span style={{ whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center' }}>
-                  <span className="shooting-star-wrap">
-                    <span className="shooting-star" />
-                    <span
-                      style={{
-                        fontSize: '200%', lineHeight: 1, display: 'inline-block', verticalAlign: 'middle',
-                        position: 'relative', zIndex: 1,
-                        background: 'linear-gradient(90deg, #fff4d1 0%, #f3d37a 18%, #fff7e8 36%, #c59d3c 62%, #f6dea0 100%)',
-                        WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent',
-                      }}
-                    >N</span>
-                  </span>
-                  orth
-                  <span style={{ fontSize: '200%', lineHeight: 1, display: 'inline-block', verticalAlign: 'middle' }}>S</span>
-                  tar
-                </span>
-                {' '}
-                <span style={{ whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center' }}>
-                  <span style={{ fontSize: '200%', lineHeight: 1, display: 'inline-block', verticalAlign: 'middle' }}>I</span>
-                  mplant
-                </span>
-                {' '}
-                <span style={{ whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center' }}>
-                  <span style={{ fontSize: '200%', lineHeight: 1, display: 'inline-block', verticalAlign: 'middle' }}>D</span>
-                  entistry
-                </span>
+              {' '}
+              <span style={{ whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center' }}>
+                <span style={{ fontSize: '200%', lineHeight: 1, display: 'inline-block', verticalAlign: 'middle' }}>I</span>mplant
               </span>
-            </h1>
+              {' '}
+              <span style={{ whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center' }}>
+                <span style={{ fontSize: '200%', lineHeight: 1, display: 'inline-block', verticalAlign: 'middle' }}>D</span>entistry
+              </span>
+            </span>
+          </h1>
 
-            <TaglineGlow />
+          <TaglineGlow />
 
-            <div className="hero-actions" style={{ justifyContent: 'center', marginTop: '2rem' }}>
-              <a className="button button-primary button-flash" href="#contact" style={{ minWidth: '160px' }}>
-                Book Appointment
-              </a>
-              <a
-                className="button button-primary"
-                href="#"
-                onClick={(e) => { e.preventDefault(); navigate('/patient-forms'); }}
-                style={{ minWidth: '160px' }}
-              >
-                Patient Forms
-              </a>
-              <a className="button button-primary" href="#care-map" style={{ minWidth: '160px' }}>
-                Explore Services
-              </a>
-              <DirectionsDropdown />
-            </div>
+          <div className="hero-actions" style={{ justifyContent: 'center', marginTop: '1.75rem' }}>
+            <a className="button button-primary button-flash" href="#contact" style={{ minWidth: '160px' }}>
+              Book Appointment
+            </a>
+            <a
+              className="button button-primary"
+              href="#"
+              onClick={(e) => { e.preventDefault(); navigate('/patient-forms'); }}
+              style={{ minWidth: '160px' }}
+            >
+              Patient Forms
+            </a>
+            <a className="button button-primary" href="#care-map" style={{ minWidth: '160px' }}>
+              Explore Services
+            </a>
+            <DirectionsDropdown />
           </div>
         </div>
       </header>
 
-      {/* ── Compass — its own dark navy section, fully separated from the photo ── */}
+      {/* ══════════════════════════════════════════════════════
+          SECTION 2 — Full-width polar bear photo
+          width: 100%, height: auto so the ENTIRE portrait shows.
+          Dark navy background so edges blend seamlessly.
+      ══════════════════════════════════════════════════════ */}
+      <div style={{ background: '#07111c', lineHeight: 0 }}>
+        <img
+          src="/assets/hero-bg.jpg"
+          alt="Polar bear cub gazing at the North Star on a winter night"
+          style={{ display: 'block', width: '100%', height: 'auto' }}
+        />
+      </div>
+
+      {/* ══════════════════════════════════════════════════════
+          SECTION 3 — Compass wheel on dark starry background
+      ══════════════════════════════════════════════════════ */}
       <section
         aria-label="Service navigation compass"
         style={{
@@ -406,10 +400,7 @@ export default function App() {
         <section className="services-section" id="care-map">
           <div className="section-shell">
             <div className="section-heading" style={{ maxWidth: '100%' }}>
-              <p
-                className="section-kicker"
-                style={{ color: '#c59d3c', fontSize: '1.54rem', fontWeight: 700, letterSpacing: '0.1em', whiteSpace: 'normal', textAlign: 'left' }}
-              >
+              <p className="section-kicker" style={{ color: '#c59d3c', fontSize: '1.54rem', fontWeight: 700, letterSpacing: '0.1em', whiteSpace: 'normal', textAlign: 'left' }}>
                 PLEASE USE THE MENU NAVIGATION COMPASS OR THE CARDS BELOW TO TAKE YOU TO EACH PAGE FOR FULL DETAILS
               </p>
             </div>
@@ -424,10 +415,7 @@ export default function App() {
         {/* ── Specialized Circumstances heading ── */}
         <div style={{ background: '#ffffff', padding: '2rem 0 0' }}>
           <div className="section-shell">
-            <p
-              className="section-kicker"
-              style={{ color: '#c59d3c', fontSize: 'clamp(1.5rem, 6vw, 3rem)', fontWeight: 700, fontStyle: 'italic', letterSpacing: '0.1em', textAlign: 'center' }}
-            >
+            <p className="section-kicker" style={{ color: '#c59d3c', fontSize: 'clamp(1.5rem, 6vw, 3rem)', fontWeight: 700, fontStyle: 'italic', letterSpacing: '0.1em', textAlign: 'center' }}>
               SPECIALIZED CIRCUMSTANCES
             </p>
           </div>
@@ -444,8 +432,7 @@ export default function App() {
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', cursor: 'pointer', transition: 'transform 150ms ease, box-shadow 150ms ease' }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 14px 36px rgba(197,157,60,0.18)'; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}
-                role="button"
-                tabIndex={0}
+                role="button" tabIndex={0}
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate((f as any).slug); }}
               >
                 <p className="feature-kicker feature-kicker-flash" style={{ textAlign: 'center' }}>{f.eyebrow}</p>
@@ -458,15 +445,7 @@ export default function App() {
                 {(f as any).imageSrc ? (
                   <img src={(f as any).imageSrc} alt={f.title} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: '0.9rem', marginTop: 'auto', display: 'block' }} />
                 ) : (
-                  <div
-                    style={{
-                      width: '100%', aspectRatio: '4/3', borderRadius: '0.9rem', marginTop: 'auto', paddingTop: '1.2rem',
-                      background: 'linear-gradient(135deg, rgba(197,157,60,0.1) 0%, rgba(10,20,36,0.45) 100%)',
-                      border: '1px dashed rgba(197,157,60,0.35)',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
-                      color: 'rgba(197,157,60,0.6)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase',
-                    }}
-                  >
+                  <div style={{ width: '100%', aspectRatio: '4/3', borderRadius: '0.9rem', marginTop: 'auto', paddingTop: '1.2rem', background: 'linear-gradient(135deg,rgba(197,157,60,0.1) 0%,rgba(10,20,36,0.45) 100%)', border: '1px dashed rgba(197,157,60,0.35)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', color: 'rgba(197,157,60,0.6)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" />
                     </svg>
@@ -542,8 +521,7 @@ export default function App() {
                   </div>
                   <div className="field-grid">
                     <label>
-                      <span>Email</span>
-                      <input type="email" name="email" placeholder="jane@example.com" required />
+                      <span>Email</span><input type="email" name="email" placeholder="jane@example.com" required />
                       <ValidationError field="email" prefix="Email" errors={formState.errors} style={{ color: '#f87171', fontSize: '0.82rem' }} />
                     </label>
                     <label><span>Phone</span><input type="tel" name="phone" placeholder="(555) 000-0000" /></label>
@@ -614,10 +592,7 @@ export default function App() {
             Time{'\u201D'}{'\u2122'} are trademarks of NorthStar Implant Dentistry, P.C.
           </p>
           <p style={{ marginTop: '0.5rem' }}>
-            <a
-              href="/terms"
-              style={{ color: 'rgba(197,157,60,0.5)', fontSize: '0.78rem', textDecoration: 'underline' }}
-            >
+            <a href="/terms" style={{ color: 'rgba(197,157,60,0.5)', fontSize: '0.78rem', textDecoration: 'underline' }}>
               Terms of Use {'&'} IP Notice
             </a>
           </p>
