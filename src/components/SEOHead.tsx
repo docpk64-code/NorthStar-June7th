@@ -34,6 +34,8 @@ export default function SEOHead({ title, description, noindex = false }: { title
       ...offices.map(office => ({
         '@type': 'Dentist', '@id': `${SITE_ORIGIN}/locations/#${office.id}`,
         name: 'NorthStar Implant Dentistry', url: `${SITE_ORIGIN}/locations/`, telephone: '+1-631-315-1400',
+        openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:00', closes: '20:00' }],
+        description: 'Monday–Saturday, 9am–8pm. Sunday by appointment.',
         parentOrganization: { '@id': `${SITE_ORIGIN}/#organization` },
         address: { '@type': 'PostalAddress', streetAddress: office.street, addressLocality: office.city, addressRegion: 'NY', postalCode: office.zip, addressCountry: 'US' },
       })),

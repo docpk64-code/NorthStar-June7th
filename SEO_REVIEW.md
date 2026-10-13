@@ -31,7 +31,7 @@ Browser visual QA and the Puppeteer prerender step could not run in this executi
 ## Content needing owner confirmation
 
 - Briarwood, Manhattan and Commack are active. Melville is an old listing and should be updated in business directories/Google Business Profile as appropriate, preserving the existing business history where possible.
-- Hours conflict: homepage says Mon–Fri 9am–5pm; inner-page header says 9am–9pm. Confirm hours per office before replacing published schedules. New schema intentionally omits unconfirmed hours.
+- Owner confirmed hours on October 12, 2026: Monday–Saturday 9am–8pm at all three locations; Sunday by appointment. All displayed schedules and office structured data now agree. Sunday has no fixed opening interval in structured data.
 - About page has unfinished introductory copy and biographies for Dr. Nelson and Dr. Garcia. Terms has publish-date/contact placeholders. These were not fabricated.
 - Testimonials page still contains explicit review placeholders. Homepage quotations and case images need confirmation as authentic/authorized before publishing any replacement claims. Several case sliders contain gradient placeholders. This patch updates captions but does not certify the material as actual results.
 - Social icons still need confirmed destination URLs.

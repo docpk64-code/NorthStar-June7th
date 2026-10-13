@@ -171,7 +171,7 @@ export default function App() {
             📞 631-315-1400
           </a>
           <span aria-hidden="true">·</span>
-          <span>Mon–Fri 9am–5pm</span>
+          <span>Mon–Sat 9am–8pm · Sunday by appointment</span>
           <button
             className="app-nav-toggle"
             onClick={() => setMobileNavOpen(!mobileNavOpen)}
