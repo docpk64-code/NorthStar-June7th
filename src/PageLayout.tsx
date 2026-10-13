@@ -10,16 +10,11 @@ import SiteLink from './components/SiteLink';
 
 const menuItems = [
   { label: 'About', href: '/about' },
-  { label: 'Procedures', href: '/procedures' },
   { label: 'Dental Implants', href: '/dental-implants' },
-  { label: 'Full-Arch', href: '/full-arch' },
-  { label: 'Wisdom Teeth', href: '/wisdom-teeth' },
-  { label: 'Sedation', href: '/sedation' },
-  { label: 'Patient Info', href: '/patient-information' },
-  { label: 'Technology', href: '/technology' },
-  { label: 'Testimonials', href: '/testimonials' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Other Treatments', href: '/procedures' },
+  { label: 'Patient Resources', href: '/patient-information' },
   { label: 'Locations', href: '/locations' },
+  { label: 'Request a Consultation', href: '/contact' },
 ];
 
 const pageStyles = `
@@ -486,7 +481,7 @@ export function PageLayout({
           href={'/'}
           aria-label="NorthStar Implant Dentistry home"
         >
-          Dr. Peter Kampf &amp; Associates
+          NorthStar Implant Dentistry
         </SiteLink>
         <ul className="page-nav-links" role="list">
           {menuItems.map((item) => (
@@ -558,13 +553,13 @@ export function PageLayout({
         <p className="page-hero-kicker">{kicker}</p>
         <h1 className="page-hero-title">{title}</h1>
         <p className="page-hero-subtitle">{subtitle}</p>
-        <SiteLink
+        <a
           className="page-hero-cta"
-          href={'/contact'}
-          aria-label="Book a consultation with NorthStar Implant Dentistry"
+          href={window.location.pathname.replace(/\/$/, '') === '/contact' ? '#consultation-form' : '/contact/#consultation-form'}
+          aria-label="Request a consultation with NorthStar Implant Dentistry"
         >
-          Book a Consultation
-        </SiteLink>
+          Request a Consultation
+        </a>
       </div>
 
       {/* ── Page body ── */}
