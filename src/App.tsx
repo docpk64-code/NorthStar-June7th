@@ -1,17 +1,17 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import SEOHead from './components/SEOHead';
 import SiteLink from './components/SiteLink';
-import CompassGraphic from './components/CompassGraphic';
-import { menuItems, START_ANGLE, STEP } from './data/menuData';
-import type { Wedge } from './types';
+import { menuItems } from './data/menuData';
 import doctorPhoto from './assets/doctor-preview';
 import './styles/patientPreview.css';
+import './styles/northstarJourney.css';
 
-const care = [
-  { n: '01', title: 'Replace a missing tooth', text: 'Explore single-tooth implants and options for replacing several missing teeth.', href: '/dental-implants/' },
-  { n: '02', title: 'Restore a full smile', text: 'Learn about full-arch implant options for missing teeth or uncomfortable dentures.', href: '/full-arch/' },
-  { n: '03', title: 'Explore a complex case', text: 'Discuss severe bone loss, previous implant problems, or a second opinion.', href: '/specialized/cant-get-implants/' },
+const directions = [
+  { label: 'Missing teeth', title: 'A new beginning for your smile.', eyebrow: '01 / REPLACE MISSING TEETH', text: 'Missing one tooth or several? Explore implant options designed around your smile, your health, and your goals.', link: 'Explore dental implants', href: '/dental-implants/', image: '/dental-implants', rotation: 0 },
+  { label: 'Full smile', title: 'Rediscover a more confident smile.', eyebrow: '02 / RESTORE YOUR SMILE', text: 'Living with dentures or many failing teeth? Learn about full-arch implant treatment and what your individual plan could involve.', link: 'Explore full-arch care', href: '/full-arch/', image: '/full-arch', rotation: 90 },
+  { label: 'Complex care', title: 'Let’s explore what may be possible.', eyebrow: '03 / COMPLEX IMPLANT CARE', text: 'Told implants are not an option, or facing a previous implant problem? Start with a careful evaluation and a conversation about your options.', link: 'Explore complex implant care', href: '/specialized/cant-get-implants/', image: '/technology', rotation: 180 },
+  { label: 'Facial aesthetics', title: 'A little time, just for you.', eyebrow: '04 / FACIAL AESTHETICS', text: 'Discover our facial-aesthetics treatments. Explore HydraFacial and Emface, then discuss which options suit your goals.', link: 'Explore HydraFacial', href: '/hydrafacial/', image: '/hydrafacial', rotation: 270 },
 ];
 const locations = [
   { name: 'Briarwood, Queens', address: '139-12 84th Drive, Suite 1G', city: 'Briarwood, NY 11435' },
@@ -22,11 +22,10 @@ const locations = [
 export default function App() {
   const [open, setOpen] = useState(false);
   const [formState, handleSubmit] = useForm('xbdpbdkj');
-  const wedges = useMemo<Wedge[]>(() => menuItems.map((item, index) => {
-    const centerAngle = START_ANGLE + index * STEP;
-    return { item, index, centerAngle, startAngle: centerAngle - STEP / 2, endAngle: centerAngle + STEP / 2 };
-  }), []);
-  return <div className="patient-preview" id="top">
+  const [direction, setDirection] = useState(0);
+  const selected = directions[direction];
+  const selectedImage = menuItems.find(item => item.href.replace(/\/$/, '') === selected.image)?.imageSrc;
+  return <div className="patient-preview journey-preview" id="top">
     <SEOHead title="Dental Implants in Queens, Manhattan & Commack" description="Explore dental implants and full-arch treatment with Dr. Peter Kampf at NorthStar Implant Dentistry in Briarwood, Manhattan, and Commack." />
     <div className="pp-contactbar"><span>Briarwood · Manhattan · Commack</span><a href="tel:6313151400">631-315-1400</a><span>Mon–Sat 9am–8pm · Sunday by appointment</span></div>
     <header className="pp-header">
@@ -44,24 +43,45 @@ export default function App() {
       </div>
     </header>
     <main>
-      <section className="pp-hero">
-        <div className="pp-shell pp-hero-grid">
-          <div>
-            <p className="pp-eyebrow">Dental implants · Full-arch care · New York</p>
-            <h1>A clear path to<br /><em>your new smile.</em></h1>
-            <p className="pp-lead">Thoughtful implant care with Dr. Peter Kampf. Explore your options, understand your treatment, and take the next step with confidence.</p>
-            <div className="pp-actions"><a className="pp-button" href="#contact">Request a Consultation <span aria-hidden="true">↗</span></a><a className="pp-text-link" href="tel:6313151400">Call 631-315-1400</a></div>
-            <p className="pp-tagline">Guiding patients one smile at a time.</p>
-          </div>
-          <div className="pp-bear"><img src="/assets/hero-bg.jpg" alt="Polar bear cub gazing at the North Star on a winter night" width="500" height="677" /></div>
+      <section className="nj-universe" aria-labelledby="journey-title">
+        <div className="nj-stars" aria-hidden="true">{Array.from({length: 30}, (_, i) => <i key={i} style={{left: `${(i * 37 + 7) % 100}%`, top: `${(i * 23 + 9) % 100}%`, opacity: .15 + (i % 5) * .13}} />)}</div>
+        <div className="pp-shell nj-heading">
+          <p className="pp-eyebrow">NorthStar Implant Dentistry · New York</p>
+          <h1 id="journey-title">Your smile.<br className="nj-mobile-break" /> <em>Your direction.</em></h1>
+          <p>Every journey starts somewhere. Where would you like yours to begin?</p>
         </div>
-      </section>
-      <div className="pp-assurance"><div className="pp-shell"><span>Individual treatment planning</span><span>Digital imaging &amp; evaluation</span><span>Three New York locations</span></div></div>
-      <section className="pp-section" id="care-map">
-        <div className="pp-shell">
-          <p className="pp-eyebrow">Start with what matters to you</p>
-          <div className="pp-section-top"><h2>How can we help?</h2><SiteLink className="pp-text-link" href="/procedures/">View all procedures →</SiteLink></div>
-          <div className="pp-care-grid">{care.map(item => <SiteLink className="pp-care-card" key={item.n} href={item.href}><span className="pp-number">{item.n}</span><h3>{item.title}</h3><p>{item.text}</p><span className="pp-card-link">Explore your options →</span></SiteLink>)}</div>
+        <div className="pp-shell nj-explorer">
+          <div className="nj-compass-area">
+            <p className="nj-coordinate">NORTHSTAR / FIND YOUR PATH</p>
+            <div className="nj-compass" role="group" aria-label="Choose a care direction">
+              <svg viewBox="0 0 500 500" aria-hidden="true" className="nj-instrument">
+                <defs><radialGradient id="nj-face"><stop offset="0%" stopColor="#142e3e"/><stop offset="100%" stopColor="#081722"/></radialGradient><linearGradient id="nj-gold" x1="0" x2="1"><stop stopColor="#987137"/><stop offset=".5" stopColor="#f7e7b5"/><stop offset="1" stopColor="#bb9854"/></linearGradient></defs>
+                <circle cx="250" cy="250" r="209" fill="url(#nj-face)" stroke="#baa16b" strokeWidth="1"/>
+                <circle cx="250" cy="250" r="194" fill="none" stroke="#c6ae762f" strokeWidth="13"/>
+                {Array.from({length: 72},(_, i)=><line key={i} x1="250" y1="45" x2="250" y2={i%6===0?'64':'53'} stroke={i%6===0?'#d9bd80':'#8c79554f'} strokeWidth={i%6===0?2:1} transform={`rotate(${i*5} 250 250)`}/>)}
+                <circle cx="250" cy="250" r="151" fill="none" stroke="#b99b5e55" strokeDasharray="2 8"/>
+                <path d="M250 90V410 M90 250H410" stroke="#d9bd8030"/>
+                <g className="nj-needle" style={{transform:`rotate(${selected.rotation}deg)`,transformOrigin:'250px 250px'}}>
+                  <path d="M250 107 L270 250 L250 393 L230 250Z" fill="#203f50" stroke="#d2b77b"/>
+                  <path d="M250 107 L270 250 L250 231 L230 250Z" fill="url(#nj-gold)"/>
+                  <path d="M250 98 L253 112 L267 115 L253 118 L250 132 L247 118 L233 115 L247 112Z" fill="#fff1c5"/>
+                </g>
+                <circle cx="250" cy="250" r="52" fill="#071722" stroke="#d3b575"/>
+                <path d="M250 213 L259 241 L287 250 L259 259 L250 287 L241 259 L213 250 L241 241Z" fill="url(#nj-gold)"/>
+              </svg>
+              {directions.map((d, i) => <button key={d.label} className={`nj-direction nj-direction-${i}${i===direction?' selected':''}`} aria-pressed={i===direction} aria-controls="nj-detail" onClick={()=>setDirection(i)}><span className="nj-direction-dot" aria-hidden="true"/><span>{d.label}</span></button>)}
+            </div>
+            <p className="nj-hint">Choose a direction. Discover your options.</p>
+          </div>
+          <div id="nj-detail" className="nj-detail" aria-live="polite" aria-atomic="true">
+            <div className="nj-detail-image">{selectedImage && <img key={selected.image} src={selectedImage} alt="" />}<span>{selected.eyebrow}</span></div>
+            <div className="nj-detail-copy" key={direction}><h2>{selected.title}</h2><p>{selected.text}</p><SiteLink className="pp-button" href={selected.href}>{selected.link} <span aria-hidden="true">↗</span></SiteLink>{direction===3 && <SiteLink className="nj-secondary" href="/emface/">Discover Emface →</SiteLink>}</div>
+          </div>
+        </div>
+        <div className="pp-shell nj-quick"><span>Already know your next step?</span><a href="#contact">Request a consultation ↗</a><a href="tel:6313151400">Call 631-315-1400</a><SiteLink href="/procedures/">All procedures →</SiteLink></div>
+        <div className="pp-shell nj-guide">
+          <div className="nj-guide-image"><img src="/assets/hero-bg.jpg" alt="Polar bear cub following the North Star across a winter sky" width="500" height="677" loading="lazy"/></div>
+          <div className="nj-guide-copy"><p className="pp-eyebrow">A familiar star. A personal journey.</p><h2>You don’t need all the answers.<br /><em>Just a place to start.</em></h2><p>We’re here to listen, help you understand your options, and plan the next step together.</p><p className="nj-signature">Guiding patients one smile at a time.</p><div className="nj-guide-meta"><span>Briarwood</span><span>Manhattan</span><span>Commack</span></div></div>
         </div>
       </section>
       <section className="pp-doctor pp-section">
@@ -79,7 +99,6 @@ export default function App() {
         <div className="pp-form-panel"><h3>Request a consultation</h3>{formState.succeeded ? <div role="status"><h3>Thank you for reaching out.</h3><p>Your request has been sent. Our team will contact you to discuss scheduling. Your appointment is not yet confirmed.</p></div> : <form onSubmit={handleSubmit}><div className="pp-fields"><label>First name<input name="firstName" autoComplete="given-name" required /></label><label>Last name<input name="lastName" autoComplete="family-name" required /></label></div><div className="pp-fields"><label>Email<input name="email" type="email" autoComplete="email" required /></label><label>Phone<input name="phone" type="tel" autoComplete="tel" /></label></div><label>Preferred location<select name="location" defaultValue="" required><option value="" disabled>Select an office</option>{locations.map(l=><option key={l.name}>{l.name}</option>)}<option>No preference</option></select></label><label>How can we help?<textarea name="message" rows={3} placeholder="Tell us what you would like to discuss." /></label><p className="pp-form-note">Please avoid including sensitive medical information in this form.</p><ValidationError errors={formState.errors} /><button className="pp-button" disabled={formState.submitting} type="submit">{formState.submitting ? 'Sending…' : 'Send Consultation Request'}</button><p className="pp-form-note">Submitting this form requests a callback, not a confirmed appointment.</p></form>}</div>
       </div></section>
       <section className="pp-locations pp-section" id="locations"><div className="pp-shell"><p className="pp-eyebrow">Close to home</p><h2>Three locations. One NorthStar.</h2><div className="pp-location-grid">{locations.map(l=><div key={l.name}><h3>{l.name}</h3><p>{l.address}<br />{l.city}</p><a className="pp-text-link" href={'https://maps.google.com/?q='+encodeURIComponent(l.address+' '+l.city)}>Get directions ↗</a></div>)}</div></div></section>
-      <section className="pp-compass-section"><div className="pp-shell pp-compass-grid"><div><p className="pp-eyebrow">Explore NorthStar</p><h2>Let curiosity<br />be your compass.</h2><p>Prefer to explore? Our signature compass gives you another way to discover the practice and its services.</p><SiteLink className="pp-text-link" href="/procedures/">Browse the procedure list →</SiteLink></div><div className="pp-compass"><CompassGraphic wedges={wedges} onSound={() => {}} enableSound={false} /></div></div></section>
     </main>
     <footer className="pp-footer"><div className="pp-shell"><div className="pp-footer-top"><span className="pp-brand">NorthStar <small>IMPLANT DENTISTRY</small></span><p>Guiding patients one smile at a time.</p><a href="tel:6313151400">631-315-1400</a></div><div className="pp-footer-bottom"><span>© {new Date().getFullYear()} NorthStar Implant Dentistry, P.C. All rights reserved.</span><SiteLink href="/terms/">Terms of Use &amp; IP Notice</SiteLink><a href="#top">Back to top ↑</a></div></div></footer>
   </div>;
