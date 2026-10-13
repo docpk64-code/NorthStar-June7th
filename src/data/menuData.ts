@@ -72,7 +72,7 @@ export const menuItems: MenuItem[] = [
     href: '/sedation',
     eyebrow: 'Comfort-first approach',
     description:
-      'Preview how sedation education can be framed around calm, safety, transparency, and a more supportive treatment experience.',
+      'Learn about comfort options and the questions to discuss before your procedure.',
     imageSrc: CARE_CARD_6_SRC,
   },
   {
@@ -81,7 +81,7 @@ export const menuItems: MenuItem[] = [
     href: '/patient-information',
     eyebrow: 'Prepare for your visit',
     description:
-      'Give patients one place to review instructions, forms, financing basics, and what to expect before and after treatment.',
+      'Review patient forms, visit preparation, financing information, and care instructions.',
     imageSrc: CARE_CARD_7_SRC,
   },
   {
@@ -90,7 +90,7 @@ export const menuItems: MenuItem[] = [
     href: '/technology',
     eyebrow: 'Digitally guided care',
     description:
-      'Showcase imaging, diagnostics, and guided planning tools that support predictable surgery and efficient communication.',
+      'Learn how imaging and digital planning support your treatment evaluation.',
     imageSrc: CARE_CARD_8_SRC,
   },
   {
@@ -99,7 +99,7 @@ export const menuItems: MenuItem[] = [
     href: '/testimonials',
     eyebrow: 'Patient trust',
     description:
-      'Keep social proof visible through patient stories that emphasize communication, comfort, and implant outcomes.',
+      'Find patient feedback information and learn how to share your experience with our team.',
     imageSrc: TESTIMONIAL_CARD_SRC,
   },
   {
@@ -108,7 +108,7 @@ export const menuItems: MenuItem[] = [
     href: '/contact',
     eyebrow: 'Start here',
     description:
-      'Direct visitors to consultation scheduling, office information, and the next step for implants, wisdom teeth, or sedation questions.',
+      'Request a consultation or find contact information for our Briarwood, Manhattan, and Commack offices.',
     imageSrc: CONTACT_CARD_SRC,
   },
   {
@@ -134,7 +134,7 @@ export const menuItems: MenuItem[] = [
 export const caseStudies: CaseStudy[] = [
   {
     title: 'Single Implant Restoration',
-    note: 'A focused preview tile for replacing a missing tooth with a cleaner restorative finish.',
+    note: 'Explore treatment planning for the replacement of a missing tooth.',
     beforeA: '#3a4452',
     beforeB: '#101923',
     afterA: '#d4b267',
@@ -142,7 +142,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     title: 'Anterior Esthetic Upgrade',
-    note: 'Demonstrates a brighter, more confident result for front-of-smile treatment planning.',
+    note: 'Discuss your goals for the appearance and function of your front teeth.',
     beforeA: '#4a5668',
     beforeB: '#131c28',
     afterA: '#efe0af',
@@ -150,7 +150,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     title: 'Guided Surgical Planning',
-    note: 'Shows the contrast between a compromised starting point and a digitally guided treatment path.',
+    note: 'Learn how digital planning can support an individualized treatment plan.',
     beforeA: '#445166',
     beforeB: '#0f1824',
     afterA: '#caa259',
@@ -158,7 +158,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     title: 'Full-Arch Coordination',
-    note: 'Pairs a darker baseline with a warmer, more stable final presentation for complex rehabilitation.',
+    note: 'Discuss full-arch treatment planning and coordination of the final restoration.',
     beforeA: '#384355',
     beforeB: '#111a25',
     afterA: '#d3ba82',
@@ -169,7 +169,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     title: 'Wisdom Tooth Recovery',
-    note: 'Represents a smoother post-surgical recovery story with clearer comfort and healing language.',
+    note: 'Review your postoperative instructions and follow-up plan with the team.',
     beforeA: '#3a4556',
     beforeB: '#10161f',
     afterA: '#e8d39d',
@@ -177,7 +177,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     title: 'Sedation Comfort Journey',
-    note: 'A lighter endpoint emphasizes the calming tone of sedation education and reassurance.',
+    note: 'Discuss comfort options and preparation for your visit.',
     beforeA: '#2f3a49',
     beforeB: '#0d1520',
     afterA: '#d7bf82',

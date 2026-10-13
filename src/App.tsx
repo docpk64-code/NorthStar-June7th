@@ -3,7 +3,8 @@
  */
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { navigate } from './Root';
+import SEOHead from './components/SEOHead';
+import SiteLink from './components/SiteLink';
 import { useForm, ValidationError } from '@formspree/react';
 
 import type { Wedge } from './types';
@@ -102,60 +103,6 @@ export default function App() {
     };
   }, []);
 
-  useEffect(() => {
-    document.title = 'NorthStar Implant Dentistry | Briarwood · New York · Commack';
-    const setMeta = (name: string, content: string) => {
-      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
-      if (!el) { el = document.createElement('meta'); el.name = name; document.head.appendChild(el); }
-      el.content = content;
-    };
-    const setOG = (prop: string, content: string) => {
-      let el = document.querySelector(`meta[property="${prop}"]`) as HTMLMetaElement | null;
-      if (!el) { el = document.createElement('meta'); el.setAttribute('property', prop); document.head.appendChild(el); }
-      el.content = content;
-    };
-    setMeta('description', 'NorthStar Implant Dentistry — Advanced dental implants, bone grafting, full-arch restoration, zygomatic implants, and wisdom teeth surgery. Serving Briarwood, New York, and Commack, NY. Call 631-315-1400.');
-    setMeta('keywords', 'dental implants, implant dentistry, bone grafting, full arch implants, zygomatic implants, wisdom teeth, Briarwood NY, Queens NY, Commack NY, NorthStar Implant Dentistry');
-    setMeta('robots', 'index, follow');
-    setMeta('author', 'NorthStar Implant Dentistry');
-    setOG('og:title', 'NorthStar Implant Dentistry | Advanced Implant Surgery NY');
-    setOG('og:description', 'Guiding Patients One Smile at a Time. Advanced implant dentistry serving Briarwood, New York, and Commack. Call 631-315-1400.');
-    setOG('og:type', 'website');
-    setOG('og:url', 'https://www.northstarimplants.com');
-    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-    if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical); }
-    canonical.href = 'https://www.northstarimplants.com';
-    if (!document.querySelector('link[rel="sitemap"]')) {
-      const sm = document.createElement('link'); sm.rel = 'sitemap'; sm.type = 'application/xml'; sm.href = '/sitemap.xml';
-      document.head.appendChild(sm);
-    }
-    if (!document.getElementById('schema-northstar-home')) {
-      const schema = document.createElement('script');
-      schema.id = 'schema-northstar-home';
-      schema.type = 'application/ld+json';
-      schema.textContent = JSON.stringify({
-        '@context': 'https://schema.org', '@type': 'Dentist',
-        name: 'NorthStar Implant Dentistry', url: 'https://www.northstarimplants.com',
-        telephone: '+1-631-315-1400',
-        description: 'Advanced dental implant surgery, bone grafting, full-arch restoration, zygomatic implants, wisdom teeth extraction, and sedation dentistry. Serving Briarwood, New York, and Commack.',
-        priceRange: '$$$$',
-        address: [
-          { '@type': 'PostalAddress', streetAddress: '139-12 84th Drive, Suite 1G', addressLocality: 'Briarwood', addressRegion: 'NY', postalCode: '11435', addressCountry: 'US' },
-          { '@type': 'PostalAddress', addressLocality: 'New York', addressRegion: 'NY', addressCountry: 'US' },
-          { '@type': 'PostalAddress', addressLocality: 'Commack', addressRegion: 'NY', addressCountry: 'US' },
-        ],
-        geo: { '@type': 'GeoCoordinates', latitude: 40.6957, longitude: -73.8163 },
-        openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '09:00', closes: '17:00' }],
-        sameAs: ['https://www.facebook.com/northstarimplants','https://www.instagram.com/northstarimplants'],
-        hasMap: 'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY',
-        medicalSpecialty: 'Oral and Maxillofacial Surgery',
-        founder: { '@type': 'Person', name: 'Dr. Peter R. Kampf', jobTitle: 'Oral Surgeon & Implantologist' },
-        availableService: ['Dental Implants','Full-Arch Restoration','Zygomatic Implants','Bone Grafting','Sinus Lifts','Wisdom Teeth Extraction','Sedation Dentistry','Sub-Periosteal Implants','Trans-Mandibular Implants'],
-      });
-      document.head.appendChild(schema);
-    }
-  }, []);
-
   const wedges = useMemo<Wedge[]>(
     () => menuItems.map((item, index) => {
       const centerAngle = START_ANGLE + index * STEP;
@@ -166,11 +113,11 @@ export default function App() {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       const tag = (e.target as HTMLElement | null)?.tagName ?? '';
-      if (['INPUT','TEXTAREA','BUTTON','SELECT'].includes(tag)) return;
+      if (['INPUT','TEXTAREA','BUTTON','SELECT','A'].includes(tag)) return;
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); setActiveIndex((prev) => (prev + 1) % TOTAL); }
       else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); setActiveIndex((prev) => (prev - 1 + TOTAL) % TOTAL); }
       else if (e.key === 'Enter') {
-        const section = document.querySelector(activeItem.href);
+        const section = document.getElementById(activeItem.href.replace(/^\//, ''));
         if (section) { e.preventDefault(); section.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       }
     }
@@ -196,6 +143,7 @@ export default function App() {
 
   return (
     <>
+      <SEOHead title="Dental Implants in Queens, Manhattan & Commack" description="Dental implants, full-arch restoration and implant consultations with Dr. Peter Kampf. Visit NorthStar in Briarwood, Manhattan or Commack. Call 631-315-1400." />
       <div className="page-glow page-glow-left" aria-hidden="true" />
       <div className="page-glow page-glow-right" aria-hidden="true" />
 
@@ -235,9 +183,9 @@ export default function App() {
         </div>
         <nav className={`app-nav-mobile${mobileNavOpen ? ' open' : ''}`} role="navigation" aria-label="Mobile navigation">
           {menuItems.map((item) => (
-            <button key={item.href} onClick={() => { navigate(item.href); setMobileNavOpen(false); }}>
+            <SiteLink key={item.href} href={item.href} onClick={() => setMobileNavOpen(false)}>
               {item.label}
-            </button>
+            </SiteLink>
           ))}
           <a href="tel:6313151400" className="call-link">📞 631-315-1400</a>
         </nav>
@@ -337,8 +285,7 @@ export default function App() {
             </a>
             <a
               className="button button-primary"
-              href="#"
-              onClick={(e) => { e.preventDefault(); navigate('/patient-forms'); }}
+              href="/patient-forms/"
               style={{ minWidth: '160px' }}
             >
               Patient Forms
@@ -425,15 +372,13 @@ export default function App() {
         <section className="signature-section" id="technology">
           <div className="section-shell signature-grid">
             {featureCards.map((f) => (
-              <article
+              <SiteLink
                 key={f.title}
                 className="feature-card"
-                onClick={() => navigate((f as any).slug)}
+                href={f.slug}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', cursor: 'pointer', transition: 'transform 150ms ease, box-shadow 150ms ease' }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 14px 36px rgba(197,157,60,0.18)'; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}
-                role="button" tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate((f as any).slug); }}
               >
                 <p className="feature-kicker feature-kicker-flash" style={{ textAlign: 'center' }}>{f.eyebrow}</p>
                 <h2 style={{ textAlign: 'center' }}>{f.title}</h2>
@@ -455,7 +400,7 @@ export default function App() {
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#c59d3c', fontWeight: 600, fontSize: '0.88rem', marginTop: '1rem' }}>
                   Learn More →
                 </span>
-              </article>
+              </SiteLink>
             ))}
           </div>
         </section>

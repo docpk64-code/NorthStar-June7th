@@ -1,5 +1,5 @@
 import React from 'react';
-import { navigate } from '../Root';
+import { pagePath } from '../utils/urls';
 import type { Wedge } from '../types';
 import { polarToCartesian, wedgePath } from '../utils/geometry';
 import { playWedgeTone } from '../utils/sound';
@@ -81,31 +81,14 @@ export default function CompassGraphic({
         const isHovered = wedge.index === hoveredIndex;
         const mid = polarToCartesian(400, 400, 225, wedge.centerAngle);
         return (
-          <g
+          <a
             key={wedge.item.label}
             className="compass-segment"
-            style={{ cursor: 'pointer' }}
+            href={pagePath(wedge.item.href)}
             aria-label={wedge.item.label}
-            role="button"
-            tabIndex={0}
             onMouseEnter={() => handleWedgeEnter(wedge.index)}
-            onTouchStart={(e) => {
-              e.preventDefault();
-              handleWedgeEnter(wedge.index);
-            }}
-            onClick={() => {
-              onSound();
-              const href = wedge.item.href;
-              setTimeout(() => navigate(href), 160);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onSound();
-                const href = wedge.item.href;
-                setTimeout(() => navigate(href), 160);
-              }
-            }}
+            onFocus={() => handleWedgeEnter(wedge.index)}
+            onClick={() => onSound()}
           >
             <title>{wedge.item.label}</title>
             <path
@@ -152,7 +135,7 @@ export default function CompassGraphic({
             >
               {wedge.item.shortLabel.toUpperCase()}
             </text>
-          </g>
+          </a>
         );
       })}
 

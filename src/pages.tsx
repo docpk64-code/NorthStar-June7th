@@ -1,3 +1,4 @@
+import SiteLink from './components/SiteLink';
 /**
  * pages/index.tsx — All 10 inner page components
  * Edit the placeholder text marked with [EDIT: ...] to add your real content.
@@ -526,14 +527,14 @@ export function ProceduresPage() {
             },
             { title: 'Technology', slug: '/procedure/technology' },
           ].map((card) => (
-            <div
+            <SiteLink
               key={card.title}
               className="page-card"
               style={{
                 cursor: 'pointer',
                 transition: 'transform 150ms ease, box-shadow 150ms ease',
               }}
-              onClick={() => navigate(card.slug)}
+              href={card.slug}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.transform =
                   'translateY(-3px)';
@@ -543,11 +544,6 @@ export function ProceduresPage() {
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = '';
                 (e.currentTarget as HTMLElement).style.boxShadow = '';
-              }}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') navigate(card.slug);
               }}
             >
               <h3>{card.title}</h3>
@@ -564,7 +560,7 @@ export function ProceduresPage() {
               >
                 Learn More →
               </span>
-            </div>
+            </SiteLink>
           ))}
         </div>
       </div>

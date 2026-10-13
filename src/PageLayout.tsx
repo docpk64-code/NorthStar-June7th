@@ -4,130 +4,9 @@
  * v3 — SEO meta tags, Schema.org, click-to-call, mobile nav, reduced motion, lazy images
  */
 import React from 'react';
-import { navigate } from './Root';
 
-// ── SEO / Schema.org head injection ──────────────────────────────────────────
-function SEOHead({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}) {
-  React.useEffect(() => {
-    // Title
-    document.title = `${title} | NorthStar Implant Dentistry`;
-    // Meta description
-    let meta = document.querySelector(
-      'meta[name="description"]'
-    ) as HTMLMetaElement | null;
-    if (!meta) {
-      meta = document.createElement('meta');
-      meta.name = 'description';
-      document.head.appendChild(meta);
-    }
-    meta.content = description;
-    // OG tags
-    const og = (prop: string, val: string) => {
-      let el = document.querySelector(
-        `meta[property="${prop}"]`
-      ) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement('meta');
-        el.setAttribute('property', prop);
-        document.head.appendChild(el);
-      }
-      el.content = val;
-    };
-    og('og:title', `${title} | NorthStar Implant Dentistry`);
-    og('og:description', description);
-    og('og:type', 'website');
-    og('og:url', window.location.href);
-    // Schema.org local business (injected once)
-    if (!document.getElementById('schema-northstar')) {
-      const schema = document.createElement('script');
-      schema.id = 'schema-northstar';
-      schema.type = 'application/ld+json';
-      schema.textContent = JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Dentist',
-        name: 'NorthStar Implant Dentistry',
-        url: 'https://www.northstarimplants.com',
-        telephone: '+1-631-315-1400',
-        image: 'https://www.northstarimplants.com/logo.png',
-        description:
-          'NorthStar Implant Dentistry — Advanced implant surgery, bone grafting, full-arch restoration, and specialized implant solutions. Serving Briarwood, New York, and Commack.',
-        priceRange: '$$$$',
-        address: [
-          {
-            '@type': 'PostalAddress',
-            streetAddress: '139-12 84th Drive, Suite 1G',
-            addressLocality: 'Briarwood',
-            addressRegion: 'NY',
-            postalCode: '11435',
-            addressCountry: 'US',
-          },
-          {
-            '@type': 'PostalAddress',
-            streetAddress: '[EDIT: NYC address]',
-            addressLocality: 'New York',
-            addressRegion: 'NY',
-            addressCountry: 'US',
-          },
-          {
-            '@type': 'PostalAddress',
-            streetAddress: '[EDIT: Commack address]',
-            addressLocality: 'Commack',
-            addressRegion: 'NY',
-            addressCountry: 'US',
-          },
-        ],
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: 40.6957,
-          longitude: -73.8163,
-        },
-        openingHoursSpecification: [
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            opens: '09:00',
-            closes: '21:00',
-          },
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Saturday'],
-            opens: '09:00',
-            closes: '15:00',
-          },
-        ],
-        sameAs: [
-          'https://www.facebook.com/northstarimplants',
-          'https://www.instagram.com/northstarimplants',
-          'https://www.youtube.com/@northstarimplants',
-        ],
-        hasMap:
-          'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY',
-        medicalSpecialty: 'Oral and Maxillofacial Surgery',
-        availableService: [
-          'Dental Implants',
-          'Full-Arch Restoration',
-          'Bone Grafting',
-          'Sinus Lifts',
-          'Wisdom Teeth Extraction',
-          'Sedation Dentistry',
-          'Zygomatic Implants',
-          'Sub-Periosteal Implants',
-        ],
-      });
-      document.head.appendChild(schema);
-    }
-    return () => {
-      document.title = 'NorthStar Implant Dentistry';
-    };
-  }, [title, description]);
-  return null;
-}
+import SEOHead from './components/SEOHead';
+import SiteLink from './components/SiteLink';
 
 const menuItems = [
   { label: 'About', href: '/about' },
@@ -144,6 +23,9 @@ const menuItems = [
 ];
 
 const pageStyles = `
+    .page-root :where(a) { color: inherit; text-decoration: none; }
+    .page-hero-cta { display: inline-block; }
+
     .page-root {
       min-height: 100vh;
       background: #f4f6f9;
@@ -182,7 +64,7 @@ const pageStyles = `
       margin: 0;
       padding: 0;
     }
-    .page-nav-links button {
+    .page-nav-links a {
       display: block;
       padding: 0.5rem 0.75rem;
       font-size: 0.78rem;
@@ -195,7 +77,7 @@ const pageStyles = `
       transition: background 150ms, color 150ms;
       font-family: inherit;
     }
-    .page-nav-links button:hover {
+    .page-nav-links a:hover {
       background: rgba(243,211,122,0.12);
       color: #f3d37a;
     }
@@ -399,7 +281,7 @@ const pageStyles = `
       padding: 0.5rem 0 1rem;
     }
     .page-nav-mobile.open { display: flex; }
-    .page-nav-mobile button {
+    .page-nav-mobile a {
       background: none;
       border: none;
       color: #b7c0cc;
@@ -410,7 +292,7 @@ const pageStyles = `
       cursor: pointer;
       width: 100%;
     }
-    .page-nav-mobile button:hover { color: #f3d37a; background: rgba(243,211,122,0.07); }
+    .page-nav-mobile a:hover { color: #f3d37a; background: rgba(243,211,122,0.07); }
     /* ── Lazy image fade-in ── */
     img[loading="lazy"] { opacity: 0; transition: opacity 0.4s ease; }
     img[loading="lazy"].loaded { opacity: 1; }
@@ -432,7 +314,7 @@ const pageStyles = `
       .page-back-bar { padding: 0.6rem 1rem; }
       .page-section h2 { font-size: clamp(1.3rem, 5vw, 2rem); }
       .page-section ul { padding-left: 1rem; }
-      .page-nav-mobile button { min-height: 44px; display: flex; align-items: center; }
+      .page-nav-mobile a { min-height: 44px; display: flex; align-items: center; }
 
       /* ── Card grid → swipeable horizontal carousel ──
          Replaces the cramped single-column stack with a snap-scrolling
@@ -599,25 +481,22 @@ export function PageLayout({
 
       {/* ── Nav ── */}
       <nav className="page-nav" role="navigation" aria-label="Main navigation">
-        <span
+        <SiteLink
           className="page-nav-brand"
-          onClick={() => navigate('/')}
-          role="link"
-          tabIndex={0}
+          href={'/'}
           aria-label="NorthStar Implant Dentistry home"
-          onKeyDown={(e) => e.key === 'Enter' && navigate('/')}
         >
           Dr. Peter Kampf &amp; Associates
-        </span>
+        </SiteLink>
         <ul className="page-nav-links" role="list">
           {menuItems.map((item) => (
             <li key={item.href}>
-              <button
-                onClick={() => navigate(item.href)}
+              <SiteLink
+                href={item.href}
                 aria-label={`Navigate to ${item.label}`}
               >
                 {item.label}
-              </button>
+              </SiteLink>
             </li>
           ))}
         </ul>
@@ -639,15 +518,13 @@ export function PageLayout({
         aria-label="Mobile navigation"
       >
         {menuItems.map((item) => (
-          <button
+          <SiteLink
             key={item.href}
-            onClick={() => {
-              navigate(item.href);
-              setMobileOpen(false);
-            }}
+            href={item.href}
+            onClick={() => setMobileOpen(false)}
           >
             {item.label}
-          </button>
+          </SiteLink>
         ))}
         <a
           href="tel:6313151400"
@@ -665,13 +542,13 @@ export function PageLayout({
 
       {/* ── Back breadcrumb ── */}
       <div className="page-back-bar" role="navigation" aria-label="Breadcrumb">
-        <button
+        <SiteLink
           className="page-back-btn"
-          onClick={() => navigate('/')}
+          href={'/'}
           aria-label="Back to home"
         >
           ← Back to Home
-        </button>
+        </SiteLink>
         <span aria-hidden="true">/</span>
         <span aria-current="page">{title}</span>
       </div>
@@ -681,13 +558,13 @@ export function PageLayout({
         <p className="page-hero-kicker">{kicker}</p>
         <h1 className="page-hero-title">{title}</h1>
         <p className="page-hero-subtitle">{subtitle}</p>
-        <button
+        <SiteLink
           className="page-hero-cta"
-          onClick={() => navigate('/contact')}
+          href={'/contact'}
           aria-label="Book a consultation with NorthStar Implant Dentistry"
         >
           Book a Consultation
-        </button>
+        </SiteLink>
       </div>
 
       {/* ── Page body ── */}
@@ -721,23 +598,23 @@ export function PageLayout({
           Time&#8221;™ are trademarks of NorthStar Implant Dentistry, P.C.
         </p>
         <p style={{ marginTop: '0.5rem' }}>
-          <button
+          <SiteLink
             className="page-footer-link"
-            onClick={() => navigate('/')}
+            href={'/'}
             aria-label="Return to homepage"
           >
             ← Return to Homepage
-          </button>
+          </SiteLink>
           <span style={{ margin: '0 0.5rem', color: 'rgba(197,157,60,0.4)' }}>
             ·
           </span>
-          <button
+          <SiteLink
             className="page-footer-link"
-            onClick={() => navigate('/terms')}
+            href={'/terms'}
             aria-label="Terms of Use and Intellectual Property Notice"
           >
             Terms of Use
-          </button>
+          </SiteLink>
         </p>
       </footer>
     </div>

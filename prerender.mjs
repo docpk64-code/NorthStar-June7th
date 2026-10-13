@@ -39,16 +39,18 @@ const ROUTES = [
   '/procedure/maxillary-expansion-marpe', '/procedure/technology',
   '/specialized/cant-get-implants', '/specialized/botched-smile',
   '/specialized/sub-periosteal-implant',
-  '/hydrafacial', '/emface',
+  '/hydrafacial', '/emface', '/terms',
 ];
 
 function startServer() {
+  // Always render from the unmodified Vite shell, never a previously rendered page.
+  const shell = readFileSync(join(DIST, 'index.html'));
   const server = createServer((req, res) => {
     const url = new URL(req.url, `http://localhost:${PORT}`);
     let filePath = join(DIST, url.pathname);
     if (!extname(filePath)) {
-      const idx = join(filePath, 'index.html');
-      filePath = existsSync(idx) ? idx : join(DIST, 'index.html');
+      res.writeHead(200, { 'Content-Type': MIME['.html'] });
+      return res.end(shell);
     }
     if (!existsSync(filePath)) { res.writeHead(404); return res.end('Not found'); }
     res.writeHead(200, { 'Content-Type': MIME[extname(filePath).toLowerCase()] ?? 'application/octet-stream' });
@@ -69,20 +71,20 @@ async function prerender() {
 
   const browser = await puppeteer.launch({
     headless: 'new',
+    ...(process.env.PUPPETEER_EXECUTABLE_PATH ? { executablePath: process.env.PUPPETEER_EXECUTABLE_PATH } : {}),
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
       '--disable-gpu',
       '--mute-audio',
       '--disable-dev-shm-usage',
-      '--disable-web-security',
     ],
   });
 
   let ok = 0;
   const failed = [];
 
-  for (const route of ROUTES) {
+  for (const route of [...ROUTES, '/404']) {
     const page = await browser.newPage();
     page.on('console', () => {});
     page.on('pageerror', () => {});
@@ -95,20 +97,18 @@ async function prerender() {
     });
 
     try {
-      await page.goto(`http://localhost:${PORT}${route}`, {
+      await page.goto(`http://localhost:${PORT}${route === "/" ? "/" : route + "/"}`, {
         waitUntil: 'domcontentloaded',
         timeout: 20_000,
       });
 
-      await page.waitForFunction(
-        () => {
-          const root = document.getElementById('root');
-          return root && root.children.length > 0;
-        },
-        { timeout: 15_000 }
-      );
-
-      await new Promise(r => setTimeout(r, 1500));
+      await page.waitForFunction((expected) => {
+        const h1 = document.querySelector('h1');
+        const canonical = document.querySelector('link[rel="canonical"]');
+        return h1 && (expected === '/404'
+          ? document.querySelector('meta[name="robots"]')?.content.includes('noindex')
+          : canonical?.getAttribute('href') === 'https://northstarimplants.com' + (expected === '/' ? '/' : expected + '/'));
+      }, { timeout: 15000 }, route);
 
       const html = await page.content();
 
@@ -118,7 +118,9 @@ async function prerender() {
         throw new Error('React did not render into #root');
       }
 
-      if (route === '/') {
+      if (route === '/404') {
+        writeFileSync(join(DIST, '404.html'), cleanHtml, 'utf8');
+      } else if (route === '/') {
         writeFileSync(join(DIST, 'index.html'), cleanHtml, 'utf8');
       } else {
         const outDir = join(DIST, route);
@@ -141,7 +143,7 @@ async function prerender() {
 
   console.log(`\n${'─'.repeat(44)}`);
   if (failed.length === 0) {
-    console.log(`✅  ${ok}/${ROUTES.length} pages prerendered.\n`);
+    console.log(`✅  ${ok}/${ROUTES.length + 1} pages prerendered.\n`);
   } else {
     console.log(`⚠️   ${ok} ok · ${failed.length} failed:\n`);
     failed.forEach(r => console.log(`     ${r}`));
