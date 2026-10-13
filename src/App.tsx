@@ -298,18 +298,58 @@ export default function App() {
         </div>
       </header>
 
-      {/* ══════════════════════════════════════════════════════
-          SECTION 2 — Polar bear photo at half scale
-          Centered at 50% width, preserving the entire portrait.
-          Dark navy background so edges blend seamlessly.
-      ══════════════════════════════════════════════════════ */}
-      <div style={{ background: '#07111c', lineHeight: 0 }}>
-        <img
-          src="/assets/hero-bg.jpg"
-          alt="Polar bear cub gazing at the North Star on a winter night"
-          style={{ display: 'block', width: '50%', height: 'auto', margin: '0 auto' }}
-        />
-      </div>
+      {/* A balanced introduction pairs practical information with the NorthStar image. */}
+      <section className="northstar-intro" aria-labelledby="northstar-intro-title">
+        <style>{`
+          .northstar-intro { background: #07111c; color: #f7f3e9; padding: 56px 32px; }
+          .northstar-intro-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+          .northstar-intro-copy { max-width: 490px; }
+          .northstar-intro-eyebrow { color: #d7b65c; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; margin: 0 0 24px; }
+          .northstar-intro h2 { color: #f7f3e9; font-family: Georgia, serif; font-size: clamp(36px, 4.2vw, 58px); font-weight: 400; line-height: 1.12; margin: 0 0 26px; }
+          .northstar-intro-description { color: #bbc4cf; font-size: 17px; line-height: 1.85; margin: 0 0 30px; }
+          .northstar-intro-locations { border-top: 1px solid #d7b65c40; padding-top: 22px; margin-bottom: 32px; }
+          .northstar-intro-locations span { display: block; font-size: 11px; color: #d7b65c; letter-spacing: .17em; text-transform: uppercase; margin-bottom: 10px; }
+          .northstar-intro-locations p { margin: 0; color: #e5e8ed; font-size: 15px; line-height: 1.7; }
+          .northstar-intro-cta { display: inline-block; background: linear-gradient(110deg, #f5dfa1, #cca244); color: #101820; border-radius: 999px; padding: 17px 27px; font-size: 14px; font-weight: 700; text-decoration: none; }
+          .northstar-intro-cta:hover { filter: brightness(1.08); }
+          .northstar-intro-cta:focus-visible { outline: 2px solid #f5dfa1; outline-offset: 5px; }
+          .northstar-intro-art { width: 100%; max-width: 500px; justify-self: center; }
+          .northstar-intro-art img { display: block; width: 100%; height: auto; mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent); }
+          @media (max-width: 700px) {
+            .northstar-intro { padding: 44px 24px; }
+            .northstar-intro-inner { grid-template-columns: 1fr; gap: 32px; }
+            .northstar-intro-copy { max-width: 100%; }
+            .northstar-intro-art { max-width: 360px; }
+            .northstar-intro h2 { font-size: 38px; }
+          }
+        `}</style>
+        <div className="northstar-intro-inner">
+          <div className="northstar-intro-copy">
+            <p className="northstar-intro-eyebrow">Your next chapter starts here</p>
+            <h2 id="northstar-intro-title">A clear path to<br />your new smile.</h2>
+            <p className="northstar-intro-description">
+              Every smile has a story. At NorthStar Implant Dentistry, we help you
+              explore your implant options with thoughtful evaluation, digital
+              planning, and care tailored to your goals.
+            </p>
+            <div className="northstar-intro-locations">
+              <span>Three locations. One commitment to your care.</span>
+              <p>Briarwood · Manhattan · Commack</p>
+            </div>
+            <SiteLink className="northstar-intro-cta" href="/dental-implants/">
+              Explore Dental Implants <span aria-hidden="true">→</span>
+            </SiteLink>
+          </div>
+          <div className="northstar-intro-art">
+            <img
+              src="/assets/hero-bg.jpg"
+              alt="Polar bear cub gazing at the North Star on a winter night"
+              width={500}
+              height={677}
+            />
+          </div>
+        </div>
+      </section>
 
       {/* ══════════════════════════════════════════════════════
           SECTION 3 — Compass wheel on dark starry background
