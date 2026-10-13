@@ -299,15 +299,15 @@ export default function App() {
       </header>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 2 — Full-width polar bear photo
-          width: 100%, height: auto so the ENTIRE portrait shows.
+          SECTION 2 — Polar bear photo at half scale
+          Centered at 50% width, preserving the entire portrait.
           Dark navy background so edges blend seamlessly.
       ══════════════════════════════════════════════════════ */}
       <div style={{ background: '#07111c', lineHeight: 0 }}>
         <img
           src="/assets/hero-bg.jpg"
           alt="Polar bear cub gazing at the North Star on a winter night"
-          style={{ display: 'block', width: '100%', height: 'auto' }}
+          style={{ display: 'block', width: '50%', height: 'auto', margin: '0 auto' }}
         />
       </div>
 
