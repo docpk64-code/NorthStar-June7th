@@ -1,3 +1,4 @@
+import SiteLink from './components/SiteLink';
 /**
  * pages/index.tsx — All 10 inner page components
  * Edit the placeholder text marked with [EDIT: ...] to add your real content.
@@ -526,14 +527,14 @@ export function ProceduresPage() {
             },
             { title: 'Technology', slug: '/procedure/technology' },
           ].map((card) => (
-            <div
+            <SiteLink
               key={card.title}
               className="page-card"
               style={{
                 cursor: 'pointer',
                 transition: 'transform 150ms ease, box-shadow 150ms ease',
               }}
-              onClick={() => navigate(card.slug)}
+              href={card.slug}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.transform =
                   'translateY(-3px)';
@@ -543,11 +544,6 @@ export function ProceduresPage() {
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = '';
                 (e.currentTarget as HTMLElement).style.boxShadow = '';
-              }}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') navigate(card.slug);
               }}
             >
               <h3>{card.title}</h3>
@@ -564,7 +560,7 @@ export function ProceduresPage() {
               >
                 Learn More →
               </span>
-            </div>
+            </SiteLink>
           ))}
         </div>
       </div>
@@ -1550,7 +1546,7 @@ export function ContactPage() {
             <p>
               <strong>Hours:</strong>
               <br />
-              Mon-Fri: 9am-9pm | Sat: 9am-3pm | Sun: Emergency only, call 631-315-1400
+              Mon-Sat: 9am-8pm | Sunday: By appointment
             </p>
           </div>
           <div className="page-section">
@@ -1817,7 +1813,7 @@ export function LocationsPage() {
       tel: '6313151400',
       maps: 'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY',
       parking: 'Accessible by E and F subway lines (Briarwood/Van Wyck Blvd station). Public parking garage available nearby.',
-      hours: 'Mon-Fri: 9am-9pm | Sat: 9am-3pm | Sun: Emergency only, call 631-315-1400',
+      hours: 'Mon-Sat: 9am-8pm | Sunday: By appointment',
     },
     {
       name: 'New York, NY',
@@ -1827,7 +1823,7 @@ export function LocationsPage() {
       tel: '6313151400',
       maps: 'https://maps.google.com/?q=333+East+34th+Street+Suite+M1+New+York+NY+10016',
       parking: 'Accessible by the 6 train (33rd St station) and M/N/Q/R/W trains (34th St - Herald Square). Public parking garage on 34th Street.',
-      hours: 'Mon-Fri: 9am-9pm | Sat: 9am-3pm | Sun: Emergency only, call 631-315-1400',
+      hours: 'Mon-Sat: 9am-8pm | Sunday: By appointment',
     },
     {
       name: 'Commack, NY',
@@ -1837,7 +1833,7 @@ export function LocationsPage() {
       tel: '6313151400',
       maps: 'https://maps.google.com/?q=283+Commack+Road+Suite+130+Commack+NY+11725',
       parking: 'Free on-site parking available. Easily accessible from the Northern State Parkway.',
-      hours: 'Mon-Fri: 9am-9pm | Sat: 9am-3pm | Sun: Emergency only, call 631-315-1400',
+      hours: 'Mon-Sat: 9am-8pm | Sunday: By appointment',
     },
   ];
 

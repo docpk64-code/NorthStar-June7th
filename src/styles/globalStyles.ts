@@ -1,4 +1,4 @@
-export const buildStyles = (heroBg: string) => `
+export const buildStyles = (_heroBg: string) => `
    :root {
      --text: #f6f2ea;
      --muted: #b7c0cc;
@@ -709,7 +709,7 @@ export const buildStyles = (heroBg: string) => `
      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
    }
    .app-nav-mobile.open { display: flex; }
-   .app-nav-mobile a, .app-nav-mobile button {
+   .app-nav-mobile a {
      background: none;
      border: none;
      border-bottom: 1px solid rgba(197,157,60,0.08);
@@ -722,7 +722,7 @@ export const buildStyles = (heroBg: string) => `
      text-decoration: none;
      display: block;
    }
-   .app-nav-mobile a:hover, .app-nav-mobile button:hover { color: #f3d37a; background: rgba(243,211,122,0.06); }
+   .app-nav-mobile a:hover { color: #f3d37a; background: rgba(243,211,122,0.06); }
    .app-nav-mobile .call-link { color: #f3d37a; font-weight: 700; font-size: 1rem; }
    @media (max-width: 1000px) {
      .hero-grid, .contact-grid, .signature-grid { grid-template-columns: 1fr; }

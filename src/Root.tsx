@@ -7,6 +7,8 @@
  */
 import React, { Suspense, lazy, useState, useEffect, useCallback } from 'react';
 import App from './App';
+import SEOHead from './components/SEOHead';
+import { routeKey, pagePath } from './utils/urls';
 
 const AboutPage = lazy(() => import('./pages').then(m => ({ default: m.AboutPage })));
 const ProceduresPage = lazy(() => import('./pages').then(m => ({ default: m.ProceduresPage })));
@@ -78,7 +80,8 @@ const ROUTES: Record<string, React.ReactElement> = {
 };
 
 export function navigate(path: string) {
-  window.history.pushState({}, '', path);
+  const url = new URL(path, window.location.origin);
+  window.history.pushState({}, '', pagePath(url.pathname) + url.search + url.hash);
   window.dispatchEvent(new PopStateEvent('popstate'));
 }
 
@@ -101,10 +104,10 @@ function PageFallback() {
 }
 
 export default function Root() {
-  const [path, setPath] = useState(window.location.pathname);
+  const [path, setPath] = useState(routeKey(window.location.pathname));
 
   const onPopState = useCallback(() => {
-    setPath(window.location.pathname);
+    setPath(routeKey(window.location.pathname));
     window.scrollTo(0, 0);
   }, []);
 
@@ -113,6 +116,12 @@ export default function Root() {
     return () => window.removeEventListener('popstate', onPopState);
   }, [onPopState]);
 
-  const page = ROUTES[path] ?? ROUTES['/'];
-  return <Suspense fallback={<PageFallback />}>{page}</Suspense>;
+  const page = ROUTES[path] ?? <NotFound />;
+  return <Suspense key={path} fallback={<PageFallback />}>{page}</Suspense>;
+}function NotFound() {
+  return <main style={{ padding: '4rem 2rem', fontFamily: 'sans-serif', color: '#07111c', background: '#fff', minHeight: '100vh' }}>
+    <SEOHead title="Page not found" description="This page could not be found. Visit NorthStar Implant Dentistry or contact our team." noindex />
+    <h1>Page not found</h1><p>The address may have changed. Please choose a page below.</p>
+    <p><a href="/">Home</a> · <a href="/procedures/">Procedures</a> · <a href="/contact/">Contact</a></p>
+  </main>;
 }

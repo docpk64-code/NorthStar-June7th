@@ -1,5 +1,5 @@
 
-import { navigate } from '../Root';
+import SiteLink from './SiteLink';
 import type { MenuItem } from '../types';
 import { careCardAnchors } from '../data/menuData';
 import { playCardClick } from '../utils/sound';
@@ -7,21 +7,11 @@ import { playCardClick } from '../utils/sound';
 export default function CareCard({ item, isActive }: { item: MenuItem; isActive: boolean }) {
   const slug = item.href.replace(/^\//, '');
   return (
-    <article
+    <SiteLink
       className={`care-card care-card-link${isActive ? ' is-active' : ''}`}
       id={careCardAnchors.has(slug) ? slug : undefined}
-      onClick={() => {
-        playCardClick();
-        setTimeout(() => navigate(item.href), 160);
-      }}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          playCardClick();
-          setTimeout(() => navigate(item.href), 160);
-        }
-      }}
+      href={item.href}
+      onClick={() => playCardClick()}
       style={{ cursor: 'pointer' }}
     >
       {/* ── Image / placeholder ── */}
@@ -98,6 +88,6 @@ export default function CareCard({ item, isActive }: { item: MenuItem; isActive:
       >
         Explore {item.shortLabel} <span style={{ fontSize: '1.1rem' }}>→</span>
       </span>
-    </article>
+    </SiteLink>
   );
 }
