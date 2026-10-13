@@ -7,9 +7,11 @@ import { playWedgeTone } from '../utils/sound';
 export default function CompassGraphic({
   wedges,
   onSound,
+  enableSound = true,
 }: {
   wedges: Wedge[];
   onSound: () => void;
+  enableSound?: boolean;
 }) {
   const [hoveredIndex, setHoveredIndex] = React.useState(0);
   const [isMoving, setIsMoving] = React.useState(false);
@@ -23,7 +25,7 @@ export default function CompassGraphic({
     if (index !== hoveredIndex) {
       setHoveredIndex(index);
       setIsMoving(true);
-      playWedgeTone(index);
+      if (enableSound) playWedgeTone(index);
       if (movingTimer.current) clearTimeout(movingTimer.current);
       movingTimer.current = setTimeout(() => setIsMoving(false), 450);
     }
