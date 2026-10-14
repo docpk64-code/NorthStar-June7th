@@ -1,0 +1,35 @@
+/* Homepage Revision 3: a stronger NorthStar welcome, retaining Revision 2's journey. */
+.brand-preview .pp-brand { font-size:31px; }
+.brand-preview .pp-star { font-size:49px; }
+.brand-preview .nj-universe { background:radial-gradient(ellipse at 50% 7%,#b49a5320,transparent 32%),radial-gradient(ellipse at 16% 34%,#244c5c50,transparent 48%),linear-gradient(#05111c,#0b2030 72%,#071521); }
+.nb-banner { text-align:center; padding-top:30px; padding-bottom:30px; }
+.nb-star-rule { display:flex; gap:24px; align-items:center; justify-content:center; color:#e6c985; }
+.nb-star-rule svg { width:38px; height:38px; filter:drop-shadow(0 0 13px #ffe0a566); }
+.nb-star-rule span { width:90px; height:1px; background:linear-gradient(90deg,transparent,#d4b878); }
+.nb-star-rule span:last-child { transform:rotate(180deg); }
+.brand-preview .nb-welcome { color:#dec797; font:12px 'Segoe UI',sans-serif; text-transform:uppercase; letter-spacing:.38em; margin:19px 0 10px; }
+.brand-preview .nb-wordmark { font-family:Georgia,'Times New Roman',serif; font-size:clamp(64px,8.8vw,116px); line-height:.98; font-weight:400; letter-spacing:-.055em; margin:0; color:#f2ddb0; text-shadow:0 5px 35px #d5b87520; }
+.brand-preview .nb-wordmark span { display:block; font-family:'Segoe UI',sans-serif; font-size:clamp(15px,1.9vw,24px); font-weight:300; letter-spacing:.37em; text-transform:uppercase; line-height:1.5; margin-top:13px; padding-left:.37em; color:#e4c68a; }
+.brand-preview .nb-tagline { color:#f2dfb5; font:italic clamp(19px,2.25vw,29px)/1.4 Georgia,serif; margin:19px 0 15px; }
+.brand-preview .nb-practice { color:#a6b8c4; font-size:10px; letter-spacing:.13em; text-transform:uppercase; margin:0; }
+.nb-practice span { padding:0 12px; color:#bd9f62; }
+.brand-preview .nb-direction-heading { padding-top:24px; border-top:1px solid #cdb47735; }
+.brand-preview .nb-direction-heading h2 { font-size:clamp(27px,3vw,39px); margin:0 0 12px; color:#f8efdf; }
+.nb-direction-heading h2 em { color:#d9bd80; }
+.brand-preview .nj-explorer { padding-top:10px; padding-bottom:26px; gap:65px; grid-template-columns:1.1fr 1fr; }
+.brand-preview .nj-compass { max-width:445px; }
+.brand-preview .nj-detail-image { height:125px; }
+.brand-preview .pp-locations aside { margin-top:36px!important; }
+@media(max-width:700px) {
+ .nb-banner { padding-top:26px; padding-bottom:27px; }
+ .nb-star-rule svg { width:29px; height:29px; }
+ .nb-star-rule span { width:60px; }
+ .brand-preview .nb-wordmark { font-size:clamp(59px,15vw,90px); }
+ .brand-preview .nb-wordmark span { font-size:15px; letter-spacing:.23em; }
+ .brand-preview .nb-tagline { font-size:21px; max-width:300px; margin:19px auto 16px; }
+ .brand-preview .nb-practice { font-size:9px; letter-spacing:.06em; }
+ .nb-practice span { padding:0 5px; }
+ .brand-preview .nb-direction-heading { padding-top:25px; }
+ .brand-preview .nj-explorer { gap:30px; }
+}
+@media(max-width:650px) { .brand-preview .nj-explorer { grid-template-columns:1fr; } .brand-preview .nj-compass { max-width:330px; } }
