@@ -10,6 +10,7 @@ import App from './App';
 import SEOHead from './components/SEOHead';
 import { routeKey, pagePath } from './utils/urls';
 
+const HipaaPage = lazy(() => import('./HipaaPage'));
 const OfficePage = lazy(() => import('./OfficePage'));
 
 const AboutPage = lazy(() => import('./pages').then(m => ({ default: m.AboutPage })));
@@ -55,6 +56,7 @@ const ROUTES: Record<string, React.ReactElement> = {
   '/sedation': <SedationPage />,
   '/patient-information': <PatientInfoPage />,
   '/patient-forms': <PatientFormsPage />,
+  '/patient-forms/hipaa': <HipaaPage />,
   '/technology': <TechnologyPage />,
   '/testimonials': <TestimonialsPage />,
   '/contact': <ContactPage />,
