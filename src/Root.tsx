@@ -10,6 +10,8 @@ import App from './App';
 import SEOHead from './components/SEOHead';
 import { routeKey, pagePath } from './utils/urls';
 
+const OfficePage = lazy(() => import('./OfficePage'));
+
 const AboutPage = lazy(() => import('./pages').then(m => ({ default: m.AboutPage })));
 const ProceduresPage = lazy(() => import('./pages').then(m => ({ default: m.ProceduresPage })));
 const DentalImplantsPage = lazy(() => import('./pages').then(m => ({ default: m.DentalImplantsPage })));
@@ -57,6 +59,10 @@ const ROUTES: Record<string, React.ReactElement> = {
   '/testimonials': <TestimonialsPage />,
   '/contact': <ContactPage />,
   '/locations': <LocationsPage />,
+  '/locations/briarwood': <OfficePage officeId="briarwood" />,
+  '/locations/manhattan': <OfficePage officeId="manhattan" />,
+  '/locations/commack': <OfficePage officeId="commack" />,
+  '/locations/brooklyn': <OfficePage officeId="brooklyn" />,
   '/procedure/tooth-extractions': <ToothExtractionsPage />,
   '/procedure/bone-grafting': <BoneGraftingPage />,
   '/procedure/sinus-lifts': <SinusLiftsPage />,

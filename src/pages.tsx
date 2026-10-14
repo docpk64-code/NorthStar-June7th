@@ -1478,21 +1478,21 @@ export function ContactPage() {
             <h2>Find Us</h2>
             {[
               {
-                name: 'Briarwood, NY',
+                id: 'briarwood', name: 'Briarwood, NY',
                 address: '139-12 84th Drive, Suite 1G, Briarwood, NY',
                 phone: '631-315-1400',
                 tel: '6313151400',
                 maps: 'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY',
               },
               {
-                name: 'New York, NY',
+                id: 'manhattan', name: 'New York, NY',
                 address: '333 East 34th Street, Suite M1, New York, NY 10016',
                 phone: '631-315-1400',
                 tel: '6313151400',
                 maps: 'https://maps.google.com/?q=333+East+34th+Street+Suite+M1+New+York+NY+10016',
               },
               {
-                name: 'Commack, NY',
+                id: 'commack', name: 'Commack, NY',
                 address: '283 Commack Road, Suite 130, Commack, NY 11725',
                 phone: '631-315-1400',
                 tel: '6313151400',
@@ -1515,7 +1515,7 @@ export function ContactPage() {
                     fontSize: '1.05rem',
                   }}
                 >
-                  {loc.name}
+                  <SiteLink href={`/locations/${loc.id}/`}>{loc.name} →</SiteLink>
                 </p>
                 <p style={{ margin: '0 0 0.25rem', color: '#4a5668' }}>
                   {loc.address}
@@ -1808,7 +1808,7 @@ export function ContactPage() {
 export function LocationsPage() {
   const locations = [
     {
-      name: 'Briarwood, NY',
+      id: 'briarwood', name: 'Briarwood, NY',
       address: '139-12 84th Drive, Suite 1G',
       city: 'Briarwood, NY',
       phone: '631-315-1400',
@@ -1818,7 +1818,7 @@ export function LocationsPage() {
       hours: 'Mon-Sat: 9am-8pm | Sunday: By appointment',
     },
     {
-      name: 'New York, NY',
+      id: 'manhattan', name: 'New York, NY',
       address: '333 East 34th Street, Suite M1',
       city: 'New York, NY 10016',
       phone: '631-315-1400',
@@ -1828,7 +1828,7 @@ export function LocationsPage() {
       hours: 'Mon-Sat: 9am-8pm | Sunday: By appointment',
     },
     {
-      name: 'Commack, NY',
+      id: 'commack', name: 'Commack, NY',
       address: '283 Commack Road, Suite 130',
       city: 'Commack, NY 11725',
       phone: '631-315-1400',
@@ -1859,7 +1859,7 @@ export function LocationsPage() {
           >
             <div>
               <p className="page-kicker">{loc.city}</p>
-              <h2>{loc.name}</h2>
+              <h2><SiteLink href={`/locations/${loc.id}/`}>{loc.name} →</SiteLink></h2>
               <p>
                 <strong>Address:</strong>
                 <br />

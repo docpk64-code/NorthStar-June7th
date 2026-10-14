@@ -472,13 +472,13 @@ export default function App() {
                 </div>
                 <div style={{ display: 'grid', gap: '0.75rem' }}>
                   {[
-                    { name: 'Briarwood, NY', address: '139-12 84th Drive, Suite 1G', city: 'Briarwood, NY', maps: 'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY' },
-                    { name: 'New York, NY', address: '333 East 34th Street, Suite M1', city: 'New York, NY 10016', maps: 'https://maps.google.com/?q=333+East+34th+Street+Suite+M1+New+York+NY+10016' },
-                    { name: 'Commack, NY', address: '283 Commack Road, Suite 130', city: 'Commack, NY 11725', maps: 'https://maps.google.com/?q=283+Commack+Road+Suite+130+Commack+NY+11725' },
+                    { id: 'briarwood', name: 'Briarwood, NY', address: '139-12 84th Drive, Suite 1G', city: 'Briarwood, NY', maps: 'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY' },
+                    { id: 'manhattan', name: 'New York, NY', address: '333 East 34th Street, Suite M1', city: 'New York, NY 10016', maps: 'https://maps.google.com/?q=333+East+34th+Street+Suite+M1+New+York+NY+10016' },
+                    { id: 'commack', name: 'Commack, NY', address: '283 Commack Road, Suite 130', city: 'Commack, NY 11725', maps: 'https://maps.google.com/?q=283+Commack+Road+Suite+130+Commack+NY+11725' },
                   ].map((loc) => (
                     <div key={loc.name} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.85rem 1.1rem', borderRadius: '1rem', border: '1px solid #e2e8f0', background: '#f4f6f9', gap: '1rem' }}>
                       <div>
-                        <p style={{ margin: 0, fontWeight: 600, color: '#07111c', fontSize: '0.95rem' }}>{loc.name}</p>
+                        <p style={{ margin: 0, fontWeight: 600, color: '#07111c', fontSize: '0.95rem' }}><SiteLink href={`/locations/${loc.id}/`} style={{ color: 'inherit' }}>{loc.name} →</SiteLink></p>
                         <p style={{ margin: 0, color: '#4a5668', fontSize: '0.88rem' }}>{loc.address}, {loc.city}</p>
                       </div>
                       <a href={loc.maps} target="_blank" rel="noreferrer" style={{ flexShrink: 0, padding: '0.4rem 0.9rem', borderRadius: '999px', background: 'linear-gradient(135deg,#f4d88c,#d1a245)', color: '#1d1302', fontWeight: 700, fontSize: '0.8rem', textDecoration: 'none' }}>

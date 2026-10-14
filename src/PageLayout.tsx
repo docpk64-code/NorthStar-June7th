@@ -384,12 +384,14 @@ export function PageLayout({
   title,
   subtitle,
   description,
+  ctaLabel = 'Book a Consultation',
 }: {
   children: React.ReactNode;
   kicker: string;
   title: string;
   subtitle: string;
   description?: string;
+  ctaLabel?: string;
 }) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -561,9 +563,9 @@ export function PageLayout({
         <SiteLink
           className="page-hero-cta"
           href={'/contact'}
-          aria-label="Book a consultation with NorthStar Implant Dentistry"
+          aria-label={ctaLabel + ' with NorthStar Implant Dentistry'}
         >
-          Book a Consultation
+          {ctaLabel}
         </SiteLink>
       </div>
 
