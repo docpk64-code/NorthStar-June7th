@@ -40,6 +40,21 @@ for (const route of routes) {
     assert.equal(document.querySelector('meta[name="robots"]')?.getAttribute('content'), 'index, follow', path);
     assert.equal(document.querySelectorAll('#schema-northstar').length, 1);
     assert(!document.querySelector('#schema-northstar')!.textContent!.includes('[EDIT'));
+    if (route.startsWith('/locations/')) {
+      const id = route.split('/').pop();
+      const graph = JSON.parse(document.querySelector('#schema-northstar')!.textContent!)['@graph'];
+      const dentists = graph.filter((item: any) => item['@type'] === 'Dentist');
+      assert.equal(dentists.length, id === 'brooklyn' ? 0 : 1, path);
+      if (id !== 'brooklyn') {
+        assert.equal(dentists[0].url, 'https://northstarimplants.com' + pathFor(route));
+        assert.equal(dentists[0].openingHoursSpecification[0].closes, '20:00');
+      } else {
+        assert(document.querySelector('main')!.textContent!.includes('not yet open'));
+        assert(!document.querySelector('main')!.textContent!.includes('Monday–Saturday: 9am–8pm'));
+      }
+      assert.equal(document.querySelectorAll('iframe[title^="Map of NorthStar"]').length, 1);
+      assert.equal(document.querySelectorAll('nav[aria-label="Other offices"] a').length, 3);
+    }
     if (route !== '/') assert(!document.querySelector('h1')!.textContent!.includes('Welcome To'), path);
     if (route === '/') {
       assert.equal(document.querySelectorAll('a.care-card-link[href]').length, 12);

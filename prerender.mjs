@@ -27,6 +27,7 @@ const MIME = {
 
 const ROUTES = [
   '/',
+  '/locations/briarwood', '/locations/manhattan', '/locations/commack', '/locations/brooklyn',
   '/about', '/procedures', '/dental-implants', '/full-arch', '/wisdom-teeth',
   '/sedation', '/patient-information', '/patient-forms', '/technology',
   '/testimonials', '/contact', '/locations',
