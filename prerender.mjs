@@ -29,7 +29,7 @@ const ROUTES = [
   '/',
   '/locations/briarwood', '/locations/manhattan', '/locations/commack', '/locations/brooklyn',
   '/about', '/procedures', '/dental-implants', '/full-arch', '/wisdom-teeth',
-  '/sedation', '/patient-information', '/patient-forms', '/technology',
+  '/sedation', '/patient-information', '/patient-forms', '/patient-forms/hipaa', '/technology',
   '/testimonials', '/contact', '/locations',
   '/procedure/tooth-extractions', '/procedure/bone-grafting',
   '/procedure/sinus-lifts', '/procedure/implant-placement',

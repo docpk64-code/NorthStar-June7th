@@ -2009,9 +2009,9 @@ export function PatientFormsPage() {
         'Your privacy is our priority. Our HIPAA Notice of Privacy Practices explains how your personal health information is collected, used, and protected.',
       fields: [
         'Notice of Privacy Practices',
-        'Authorization to Release Records',
-        'Preferred Contact Method',
-        'Authorized Representatives',
+        'Acknowledgment of Receipt',
+        'Confidential Communications',
+        'Personal Representative Rights',
         'Right to Access Records',
         'Complaint Procedures',
       ],
@@ -2071,7 +2071,11 @@ export function PatientFormsPage() {
                 </div>
               ))}
             </div>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            {form.title === 'HIPAA Policy' ? <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <a href="/forms/northstar-hipaa-notice-and-acknowledgment.pdf" download style={{ padding: '0.7rem 1.3rem', background: '#f1d58e', color: '#182f44', borderRadius: '999px', fontWeight: 700 }}>Download Fillable PDF</a>
+              <a href="/patient-forms/hipaa/" style={{ padding: '0.7rem 1.3rem', border: '1px solid #96701f', color: '#694e15', borderRadius: '999px', fontWeight: 700 }}>Read Notice & Fill Out Online</a>
+              <p style={{ width: '100%', color: '#4a5668', margin: 0 }}>Complete in your browser, print, sign and bring to your appointment. Entries are not submitted online. This acknowledgment does not authorize release of records.</p>
+            </div> : <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               <button
                 style={{
                   padding: '0.55rem 1.3rem',
@@ -2100,7 +2104,7 @@ export function PatientFormsPage() {
               >
                 ✏️ Fill Out Online
               </button>
-            </div>
+            </div>}
           </div>
         ))}
       </div>
