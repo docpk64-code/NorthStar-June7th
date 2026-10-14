@@ -523,6 +523,17 @@ export const buildStyles = (_heroBg: string) => `
    .signature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
    .feature-card { padding: 1.4rem; border-radius: 1.6rem; }
    .feature-card h2 { margin: 0 0 0.7rem; font-size: 1.8rem; }
+   /* Compact specialized-circumstances cards: approximately one-third shorter. */
+   .signature-grid .feature-card { height: 26.1rem; padding: 1rem; }
+   .signature-grid .feature-card h2 { font-size: 1.5rem; line-height: 1.15; margin-bottom: 0.4rem; }
+   .signature-grid .feature-card > p:not(.feature-kicker) { color: #4a5668 !important; line-height: 1.5 !important; margin: 0.35rem 0 0.6rem !important; }
+   .signature-grid .feature-card > img { flex: 1 1 0; min-height: 0; height: 0; aspect-ratio: auto !important; margin-top: 0 !important; }
+   .signature-grid .feature-card > span { margin-top: 0.65rem !important; }
+   @media (max-width: 700px) {
+     .signature-grid .feature-card { height: auto; }
+     .signature-grid .feature-card > img { flex: none; height: 7rem; }
+   }
+
    
    .contact-section { padding-bottom: 3rem; }
    .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr); align-items: start; }
