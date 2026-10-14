@@ -527,7 +527,7 @@ export const buildStyles = (_heroBg: string) => `
    .signature-grid .feature-card { height: 26.1rem; padding: 1rem; }
    .signature-grid .feature-card h2 { font-size: 1.5rem; line-height: 1.15; margin-bottom: 0.4rem; }
    .signature-grid .feature-card > p:not(.feature-kicker) { color: #4a5668 !important; line-height: 1.5 !important; margin: 0.35rem 0 0.6rem !important; }
-   .signature-grid .feature-card > img { flex: 1 1 0; min-height: 0; height: 0; aspect-ratio: auto !important; margin-top: 0 !important; }
+   .signature-grid .feature-card > img { flex: 1 1 0; min-height: 0; height: 0; aspect-ratio: auto !important; margin-top: 0 !important; object-fit: contain !important; object-position: center; }
    .signature-grid .feature-card > span { margin-top: 0.65rem !important; }
    @media (max-width: 700px) {
      .signature-grid .feature-card { height: auto; }
