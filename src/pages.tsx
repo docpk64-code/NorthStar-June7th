@@ -1,3 +1,4 @@
+import BrooklynNotice from './components/BrooklynNotice';
 import SiteLink from './components/SiteLink';
 /**
  * pages/index.tsx — All 10 inner page components
@@ -1548,6 +1549,7 @@ export function ContactPage() {
               <br />
               Mon-Sat: 9am-8pm | Sunday: By appointment
             </p>
+            <BrooklynNotice />
           </div>
           <div className="page-section">
             <p className="page-kicker">Directions</p>
@@ -1841,7 +1843,7 @@ export function LocationsPage() {
     <PageLayout
       kicker="Our Offices"
       title="Locations"
-      subtitle="NorthStar Implant Dentistry serves patients across three convenient locations in the New York area."
+      subtitle="NorthStar Implant Dentistry serves patients across three convenient locations in the New York area, with a Brooklyn office coming soon."
     >
       <div style={{ display: 'grid', gap: '1.5rem' }}>
         {locations.map((loc) => (
@@ -1904,6 +1906,7 @@ export function LocationsPage() {
             </div>
           </div>
         ))}
+        <BrooklynNotice />
       </div>
     </PageLayout>
   );
