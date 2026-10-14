@@ -1,3 +1,4 @@
+import BrooklynNotice from './components/BrooklynNotice';
 /**
  * NorthStar Implant Dentistry — App.tsx
  */
@@ -486,6 +487,7 @@ export default function App() {
                     </div>
                   ))}
                 </div>
+                <BrooklynNotice />
               </div>
 
               {formState.succeeded ? (
