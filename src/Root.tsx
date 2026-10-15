@@ -58,6 +58,7 @@ const ROUTES: Record<string, React.ReactElement> = {
   '/patient-information': <PatientInfoPage />,
   '/patient-forms': <PatientFormsPage />,
   '/patient-forms/consent/oral-surgery': <ConsentPage slug="oral-surgery" />,
+  '/patient-forms/new-patient': <ConsentPage slug="new-patient" />,
   '/patient-forms/hipaa': <HipaaPage />,
   '/patient-forms/consent/all-on-x': <ConsentPage slug="all-on-x" />,
   '/patient-forms/consent/subperiosteal': <ConsentPage slug="subperiosteal" />,

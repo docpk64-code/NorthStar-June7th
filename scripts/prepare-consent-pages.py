@@ -8,6 +8,7 @@ from pypdf import PdfReader
 root=Path(__file__).resolve().parents[1]
 items=[('all-on-x','Full-Arch Implant Treatment (All-on-X)','NorthStar_AllOnX_FullArch_Consent_Fillable.pdf'),('subperiosteal','Patient-Specific / Subperiosteal Implant','NorthStar_Subperiosteal_PSI_Consent_Fillable.pdf')]
 items.append(('oral-surgery','General Oral Surgery Procedures','NorthStar_Oral_Surgery_Consent_Fillable.pdf'))
+items.append(('new-patient','New Patient Registration & Health History','NorthStar_New_Patient_Packet_Fillable.pdf'))
 result=[]
 for slug,title,filename in items:
  path=root/'public/forms/consents'/filename;r=PdfReader(path);pages=[]

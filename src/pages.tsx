@@ -1916,49 +1916,10 @@ export function LocationsPage() {
 export function PatientFormsPage() {
   const forms = [
     {
-      title: 'Registration Form',
+      title: 'New Patient Registration & Health History',
       icon: '📋',
-      description:
-        'New patients please complete the registration form prior to your first visit. This helps us set up your patient profile and ensure a smooth check-in experience.',
-      fields: [
-        'Full Legal Name',
-        'Date of Birth',
-        'Address',
-        'Phone Number',
-        'Email Address',
-        'Emergency Contact',
-        'Insurance Information',
-      ],
-    },
-    {
-      title: 'Medical History Form',
-      icon: '🏥',
-      description:
-        'A complete and accurate medical history is essential for safe dental care. Please list all current medications, allergies, and medical conditions.',
-      fields: [
-        'Current Medications',
-        'Known Allergies',
-        'Medical Conditions',
-        'Previous Surgeries',
-        'Primary Care Physician',
-        'Blood Pressure / Heart Conditions',
-        'Diabetes / Bleeding Disorders',
-      ],
-    },
-    {
-      title: 'Dental History Form',
-      icon: '🦷',
-      description:
-        'Your dental history helps our team understand your previous care, any concerns you have, and how to best approach your treatment.',
-      fields: [
-        'Last Dental Visit',
-        'Previous Dentist',
-        'Past Dental Procedures',
-        'Dental Anxiety Level',
-        'Chief Complaint / Reason for Visit',
-        'Previous Implants or Extractions',
-        'Current Dental Concerns',
-      ],
+      description: 'Complete one packet for your first visit, including registration, dental history and medical history. Download the fillable PDF or prepare it online, then print and bring it to your appointment.',
+      fields: ['Patient & Contact Information', 'Insurance Information', 'Dental History & Concerns', 'Medical History', 'Medications & Allergies', 'Consent for Care & Financial Policy'],
     },
     {
       title: 'Financial Policy',
@@ -2028,7 +1989,7 @@ export function PatientFormsPage() {
         {forms.map((form) => (
           <div
             key={form.title}
-            id={form.title === 'Consent Forms' ? 'consent-forms' : undefined}
+            id={form.title === 'Consent Forms' ? 'consent-forms' : form.title === 'New Patient Registration & Health History' ? 'new-patient-forms' : undefined}
             className="page-section"
             style={{ borderLeft: '4px solid #c59d3c', paddingLeft: '1.5rem' }}
           >
@@ -2072,7 +2033,11 @@ export function PatientFormsPage() {
                 </div>
               ))}
             </div>
-            {form.title === 'Consent Forms' ? <div style={{ display: 'grid', gap: '1rem' }}>
+            {form.title === 'New Patient Registration & Health History' ? <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <a href="/forms/consents/NorthStar_New_Patient_Packet_Fillable.pdf" download style={{ padding: '0.7rem 1.3rem', background: '#f1d58e', color: '#182f44', borderRadius: '999px', fontWeight: 700 }}>Download Fillable PDF · 4 pages</a>
+              <a href="/patient-forms/new-patient/" style={{ padding: '0.7rem 1.3rem', border: '1px solid #96701f', color: '#694e15', borderRadius: '999px', fontWeight: 700 }}>Read & Fill Out Online</a>
+              <p style={{ width: '100%', color: '#4a5668', margin: 0 }}>Your online entries stay on this page and are not submitted to the practice. Print or save your completed packet, then bring it to your appointment.</p>
+            </div> : form.title === 'Consent Forms' ? <div style={{ display: 'grid', gap: '1rem' }}>
               {[
                 {title: 'Full-Arch Implant Treatment (All-on-X)', slug: 'all-on-x', file: 'NorthStar_AllOnX_FullArch_Consent_Fillable.pdf', pages: 5},
                 {title: 'Patient-Specific / Subperiosteal Implant', slug: 'subperiosteal', file: 'NorthStar_Subperiosteal_PSI_Consent_Fillable.pdf', pages: 5},
