@@ -7,10 +7,12 @@ import json,subprocess,html
 from pypdf import PdfReader
 root=Path(__file__).resolve().parents[1]
 items=[('all-on-x','Full-Arch Implant Treatment (All-on-X)','NorthStar_AllOnX_FullArch_Consent_Fillable.pdf'),('subperiosteal','Patient-Specific / Subperiosteal Implant','NorthStar_Subperiosteal_PSI_Consent_Fillable.pdf')]
+items.append(('oral-surgery','General Oral Surgery Procedures','NorthStar_Oral_Surgery_Consent_Fillable.pdf'))
 result=[]
 for slug,title,filename in items:
  path=root/'public/forms/consents'/filename;r=PdfReader(path);pages=[]
- subprocess.run(['pdftoppm','-r','144','-png',str(path),str(path.parent/slug)],check=True)
+ if not all((path.parent/f'{slug}-{n}.png').exists() for n in range(1,len(r.pages)+1)):
+  subprocess.run(['pdftoppm','-r','144','-png',str(path),str(path.parent/slug)],check=True)
  for n,page in enumerate(r.pages,1):
   fields=[]
   for ref in page.get('/Annots',[]):
@@ -23,4 +25,4 @@ for slug,title,filename in items:
  assert sum(len(p['fields']) for p in pages)==len(r.get_fields())
  result.append({'slug':slug,'title':title,'pdf':f'/forms/consents/{filename}','pages':pages})
 (root/'src/data/consents.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
-print('Prepared 10 exact page backgrounds and 259 matching PDF widgets.')
+print('Prepared',sum(len(x['pages']) for x in result),'pages;',sum(len(p['fields']) for x in result for p in x['pages']),'matching PDF widgets.')
