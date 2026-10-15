@@ -2028,6 +2028,7 @@ export function PatientFormsPage() {
         {forms.map((form) => (
           <div
             key={form.title}
+            id={form.title === 'Consent Forms' ? 'consent-forms' : undefined}
             className="page-section"
             style={{ borderLeft: '4px solid #c59d3c', paddingLeft: '1.5rem' }}
           >
@@ -2051,7 +2052,7 @@ export function PatientFormsPage() {
                 marginBottom: '1.25rem',
               }}
             >
-              {form.fields.map((field) => (
+              {(form.title === 'Consent Forms' ? [] : form.fields).map((field) => (
                 <div
                   key={field}
                   style={{
@@ -2071,7 +2072,21 @@ export function PatientFormsPage() {
                 </div>
               ))}
             </div>
-            {form.title === 'HIPAA Policy' ? <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            {form.title === 'Consent Forms' ? <div style={{ display: 'grid', gap: '1rem' }}>
+              {[
+                {title: 'Full-Arch Implant Treatment (All-on-X)', slug: 'all-on-x', file: 'NorthStar_AllOnX_FullArch_Consent_Fillable.pdf'},
+                {title: 'Patient-Specific / Subperiosteal Implant', slug: 'subperiosteal', file: 'NorthStar_Subperiosteal_PSI_Consent_Fillable.pdf'},
+              ].map(consent => <div key={consent.slug} style={{ padding: '1rem', border: '1px solid #d5dce3', borderRadius: '0.75rem' }}>
+                <h3 style={{ marginTop: 0 }}>{consent.title}</h3>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+                  <a href={'/forms/consents/' + consent.file} download style={{ padding: '0.65rem 1rem', background: '#f1d58e', color: '#182f44', borderRadius: '999px', fontWeight: 700 }}>Download Fillable PDF</a>
+                  <a href={'/patient-forms/consent/' + consent.slug + '/'} style={{ padding: '0.65rem 1rem', border: '1px solid #96701f', color: '#694e15', borderRadius: '999px', fontWeight: 700 }}>Read & Fill Out Online</a>
+                </div>
+                <p style={{ color: '#4a5668', marginBottom: 0 }}>5 pages. Complete, print and bring to your appointment for review with your clinician.</p>
+              </div>)}
+              <div style={{ padding: '1rem', background: '#f4f6f8', borderRadius: '0.75rem', color: '#4a5668' }}><h3 style={{ marginTop: 0 }}>General Oral Surgery Procedures</h3><p style={{ marginBottom: 0 }}>Coming soon. Please contact the office for the appropriate consent form.</p></div>
+              <p style={{ color: '#4a5668' }}>Online entries are not submitted to the practice. Sign after discussing your treatment and questions with your clinician.</p>
+            </div> : form.title === 'HIPAA Policy' ? <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               <a href="/forms/northstar-hipaa-notice-and-acknowledgment.pdf" download style={{ padding: '0.7rem 1.3rem', background: '#f1d58e', color: '#182f44', borderRadius: '999px', fontWeight: 700 }}>Download Fillable PDF</a>
               <a href="/patient-forms/hipaa/" style={{ padding: '0.7rem 1.3rem', border: '1px solid #96701f', color: '#694e15', borderRadius: '999px', fontWeight: 700 }}>Read Notice & Fill Out Online</a>
               <p style={{ width: '100%', color: '#4a5668', margin: 0 }}>Complete in your browser, print, sign and bring to your appointment. Entries are not submitted online. This acknowledgment does not authorize release of records.</p>
