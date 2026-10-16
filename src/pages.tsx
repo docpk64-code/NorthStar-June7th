@@ -1922,27 +1922,19 @@ export function PatientFormsPage() {
       fields: ['Patient & Contact Information', 'Insurance Information', 'Dental History & Concerns', 'Medical History', 'Medications & Allergies', 'Consent for Care & Financial Policy'],
     },
     {
-      title: 'Financial Policy',
-      icon: '💳',
+      title: 'The NS UPFRONT™ Contract (Financial Policy)',
+      icon: '📝',
       description:
-        'Please review our financial policy before your appointment. We are committed to transparency around fees, insurance coordination, and payment options.',
+        'The NS UPFRONT™ Contract brings our financial policy and mutual commitments together in one place. Review fees, insurance coordination, payment options, and the responsibilities of both our practice and our patients before your visit.',
       fields: [
+        'Treatment Plan Agreement',
+        'Fee Disclosure',
         'Insurance Assignment of Benefits',
         'Co-Payment Policy',
         'Payment Plan Options',
         'Cancellation Policy',
         'Outstanding Balance Policy',
         'Accepted Payment Methods',
-      ],
-    },
-    {
-      title: 'The UPFRONT Contract',
-      icon: '📝',
-      description:
-        'The UPFRONT Contract outlines the mutual commitments between NorthStar Implant Dentistry and our patients — ensuring clarity, transparency, and trust from the very first visit.',
-      fields: [
-        'Treatment Plan Agreement',
-        'Fee Disclosure',
         'Patient Responsibilities',
         'Practice Responsibilities',
         'Communication Expectations',
