@@ -1,9 +1,10 @@
 """Extract existing PDF widgets and render exact page backgrounds for local-only filling.
 The original downloadable PDFs are never rewritten.
-Requires pypdf and Poppler (pdftoppm).
+Requires pypdf and PyMuPDF.
 """
 from pathlib import Path
-import json,subprocess,html
+import json,html
+import fitz
 from pypdf import PdfReader
 root=Path(__file__).resolve().parents[1]
 items=[('all-on-x','Full-Arch Implant Treatment (All-on-X)','NorthStar_AllOnX_FullArch_Consent_Fillable.pdf'),('subperiosteal','Patient-Specific / Subperiosteal Implant','NorthStar_Subperiosteal_PSI_Consent_Fillable.pdf')]
@@ -12,8 +13,12 @@ items.append(('new-patient','New Patient Registration & Health History','NorthSt
 result=[]
 for slug,title,filename in items:
  path=root/'public/forms/consents'/filename;r=PdfReader(path);pages=[]
- if not all((path.parent/f'{slug}-{n}.png').exists() for n in range(1,len(r.pages)+1)):
-  subprocess.run(['pdftoppm','-r','144','-png',str(path),str(path.parent/slug)],check=True)
+ # MuPDF preserves the source PDFs' Helvetica spacing; Poppler substitution
+ # distorted these unembedded fonts. Render without widget appearances because
+ # the online form supplies its own inputs. Always refresh existing backgrounds.
+ with fitz.open(path) as document:
+  for n,background in enumerate(document,1):
+   (path.parent/f'{slug}-{n}.png').write_bytes(background.get_pixmap(matrix=fitz.Matrix(2,2),annots=False).tobytes('png'))
  for n,page in enumerate(r.pages,1):
   fields=[]
   for ref in page.get('/Annots',[]):
