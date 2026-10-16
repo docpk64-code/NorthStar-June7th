@@ -70,7 +70,7 @@ async function prerender() {
   const server = await startServer();
   console.log(`📡  Static server → http://localhost:${PORT}`);
 
-  const browser = await puppeteer.launch({
+  const launchBrowser = () => puppeteer.launch({
     headless: 'new',
     ...(process.env.PUPPETEER_EXECUTABLE_PATH ? { executablePath: process.env.PUPPETEER_EXECUTABLE_PATH } : {}),
     args: [
@@ -82,22 +82,22 @@ async function prerender() {
     ],
   });
 
+  let browser = await launchBrowser();
   let ok = 0;
   const failed = [];
 
   for (const route of [...ROUTES, '/404']) {
-    const page = await browser.newPage();
-    page.on('console', () => {});
-    page.on('pageerror', () => {});
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      let page;
+      try {
+        if (!browser || !browser.connected) browser = await launchBrowser();
+        page = await browser.newPage();
+        await page.setViewport({ width: 1280, height: 800 });
+        await page.setRequestInterception(true);
+        page.on('request', req => {
+          req.url().startsWith(`http://localhost:${PORT}`) ? req.continue() : req.abort();
+        });
 
-    await page.setViewport({ width: 1280, height: 800 });
-
-    await page.setRequestInterception(true);
-    page.on('request', req => {
-      req.url().startsWith(`http://localhost:${PORT}`) ? req.continue() : req.abort();
-    });
-
-    try {
       await page.goto(`http://localhost:${PORT}${route === "/" ? "/" : route + "/"}`, {
         waitUntil: 'domcontentloaded',
         timeout: 20_000,
@@ -131,15 +131,20 @@ async function prerender() {
 
       ok++;
       console.log(`  ✓  ${route}`);
-    } catch (err) {
-      failed.push(route);
-      console.error(`  ✗  ${route}  →  ${err.message}`);
-    } finally {
-      await page.close();
+      break;
+      } catch (err) {
+        console.error(`  Attempt ${attempt}/3 for ${route}: ${err.message}`);
+        if (attempt === 3) failed.push(route);
+        // Discard the failed browser session, then retry the same route.
+        await browser?.close().catch(() => {});
+        browser = null;
+      } finally {
+        await page?.close().catch(() => {});
+      }
     }
   }
 
-  await browser.close();
+  await browser?.close().catch(() => {});
   server.close();
 
   console.log(`\n${'─'.repeat(44)}`);
