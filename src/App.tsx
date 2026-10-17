@@ -361,7 +361,7 @@ export default function App() {
           background: 'linear-gradient(180deg, #07111c 0%, #0b1830 100%)',
           position: 'relative',
           overflow: 'hidden',
-          paddingBottom: '2rem',
+          paddingBottom: '1.6rem',
         }}
       >
         <div style={{ position: 'relative', zIndex: 2 }}>
@@ -375,7 +375,7 @@ export default function App() {
           </div>
           <div
             className="compass-stage"
-            style={{ maxWidth: '1040px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}
+            style={{ maxWidth: '832px', margin: '0 auto', width: '80%', padding: '1.2rem', position: 'relative', zIndex: 1 }}
           >
             <div className="compass-badge">Hover to explore · Click to visit</div>
             <CompassGraphic wedges={wedges} onSound={playClick} />
