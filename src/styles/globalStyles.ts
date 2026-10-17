@@ -400,12 +400,13 @@ export const buildStyles = (_heroBg: string) => `
    .care-grid-progress { display: none; }
    .signature-grid-progress { display: none; }
    .care-card {
-     padding: 1.3rem;
+     padding: 0.85rem;
      border-radius: 1.4rem;
      position: relative;
      overflow: hidden;
      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-     min-height: 320px;
+     height: 17rem;
+     min-height: 0;
      display: flex;
      flex-direction: column;
      justify-content: space-between;
@@ -429,7 +430,8 @@ export const buildStyles = (_heroBg: string) => `
      box-shadow: 0 28px 70px rgba(0,0,0,0.48);
    }
    .care-card-link:hover .card-link { color: #f3d37a; }
-   .care-card h3 { margin: 0 0 0.5rem; font-size: 1.35rem; }
+   .care-card h3 { margin: 0 0 0.5rem; font-size: 1.2rem; line-height: 1.2; }
+   .care-card .section-kicker { margin: 0.25rem 0 0.4rem; font-size: 0.65rem; }
    .care-card .card-link {
      display: inline-flex;
      margin-top: 1rem;

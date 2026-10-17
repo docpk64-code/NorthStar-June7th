@@ -21,10 +21,10 @@ export default function CareCard({ item, isActive }: { item: MenuItem; isActive:
           alt={item.label}
           style={{
             width: '100%',
-            aspectRatio: '4/3',
+            height: '100px',
             objectFit: 'cover',
             borderRadius: '0.9rem',
-            marginBottom: '0.9rem',
+            marginBottom: '0.5rem',
             display: 'block',
             flexShrink: 0,
           }}
@@ -33,9 +33,9 @@ export default function CareCard({ item, isActive }: { item: MenuItem; isActive:
         <div
           style={{
             width: '100%',
-            aspectRatio: '4/3',
+            height: '100px',
             borderRadius: '0.9rem',
-            marginBottom: '0.9rem',
+            marginBottom: '0.5rem',
             background:
               'linear-gradient(135deg, rgba(197,157,60,0.13) 0%, rgba(10,20,36,0.55) 100%)',
             border: '1px dashed rgba(197,157,60,0.35)',
@@ -72,14 +72,13 @@ export default function CareCard({ item, isActive }: { item: MenuItem; isActive:
         {item.eyebrow}
       </p>
       <h3 style={{ textAlign: 'center' }}>{item.label}</h3>
-      <p style={{ textAlign: 'center' }}>{item.description}</p>
       <span
         className="card-link"
         style={{
           display: 'inline-flex',
           alignItems: 'center',
           gap: '0.4rem',
-          marginTop: '1rem',
+          marginTop: 'auto',
           color: '#f8e7b6',
           fontWeight: 600,
           width: '100%',
