@@ -471,6 +471,23 @@ export function ProceduresPage() {
       subtitle="From initial evaluation through final restoration, NorthStar offers a full spectrum of surgical and implant procedures."
     >
       <div className="page-section">
+        <p className="page-kicker">Explore treatments</p>
+        <h2>Implants, Full Arch &amp; Wisdom Teeth</h2>
+        <div className="page-card-grid">
+          {[
+            { title: 'Dental Implants', href: '/dental-implants/' },
+            { title: 'Full-Arch Solutions', href: '/full-arch/' },
+            { title: 'Wisdom Teeth', href: '/wisdom-teeth/' },
+          ].map(treatment => (
+            <SiteLink key={treatment.href} href={treatment.href} className="page-card">
+              <h3>{treatment.title}</h3>
+              <span style={{ color: '#96701f', fontWeight: 600 }}>Explore treatment →</span>
+            </SiteLink>
+          ))}
+        </div>
+      </div>
+
+      <div className="page-section">
         <p className="page-kicker">What We Offer</p>
         <h2>A Full Range of Procedures</h2>
         <p>

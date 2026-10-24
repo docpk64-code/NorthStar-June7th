@@ -16,8 +16,6 @@ import {
   caseStudies,
   featureCards,
   testimonials,
-  TOTAL,
-  STEP,
   START_ANGLE,
 } from './data/menuData';
 import { STARS } from './data/stars';
@@ -40,10 +38,14 @@ const treatmentCards = [
   },
 ];
 
+const compassItems = treatmentCards.filter(item => !['/dental-implants', '/full-arch', '/wisdom-teeth'].includes(item.href));
+const TOTAL = compassItems.length;
+const STEP = 360 / TOTAL;
+
 export default function App() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [formState, handleFormspreeSubmit] = useForm('xbdpbdkj');
-  const activeItem = menuItems[activeIndex];
+  const activeItem = compassItems[activeIndex];
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
@@ -117,7 +119,7 @@ export default function App() {
   }, []);
 
   const wedges = useMemo<Wedge[]>(
-    () => menuItems.map((item, index) => {
+    () => compassItems.map((item, index) => {
       const centerAngle = START_ANGLE + index * STEP;
       return { item, index, centerAngle, startAngle: centerAngle - STEP / 2, endAngle: centerAngle + STEP / 2 };
     }), []
