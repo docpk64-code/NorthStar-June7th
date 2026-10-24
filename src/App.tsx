@@ -67,7 +67,7 @@ export default function App() {
         <div className="nj-stars" aria-hidden="true">{Array.from({length: 30}, (_, i) => <i key={i} style={{left: `${(i * 37 + 7) % 100}%`, top: `${(i * 23 + 9) % 100}%`, opacity: .15 + (i % 5) * .13}} />)}</div>
         <div className="nb-banner pp-shell">
           <p className="nb-welcome">Welcome to</p>
-          <h1 id="journey-title" className="nb-logo-heading"><span className="unified-sr-only">NorthStar Implant Dentistry</span><span className="nb-logo-window"><img src="/assets/northstar-celestial-logo.jpg" alt="NorthStar Implant Dentistry — gold NS compass monogram" width="1024" height="1024" /></span></h1>
+          <h1 id="journey-title" className="nb-logo-heading"><span className="unified-sr-only">NorthStar Implant Dentistry</span><span className="nb-logo-window"><img src="/assets/northstar-celestial-logo.jpg" alt="" width="1024" height="1024" /></span></h1>
           <p className="nb-tagline">Guiding Patients One Smile at a Time.</p>
           <p className="nb-practice">Dr. Peter Kampf &amp; Associates <span aria-hidden="true">·</span> New York</p><div className="nb-actions"><a className="pp-button" href="#contact">Request a Consultation ↗</a><SiteLink className="nb-forms-link" href="/patient-forms/">Patient Forms →</SiteLink></div>
         </div>
@@ -99,7 +99,7 @@ export default function App() {
             <p className="nj-hint">Choose a section. Discover your options.</p>
           </div>
           <div id="nj-detail" className="nj-detail" aria-live="polite" aria-atomic="true">
-            <div className="nj-detail-image">{selectedImage && <img key={selected.image} src={selectedImage} alt="" />}<span>{selected.eyebrow}</span></div>
+            <div className={`nj-detail-image${direction === 0 ? ' nj-detail-image-about' : ''}`}>{selectedImage && <img key={selected.image} src={selectedImage} alt="" />}<span>{selected.eyebrow}</span></div>
             <div className="nj-detail-copy" key={direction}><h2>{selected.title}</h2><p>{selected.text}</p><SiteLink className="pp-button" href={selected.href}>{selected.link} <span aria-hidden="true">↗</span></SiteLink></div>
           </div>
         </div>
