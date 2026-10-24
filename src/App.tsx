@@ -38,7 +38,7 @@ const treatmentCards = [
   },
 ];
 
-const compassItems = treatmentCards.filter(item => !['/dental-implants', '/full-arch', '/wisdom-teeth'].includes(item.href));
+const compassItems = treatmentCards.filter(item => !['/dental-implants', '/full-arch', '/wisdom-teeth', '/testimonials', '/patient-information'].includes(item.href));
 const TOTAL = compassItems.length;
 const STEP = 360 / TOTAL;
 

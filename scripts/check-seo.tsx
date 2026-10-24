@@ -55,6 +55,9 @@ for (const route of routes) {
       assert.equal(document.querySelectorAll('iframe[title^="Map of NorthStar"]').length, 1);
       assert.equal(document.querySelectorAll('nav[aria-label="Other offices"] a').length, 3);
     }
+    if (route === '/about') {
+      assert(document.querySelector('.page-card[href="/patient-information/"]'));
+    }
     if (route === '/procedures') {
       for (const treatment of ['dental-implants', 'full-arch', 'wisdom-teeth']) {
         assert(document.querySelector(`.page-card[href="/${treatment}/"]`));
@@ -63,10 +66,10 @@ for (const route of routes) {
     if (route !== '/') assert(!document.querySelector('h1')!.textContent!.includes('Welcome To'), path);
     if (route === '/') {
       assert.equal(document.querySelectorAll('a.care-card-link[href]').length, 11);
-      assert.equal(document.querySelectorAll('a.compass-segment[href]').length, 8);
+      assert.equal(document.querySelectorAll('a.compass-segment[href]').length, 6);
       assert(document.querySelector('a.compass-segment[href="/procedures/"]'));
       assert(document.querySelector('a.compass-segment[href="/facial-esthetics/"]'));
-      for (const grouped of ['dental-implants', 'full-arch', 'wisdom-teeth', 'emface', 'hydrafacial']) {
+      for (const grouped of ['dental-implants', 'full-arch', 'wisdom-teeth', 'emface', 'hydrafacial', 'testimonials', 'patient-information']) {
         assert(!document.querySelector(`a.compass-segment[href="/${grouped}/"]`));
       }
     }

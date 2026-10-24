@@ -19,6 +19,15 @@ export function AboutPage() {
       subtitle="A patient-centered surgical practice built on precision, comfort, and long-term outcomes."
     >
       <div className="page-section">
+        <p className="page-kicker">Patient resources</p>
+        <SiteLink href="/patient-information/" className="page-card">
+          <h2>Patient Information</h2>
+          <p>Prepare for your visit with information about what to bring, insurance, payment options, and your appointment.</p>
+          <span style={{ color: '#96701f', fontWeight: 600 }}>Explore Patient Information →</span>
+        </SiteLink>
+      </div>
+
+      <div className="page-section">
         <p className="page-kicker">Our Philosophy</p>
         <h2>Care Built Around You</h2>
         <p>
