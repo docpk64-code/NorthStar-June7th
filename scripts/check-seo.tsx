@@ -59,15 +59,15 @@ for (const route of routes) {
       assert(document.querySelector('.page-card[href="/patient-information/"]'));
     }
     if (route === '/procedures') {
-      for (const treatment of ['dental-implants', 'full-arch', 'wisdom-teeth']) {
+      for (const treatment of ['dental-implants', 'full-arch', 'wisdom-teeth', 'sedation']) {
         assert(document.querySelector(`.page-card[href="/${treatment}/"]`));
       }
     }
     if (route !== '/') assert(!document.querySelector('h1')!.textContent!.includes('Welcome To'), path);
     if (route === '/') {
-      assert.equal(document.querySelectorAll('a.care-card-link[href]').length, 8);
+      assert.equal(document.querySelectorAll('a.care-card-link[href]').length, 6);
       assert(document.querySelector('a.care-card-link[href="/procedures/"]'));
-      for (const treatment of ['dental-implants', 'full-arch', 'wisdom-teeth']) {
+      for (const treatment of ['dental-implants', 'full-arch', 'wisdom-teeth', 'sedation', 'testimonials']) {
         assert(!document.querySelector(`a.care-card-link[href="/${treatment}/"]`));
       }
       assert.equal(document.querySelectorAll('a.compass-segment[href]').length, 6);

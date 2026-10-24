@@ -481,12 +481,13 @@ export function ProceduresPage() {
     >
       <div className="page-section">
         <p className="page-kicker">Explore treatments</p>
-        <h2>Implants, Full Arch &amp; Wisdom Teeth</h2>
+        <h2>Implants, Full Arch, Wisdom Teeth &amp; Sedation</h2>
         <div className="page-card-grid">
           {[
             { title: 'Dental Implants', href: '/dental-implants/' },
             { title: 'Full-Arch Solutions', href: '/full-arch/' },
             { title: 'Wisdom Teeth', href: '/wisdom-teeth/' },
+            { title: 'Sedation Options', href: '/sedation/' },
           ].map(treatment => (
             <SiteLink key={treatment.href} href={treatment.href} className="page-card">
               <h3>{treatment.title}</h3>
