@@ -40,7 +40,7 @@ const ROUTES = [
   '/procedure/maxillary-expansion-marpe', '/procedure/technology',
   '/specialized/cant-get-implants', '/specialized/botched-smile',
   '/specialized/sub-periosteal-implant',
-  '/hydrafacial', '/emface', '/terms',
+  '/hydrafacial', '/emface', '/facial-esthetics', '/terms',
 ];
 
 function startServer() {

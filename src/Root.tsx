@@ -44,6 +44,7 @@ const CantGetImplantsPage = lazy(() => import('./pages').then(m => ({ default: m
 const BotchedSmilePage = lazy(() => import('./pages').then(m => ({ default: m.BotchedSmilePage })));
 const SubPeriostealImplantPage = lazy(() => import('./pages').then(m => ({ default: m.SubPeriostealImplantPage })));
 const HydraFacialPage = lazy(() => import('./pages').then(m => ({ default: m.HydraFacialPage })));
+const FacialEstheticsPage = lazy(() => import('./FacialEstheticsPage'));
 const EmfacePage = lazy(() => import('./pages').then(m => ({ default: m.EmfacePage })));
 const TermsPage = lazy(() => import('./pages').then(m => ({ default: m.TermsPage })));
 
@@ -88,6 +89,7 @@ const ROUTES: Record<string, React.ReactElement> = {
   '/specialized/botched-smile': <BotchedSmilePage />,
   '/specialized/sub-periosteal-implant': <SubPeriostealImplantPage />,
   '/hydrafacial': <HydraFacialPage />,
+  '/facial-esthetics': <FacialEstheticsPage />,
   '/emface': <EmfacePage />,
   '/terms': <TermsPage />,
 };

@@ -28,6 +28,18 @@ import CaseCard from './components/CaseCard';
 import CompassGraphic from './components/CompassGraphic';
 import TaglineGlow from './components/TaglineGlow';
 
+const treatmentCards = [
+  ...menuItems.filter(item => !['/hydrafacial', '/emface'].includes(item.href)),
+  {
+    label: 'Facial Esthetics',
+    shortLabel: 'Facial Esthetics',
+    href: '/facial-esthetics',
+    eyebrow: 'Skin & facial care',
+    description: 'Explore HydraFacial and Emface facial treatment options at NorthStar.',
+    imageSrc: '/assets/facial-esthetics.svg',
+  },
+];
+
 export default function App() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [formState, handleFormspreeSubmit] = useForm('xbdpbdkj');
@@ -393,8 +405,8 @@ export default function App() {
               </p>
             </div>
             <div className="care-grid">
-              {menuItems.map((item, i) => (
-                <CareCard key={item.label} item={item} isActive={i === activeIndex} />
+              {treatmentCards.map((item) => (
+                <CareCard key={item.label} item={item} isActive={item.href === activeItem.href || (item.href === '/facial-esthetics' && ['/hydrafacial', '/emface'].includes(activeItem.href))} />
               ))}
             </div>
           </div>

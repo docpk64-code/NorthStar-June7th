@@ -57,7 +57,7 @@ for (const route of routes) {
     }
     if (route !== '/') assert(!document.querySelector('h1')!.textContent!.includes('Welcome To'), path);
     if (route === '/') {
-      assert.equal(document.querySelectorAll('a.care-card-link[href]').length, 12);
+      assert.equal(document.querySelectorAll('a.care-card-link[href]').length, 11);
       assert.equal(document.querySelectorAll('a.compass-segment[href]').length, 12);
     }
   }
