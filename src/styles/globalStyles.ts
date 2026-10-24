@@ -522,7 +522,7 @@ export const buildStyles = (_heroBg: string) => `
    .case-copy { padding: 1rem 1.15rem 1.2rem; }
    .case-copy h3 { margin: 0 0 0.35rem; font-size: 1.18rem; }
    
-   .signature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+   .signature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
    .feature-card { padding: 1.4rem; border-radius: 1.6rem; }
    .feature-card h2 { margin: 0 0 0.7rem; font-size: 1.8rem; }
    /* Compact specialized-circumstances cards: approximately one-third shorter. */

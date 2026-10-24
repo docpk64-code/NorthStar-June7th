@@ -10,7 +10,6 @@ import {
   CARE_CARD_6_SRC,
   CARE_CARD_7_SRC,
   CARE_CARD_8_SRC,
-  SUBPERIOSTEAL_SRC,
   TESTIMONIAL_CARD_SRC,
   CONTACT_CARD_SRC,
   ZYGOMATIC_IMPLANT_SRC,
@@ -189,9 +188,7 @@ export const featureCards = [
   {
     eyebrow: "Don't Give Up on Your Smile",
     title:
-      "Told You Can't Get Dental Implants? There's Still Hope. We May Have a Solution.",
-    description:
-      "Severe bone loss, failed prior implants, or complex anatomy don't have to mean a life without teeth. Zygomatic, pterygoid, and sub-periosteal techniques may offer a path forward when conventional implants aren't possible.",
+      "If you have been told you are not a good candidate for dental implants, there is hope and we have a solution: Remote anchorage implants and sub-periosteal implants",
     imageSrc: ZYGOMATIC_IMPLANT_SRC,
     slug: '/specialized/cant-get-implants',
   },
@@ -203,14 +200,7 @@ export const featureCards = [
     imageSrc: BOTCHED_SMILE_SRC,
     slug: '/specialized/botched-smile',
   },
-  {
-    eyebrow: 'The Hidden Gem of Implantology',
-    title: 'Sub-Periosteal Implant',
-    description:
-      'Custom-fabricated to rest directly on the jawbone surface, sub-periosteal implants are a sophisticated solution for patients with severely resorbed ridges — delivering stable, fixed teeth without the need for extensive bone grafting.',
-    imageSrc: SUBPERIOSTEAL_SRC,
-    slug: '/specialized/sub-periosteal-implant',
-  },
+
 ];
 
 export const testimonials = [

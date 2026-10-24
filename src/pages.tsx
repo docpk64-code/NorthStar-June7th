@@ -3482,9 +3482,26 @@ export function CantGetImplantsPage() {
   return (
     <PageLayout
       kicker="Don't Give Up on Your Smile"
-      title="Told You Can't Get Dental Implants? There's Still Hope."
+      title="Don't Give Up on Your Smile"
       subtitle="Innovative surgical solutions for patients with severe bone loss or complex anatomy who have been told implants are not possible."
     >
+      <div className="page-section">
+        <p className="page-kicker">Explore your options</p>
+        <h2>Remote Anchorage &amp; Sub-Periosteal Implants</h2>
+        <div className="page-card-grid">
+          <SiteLink href="/procedure/remote-anchorage-implant/" className="page-card">
+            <h3>Remote Anchorage Implants</h3>
+            <p>Explore implant approaches for patients with severe bone loss or complex anatomy.</p>
+            <span style={{ color: '#96701f', fontWeight: 600 }}>Explore Remote Anchorage →</span>
+          </SiteLink>
+          <SiteLink href="/specialized/sub-periosteal-implant/" className="page-card">
+            <h3>Sub-Periosteal Implants</h3>
+            <p>Learn about custom implant frameworks designed to rest on the jawbone surface.</p>
+            <span style={{ color: '#96701f', fontWeight: 600 }}>Explore Sub-Periosteal Implants →</span>
+          </SiteLink>
+        </div>
+      </div>
+
       <div className="page-section">
         <p className="page-kicker">You May Have More Options Than You Think</p>
         <h2>When Conventional Implants Are Not Enough</h2>
