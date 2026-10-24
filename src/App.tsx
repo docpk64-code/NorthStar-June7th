@@ -27,7 +27,7 @@ import CompassGraphic from './components/CompassGraphic';
 import TaglineGlow from './components/TaglineGlow';
 
 const treatmentCards = [
-  ...menuItems.filter(item => !['/hydrafacial', '/emface'].includes(item.href)),
+  ...menuItems.filter(item => !['/hydrafacial', '/emface', '/dental-implants', '/full-arch', '/wisdom-teeth'].includes(item.href)),
   {
     label: 'Facial Esthetics',
     shortLabel: 'Facial Esthetics',
@@ -38,7 +38,7 @@ const treatmentCards = [
   },
 ];
 
-const compassItems = treatmentCards.filter(item => !['/dental-implants', '/full-arch', '/wisdom-teeth', '/testimonials', '/patient-information'].includes(item.href));
+const compassItems = treatmentCards.filter(item => !['/testimonials', '/patient-information'].includes(item.href));
 const TOTAL = compassItems.length;
 const STEP = 360 / TOTAL;
 
