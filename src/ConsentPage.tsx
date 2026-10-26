@@ -7,7 +7,7 @@ const styles = `
 .consent-scroll{overflow-x:auto;margin:28px 0;background:#dce3e9;padding:16px}
 .consent-sheet{position:relative;width:816px;height:1056px;margin:0 auto;background:white;color:#111;container-type:inline-size}
 .consent-sheet img{display:block;width:100%;height:100%}.consent-widget{position:absolute;box-sizing:border-box;margin:0;padding:0;min-width:0;min-height:0;z-index:1}
-.consent-widget input,.consent-widget textarea{box-sizing:border-box;width:100%;height:100%;margin:0;padding:0 2px;border:0;border-radius:0;background:transparent;box-shadow:none;text-shadow:none;letter-spacing:normal;color:#102b43;font:1.47cqw/1.12 Arial,sans-serif;resize:none}
+.consent-widget input,.consent-widget textarea{position:absolute;inset:0;display:block;vertical-align:top;box-sizing:border-box;width:100%;height:100%;margin:0;padding:0 2px;border:0;border-radius:0;background:transparent;box-shadow:none;text-shadow:none;letter-spacing:normal;color:#102b43;font:1.47cqw/1.12 Arial,sans-serif;resize:none}
 .consent-widget input[type=checkbox]{appearance:none;padding:0;cursor:pointer}.consent-widget input[type=checkbox]:checked{background:#193b58}.consent-widget input[type=checkbox]:checked:after{content:'✓';display:block;color:white;line-height:1;font-size:1.35cqw;text-align:center}
 .consent-widget :focus-visible{outline:2px solid #0073c4;outline-offset:-2px}.consent-output{display:none}.consent-transcript{white-space:pre-wrap;line-height:1.65}.consent-page-label{font-weight:700;margin:12px 0}
 @media print{
@@ -19,7 +19,8 @@ const styles = `
  .consent-sheet{width:8.5in;height:11in;margin:0;break-inside:avoid}
  .consent-widget input,.consent-widget textarea{display:none}
  .consent-output{display:block;width:100%;height:100%;box-sizing:border-box;white-space:pre-wrap;overflow:hidden;overflow-wrap:anywhere;font:1.47cqw/1.12 Arial,sans-serif;padding:0 2px;color:black}
- .consent-output.check{text-align:center;padding:0;font-size:1.35cqw;line-height:1}
+ .consent-output.single{display:flex;align-items:center;white-space:pre;line-height:1}
+ .consent-output.check{display:flex;align-items:center;justify-content:center;text-align:center;padding:0;font-size:1.35cqw;line-height:1}
 }
 `;
 export default function ConsentPage({slug}:{slug:string}){
@@ -42,7 +43,7 @@ export default function ConsentPage({slug}:{slug:string}){
    const id=`consent-${slug}-${field.name}`;const val=values[field.name];const label=`Page ${index+1}: ${field.label} (${field.name.replaceAll('_',' ')})`;
    return <div className="consent-widget" key={field.name} style={{left:`${field.x/612*100}%`,top:`${field.y/792*100}%`,width:`${field.width/612*100}%`,height:`${field.height/792*100}%`}}>
     {field.type==='checkbox'?<input id={id} type="checkbox" aria-label={label} title={label} checked={val===true} onChange={event=>update(field.name,event.target.checked)}/>:field.multiline?<textarea id={id} aria-label={label} title={label} autoComplete="off" spellCheck={false} value={typeof val==='string'?val:''} onChange={event=>update(field.name,event.target.value)}/>:<input id={id} type="text" aria-label={label} title={label} autoComplete="off" spellCheck={false} value={typeof val==='string'?val:''} onChange={event=>update(field.name,event.target.value)}/>}
-    <span className={`consent-output ${field.type==='checkbox'?'check':''}`}>{field.type==='checkbox'?(val===true?'✓':''):(typeof val==='string'?val:'')}</span>
+    <span className={`consent-output ${field.type==='checkbox'?'check':field.multiline?'':'single'}`}>{field.type==='checkbox'?(val===true?'✓':''):(typeof val==='string'?val:'')}</span>
    </div>;
   })}</div></div>)}</div>
  </PageLayout>;
