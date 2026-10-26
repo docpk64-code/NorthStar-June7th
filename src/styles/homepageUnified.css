@@ -59,3 +59,17 @@
 @media(max-width:400px) { .preserved-cards .care-card,.preserved-cards .signature-grid .feature-card { flex-basis:86%; min-width:86%; } }
 
 .brand-preview .nj-guide-meta { flex-wrap:wrap; }
+
+/* Two short, staggered gold trails in the welcome sky. */
+.nj-shooting-star { position:absolute; width:clamp(70px,10vw,155px); height:2px; border-radius:999px; background:linear-gradient(90deg,transparent,rgba(233,201,138,.45) 60%,#fff5d4); opacity:0; transform-origin:right center; pointer-events:none; filter:drop-shadow(0 0 4px #e5c17a); animation:nj-shoot-across 13s ease-out infinite; }
+.nj-shooting-star::after { content:''; position:absolute; right:-2px; top:-1.5px; width:5px; height:5px; border-radius:50%; background:#fff7df; box-shadow:0 0 7px 2px #e9ca8b99; }
+.nj-shooting-star-one { left:3%; top:clamp(130px,14%,220px); animation-delay:1s; }
+.nj-shooting-star-two { left:48%; top:clamp(210px,25%,360px); width:clamp(60px,8vw,125px); animation-duration:17s; animation-delay:6s; }
+@keyframes nj-shoot-across {
+  0% { opacity:0; transform:translate(0,0) rotate(-25deg) scaleX(.35); }
+  2% { opacity:.9; }
+  12% { opacity:.65; }
+  17%,100% { opacity:0; transform:translate(55vw,-20vw) rotate(-25deg) scaleX(1); }
+}
+@media(prefers-reduced-motion:reduce) { .nj-shooting-star { display:none; animation:none!important; } }
+@media print { .nj-shooting-star { display:none; } }

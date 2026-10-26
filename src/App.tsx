@@ -64,7 +64,7 @@ export default function App() {
     </header>
     <main>
       <section className="nj-universe" aria-labelledby="journey-title">
-        <div className="nj-stars" aria-hidden="true">{Array.from({length: 30}, (_, i) => <i key={i} style={{left: `${(i * 37 + 7) % 100}%`, top: `${(i * 23 + 9) % 100}%`, opacity: .15 + (i % 5) * .13}} />)}</div>
+        <div className="nj-stars" aria-hidden="true">{Array.from({length: 30}, (_, i) => <i key={i} style={{left: `${(i * 37 + 7) % 100}%`, top: `${(i * 23 + 9) % 100}%`, opacity: .15 + (i % 5) * .13}} />)}<span className="nj-shooting-star nj-shooting-star-one" /><span className="nj-shooting-star nj-shooting-star-two" /></div>
         <div className="nb-banner pp-shell">
           <p className="nb-welcome">Welcome to</p>
           <h1 id="journey-title" className="nb-logo-heading"><span className="unified-sr-only">NorthStar Implant Dentistry</span><span className="nb-logo-window"><img src="/assets/northstar-celestial-logo.jpg" alt="" width="1024" height="1024" /></span></h1>
