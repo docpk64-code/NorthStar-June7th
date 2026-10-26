@@ -7,7 +7,7 @@ export default function OfficePage({ officeId }: { officeId: OfficeId }) {
   return <PageLayout kicker={office.comingSoon ? 'New location · Coming soon' : 'Dr. Peter Kampf & Associates'}
     title={office.comingSoon ? 'Brooklyn Office — Coming Soon' : `Dental Implants in ${office.name}`}
     subtitle={office.intro}
-    description={office.comingSoon ? 'NorthStar Implant Dentistry is coming to 32 Court Street, Suite 301, Brooklyn, NY 11201. See opening updates and contact our current offices.' : `Visit NorthStar Implant Dentistry in ${office.name} at ${office.street}, ${office.city}, NY ${office.zip}. Hours, map and appointments: 631-315-1400.`}
+    description={office.comingSoon ? 'NorthStar Implant Dentistry is coming to 32 Court Street, Suite 301, Brooklyn, NY 11201. Opening January 4, 2027. Contact our team for appointment information.' : `Visit NorthStar Implant Dentistry in ${office.name} at ${office.street}, ${office.city}, NY ${office.zip}. Hours, map and appointments: 631-315-1400.`}
     ctaLabel={office.comingSoon ? 'Ask About Brooklyn' : 'Request a Consultation'}>
     <style>{`
       .office-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1.5rem; align-items:start; }
@@ -24,7 +24,7 @@ export default function OfficePage({ officeId }: { officeId: OfficeId }) {
       <section className="page-section office-page-section" aria-label="Office details">
         <p className="page-kicker">{office.comingSoon ? 'Planned office' : 'Your visit'}</p>
         <h2>{office.name}</h2>
-        {office.comingSoon && <p className="office-status"><strong>Coming soon — not yet open.</strong><br />Opening date and appointment availability will be announced.</p>}
+        {office.comingSoon && <p className="office-status"><strong>Coming soon — not yet open.</strong><br />Opening January 4, 2027. Please call for appointment information.</p>}
         <address style={{ fontStyle: 'normal', lineHeight: 1.8 }}>{office.street}<br />{office.city}, NY {office.zip}</address>
         <p><strong>{office.comingSoon ? 'Practice phone' : 'Appointments'}:</strong><br /><a href="tel:6313151400">631-315-1400</a></p>
         {!office.comingSoon && <><h3>Office hours</h3><p>Monday–Saturday: 9am–8pm<br />Sunday: By appointment</p><p>Please call to confirm appointment availability before visiting.</p></>}

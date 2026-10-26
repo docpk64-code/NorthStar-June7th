@@ -1,3 +1,5 @@
+import { registerHooks } from 'node:module';
+registerHooks({ load(url, context, nextLoad) { if (url.endsWith('.css')) return { format: 'module', source: '', shortCircuit: true }; return nextLoad(url, context); } });
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import React, { act } from 'react';
@@ -50,6 +52,7 @@ for (const route of routes) {
         assert.equal(dentists[0].openingHoursSpecification[0].closes, '20:00');
       } else {
         assert(document.querySelector('main')!.textContent!.includes('not yet open'));
+        assert(document.querySelector('main')!.textContent!.includes('January 4, 2027'));
         assert(!document.querySelector('main')!.textContent!.includes('Monday–Saturday: 9am–8pm'));
       }
       assert.equal(document.querySelectorAll('iframe[title^="Map of NorthStar"]').length, 1);
@@ -70,12 +73,20 @@ for (const route of routes) {
       for (const treatment of ['dental-implants', 'full-arch', 'wisdom-teeth', 'sedation', 'testimonials']) {
         assert(!document.querySelector(`a.care-card-link[href="/${treatment}/"]`));
       }
-      assert.equal(document.querySelectorAll('a.compass-segment[href]').length, 6);
-      assert(document.querySelector('a.compass-segment[href="/procedures/"]'));
-      assert(document.querySelector('a.compass-segment[href="/facial-esthetics/"]'));
-      for (const grouped of ['dental-implants', 'full-arch', 'wisdom-teeth', 'emface', 'hydrafacial', 'testimonials', 'patient-information']) {
-        assert(!document.querySelector(`a.compass-segment[href="/${grouped}/"]`));
+      assert.equal(document.querySelectorAll('.nj-direction').length, 6);
+      assert(document.querySelector('.pp-contactbar')!.textContent!.includes('Brooklyn'));
+      assert(document.querySelector('aside[aria-label="Brooklyn office coming soon"]')!.textContent!.includes('January 4, 2027'));
+      assert.equal(document.querySelectorAll('.signature-grid .feature-card').length, 2);
+      assert.equal(document.querySelectorAll('h1').length, 1);
+      assert(document.querySelector('h1')!.textContent!.includes('NorthStar'));
+      assert(document.querySelector('img[src="/assets/northstar-celestial-logo.jpg"]'));
+      const destinations = ['/about/', '/procedures/', '/sedation/', '/technology/', '/contact/', '/facial-esthetics/'];
+      for (let i = 0; i < destinations.length; i++) {
+        await act(async () => (document.querySelectorAll('.nj-direction')[i] as HTMLButtonElement).click());
+        assert.equal(document.querySelectorAll('.nj-direction[aria-pressed="true"]').length, 1);
+        assert.equal(document.querySelector('#nj-detail .pp-button')!.getAttribute('href'), destinations[i]);
       }
+
     }
   }
   assert(sitemap.includes('https://northstarimplants.com' + pathFor(route) + '</loc>'), route);

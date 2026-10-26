@@ -469,7 +469,7 @@ export function PageLayout({
 
       {/* ── Click-to-call bar ── */}
       <div className="page-call-bar" role="banner" aria-label="Contact bar">
-        <span>📍 Briarwood · New York · Commack</span>
+        <span>📍 Briarwood · Manhattan · Commack · Brooklyn (opening Jan 4, 2027)</span>
         <span>·</span>
         <a
           href="tel:6313151400"
@@ -577,8 +577,8 @@ export function PageLayout({
       {/* ── Footer ── */}
       <footer className="page-footer" role="contentinfo">
         <p>
-          NorthStar Implant Dentistry &nbsp;·&nbsp; Briarwood · New York ·
-          Commack &nbsp;·&nbsp;{' '}
+          NorthStar Implant Dentistry &nbsp;·&nbsp; Briarwood · Manhattan ·
+          Commack · Brooklyn (opening Jan 4, 2027) &nbsp;·&nbsp;{' '}
           <a
             href="tel:6313151400"
             style={{ color: '#f3d37a' }}

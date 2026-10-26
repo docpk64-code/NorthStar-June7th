@@ -2130,7 +2130,7 @@ export function PatientFormsPage() {
           Need help completing your forms?
         </p>
         <p style={{ color: '#4a5668', marginBottom: '1rem' }}>
-          Our team is happy to assist you. Call us at any of our three locations
+          Our team is happy to assist you. Call our team to discuss your preferred location
           or stop by the office.
         </p>
         <a
@@ -5439,7 +5439,7 @@ export function HydraFacialPage() {
           </a>
         </div>
         <p style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#4a5668' }}>
-          139-12 84th Drive, Suite 1G, Briarwood, NY &nbsp;·&nbsp; 333 East 34th Street, Suite M1, New York, NY &nbsp;·&nbsp; 283 Commack Road, Suite 130, Commack, NY
+          139-12 84th Drive, Suite 1G, Briarwood, NY &nbsp;·&nbsp; 333 East 34th Street, Suite M1, New York, NY &nbsp;·&nbsp; 283 Commack Road, Suite 130, Commack, NY &nbsp;·&nbsp; Brooklyn: 32 Court Street, Suite 301, Brooklyn, NY 11201 (opening January 4, 2027)
         </p>
       </div>
 
@@ -5453,7 +5453,7 @@ export function EmfacePage() {
       kicker="Non-Surgical Facelift"
       title="Emface by BTL"
       subtitle="The world's first needle-free treatment to simultaneously tone facial muscles and tighten skin — a natural lift without injections, surgery, or downtime."
-      description="Emface at NorthStar Implant Dentistry — BTL's revolutionary Synchronized RF and HIFES technology delivers a non-surgical facelift with clinically proven lifting and tightening results. Briarwood, New York, Commack."
+      description="Emface at NorthStar Implant Dentistry — BTL's revolutionary Synchronized RF and HIFES technology delivers a non-surgical facelift with clinically proven lifting and tightening results. Briarwood, Manhattan, Commack; Brooklyn opening January 4, 2027."
     >
       <div className="page-section">
         <p className="page-kicker">A Perfect Complement to Implant Care</p>

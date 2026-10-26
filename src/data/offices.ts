@@ -19,9 +19,9 @@ export const offices = [
   },
   {
     id: 'brooklyn', name: 'Brooklyn', city: 'Brooklyn', street: '32 Court Street, Suite 301', zip: '11201', comingSoon: true,
-    intro: 'NorthStar Implant Dentistry is preparing a new Brooklyn office at 32 Court Street, Suite 301. This location is coming soon and is not yet open for patient visits.',
+    intro: 'NorthStar Implant Dentistry is preparing a new Brooklyn office at 32 Court Street, Suite 301. Opening January 4, 2027. This location is not yet open for patient visits.',
     arrival: 'The future office address is 32 Court Street, Suite 301, Brooklyn, NY 11201. The map identifies the planned location; please do not travel here for an appointment until opening and scheduling details are confirmed.',
-    planning: 'An opening date, office hours, and appointment availability have not yet been announced. For care before the Brooklyn office opens, contact our team about an appointment at Briarwood, Manhattan, or Commack.',
+    planning: 'The Brooklyn office opens January 4, 2027. Please call our team for office hours and appointment availability. For care before the Brooklyn office opens, contact our team about an appointment at Briarwood, Manhattan, or Commack.',
   },
 ] as const;
 export type OfficeId = typeof offices[number]['id'];

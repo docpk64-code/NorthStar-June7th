@@ -107,7 +107,7 @@ export const menuItems: MenuItem[] = [
     href: '/contact',
     eyebrow: 'Start here',
     description:
-      'Request a consultation or find contact information for our Briarwood, Manhattan, and Commack offices.',
+      'Request a consultation or find our Briarwood, Manhattan, Commack, and upcoming Brooklyn office. Brooklyn opens January 4, 2027.',
     imageSrc: CONTACT_CARD_SRC,
   },
   {
