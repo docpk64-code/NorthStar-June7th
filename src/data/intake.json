@@ -1,0 +1,1647 @@
+{
+  "title": "New Patient Registration & Health History",
+  "revision": "November 2026",
+  "sections": [
+    {
+      "id": "patient",
+      "title": "Patient information",
+      "intro": "Complete your details and tell us how we can help. No full Social Security number is requested.",
+      "fields": [
+        {
+          "id": "first_name",
+          "label": "First name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "last_name",
+          "label": "Last name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "middle",
+          "label": "Middle name",
+          "type": "text"
+        },
+        {
+          "id": "preferred_name",
+          "label": "Preferred name",
+          "type": "text"
+        },
+        {
+          "id": "dob",
+          "label": "Date of birth",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "office",
+          "label": "Preferred office",
+          "type": "radio",
+          "choices": [
+            "Briarwood / Queens",
+            "Manhattan",
+            "Commack",
+            "Brooklyn - opening January 4, 2027"
+          ],
+          "required": true
+        },
+        {
+          "id": "pronouns",
+          "label": "Pronouns (optional)",
+          "type": "text"
+        },
+        {
+          "id": "address",
+          "label": "Street address and apartment",
+          "type": "text"
+        },
+        {
+          "id": "city",
+          "label": "City",
+          "type": "text"
+        },
+        {
+          "id": "state",
+          "label": "State",
+          "type": "text"
+        },
+        {
+          "id": "zip",
+          "label": "ZIP code",
+          "type": "text"
+        },
+        {
+          "id": "mobile",
+          "label": "Mobile phone",
+          "type": "tel"
+        },
+        {
+          "id": "other_phone",
+          "label": "Other phone",
+          "type": "tel"
+        },
+        {
+          "id": "email",
+          "label": "Email address",
+          "type": "email"
+        },
+        {
+          "id": "employer",
+          "label": "Employer or school",
+          "type": "text"
+        },
+        {
+          "id": "emergency_name",
+          "label": "Emergency contact name and relationship",
+          "type": "text"
+        },
+        {
+          "id": "emergency_phone",
+          "label": "Emergency contact phone",
+          "type": "tel"
+        },
+        {
+          "id": "pharmacy",
+          "label": "Preferred pharmacy and location",
+          "type": "text"
+        },
+        {
+          "id": "pharmacy_phone",
+          "label": "Pharmacy phone",
+          "type": "tel"
+        },
+        {
+          "id": "referral",
+          "label": "Who referred you?",
+          "type": "text"
+        },
+        {
+          "id": "language",
+          "label": "Preferred language",
+          "type": "text"
+        },
+        {
+          "id": "assistance",
+          "label": "Assistance requested",
+          "type": "checkboxes",
+          "choices": [
+            "Interpreter",
+            "Large-print materials",
+            "Wheelchair access",
+            "Help completing forms"
+          ]
+        },
+        {
+          "id": "responsible",
+          "label": "Is someone else responsible for payment, or completing this form for you?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "required": true
+        },
+        {
+          "id": "representative",
+          "label": "If yes: name, relationship / legal authority, date of birth, phone, email, and address if different",
+          "type": "textarea",
+          "showIf": {
+            "id": "responsible",
+            "values": [
+              "Yes"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "insurance",
+      "title": "Insurance",
+      "intro": "Bring your insurance cards. Your team will verify benefits; an estimate is not a guarantee of coverage.",
+      "fields": [
+        {
+          "id": "insurance_status",
+          "label": "Coverage",
+          "type": "radio",
+          "choices": [
+            "Dental insurance",
+            "Medical insurance",
+            "Dental and medical insurance",
+            "No insurance / self-pay",
+            "Not sure"
+          ],
+          "required": true
+        },
+        {
+          "id": "dental_primary",
+          "label": "Primary dental plan: carrier, member ID, group number, subscriber name / date of birth / relationship, employer and plan phone",
+          "type": "textarea"
+        },
+        {
+          "id": "dental_secondary",
+          "label": "Secondary dental plan (if any): carrier, member ID, group number, subscriber name / date of birth / relationship, employer and plan phone",
+          "type": "textarea"
+        },
+        {
+          "id": "medical_plan",
+          "label": "Medical plan (if applicable): carrier, member ID, group number, subscriber name / date of birth / relationship, employer and plan phone",
+          "type": "textarea"
+        },
+        {
+          "id": "insurance_notes",
+          "label": "Insurance requests",
+          "type": "checkboxes",
+          "choices": [
+            "Please verify my benefits before treatment",
+            "I have a health savings / flexible spending account"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dental",
+      "title": "Dental and implant history",
+      "intro": "Tell us about your concerns and previous dental treatment.",
+      "fields": [
+        {
+          "id": "concerns",
+          "label": "What brings you in, and what would you most like us to address?",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "previous_dentist",
+          "label": "Previous dentist",
+          "type": "text"
+        },
+        {
+          "id": "last_visit",
+          "label": "Date of last dental visit",
+          "type": "text"
+        },
+        {
+          "id": "last_xray",
+          "label": "Date of last dental X-rays",
+          "type": "text"
+        },
+        {
+          "id": "last_cleaning",
+          "label": "Date of last cleaning",
+          "type": "text"
+        },
+        {
+          "id": "brushing",
+          "label": "How often do you brush?",
+          "type": "text"
+        },
+        {
+          "id": "flossing",
+          "label": "How often do you floss or use a water flosser?",
+          "type": "text"
+        },
+        {
+          "id": "dental_symptoms",
+          "label": "Dental concerns or previous treatment (select all that apply)",
+          "type": "checkboxes",
+          "choices": [
+            "Bleeding gums",
+            "Loose teeth",
+            "Broken or lost fillings",
+            "Sensitivity to cold",
+            "Sensitivity to heat",
+            "Sensitivity to sweets",
+            "Pain when biting",
+            "Food catching between teeth",
+            "Bad breath or bad taste",
+            "Dry mouth",
+            "Sores or lumps in the mouth",
+            "Jaw clicking or popping",
+            "Jaw pain or limited opening",
+            "Clenching or grinding",
+            "Headaches on waking",
+            "Difficulty chewing",
+            "Dentures or partials that do not fit",
+            "Gum (periodontal) treatment",
+            "Root canal treatment",
+            "Orthodontics / braces",
+            "Teeth whitening",
+            "Snoring or sleep apnea",
+            "I avoid smiling in photos",
+            "Dental anxiety or fear",
+            "None of these",
+            "Not sure"
+          ],
+          "exclusive": [
+            "None of these",
+            "Not sure"
+          ],
+          "required": true
+        },
+        {
+          "id": "implant_0",
+          "label": "Have you had dental implants placed before?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "implant_1",
+          "label": "Has an implant or bone graft ever failed?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "implant_2",
+          "label": "Have you had a bone graft or sinus lift?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "implant_3",
+          "label": "Have you had teeth removed surgically?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "implant_4",
+          "label": "Have you had problems healing after dental surgery?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "implant_5",
+          "label": "Have you had numbness after dental treatment?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        }
+      ]
+    },
+    {
+      "id": "medical",
+      "title": "Medical history",
+      "intro": "Answer each question. Choose Not sure when you need help. Please explain positive or uncertain answers; your clinician will review them with you.",
+      "fields": [
+        {
+          "id": "physician",
+          "label": "Primary physician / specialists and phone numbers",
+          "type": "textarea"
+        },
+        {
+          "id": "physician_visit",
+          "label": "Date of last physician visit",
+          "type": "text"
+        },
+        {
+          "id": "health_0",
+          "label": "Are you in good general health?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "No",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_1",
+          "label": "Has your health changed in the past year?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_2",
+          "label": "Are you under the care of a physician now?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_3",
+          "label": "Have you ever been hospitalized or had surgery?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_4",
+          "label": "Have you ever had a serious head or facial injury?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_5",
+          "label": "Have you ever had radiation to the head or neck?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_6",
+          "label": "Have you ever had chemotherapy or immunotherapy?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_7",
+          "label": "Do you have an artificial joint, pin or plate?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_8",
+          "label": "Do you have an artificial or repaired heart valve?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_9",
+          "label": "Have you been told to take antibiotics before dental care?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_10",
+          "label": "Do you have a pacemaker or defibrillator?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_11",
+          "label": "Do you bruise or bleed easily?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_12",
+          "label": "Have you ever had a blood transfusion?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_13",
+          "label": "Do you use tobacco, vape, or nicotine pouches?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_14",
+          "label": "Do you drink alcohol?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "health_15",
+          "label": "Do you use cannabis or other recreational drugs?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "pregnancy",
+          "label": "If applicable, are you pregnant, possibly pregnant, or trying to become pregnant?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure",
+            "Not applicable"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "breastfeeding",
+          "label": "If applicable, are you breastfeeding?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure",
+            "Not applicable"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_0",
+          "label": "Current or past: Anemia",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_1",
+          "label": "Current or past: Arthritis / rheumatism",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_2",
+          "label": "Current or past: Asthma",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_3",
+          "label": "Current or past: Autoimmune disease",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_4",
+          "label": "Current or past: Back or neck problems",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_5",
+          "label": "Current or past: Bleeding disorder",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_6",
+          "label": "Current or past: Blood clots / DVT",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_7",
+          "label": "Current or past: Cancer",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_8",
+          "label": "Current or past: Chemical dependency",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_9",
+          "label": "Current or past: Circulatory problems",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_10",
+          "label": "Current or past: Congenital heart defect",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_11",
+          "label": "Current or past: COPD / emphysema",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_12",
+          "label": "Current or past: Diabetes — Type 1",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_13",
+          "label": "Current or past: Diabetes — Type 2",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_14",
+          "label": "Current or past: Epilepsy / seizures",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_15",
+          "label": "Current or past: Fainting or dizziness",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_16",
+          "label": "Current or past: Glaucoma",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_17",
+          "label": "Current or past: Heart attack",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_18",
+          "label": "Current or past: Heart murmur",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_19",
+          "label": "Current or past: Heart surgery or stents",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_20",
+          "label": "Current or past: Hepatitis (type:    )",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_21",
+          "label": "Current or past: High blood pressure",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_22",
+          "label": "Current or past: HIV / AIDS",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_23",
+          "label": "Current or past: Immune deficiency",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_24",
+          "label": "Current or past: Kidney disease or dialysis",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_25",
+          "label": "Current or past: Liver disease",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_26",
+          "label": "Current or past: Low blood pressure",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_27",
+          "label": "Current or past: Mitral valve prolapse",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_28",
+          "label": "Current or past: Osteoporosis / osteopenia",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_29",
+          "label": "Current or past: Persistent cough",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_30",
+          "label": "Current or past: Respiratory disease",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_31",
+          "label": "Current or past: Rheumatic fever",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_32",
+          "label": "Current or past: Shortness of breath",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_33",
+          "label": "Current or past: Sinus problems",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_34",
+          "label": "Current or past: Sleep apnea (CPAP?)",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_35",
+          "label": "Current or past: Stroke or TIA",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_36",
+          "label": "Current or past: Swelling of feet or ankles",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_37",
+          "label": "Current or past: Thyroid disease",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_38",
+          "label": "Current or past: Tuberculosis",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_39",
+          "label": "Current or past: Ulcer / reflux / GERD",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_40",
+          "label": "Current or past: Bariatric (weight-loss) surgery",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_41",
+          "label": "Current or past: Organ transplant",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_42",
+          "label": "Current or past: Eating or swallowing difficulty",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "condition_43",
+          "label": "Current or past: Another medical condition not listed",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "mental_health",
+          "label": "Is there a mental health concern, treatment, or accommodation you would like us to know about?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Prefer to discuss privately"
+          ],
+          "required": true,
+          "followup": true,
+          "detailOn": [
+            "Yes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "medications",
+      "title": "Medicines and allergies",
+      "intro": "List prescriptions, over-the-counter medicines, vitamins, supplements, and injections. Do not change or stop medicines based on this form; ask your treating clinician.",
+      "fields": [
+        {
+          "id": "medicine_category_0",
+          "label": "Do you take, or have you ever taken: Blood thinner (warfarin, Eliquis, Xarelto, Plavix, aspirin)?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": false,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "medicine_category_1",
+          "label": "Do you take, or have you ever taken: Bone-strengthening drug (Fosamax, Boniva, Actonel, Reclast)?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "medicine_category_2",
+          "label": "Do you take, or have you ever taken: Prolia or Xgeva (denosumab)?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "medicine_category_3",
+          "label": "Do you take, or have you ever taken: Steroids (prednisone and similar)?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": false,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "medicine_category_4",
+          "label": "Do you take, or have you ever taken: GLP-1 injection (Ozempic, Wegovy, Mounjaro, Zepbound)?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": false,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "medicine_category_5",
+          "label": "Do you take, or have you ever taken: Insulin or diabetes medication?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": false,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "medicine_category_6",
+          "label": "Do you take, or have you ever taken: Immune-suppressing or biologic drug?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": false,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "medicine_category_7",
+          "label": "Do you take, or have you ever taken: Chemotherapy or targeted cancer therapy?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": false,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "medicine_category_8",
+          "label": "Do you take, or have you ever taken: Blood pressure or heart medication?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": false,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "medicine_category_9",
+          "label": "Do you take, or have you ever taken: Antidepressant / anti-anxiety medication?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": false,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "medicine_category_10",
+          "label": "Do you take, or have you ever taken: Opioid pain medication?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": false,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "medicine_category_11",
+          "label": "Do you take, or have you ever taken: Hormone therapy or birth control?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": false,
+          "detailLabel": "Name, dates / duration, route (pill or injection), and reason, if known"
+        },
+        {
+          "id": "takes_medicines",
+          "label": "Do you currently take any medicines or supplements?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true
+        },
+        {
+          "id": "medication_list",
+          "label": "Current medicines and supplements",
+          "type": "medications",
+          "showIf": {
+            "id": "takes_medicines",
+            "values": [
+              "Yes",
+              "Not sure"
+            ]
+          }
+        },
+        {
+          "id": "medication_extra",
+          "label": "Additional medication information, or medicines you will bring on a separate list",
+          "type": "textarea"
+        },
+        {
+          "id": "allergy_status",
+          "label": "Do you have any allergies or have you had an adverse reaction?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No known allergies",
+            "Not sure"
+          ],
+          "required": true
+        },
+        {
+          "id": "allergy_types",
+          "label": "Allergy / reaction categories",
+          "type": "checkboxes",
+          "choices": [
+            "Penicillin / other antibiotics",
+            "Sulfa medicines",
+            "Aspirin / anti-inflammatory medicines",
+            "Opioid pain medicines",
+            "Local anesthetics",
+            "Sedation / anesthesia medicines",
+            "Latex",
+            "Metals",
+            "Foods",
+            "Other"
+          ],
+          "showIf": {
+            "id": "allergy_status",
+            "values": [
+              "Yes",
+              "Not sure"
+            ]
+          }
+        },
+        {
+          "id": "allergy_details",
+          "label": "For each allergy or reaction: substance, what happened, severity, and date if known",
+          "type": "textarea",
+          "showIf": {
+            "id": "allergy_status",
+            "values": [
+              "Yes",
+              "Not sure"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "anesthesia",
+      "title": "Anesthesia and surgical preparation",
+      "intro": "These questions help your clinician plan care. This form is not a medical clearance or a substitute for your day-of-procedure assessment. Follow the personalized instructions given by your surgical team.",
+      "fields": [
+        {
+          "id": "height",
+          "label": "Height (include feet / inches or cm)",
+          "type": "text"
+        },
+        {
+          "id": "weight",
+          "label": "Weight (include lb or kg)",
+          "type": "text"
+        },
+        {
+          "id": "prior_anesthesia",
+          "label": "Have you previously received sedation or general anesthesia?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "anesthesia_problem",
+          "label": "Have you had a problem or unexpected reaction with local anesthesia, sedation, or general anesthesia?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "family_anesthesia",
+          "label": "Has a blood relative had a serious problem with anesthesia?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "malignant_hyperthermia",
+          "label": "Have you or a blood relative been diagnosed with malignant hyperthermia or another inherited anesthesia reaction?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "airway",
+          "label": "Do you have sleep apnea, use CPAP, snore heavily, or have a history of difficult breathing / airway management?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "family_history",
+          "label": "Is there a family history of heart disease, diabetes, cancer, or a bleeding disorder?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": true,
+          "followup": true
+        },
+        {
+          "id": "ride",
+          "label": "If sedation is planned: escort name, relationship, and phone (if arranged)",
+          "type": "text"
+        },
+        {
+          "id": "private",
+          "label": "Would you like to discuss anything privately?",
+          "type": "radio",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "required": true
+        },
+        {
+          "id": "other_health",
+          "label": "Anything else about your health, recovery, or concerns that we should know?",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "review",
+      "title": "Review and acknowledgments",
+      "intro": "Review your answers, then print or save a copy and bring it to your visit. Sign after your questions have been answered. This page does not submit your information or create an electronic signature.",
+      "fields": [
+        {
+          "id": "contact_channels",
+          "label": "How may we contact you?",
+          "type": "checkboxes",
+          "choices": [
+            "Text to mobile",
+            "Call mobile",
+            "Call other number",
+            "Email",
+            "Mail",
+            "Patient portal only (if available)"
+          ]
+        },
+        {
+          "id": "message_permission",
+          "label": "What messages may we leave?",
+          "type": "radio",
+          "choices": [
+            "Detailed voicemail",
+            "With the people listed below",
+            "Appointment times only - no clinical details",
+            "No messages - please keep trying"
+          ]
+        },
+        {
+          "id": "authorized_people",
+          "label": "People we may speak with about your care: name and relationship",
+          "type": "textarea"
+        },
+        {
+          "id": "notice",
+          "label": "Notice of Privacy Practices",
+          "type": "radio",
+          "choices": [
+            "I received a copy",
+            "I declined a copy",
+            "I need a copy / have questions"
+          ]
+        },
+        {
+          "id": "attestations",
+          "label": "Please acknowledge after reviewing",
+          "type": "checkboxes",
+          "choices": [
+            "My health history is complete to the best of my knowledge; I will report changes before treatment.",
+            "I understand routine-care consent and that surgery and sedation require separate consent.",
+            "I have reviewed the financial policy and will discuss any questions with the team.",
+            "I have been offered a copy of this packet and the Notice of Privacy Practices."
+          ]
+        },
+        {
+          "id": "print_name",
+          "label": "Name of patient / legal representative",
+          "type": "text"
+        },
+        {
+          "id": "authority",
+          "label": "If representative: relationship and legal authority",
+          "type": "text"
+        },
+        {
+          "id": "form_date",
+          "label": "Date completed",
+          "type": "date"
+        }
+      ]
+    }
+  ],
+  "consent": [
+    "7. CONSENT FOR CARE AND USE OF MY INFORMATION",
+    "Consent to examination and routine care. I authorize NorthStar Implant Dentistry, P.C., its dentists, contractors and staff to examine me, take x-rays, photographs and scans, and provide dental care for this visit and for later visits. Surgery, sedation and other significant procedures are consented to separately, on their own forms, after a discussion of the risks, benefits and alternatives. I may revoke this consent in writing at any time.",
+    "My dental record. This practice is required by law to keep records of my care. Those records are used and disclosed only as permitted by state and federal privacy law, as described in the practice's Notice of Privacy Practices, which I may ask to see at any time and which may be updated from time to time.",
+    "Insurance. I authorize this practice to release the information necessary to process my claims, and I assign to the practice the dental benefits otherwise payable to me for the services provided. I authorize the use of this signature on my insurance submissions. This authorization ends when my current treatment plan is complete or one year from the date I sign, whichever comes first.",
+    "Accuracy. To the best of my knowledge the information I have given is complete and correct, and I will tell this office if my health, medicines or insurance change — including between the day I sign this and the day of any procedure."
+  ],
+  "financial": [
+    "8. FINANCIAL POLICY We would rather talk about money before treatment than after it. Please read this section and ask us anything.",
+    "Estimates before treatment. Before any treatment beyond an examination, you receive a written treatment plan with the fees, what we estimate your plan will cover, and your estimated share. An estimate is not a guarantee of what your plan will pay.",
+    "Your insurance is a contract between you and your plan. We are not a party to it. As a courtesy we verify your benefits and file your claims, and we will bill a secondary plan once the primary has paid. It is your responsibility to confirm that your treating doctor is in your plan's network. All charges are ultimately your responsibility, including anything your plan does not cover.",
+    "What is due when. Co-payments, deductibles and the estimated patient portion are due at the time of service. Surgical and implant treatment may require a deposit when it is scheduled. After your plan responds, we bill you for any remaining balance or refund any overpayment.",
+    "If you do not have insurance. Payment in full is due at the time of service unless we have approved a written payment arrangement in advance. We will tell you about any financing or membership options we offer.",
+    "Past-due balances. A balance unpaid 30 days after our statement may be charged a late fee of 1% per month (12% per year), which is below the New York civil usury limit. If an account must be placed with a collection agency or attorney, you agree to pay the reasonable costs and fees actually incurred, to the extent New York law permits them.",
+    "What we will not do. Consistent with New York's Fair Medical Debt Reporting Act, we do not report patient balances to consumer credit reporting agencies. If you are having trouble paying, call us — we would much rather arrange a plan than send an account out.",
+    "Returned payments. A service charge may be applied to any check or other payment returned unpaid. Appointments",
+    "Surgical and sedation appointments reserve a long block of time and a surgical team. Please give us at least two business days' notice to change or cancel one, and 24 hours for any other appointment. A fee may be charged for a late cancellation or a missed appointment, and a deposit may be required to reschedule."
+  ],
+  "officeReview": [
+    "Photo ID / insurance cards checked",
+    "Benefits verified",
+    "Health history reviewed with patient",
+    "Medical clearance needed",
+    "Premedication reviewed",
+    "Blood thinner protocol reviewed",
+    "Bone-strengthening drug / MRONJ risk reviewed",
+    "GLP-1 / anesthesia plan reviewed",
+    "Packet scanned to chart"
+  ]
+}

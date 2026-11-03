@@ -2008,7 +2008,7 @@ export function PatientFormsPage() {
         {forms.map((form) => (
           <div
             key={form.title}
-            id={form.title === 'Consent Forms' ? 'consent-forms' : form.title === 'New Patient Registration & Health History' ? 'new-patient-forms' : undefined}
+            id={form.title === 'Consent Forms' ? 'consent-forms' : form.title === 'New Patient Registration & Health History' ? 'new-patient-forms' : form.title === 'The NS UPFRONT™ Contract (Financial Policy)' ? 'financial-policy' : undefined}
             className="page-section"
             style={{ borderLeft: '4px solid #c59d3c', paddingLeft: '1.5rem' }}
           >
@@ -2053,7 +2053,7 @@ export function PatientFormsPage() {
               ))}
             </div>
             {form.title === 'New Patient Registration & Health History' ? <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <a href="/forms/consents/NorthStar_New_Patient_Packet_Fillable.pdf" download style={{ padding: '0.7rem 1.3rem', background: '#f1d58e', color: '#182f44', borderRadius: '999px', fontWeight: 700 }}>Download Fillable PDF · 4 pages</a>
+              <a href="/forms/consents/NorthStar_New_Patient_Packet_Fillable.pdf" download style={{ padding: '0.7rem 1.3rem', background: '#f1d58e', color: '#182f44', borderRadius: '999px', fontWeight: 700 }}>Download Updated Fillable PDF</a>
               <a href="/patient-forms/new-patient/" style={{ padding: '0.7rem 1.3rem', border: '1px solid #96701f', color: '#694e15', borderRadius: '999px', fontWeight: 700 }}>Read & Fill Out Online</a>
               <p style={{ width: '100%', color: '#4a5668', margin: 0 }}>Your online entries stay on this page and are not submitted to the practice. Print or save your completed packet, then bring it to your appointment.</p>
             </div> : form.title === 'Consent Forms' ? <div style={{ display: 'grid', gap: '1rem' }}>
