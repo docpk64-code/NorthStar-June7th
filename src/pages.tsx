@@ -1,3 +1,4 @@
+import ClinicalWarningCards from './components/ClinicalWarningCards';
 import BrooklynNotice from './components/BrooklynNotice';
 import SiteLink from './components/SiteLink';
 /**
@@ -4983,31 +4984,7 @@ export function BotchedSmilePage() {
       <div className="page-section">
         <p className="page-kicker">Common Problems We See</p>
         <h2>Signs That Something Has Gone Wrong</h2>
-        <div className="page-card-grid">
-          {[
-            {
-              title: 'Failed or Failing Implants',
-              body: 'Implants that are loose, painful, or showing signs of infection (peri-implantitis) may be failing. Early intervention — including cleaning, bone regeneration, or in some cases removal and replacement — can often salvage the situation before it becomes irreversible.',
-            },
-            {
-              title: 'Exposed Implant Components',
-              body: 'Visible metal threads, abutments, or margins at the gumline are signs that the implant was placed too shallowly, or that gum and bone recession has occurred. Surgical correction of the soft and hard tissue can restore the aesthetic result and protect the implant long term.',
-            },
-            {
-              title: 'Ill-Fitting Prostheses',
-              body: "Crowns, bridges, or full-arch prostheses that don't fit properly can cause bite problems, speech difficulties, food trapping, and accelerated wear. In many cases, the restorative work can be redone once the underlying implant positions are confirmed to be sound.",
-            },
-            {
-              title: 'Infection & Bone Loss Around Implants',
-              body: 'Peri-implantitis is a destructive inflammatory condition affecting the bone and gum tissue around an implant — similar to gum disease around natural teeth. Without treatment, it leads to progressive bone loss and ultimately implant failure. Early diagnosis and treatment significantly improves outcomes.',
-            },
-          ].map((card) => (
-            <div key={card.title} className="page-card">
-              <h3>{card.title}</h3>
-              <p>{card.body}</p>
-            </div>
-          ))}
-        </div>
+        <ClinicalWarningCards />
       </div>
 
       <div className="page-section">
