@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "postbuild": "npx puppeteer browsers install chrome && node prerender.mjs",
+    "postbuild": "node scripts/ensure-prerender-browser.mjs && node prerender.mjs",
     "preview": "vite preview",
     "test:seo": "node --import tsx scripts/check-seo.tsx"
   },
