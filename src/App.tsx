@@ -23,7 +23,21 @@ const navigationItems = [
   },
 ];
 
-const treatmentCards = navigationItems.filter(item => !['/testimonials', '/sedation'].includes(item.href));
+const treatmentCards = navigationItems
+  .filter(item => !['/testimonials', '/sedation'].includes(item.href))
+  .map(item => item.href === '/procedures'
+    ? { ...item, imageSrc: '/assets/procedures-card-illustration.png' }
+    : item.href === '/about'
+      ? { ...item, imageSrc: '/assets/about-card-north-star.png' }
+      : item.href === '/patient-information'
+        ? { ...item, imageSrc: '/assets/patient-information-card.png' }
+        : item.href === '/technology'
+          ? { ...item, imageSrc: '/assets/technology-card-illustration.png' }
+          : item.href === '/contact'
+            ? { ...item, imageSrc: '/assets/contact-scheduling-card.png' }
+            : item.href === '/facial-esthetics'
+              ? { ...item, imageSrc: '/assets/facial-esthetics-card.png' }
+              : item);
 const directions = [
   { label: 'About', title: 'Get to know NorthStar.', eyebrow: '01 / ABOUT NORTHSTAR', text: 'Meet Dr. Peter Kampf and our team, explore our approach to care, and find practical information to prepare for your visit.', link: 'About NorthStar', href: '/about/', image: '/about', rotation: 0 },
   { label: 'Procedures', title: 'Find a path for your smile.', eyebrow: '02 / PROCEDURES', text: 'Explore dental implants, full-arch solutions, wisdom teeth, and sedation options. Start with a conversation about your individual needs.', link: 'Explore procedures', href: '/procedures/', image: '/full-arch', rotation: 60 },
