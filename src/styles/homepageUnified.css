@@ -88,3 +88,24 @@
 
 /* Keep the phone, clock, and schedule visible together. */
 .preserved-cards .care-card img[src="/assets/contact-scheduling-card.png"] { object-fit:contain!important; object-position:center; background:#fff; }
+
+/* Unpublished compass prototype: external labels and a slender instrument needle. */
+.brand-preview .nj-coordinate { margin-bottom:20px; }
+.brand-preview .nj-direction { width:112px; max-width:112px; min-height:48px; padding:8px 5px; border:0; border-radius:0; background:transparent; font-size:12px; letter-spacing:.025em; white-space:normal; line-height:1.3; box-shadow:none; }
+.brand-preview .nj-direction:hover,.brand-preview .nj-direction.selected { background:transparent; box-shadow:none; color:#ffe5a7; }
+.brand-preview .nj-direction span:last-child { border-bottom:1px solid transparent; padding-bottom:4px; }
+.brand-preview .nj-direction.selected span:last-child { border-color:#c9ab6b; }
+.brand-preview .nj-direction-dot { width:5px; height:5px; }
+.brand-preview .nj-hint { margin-top:24px; }
+@media(max-width:850px) and (min-width:651px) { .brand-preview .nj-direction { width:84px; max-width:84px; font-size:10px; } }
+@media(max-width:650px) { .brand-preview .nj-compass { max-width:350px; width:calc(100% - 12px); } .brand-preview .nj-direction { width:90px; max-width:90px; font-size:11px; padding:6px 2px; } }
+
+/* Prototype refinement: attach the menu visually to the instrument rim. */
+.brand-preview .nj-direction { min-height:36px; padding:6px 8px; font-size:13px; border:1px solid #b69d6340; border-radius:4px; background:#0b2030cc; }
+.brand-preview .nj-direction:hover,.brand-preview .nj-direction.selected { background:#142d3e; border-color:#c9ab6b; }
+.brand-preview .nj-direction-dot { display:none; }
+.brand-preview .nj-direction span:last-child { padding-bottom:0; border-bottom:0; }
+.nj-rim-connector { stroke:#b99b5e99; fill:#b99b5e; stroke-width:1; }
+.nj-rim-connector.selected { stroke:#f5d68f; fill:#f5d68f; }
+@media(max-width:850px) and (min-width:651px) { .brand-preview .nj-direction { width:78px; max-width:78px; padding:5px 3px; font-size:10px; } }
+@media(max-width:650px) { .brand-preview .nj-direction { width:78px; max-width:78px; min-height:36px; padding:5px 3px; font-size:10px; } }
