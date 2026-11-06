@@ -109,3 +109,13 @@
 .nj-rim-connector.selected { stroke:#f5d68f; fill:#f5d68f; }
 @media(max-width:850px) and (min-width:651px) { .brand-preview .nj-direction { width:78px; max-width:78px; padding:5px 3px; font-size:10px; } }
 @media(max-width:650px) { .brand-preview .nj-direction { width:78px; max-width:78px; min-height:36px; padding:5px 3px; font-size:10px; } }
+
+/* Approved orbit wordmark: show the dark-header panel of the original artwork. */
+.brand-preview .pp-nav-wrap { padding-top:5px; padding-bottom:5px; }
+.pp-brand-orbit { flex:none; }
+.pp-orbit-logo-window { display:block; position:relative; width:230px; aspect-ratio:1140/410; overflow:hidden; mix-blend-mode:lighten; }
+.pp-orbit-logo-window img { display:block; position:absolute; width:155.6141%; max-width:none; height:auto; left:-28.0702%; top:-1.2195%; }
+@media(max-width:700px) { .brand-preview .pp-nav-wrap { padding-top:10px; padding-bottom:10px; } .pp-orbit-logo-window { width:190px; } }
+
+.brand-preview .pp-header { background:#071521; }
+.pp-orbit-logo-window img { mix-blend-mode:lighten; }

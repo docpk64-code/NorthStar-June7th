@@ -64,7 +64,7 @@ export default function App() {
     <div className="pp-contactbar"><span>Briarwood · Manhattan · Commack · Brooklyn (opening Jan 4, 2027)</span><a href="tel:6313151400">631-315-1400</a><span>Mon–Sat 9am–8pm · Sunday by appointment</span></div>
     <header className="pp-header">
       <div className="pp-nav-wrap">
-        <a className="pp-brand" href="#top"><span className="pp-star" aria-hidden="true">✧</span><span>NorthStar<small>IMPLANT DENTISTRY</small></span></a>
+        <a className="pp-brand pp-brand-orbit" href="#top" aria-label="NorthStar Implant Dentistry home"><span className="pp-orbit-logo-window"><img src="/assets/northstar-orbit-wordmark-approved.png" alt="NorthStar Implant Dentistry" width="1774" height="887" /></span></a>
         <button className="pp-menu-button" aria-expanded={open} aria-controls="pp-navigation" onClick={() => setOpen(!open)}>{open ? 'Close menu' : 'Menu ☰'}</button>
         <nav id="pp-navigation" className={open ? 'pp-nav open' : 'pp-nav'} aria-label="Main navigation">
           <SiteLink href="/about/" onClick={() => setOpen(false)}>About</SiteLink>
