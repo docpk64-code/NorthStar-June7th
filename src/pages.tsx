@@ -1,3 +1,4 @@
+import FullArchOptions from './components/FullArchOptions';
 import ClinicalWarningCards from './components/ClinicalWarningCards';
 import BrooklynNotice from './components/BrooklynNotice';
 import SiteLink from './components/SiteLink';
@@ -738,28 +739,15 @@ export function FullArchPage() {
       <div className="page-section">
         <p className="page-kicker">What Is Full-Arch?</p>
         <h2>Restoring an Entire Arch of Teeth</h2>
-        <p>
-          Full-arch implant restoration is a treatment that replaces an entire
-          upper or lower arch of missing or failing teeth using just four to six
-          strategically placed dental implants. Commonly referred to by names
-          such as All-on-4 or All-on-6, this approach supports a full fixed
-          prosthesis — a complete set of teeth that is permanently anchored to
-          the implants and does not come in or out like traditional dentures.
-        </p>
-        <p>
-          The implants are placed at precise angles to maximize contact with
-          available bone, often eliminating the need for extensive bone grafting
-          even in patients with significant bone loss. The result is a stable,
-          comfortable, and natural-looking set of teeth that restores full
-          chewing function, speech, and confidence. For many patients, a
-          provisional set of teeth can be delivered on the same day as surgery —
-          a life-changing transformation achieved in a single appointment.
-        </p>
+        <p>Full-arch treatment replaces a complete upper or lower set of missing or failing teeth. A fixed bridge attaches to implants and stays in place during daily use. An implant-retained overdenture is removable by the patient for cleaning.</p>
+        <p>Conventional implants, advanced anchorage techniques, and removable designs address different needs. The number and position of implants, need for grafting, and timing of temporary teeth depend on your examination, 3D imaging, and restorative plan.</p>
       </div>
 
+      <FullArchOptions />
+
       <div className="page-section">
-        <p className="page-kicker">Benefits</p>
-        <h2>Why Patients Choose Full-Arch</h2>
+        <p className="page-kicker">Benefits of a Fixed Bridge</p>
+        <h2>Why Patients Choose Fixed Full-Arch Teeth</h2>
         <ul>
           <li>
             <strong>Fixed and non-removable</strong> — unlike traditional
@@ -772,9 +760,7 @@ export function FullArchPage() {
             impossible with loose or uncomfortable dentures.
           </li>
           <li>
-            <strong>Bone preservation</strong> — the implants stimulate the
-            jawbone just like natural tooth roots, preventing the bone
-            resorption that accelerates with denture wear over time.
+            <strong>Support for bone health</strong> — implants transfer chewing forces to the supporting bone. Bone loss and implant complications can still occur, so home care and monitoring remain essential.
           </li>
           <li>
             <strong>Natural appearance</strong> — the final prosthesis is
@@ -812,9 +798,7 @@ export function FullArchPage() {
           prosthesis is attached the same day. Over the following three to six
           months, osseointegration occurs as the implants fuse with the bone.
           Once confirmed, your final custom prosthesis is fabricated and
-          delivered by your restorative dentist. The entire journey from
-          consultation to final teeth typically spans six to twelve months,
-          depending on your individual anatomy and treatment needs. Our team
+          delivered by your restorative dentist. The timing of final teeth varies with your anatomy, healing, grafting needs, and restorative plan; your team will discuss an individualized timeline. Our team
           supports you at every stage with detailed instructions, follow-up
           visits, and compassionate, attentive care.
         </p>
