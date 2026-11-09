@@ -1,0 +1,49 @@
+.ns-treatments { --treatment-navy: #16243c; --treatment-gold: #c9a227; }
+.ns-treatments .ns-treatment-section { padding: clamp(24px, 4vw, 52px); border: 1px solid #e2e5ea; background: #fff; border-radius: 22px; }
+.ns-treatment-heading { max-width: 760px; margin: 0 auto 32px; text-align: center; }
+.ns-treatments .ns-treatment-heading h2 { margin: 9px 0 18px; color: var(--treatment-navy); font-size: clamp(27px, 3.2vw, 42px); line-height: 1.18; }
+.ns-treatments .ns-treatment-heading > p:last-child { margin: 17px 0 0; color: #576477; line-height: 1.7; }
+.ns-treatment-rule { display: flex; align-items: center; gap: 13px; width: min(360px, 80%); margin: 0 auto; }
+.ns-treatment-rule::before, .ns-treatment-rule::after { content: ''; height: 2px; flex: 1; background: var(--treatment-navy); }
+.ns-treatment-rule span { height: 3px; width: 64px; background: var(--treatment-gold); }
+.ns-treatment-featured { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; }
+.ns-treatments a.ns-treatment-card { display: flex; flex-direction: column; min-width: 0; color: var(--treatment-navy); background: #fff; border: 1px solid #e6e0d6; border-radius: 16px; text-decoration: none; overflow: hidden; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+.ns-treatments a.ns-treatment-card:hover { transform: translateY(-4px); border-color: #b99b50; box-shadow: 0 16px 32px #16243c12; }
+.ns-treatments a.ns-treatment-card:focus-visible { outline: 3px solid var(--treatment-gold); outline-offset: 4px; }
+.ns-treatments .ns-treatment-extraction { grid-row: span 2; align-self: stretch; background: #fff; }
+.ns-treatment-artwork { display: flex; align-items: center; flex: 1; padding: 12px; background: #fff; }
+.ns-treatments .ns-treatment-artwork img { display: block; width: 100%; height: auto; border-radius: 8px; object-fit: contain; }
+.ns-treatment-image-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 24px; border-top: 1px solid #eee7db; font-size: 15px; font-weight: 600; background: #fcfbf8; }
+.ns-treatment-feature { padding: 22px; }
+.ns-treatment-icon { width: 63px; height: 63px; margin-bottom: 14px; }
+.ns-treatment-icon svg { display: block; width: 100%; height: 100%; }
+.ns-treatments .ns-treatment-label { margin: 0 0 7px; font-size: 10px; line-height: 1.5; letter-spacing: .09em; text-transform: uppercase; color: #806826; }
+.ns-treatments .ns-treatment-card h3 { color: var(--treatment-navy); margin: 0 0 20px; font-size: clamp(18px, 1.8vw, 23px); line-height: 1.25; font-family: inherit; font-weight: 600; }
+.ns-treatment-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; font-size: 12px; font-weight: 600; }
+.ns-treatment-arrow { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; color: #fff; background: var(--treatment-navy); font-size: 19px; }
+.ns-treatment-heading-small { margin-bottom: 25px; }
+.ns-treatments .ns-treatment-heading-small h2 { font-size: clamp(26px, 3vw, 34px); }
+.ns-procedure-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.ns-procedure-card { padding: 24px; }
+.ns-procedure-number { margin-bottom: 19px; color: #9b7e35; font-size: 12px; letter-spacing: .08em; }
+.ns-treatments .ns-procedure-card h3 { font-size: 20px; min-height: 50px; margin-bottom: 24px; }
+@media (max-width: 1050px) {
+  .ns-treatment-featured { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ns-treatments .ns-treatment-extraction { grid-row: auto; grid-column: 1 / -1; }
+  .ns-treatment-artwork img { max-width: 700px; margin: auto; }
+  .ns-procedure-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .ns-treatments .ns-treatment-section { padding: 18px 14px; border-radius: 16px; }
+  .ns-treatment-heading { margin-bottom: 24px; }
+  .ns-treatment-featured { gap: 12px; }
+  .ns-treatment-feature { padding: 18px 14px; }
+  .ns-treatments .ns-treatment-feature h3 { font-size: 19px; }
+  .ns-treatment-card-footer { font-size: 11px; gap: 6px; }
+  .ns-treatment-image-footer { padding: 16px; }
+  .ns-treatment-artwork { padding: 5px; }
+  .ns-procedure-card-grid { grid-template-columns: 1fr; gap: 12px; }
+  .ns-procedure-card { padding: 20px; }
+  .ns-treatments .ns-procedure-card h3 { min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .ns-treatments a.ns-treatment-card { transition: none; } .ns-treatments a.ns-treatment-card:hover { transform: none; } }
