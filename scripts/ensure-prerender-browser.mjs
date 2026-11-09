@@ -1,7 +1,8 @@
 // Reuse a cached browser instead of invoking npx on every Netlify build.
-// A cold build still uses the original Puppeteer installation command.
+// Cold builds use the pinned browser installer directly.
 import { accessSync, constants } from 'node:fs';
-import { spawnSync } from 'node:child_process';
+import { install, Browser } from '@puppeteer/browsers';
+import { PUPPETEER_REVISIONS } from 'puppeteer-core/internal/revisions.js';
 import puppeteer from 'puppeteer';
 
 let installed = false;
@@ -16,7 +17,14 @@ if (installed) {
   console.log('Using installed browser for search-page prerendering.');
 } else {
   console.log('Installing the pinned Puppeteer browser for prerendering.');
-  const result = spawnSync('npx', ['puppeteer', 'browsers', 'install', 'chrome'], { stdio: 'inherit', shell: process.platform === 'win32' });
-  if (result.error) throw result.error;
-  if (result.status !== 0) process.exit(result.status || 1);
+  // Use the installer directly: a nested npx process can remain running after
+  // the browser download completes and prevent Netlify from prerendering.
+  await install({
+    browser: Browser.CHROME,
+    buildId: puppeteer.configuration.browserRevision || PUPPETEER_REVISIONS.chrome,
+    cacheDir: puppeteer.configuration.cacheDirectory,
+    baseUrl: puppeteer.configuration.downloadBaseUrl,
+  });
+  accessSync(puppeteer.executablePath(), constants.X_OK);
+  console.log('Pinned browser installed; continuing to search-page prerendering.');
 }
