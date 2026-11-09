@@ -1,49 +1,42 @@
+.page-body:has(.ns-treatments) { max-width: 1440px; }
 .ns-treatments { --treatment-navy: #16243c; --treatment-gold: #c9a227; }
-.ns-treatments .ns-treatment-section { padding: clamp(24px, 4vw, 52px); border: 1px solid #e2e5ea; background: #fff; border-radius: 22px; }
-.ns-treatment-heading { max-width: 760px; margin: 0 auto 32px; text-align: center; }
-.ns-treatments .ns-treatment-heading h2 { margin: 9px 0 18px; color: var(--treatment-navy); font-size: clamp(27px, 3.2vw, 42px); line-height: 1.18; }
-.ns-treatments .ns-treatment-heading > p:last-child { margin: 17px 0 0; color: #576477; line-height: 1.7; }
-.ns-treatment-rule { display: flex; align-items: center; gap: 13px; width: min(360px, 80%); margin: 0 auto; }
-.ns-treatment-rule::before, .ns-treatment-rule::after { content: ''; height: 2px; flex: 1; background: var(--treatment-navy); }
-.ns-treatment-rule span { height: 3px; width: 64px; background: var(--treatment-gold); }
-.ns-treatment-featured { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; }
-.ns-treatments a.ns-treatment-card { display: flex; flex-direction: column; min-width: 0; color: var(--treatment-navy); background: #fff; border: 1px solid #e6e0d6; border-radius: 16px; text-decoration: none; overflow: hidden; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
-.ns-treatments a.ns-treatment-card:hover { transform: translateY(-4px); border-color: #b99b50; box-shadow: 0 16px 32px #16243c12; }
-.ns-treatments a.ns-treatment-card:focus-visible { outline: 3px solid var(--treatment-gold); outline-offset: 4px; }
-.ns-treatments .ns-treatment-extraction { grid-row: span 2; align-self: stretch; background: #fff; }
-.ns-treatment-artwork { display: flex; align-items: center; flex: 1; padding: 12px; background: #fff; }
-.ns-treatments .ns-treatment-artwork img { display: block; width: 100%; height: auto; border-radius: 8px; object-fit: contain; }
-.ns-treatment-image-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 24px; border-top: 1px solid #eee7db; font-size: 15px; font-weight: 600; background: #fcfbf8; }
-.ns-treatment-feature { padding: 22px; }
-.ns-treatment-icon { width: 63px; height: 63px; margin-bottom: 14px; }
-.ns-treatment-icon svg { display: block; width: 100%; height: 100%; }
-.ns-treatments .ns-treatment-label { margin: 0 0 7px; font-size: 10px; line-height: 1.5; letter-spacing: .09em; text-transform: uppercase; color: #806826; }
-.ns-treatments .ns-treatment-card h3 { color: var(--treatment-navy); margin: 0 0 20px; font-size: clamp(18px, 1.8vw, 23px); line-height: 1.25; font-family: inherit; font-weight: 600; }
-.ns-treatment-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; font-size: 12px; font-weight: 600; }
-.ns-treatment-arrow { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; color: #fff; background: var(--treatment-navy); font-size: 19px; }
-.ns-treatment-heading-small { margin-bottom: 25px; }
-.ns-treatments .ns-treatment-heading-small h2 { font-size: clamp(26px, 3vw, 34px); }
-.ns-procedure-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.ns-procedure-card { padding: 24px; }
-.ns-procedure-number { margin-bottom: 19px; color: #9b7e35; font-size: 12px; letter-spacing: .08em; }
-.ns-treatments .ns-procedure-card h3 { font-size: 20px; min-height: 50px; margin-bottom: 24px; }
-@media (max-width: 1050px) {
-  .ns-treatment-featured { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .ns-treatments .ns-treatment-extraction { grid-row: auto; grid-column: 1 / -1; }
-  .ns-treatment-artwork img { max-width: 700px; margin: auto; }
-  .ns-procedure-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ns-treatment-heading { max-width: 780px; margin: 0 auto 38px; text-align: center; }
+.ns-treatment-eyebrow { margin: 0 0 10px; color: #94762b; font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.ns-treatment-heading h2 { margin: 0 0 16px; color: var(--treatment-navy); font-family: 'Cormorant Garamond', 'Palatino Linotype', serif; font-size: clamp(32px, 3.2vw, 44px); line-height: 1.15; }
+.ns-treatment-heading > p:last-child { margin: 0; color: #576477; font-size: 17px; line-height: 1.7; }
+.ns-illustrated-treatment-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.ns-treatments a.ns-illustrated-treatment-card { display: flex; flex-direction: column; min-width: 0; overflow: hidden; color: var(--treatment-navy); background: #fff; border: 1px solid #e3e5e9; border-radius: 17px; text-decoration: none; box-shadow: 0 2px 5px #16243c04; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+.ns-treatments a.ns-illustrated-treatment-card:hover { transform: translateY(-4px); border-color: #c5ab64; box-shadow: 0 12px 28px #16243c0d; }
+.ns-treatments a:focus-visible { outline: 3px solid var(--treatment-gold); outline-offset: 4px; }
+.ns-treatment-card-image { aspect-ratio: 4 / 3; width: 100%; overflow: hidden; background: #fff; }
+.ns-treatment-card-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.ns-treatment-card-body { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 23px 23px 26px; }
+.ns-treatment-card-body h3 { min-height: 48px; margin: 0 0 10px; font-family: inherit; font-size: 19px; font-weight: 650; color: var(--treatment-navy); line-height: 1.3; }
+.ns-treatment-card-body p { margin: 0 0 25px; color: #536072; font-size: 15px; line-height: 1.75; }
+.ns-treatment-learn-more { display: inline-flex; align-items: center; gap: 12px; margin-top: auto; color: #233d67; font-size: 15px; font-weight: 650; line-height: 1.5; }
+.ns-treatment-learn-more > span { font-size: 21px; line-height: 1; transition: transform 180ms ease; }
+.ns-illustrated-treatment-card:hover .ns-treatment-learn-more > span { transform: translateX(3px); }
+.ns-additional-procedures { margin-top: 52px; padding-top: 32px; border-top: 1px solid #dce1e8; }
+.ns-additional-procedures h2 { margin: 0 0 24px; color: var(--treatment-navy); font-family: 'Cormorant Garamond', 'Palatino Linotype', serif; font-size: 30px; }
+.ns-additional-procedure-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; }
+.ns-additional-procedure-links a { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid #dce1e8; color: #233d67; font-size: 15px; line-height: 1.5; text-decoration: none; }
+.ns-additional-procedure-links a:hover { color: #80631f; }
+@media (max-width: 1099px) {
+  .ns-illustrated-treatment-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ns-treatment-card-body h3 { min-height: 0; }
 }
-@media (max-width: 560px) {
-  .ns-treatments .ns-treatment-section { padding: 18px 14px; border-radius: 16px; }
-  .ns-treatment-heading { margin-bottom: 24px; }
-  .ns-treatment-featured { gap: 12px; }
-  .ns-treatment-feature { padding: 18px 14px; }
-  .ns-treatments .ns-treatment-feature h3 { font-size: 19px; }
-  .ns-treatment-card-footer { font-size: 11px; gap: 6px; }
-  .ns-treatment-image-footer { padding: 16px; }
-  .ns-treatment-artwork { padding: 5px; }
-  .ns-procedure-card-grid { grid-template-columns: 1fr; gap: 12px; }
-  .ns-procedure-card { padding: 20px; }
-  .ns-treatments .ns-procedure-card h3 { min-height: 0; }
+@media (max-width: 599px) {
+  .page-body:has(.ns-treatments) { padding: 32px 20px 50px; }
+  .ns-treatment-heading { margin-bottom: 28px; }
+  .ns-treatment-heading > p:last-child { font-size: 15px; }
+  .ns-illustrated-treatment-grid { grid-template-columns: 1fr; gap: 22px; }
+  .ns-treatment-card-body { padding: 21px 22px 25px; }
+  .ns-treatment-card-body h3 { font-size: 20px; }
+  .ns-treatment-card-body p { font-size: 15px; }
+  .ns-additional-procedure-links { grid-template-columns: 1fr; }
+  .ns-additional-procedures { margin-top: 38px; }
 }
-@media (prefers-reduced-motion: reduce) { .ns-treatments a.ns-treatment-card { transition: none; } .ns-treatments a.ns-treatment-card:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .ns-treatments a.ns-illustrated-treatment-card, .ns-treatment-learn-more > span { transition: none; }
+  .ns-treatments a.ns-illustrated-treatment-card:hover, .ns-illustrated-treatment-card:hover .ns-treatment-learn-more > span { transform: none; }
+}
