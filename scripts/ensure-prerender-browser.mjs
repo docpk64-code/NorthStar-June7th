@@ -27,4 +27,7 @@ if (installed) {
   });
   accessSync(puppeteer.executablePath(), constants.X_OK);
   console.log('Pinned browser installed; continuing to search-page prerendering.');
+  // All download and extraction work is complete. Close this standalone helper
+  // rather than waiting for the downloader's idle network connections to expire.
+  process.exit(0);
 }
