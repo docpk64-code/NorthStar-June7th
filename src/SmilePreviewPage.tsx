@@ -3,6 +3,7 @@ import type { ChangeEvent } from 'react';
 import SmileCamera from './components/SmileCamera';
 import SEOHead from './components/SEOHead';
 import './styles/smilePreview.css';
+import { SMILE_CONSENT_VERSION, SMILE_STATUS_URL, SMILE_GENERATE_URL, prepareSmilePhoto } from './utils/smileAI';
 
 const treatments = [
   { id: 'arch', number: '01', title: 'Full-arch implants', subtitle: 'Imagine a complete new smile', detail: 'Explore the appearance of a complete arch of replacement teeth. A photo cannot assess bone, implant placement, or treatment suitability.', goal: 'A balanced, complete smile', image: 'full-arch' },
@@ -18,6 +19,10 @@ export default function SmilePreviewPage() {
   const [split, setSplit] = useState(50);
   const [showSample, setShowSample] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [aiEnabled, setAiEnabled] = useState(false);
+  const [generating, setGenerating] = useState(false);
+  const [result, setResult] = useState<{ image: string; before: string; treatment: string } | null>(null);
+  const request = useRef<AbortController | null>(null);
   const upload = useRef<HTMLInputElement>(null);
   const [cameraOpen, setCameraOpen] = useState(false);
   const cameraTrigger = useRef<HTMLButtonElement>(null);
@@ -25,10 +30,38 @@ export default function SmilePreviewPage() {
   const revision = useRef(0);
   const selected = treatments.find(item => item.id === treatment)!;
   useEffect(() => () => { if (photo) URL.revokeObjectURL(photo); }, [photo]);
-  useEffect(() => () => { revision.current++; }, []);
+  useEffect(() => {
+    const controller = new AbortController();
+    void fetch(SMILE_STATUS_URL, { signal: controller.signal, cache: 'no-store' }).then(response => response.ok ? response.json() : null).then(status => {
+      if (!controller.signal.aborted) setAiEnabled(status?.enabled === true && status?.consentVersion === SMILE_CONSENT_VERSION);
+    }).catch(() => {});
+    return () => { controller.abort(); request.current?.abort(); revision.current++; };
+  }, []);
+  const resetResult = () => { request.current?.abort(); setGenerating(false); setResult(null); setError(''); };
+  const changeTreatment = (next: string) => { resetResult(); setTreatment(next); setConsent(false); };
+  const generateSmile = async () => {
+    if (!photo || !consent || !aiEnabled || generating) return;
+    const controller = new AbortController(); request.current = controller;
+    setGenerating(true); setResult(null); setError(''); setShowSample(false);
+    const selectedPhoto = photo;
+    try {
+      const before = await prepareSmilePhoto(selectedPhoto);
+      if (controller.signal.aborted) return;
+      const response = await fetch(SMILE_GENERATE_URL, { method: 'POST', signal: controller.signal, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ image: before, treatment, consent: true, consentVersion: SMILE_CONSENT_VERSION }) });
+      const data = await response.json().catch(() => null);
+      if (controller.signal.aborted) return;
+      if (!response.ok) throw new Error(data?.error || (response.status === 429 ? 'Please wait a few minutes before requesting another preview.' : 'The preview service is temporarily unavailable.'));
+      if (data?.treatment !== treatment || typeof data?.image !== 'string' || !/^data:image\/jpeg;base64,[A-Za-z0-9+/]+=*$/.test(data.image) || data.image.length > 4_100_000) throw new Error('A usable preview was not returned.');
+      setResult({ image: data.image, before, treatment }); setSplit(50);
+    } catch (error) {
+      if (!controller.signal.aborted) setError(error instanceof Error ? error.message : 'Your preview could not be created. Please try later.');
+    } finally { if (request.current === controller) { request.current = null; setGenerating(false); } }
+  };
+  const personalResult = Boolean(photo && result && !showSample);
+  const busy = loading || generating;
 
   const clearPhoto = () => {
-    revision.current++; setPhoto(null); setError(''); setConsent(false); setLoading(false); setShowSample(true);
+    resetResult(); revision.current++; setPhoto(null); setError(''); setConsent(false); setLoading(false); setShowSample(true);
     if (upload.current) upload.current.value = '';
     setCameraOpen(false);
   };
@@ -40,6 +73,7 @@ export default function SmilePreviewPage() {
     await acceptPhoto(file);
   };
   const acceptPhoto = async (file: File) => {
+    resetResult();
     const current = ++revision.current;
     setError('');
     if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) { setError('Please choose a JPG, PNG, or WebP image. On iPhone, use a screenshot if your photo is HEIC.'); return; }
@@ -64,27 +98,28 @@ export default function SmilePreviewPage() {
     <SEOHead title="Smile Preview — demonstration" description="Explore the NorthStar Smile Preview interface with three treatment choices and a fictional smile comparison." noindex />
     <header className="smile-header"><a href="/" className="smile-brand"><span aria-hidden="true">✦</span><span>NorthStar<small>IMPLANT DENTISTRY</small></span></a><a href="/contact/" className="smile-header-contact">Book a consultation <span aria-hidden="true">↗</span></a></header>
     <main>
-      <section className="smile-intro"><div className="smile-eyebrow">A LITTLE INSPIRATION. A NEW POSSIBILITY.</div><h1>Your smile.<br /><em>A new perspective.</em></h1><p>Explore what a smile transformation could look like.<br className="smile-desktop-break" /> Start with a treatment, then add your photo.</p><div className="smile-demo-badge"><span aria-hidden="true">●</span> Live camera & photo upload · AI preview coming later</div></section>
+      <section className="smile-intro"><div className="smile-eyebrow">A LITTLE INSPIRATION. A NEW POSSIBILITY.</div><h1>Your smile.<br /><em>A new perspective.</em></h1><p>Explore what a smile transformation could look like.<br className="smile-desktop-break" /> Start with a treatment, then add your photo.</p><div className="smile-demo-badge"><span aria-hidden="true">●</span> {aiEnabled ? 'Personalized AI smile previews' : 'Live camera & photo upload · AI preview coming later'}</div></section>
       <section className="smile-workspace" aria-label="Smile preview studio">
         <div className="smile-controls">
           <div className="smile-step"><span>1</span><h2>Choose your smile journey</h2></div>
-          <fieldset className="smile-options"><legend className="smile-sr-only">Treatment choice</legend>{treatments.map(item => <label key={item.id} className={`smile-option ${treatment === item.id ? 'selected' : ''}`}><input type="radio" name="treatment" value={item.id} checked={treatment === item.id} onChange={() => setTreatment(item.id)} /><span className="smile-option-number">{item.number}</span><span><strong>{item.title}</strong><small>{item.subtitle}</small></span><span className="smile-radio" aria-hidden="true" /></label>)}</fieldset>
+          <fieldset className="smile-options"><legend className="smile-sr-only">Treatment choice</legend>{treatments.map(item => <label key={item.id} className={`smile-option ${treatment === item.id ? 'selected' : ''}`}><input type="radio" name="treatment" value={item.id} checked={treatment === item.id} onChange={() => changeTreatment(item.id)} disabled={generating} /><span className="smile-option-number">{item.number}</span><span><strong>{item.title}</strong><small>{item.subtitle}</small></span><span className="smile-radio" aria-hidden="true" /></label>)}</fieldset>
           <p className="smile-treatment-detail" aria-live="polite">{selected.detail}</p>
           <div className="smile-step"><span>2</span><h2>Add your smile photo</h2></div>
-          <div className="smile-upload-box"><button ref={cameraTrigger} type="button" className="smile-camera-icon smile-camera-open" aria-label="Open front-facing camera" onClick={() => setCameraOpen(true)} disabled={loading || cameraOpen}><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M8 5 9.5 3h5L16 5h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><circle cx="12" cy="12" r="4"/></svg></button><strong>A clear photo is a great start</strong><p>Face the camera, smile with teeth visible, and use even, natural light. Avoid filters.</p><div className="smile-upload-actions"><button className="smile-button" onClick={() => upload.current?.click()} disabled={loading}>{loading ? 'Opening photo…' : photo ? 'Replace photo' : 'Choose a photo'} <span aria-hidden="true">↑</span></button><button className="smile-camera-button" onClick={() => setCameraOpen(true)} disabled={loading || cameraOpen}>Take a photo</button></div><small>JPG, PNG or WebP · up to 10 MB<br />Front camera on phones · webcam on laptops. Camera permission is required.</small><input ref={upload} type="file" accept="image/jpeg,image/png,image/webp" onChange={choosePhoto} hidden aria-label="Choose a smile photo" /></div>
+          <div className="smile-upload-box"><button ref={cameraTrigger} type="button" className="smile-camera-icon smile-camera-open" aria-label="Open front-facing camera" onClick={() => setCameraOpen(true)} disabled={busy || cameraOpen}><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M8 5 9.5 3h5L16 5h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><circle cx="12" cy="12" r="4"/></svg></button><strong>A clear photo is a great start</strong><p>Face the camera, smile with teeth visible, and use even, natural light. Avoid filters.</p><div className="smile-upload-actions"><button className="smile-button" onClick={() => upload.current?.click()} disabled={busy}>{loading ? 'Opening photo…' : photo ? 'Replace photo' : 'Choose a photo'} <span aria-hidden="true">↑</span></button><button className="smile-camera-button" onClick={() => setCameraOpen(true)} disabled={busy || cameraOpen}>Take a photo</button></div><small>JPG, PNG or WebP · up to 10 MB<br />Front camera on phones · webcam on laptops. Camera permission is required.</small><input ref={upload} type="file" accept="image/jpeg,image/png,image/webp" onChange={choosePhoto} hidden aria-label="Choose a smile photo" /></div>
           {cameraOpen && <SmileCamera onCapture={file => { void acceptPhoto(file); }} onClose={closeCamera} />}
           {error && <p role="alert" className="smile-error">{error}</p>}
-          <p className="smile-privacy"><span aria-hidden="true">◇</span> Private by design: in this preview, your photo stays in this browser and is never sent for AI processing.</p>
-          <label className="smile-consent"><input type="checkbox" checked={consent} onChange={e => setConsent(e.target.checked)} /> <span>I am 18 or older, this is my photo, and I understand that a smile preview is illustrative and does not establish treatment suitability.</span></label>
-          <button className="smile-generate" disabled>AI generation not yet activated</button><p className="smile-activation">You can try the photo controls and sample comparison now. Personalized AI previews will be available after secure processing is connected.</p>
+          <p className="smile-privacy"><span aria-hidden="true">◇</span>{aiEnabled ? 'Your camera and photo stay local until you consent and select Create my smile preview. Then your photo is sent through NorthStar’s server to OpenAI.' : 'Your photo stays in this browser. AI processing is currently unavailable and no photo is sent.'}</p>
+          {aiEnabled && <details className="smile-processing-notice"><summary>How your photo is processed</summary><p>We resize and re-encode your photo to remove file metadata before sending it through our hosting provider, Netlify, to OpenAI to create your selected appearance concept. Do not include anyone else, documents, or identifying text in your photo.</p><p>This feature does not save your photo or generated image to NorthStar’s database or send it to the practice by email. Processing providers may retain data under their applicable agreements, retention controls, and safety obligations. Closing the page clears the local preview. Contact our team if you have privacy questions.</p><p>The image may contain inaccuracies or unintended changes. It is an illustration, not a clinical prediction or treatment plan.</p></details>}
+          <label className="smile-consent"><input type="checkbox" checked={consent} onChange={e => setConsent(e.target.checked)} /> <span>{aiEnabled ? 'I am 18 or older, this is my photo, and I consent to sending it through NorthStar’s server to OpenAI for this smile visualization. I have read the photo-processing notice and understand the result is illustrative, not a clinical prediction.' : 'I am 18 or older, this is my photo, and I understand that a smile preview is illustrative and does not establish treatment suitability.'}</span></label>
+          <button className="smile-generate" onClick={() => { void generateSmile(); }} disabled={!aiEnabled || !photo || !consent || busy || cameraOpen}>{generating ? 'Creating your smile preview…' : aiEnabled ? 'Create my smile preview' : 'AI generation not yet activated'}</button><p className="smile-activation" role="status">{generating ? 'This may take up to a minute. Please keep this page open. Photos are not saved by this feature.' : aiEnabled ? 'Add your photo, choose a treatment, and accept the processing notice to continue.' : 'You can use the camera, photo controls and fictional comparison. Personalized previews are awaiting secure activation.'}</p>
         </div>
         <div className="smile-result-column">
-          <div className="smile-result-heading"><div><span className="smile-eyebrow">THE POSSIBILITIES, VISUALIZED</span><h2>{photo && !showSample ? 'Your starting point' : 'A glimpse of a new smile'}</h2></div><span className="smile-sample-pill">{photo && !showSample ? 'Your photo' : 'Fictional example'}</span></div>
-          {photo && !showSample ? <div className="smile-personal-photo"><img src={photo} alt="Your selected smile photo, stored only in this browser" /><span>Your photo · no AI edits applied</span></div> : <div className="smile-comparison" role="img" aria-label="Fictional AI-generated smile example. Drag the slider below to compare the starting smile and illustrative cosmetic smile."><img src="/assets/smile-preview/sample-1.webp" alt="" /><img className="smile-before" src="/assets/smile-preview/sample-0.webp" alt="" style={{ clipPath: `inset(0 ${100 - split}% 0 0)` }} /><span className="smile-photo-label before">Starting smile</span><span className="smile-photo-label after">Illustrative smile</span><div className="smile-divider" style={{ left: `${split}%` }}><span>↔</span></div><span className="smile-watermark">AI-generated example · not a real patient</span></div>}
-          {(!photo || showSample) && <div className="smile-slider"><label htmlFor="smile-compare">Drag to compare <span aria-hidden="true">↔</span></label><input id="smile-compare" type="range" min="0" max="100" value={split} onChange={e => setSplit(Number(e.target.value))} aria-valuetext={`${split}% starting smile visible`} /></div>}
-          {photo && <div className="smile-photo-actions"><button onClick={() => setShowSample(!showSample)}>{showSample ? 'View my photo' : 'View fictional example'}</button><button onClick={clearPhoto}>Remove my photo</button></div>}
-          <div className="smile-goal"><span aria-hidden="true">✦</span><div><small>YOUR SELECTED DIRECTION</small><h3>{selected.goal}</h3><p>{photo && !showSample ? 'Your photo is ready for a future personalized preview. No result has been generated.' : 'This shared sample demonstrates the comparison tool. It is not a treatment-specific result or a preview of your own smile.'}</p></div></div>
-          <div className="smile-disclaimer"><strong>Inspiration starts here. Your treatment plan starts with a dentist.</strong><p>Any future AI image is an appearance concept, not a diagnosis, treatment recommendation, or guaranteed outcome. Your examination and any necessary scans determine what is achievable.</p></div>
+          <div className="smile-result-heading"><div><span className="smile-eyebrow">THE POSSIBILITIES, VISUALIZED</span><h2>{personalResult ? 'Your illustrative smile concept' : photo && !showSample ? 'Your starting point' : 'A glimpse of a new smile'}</h2></div><span className="smile-sample-pill">{personalResult ? 'AI illustration' : photo && !showSample ? 'Your photo' : 'Fictional example'}</span></div>
+          {photo && !showSample && !result ? <div className="smile-personal-photo"><img src={photo} alt="Your selected smile photo" /><span>Your photo · no AI edits applied</span></div> : <div className="smile-comparison" role="img" aria-label={personalResult ? "Your photo compared with an AI-generated appearance concept, not a treatment prediction." : "Fictional AI-generated smile example. Drag the slider below to compare the starting smile and illustrative cosmetic smile."}><img src={personalResult ? result!.image : "/assets/smile-preview/sample-1.webp"} alt="" /><img className="smile-before" src={personalResult ? result!.before : "/assets/smile-preview/sample-0.webp"} alt="" style={{ clipPath: `inset(0 ${100 - split}% 0 0)` }} /><span className="smile-photo-label before">Starting smile</span><span className="smile-photo-label after">Illustrative smile</span><div className="smile-divider" style={{ left: `${split}%` }}><span>↔</span></div><span className="smile-watermark">{personalResult ? "AI illustration · not a treatment prediction" : "AI-generated example · not a real patient"}</span></div>}
+          {(!photo || showSample || personalResult) && <div className="smile-slider"><label htmlFor="smile-compare">Drag to compare <span aria-hidden="true">↔</span></label><input id="smile-compare" type="range" min="0" max="100" value={split} onChange={e => setSplit(Number(e.target.value))} aria-valuetext={`${split}% starting smile visible`} /></div>}
+          {photo && <div className="smile-photo-actions"><button onClick={() => setShowSample(!showSample)}>{showSample ? (result ? 'View my AI concept' : 'View my photo') : 'View fictional example'}</button><button onClick={clearPhoto}>Remove my photo</button></div>}
+          <div className="smile-goal"><span aria-hidden="true">✦</span><div><small>YOUR SELECTED DIRECTION</small><h3>{selected.goal}</h3><p>{personalResult ? 'This appearance concept was generated from your photo using your selected treatment direction. It does not establish suitability or predict your outcome.' : photo && !showSample ? (aiEnabled ? 'Your photo is ready. Review the processing notice and consent to create an illustrative concept.' : 'Your photo is ready for a future personalized preview. No result has been generated.') : 'This shared sample demonstrates the comparison tool. It is not a treatment-specific result or a preview of your own smile.'}</p></div></div>
+          <div className="smile-disclaimer"><strong>Inspiration starts here. Your treatment plan starts with a dentist.</strong><p>An AI image is an appearance concept, not a diagnosis, treatment recommendation, or guaranteed outcome. Your examination and any necessary scans determine what is achievable.</p></div>
         </div>
       </section>
       <section className="smile-next"><div><span className="smile-eyebrow">LET’S MAKE IT PERSONAL</span><h2>Ready to explore your options?</h2><p>Talk with our team about your goals and the next step for your smile.</p></div><a href="/contact/" className="smile-button">Book a consultation <span aria-hidden="true">↗</span></a></section>

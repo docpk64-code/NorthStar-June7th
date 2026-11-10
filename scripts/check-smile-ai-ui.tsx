@@ -1,0 +1,44 @@
+import { registerHooks } from 'node:module';
+registerHooks({ load(url, context, next) { return url.endsWith('.css') ? { format: 'module', source: '', shortCircuit: true } : next(url, context); } });
+import assert from 'node:assert/strict';
+import React, { act } from 'react';
+import { JSDOM } from 'jsdom';
+const dom = new JSDOM('<div id="root"></div>', { url: 'https://northstarimplants.com/smile-preview/' });
+Object.assign(globalThis, { window: dom.window, document: dom.window.document, React, IS_REACT_ACT_ENVIRONMENT: true });
+Object.defineProperty(globalThis, 'navigator', { value: dom.window.navigator, configurable: true });
+Object.assign(globalThis, { Image: class { src = ''; naturalWidth = 1000; naturalHeight = 1200; async decode() {} } });
+URL.createObjectURL = () => 'blob:local-photo'; URL.revokeObjectURL = () => {};
+const jpeg = 'data:image/jpeg;base64,/9j/' + 'A'.repeat(136);
+dom.window.HTMLCanvasElement.prototype.getContext = (() => ({ fillRect() {}, drawImage() {} })) as any;
+dom.window.HTMLCanvasElement.prototype.toDataURL = () => jpeg;
+let apiCalls = 0, resolvePending: ((response: Response) => void) | undefined;
+let pending = false;
+globalThis.fetch = (async (url: string, options?: RequestInit) => {
+  if (url.endsWith('smile-status')) return Response.json({ enabled: true, consentVersion: '2026-11-10' });
+  assert(url.endsWith('smile-generate')); apiCalls++;
+  const input = JSON.parse(options?.body as string); assert.equal(input.image, jpeg); assert.equal(input.consent, true); assert.equal(input.consentVersion, '2026-11-10');
+  if (pending) return new Promise<Response>(resolve => { resolvePending = resolve; });
+  return Response.json({ image: jpeg, treatment: input.treatment });
+}) as any;
+const { createRoot } = await import('react-dom/client'); const { default: Page } = await import('../src/SmilePreviewPage');
+const root = createRoot(document.getElementById('root')!); await act(async () => root.render(<Page />));
+const generate = () => document.querySelector<HTMLButtonElement>('.smile-generate')!;
+assert(generate().disabled); assert.equal(apiCalls, 0);
+const input = document.querySelector<HTMLInputElement>('input[type=file]')!;
+async function photo() {
+  Object.defineProperty(input, 'files', { configurable: true, value: [new dom.window.File(['original-photo'], 'private-filename.jpg', { type: 'image/jpeg' })] });
+  await act(async () => input.dispatchEvent(new dom.window.Event('change', { bubbles: true })));
+}
+await photo(); assert(generate().disabled); assert.equal(apiCalls, 0);
+await act(async () => document.querySelector<HTMLInputElement>('.smile-consent input')!.click()); assert(!generate().disabled);
+await act(async () => generate().click());
+assert.equal(apiCalls, 1); assert(document.querySelector('.smile-comparison')?.getAttribute('aria-label')?.includes('Your photo'));
+assert(document.querySelector('.smile-watermark')?.textContent?.includes('not a treatment prediction'));
+await act(async () => document.querySelector<HTMLInputElement>('input[value=veneers]')!.click()); assert(!document.querySelector('.smile-comparison')); assert(generate().disabled);
+await act(async () => document.querySelector<HTMLInputElement>('.smile-consent input')!.click());
+pending = true; await act(async () => generate().click());
+await act(async () => [...document.querySelectorAll('button')].find(button => button.textContent === 'Remove my photo')!.click());
+await act(async () => resolvePending!(Response.json({ image: jpeg, treatment: 'veneers' })));
+assert(!document.querySelector('.smile-personal-photo')); assert(document.querySelector('.smile-watermark')?.textContent?.includes('not a real patient'));
+await act(async () => root.unmount()); dom.window.close();
+console.log('PASS: no transmission before consent, enabled flow, normalized photo request, actual result comparison, treatment reset and ignoring canceled results. No live API calls.');

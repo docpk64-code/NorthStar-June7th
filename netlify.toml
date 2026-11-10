@@ -29,3 +29,7 @@
 # Surface browser-download progress during deploy-preview dependency installation.
 [context.deploy-preview.environment]
   NPM_FLAGS = "--foreground-scripts"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
