@@ -37,6 +37,13 @@ for (const route of routes) {
       root.render(<Root key={path} />);
     });
     await settle();
+    if (route === '/smile-preview') {
+      assert.equal(document.querySelectorAll('link[rel="canonical"]').length, 0, path);
+      assert.equal(document.querySelector('meta[name="robots"]')?.getAttribute('content'), 'noindex, follow', path);
+      assert.equal(document.querySelectorAll('input[name="treatment"]').length, 3);
+      assert(document.querySelector<HTMLButtonElement>('.smile-generate')?.disabled);
+      continue;
+    }
     assert.equal(document.querySelectorAll('link[rel="canonical"]').length, 1, path);
     assert.equal(document.querySelector('link[rel="canonical"]')?.getAttribute('href'), 'https://northstarimplants.com' + pathFor(route), path);
     assert.equal(document.querySelector('meta[name="robots"]')?.getAttribute('content'), 'index, follow', path);
@@ -63,7 +70,7 @@ for (const route of routes) {
     }
     if (route === '/procedures') {
       for (const treatment of ['dental-implants', 'full-arch', 'wisdom-teeth', 'sedation']) {
-        assert(document.querySelector(`.page-card[href="/${treatment}/"]`));
+        assert(document.querySelector(`.ns-illustrated-treatment-card[href="/${treatment}/"]`));
       }
     }
     if (route !== '/') assert(!document.querySelector('h1')!.textContent!.includes('Welcome To'), path);
@@ -89,7 +96,7 @@ for (const route of routes) {
 
     }
   }
-  assert(sitemap.includes('https://northstarimplants.com' + pathFor(route) + '</loc>'), route);
+  assert.equal(sitemap.includes('https://northstarimplants.com' + pathFor(route) + '</loc>'), route !== '/smile-preview', route);
   assert(!redirects.includes('301!'), 'Slash-only forced redirects can loop on Netlify');
 }
 await act(async () => navigate('/dental-implants'));

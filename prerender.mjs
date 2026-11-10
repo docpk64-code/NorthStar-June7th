@@ -26,7 +26,7 @@ const MIME = {
 };
 
 const ROUTES = [
-  '/',
+  '/', '/smile-preview',
   '/locations/briarwood', '/locations/manhattan', '/locations/commack', '/locations/brooklyn',
   '/about', '/procedures', '/dental-implants', '/full-arch', '/wisdom-teeth',
   '/sedation', '/patient-information', '/patient-forms', '/patient-forms/hipaa', '/patient-forms/new-patient', '/patient-forms/consent/oral-surgery', '/patient-forms/consent/all-on-x', '/patient-forms/consent/subperiosteal', '/technology',
@@ -106,7 +106,7 @@ async function prerender() {
       await page.waitForFunction((expected) => {
         const h1 = document.querySelector('h1');
         const canonical = document.querySelector('link[rel="canonical"]');
-        return h1 && (expected === '/404'
+        return h1 && (['/404', '/smile-preview'].includes(expected)
           ? document.querySelector('meta[name="robots"]')?.content.includes('noindex')
           : canonical?.getAttribute('href') === 'https://northstarimplants.com' + (expected === '/' ? '/' : expected + '/'));
       }, { timeout: 15000 }, route);

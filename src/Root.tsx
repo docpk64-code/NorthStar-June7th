@@ -10,6 +10,8 @@ import App from './App';
 import SEOHead from './components/SEOHead';
 import { routeKey, pagePath } from './utils/urls';
 
+const SmilePreviewPage = lazy(() => import('./SmilePreviewPage'));
+
 const IntakePage = lazy(() => import('./IntakePage'));
 const ConsentPage = lazy(() => import('./ConsentPage'));
 const HipaaPage = lazy(() => import('./HipaaPage'));
@@ -51,6 +53,7 @@ const TermsPage = lazy(() => import('./pages').then(m => ({ default: m.TermsPage
 
 const ROUTES: Record<string, React.ReactElement> = {
   '/': <App />,
+  '/smile-preview': <SmilePreviewPage />,
   '/about': <AboutPage />,
   '/procedures': <ProceduresPage />,
   '/dental-implants': <DentalImplantsPage />,
