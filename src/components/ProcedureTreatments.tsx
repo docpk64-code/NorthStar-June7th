@@ -1,3 +1,4 @@
+import SmilePreviewInvite from './SmilePreviewInvite';
 import SiteLink from './SiteLink';
 import '../styles/procedureTreatments.css';
 
@@ -44,6 +45,7 @@ export default function ProcedureTreatments() {
         </SiteLink>)}
       </div>
     </section>
+    <SmilePreviewInvite />
     <section className="ns-additional-procedures" aria-labelledby="additional-procedures-title">
       <h2 id="additional-procedures-title">Additional Procedures</h2>
       <div className="ns-additional-procedure-links">

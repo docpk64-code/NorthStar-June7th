@@ -9,6 +9,7 @@ import './styles/patientPreview.css';
 import './styles/northstarJourney.css';
 import './styles/northstarBrand.css';
 import './styles/homepageUnified.css';
+import SmilePreviewInvite from './components/SmilePreviewInvite';
 import BrooklynNotice from './components/BrooklynNotice';
 
 const navigationItems = [
@@ -69,6 +70,7 @@ export default function App() {
         <nav id="pp-navigation" className={open ? 'pp-nav open' : 'pp-nav'} aria-label="Main navigation">
           <SiteLink href="/about/" onClick={() => setOpen(false)}>About</SiteLink>
           <SiteLink href="/procedures/" onClick={() => setOpen(false)}>Procedures</SiteLink>
+          <SiteLink href="/smile-preview/" onClick={() => setOpen(false)}>Smile Preview · Demo</SiteLink>
           <SiteLink href="/facial-esthetics/" onClick={() => setOpen(false)}>Facial Esthetics</SiteLink>
           <SiteLink href="/patient-forms/" onClick={() => setOpen(false)}>Patient Forms</SiteLink>
           <a href="#locations" onClick={() => setOpen(false)}>Locations</a>
@@ -139,6 +141,8 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        <SmilePreviewInvite />
 
         {/* ── Specialized Circumstances heading ── */}
         <div style={{ background: '#ffffff', padding: '2rem 0 0' }}>

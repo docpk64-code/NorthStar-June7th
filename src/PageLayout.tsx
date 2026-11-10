@@ -11,6 +11,7 @@ import SiteLink from './components/SiteLink';
 const menuItems = [
   { label: 'About', href: '/about' },
   { label: 'Procedures', href: '/procedures' },
+  { label: 'Smile Preview · Demo', href: '/smile-preview' },
   { label: 'Dental Implants', href: '/dental-implants' },
   { label: 'Full-Arch', href: '/full-arch' },
   { label: 'Wisdom Teeth', href: '/wisdom-teeth' },
