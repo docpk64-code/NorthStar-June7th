@@ -7,7 +7,7 @@ const GOALS = {
   veneers: 'Create an illustrative cosmetic veneer appearance concept with conservative changes to visible tooth shape, proportion and shade. Preserve tooth positions and count; do not simulate implants or extensive orthodontic repositioning.',
 };
 export function apiKey(env = process.env) {
-  const value = (env.OPENAI_API_KEY || env.NorthStar_preview2 || env.NorthStar_Preview || '').trim();
+  const value = (env.NorthStar_preview2 || env.NorthStar_Preview || env.OPENAI_API_KEY || '').trim();
   if (/^sk-[A-Za-z0-9_-]{20,}$/.test(value)) return value;
   if (/[\*•…]/.test(value) || value.includes('...')) return value;
   // Recover one complete secret when copied with quotes, an assignment or setup text.

@@ -6,6 +6,7 @@ const input = (body, origin = 'https://northstarimplants.com') => new Request('h
 try {
   delete process.env.OPENAI_API_KEY; process.env.NorthStar_Preview = 'sk-test-only-not-real-credential-1234567890'; process.env.SMILE_AI_TEST_ENABLED = 'false';
   assert.equal(apiKey({OPENAI_API_KEY: 'export OPENAI_API_KEY=\"sk-test-only-not-real-credential-1234567890\"'}), 'sk-test-only-not-real-credential-1234567890');
+  assert.equal(apiKey({OPENAI_API_KEY:'netlify-automatic-proxy-token',NorthStar_preview2:'sk-test-only-not-real-credential-1234567890'}),'sk-test-only-not-real-credential-1234567890');
   assert.equal(apiKey(), 'sk-test-only-not-real-credential-1234567890'); assert.equal(credentialProblem(), null); assert.equal(credentialProblem({OPENAI_API_KEY:'sk-...example'}),'API_CREDENTIAL_MASKED'); assert.equal(credentialProblem({OPENAI_API_KEY:'NorthStar'}),'API_CREDENTIAL_FORMAT'); assert.equal(isEnabled(), false);
   assert.equal((await verify(input({ treatment: 'arch' }))).status, 503);
   process.env.SMILE_AI_TEST_ENABLED = 'true'; let calls = 0;
