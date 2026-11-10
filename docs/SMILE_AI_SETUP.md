@@ -37,3 +37,11 @@ References:
 - https://developers.openai.com/api/docs/guides/your-data
 - https://docs.netlify.com/build/functions/api/
 - https://docs.netlify.com/manage/security/secure-access-to-sites/rate-limiting/
+
+## Connection test status — November 10, 2026
+
+- The owner saved a secret named `NorthStar_Preview`. The server accepts this exact alias in addition to the preferred `OPENAI_API_KEY`; it never exposes either value.
+- A live fictional-image test reached OpenAI but returned `API_CREDENTIAL_INVALID`. No image was generated. The owner must replace the invalid secret directly in Netlify; no credentials were read or copied by the assistant.
+- Public patient generation remains disabled. The sample-only diagnostic at `/.netlify/functions/smile-verify` accepts only a treatment choice and always uses the fixed, already-public fictional image; it rejects uploaded images, arbitrary URLs and custom prompts.
+- Diagnostics are enabled only while `SMILE_AI_TEST_ENABLED=true`; keep it false outside a supervised test and redeploy after changes. Native rate limits also apply.
+- After correcting the Production credential, redeploy, run the sample-only test, inspect its image and timing, then disable test mode again. Do not enable patient generation before the privacy and live verification steps above are complete.
