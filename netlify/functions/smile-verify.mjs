@@ -1,8 +1,8 @@
-import { credentialProblem, editSmile, json, readLimitedJSON, sameOrigin } from '../server/smile-core.mjs';
+import { credentialSource, credentialProblem, editSmile, json, readLimitedJSON, sameOrigin } from '../server/smile-core.mjs';
 import { testPage } from '../server/smile-test-page.mjs';
 export default async function handler(request) {
   const enabled = process.env.SMILE_AI_TEST_ENABLED === 'true';
-  if (request.method === 'GET') return new Response(testPage(enabled, enabled ? credentialProblem() : null), { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store, private', 'X-Robots-Tag': 'noindex, nofollow', 'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'" } });
+  if (request.method === 'GET') return new Response(testPage(enabled, enabled ? credentialProblem() : null, enabled ? credentialSource() : null), { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store, private', 'X-Robots-Tag': 'noindex, nofollow', 'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'" } });
   if (request.method !== 'POST') return json({ error: 'Method not allowed.' }, 405);
   if (!sameOrigin(request)) return json({ error: 'Use the NorthStar test page.' }, 403);
   if (!enabled) return json({ error: 'The fictional-image connection test is currently disabled.' }, 503);

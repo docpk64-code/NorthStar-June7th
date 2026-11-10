@@ -6,20 +6,24 @@ const GOALS = {
   aligners: 'Create an illustrative appearance concept of modestly improved alignment of existing visible teeth. Preserve their individual shape, shade, count and character. Do not whiten, replace teeth, add veneers, show aligners, or imply a precise orthodontic movement or bite correction.',
   veneers: 'Create an illustrative cosmetic veneer appearance concept with conservative changes to visible tooth shape, proportion and shade. Preserve tooth positions and count; do not simulate implants or extensive orthodontic repositioning.',
 };
+export function credentialSource(env = process.env) {
+  const names = Object.keys(env);
+  for (const target of ['NorthStar_preview2', 'NorthStar_Preview', 'OPENAI_API_KEY']) {
+    const name = Object.hasOwn(env, target) ? target : names.find(name => name.toLowerCase() === target.toLowerCase());
+    if (name && typeof env[name] === 'string' && env[name].trim()) return name;
+  }
+  return null;
+}
 export function apiKey(env = process.env) {
-  const value = (env.NorthStar_preview2 || env.NorthStar_Preview || env.OPENAI_API_KEY || '').trim();
-  if (/^sk-[A-Za-z0-9_-]{20,}$/.test(value)) return value;
-  if (/[\*•…]/.test(value) || value.includes('...')) return value;
-  // Recover one complete secret when copied with quotes, an assignment or setup text.
-  // Never expose it, and never choose between multiple candidate credentials.
-  const candidates = value.match(/sk-[A-Za-z0-9_-]{20,}/g) || [];
-  return candidates.length === 1 ? candidates[0] : value;
+  const source = credentialSource(env);
+  // Treat credentials as opaque values. Do not truncate or extract parts of them.
+  return source ? env[source].trim() : '';
 }
 export function credentialProblem(env = process.env) {
   const value = apiKey(env);
   if (!value) return 'API_CREDENTIAL_MISSING';
   if (/[\*•…]/.test(value) || value.includes('...')) return 'API_CREDENTIAL_MASKED';
-  if (!/^sk-[A-Za-z0-9_-]{20,}$/.test(value)) return 'API_CREDENTIAL_FORMAT';
+  // OpenAI, not a guessed regular expression, decides whether a secret is valid.
   return null;
 }
 export function isEnabled(env = process.env) {

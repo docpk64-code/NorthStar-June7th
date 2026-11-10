@@ -1,13 +1,12 @@
 import assert from 'node:assert/strict';
 import verify from '../netlify/functions/smile-verify.mjs';
-import { apiKey, isEnabled, credentialProblem } from '../netlify/server/smile-core.mjs';
+import { apiKey, isEnabled, credentialProblem, credentialSource } from '../netlify/server/smile-core.mjs';
 const previous = { ...process.env }; const fetcher = globalThis.fetch;
 const input = (body, origin = 'https://northstarimplants.com') => new Request('https://northstarimplants.com/.netlify/functions/smile-verify', { method: 'POST', headers: { origin, 'content-type': 'application/json' }, body: JSON.stringify(body) });
 try {
   delete process.env.OPENAI_API_KEY; process.env.NorthStar_Preview = 'sk-test-only-not-real-credential-1234567890'; process.env.SMILE_AI_TEST_ENABLED = 'false';
-  assert.equal(apiKey({OPENAI_API_KEY: 'export OPENAI_API_KEY=\"sk-test-only-not-real-credential-1234567890\"'}), 'sk-test-only-not-real-credential-1234567890');
   assert.equal(apiKey({OPENAI_API_KEY:'netlify-automatic-proxy-token',NorthStar_preview2:'sk-test-only-not-real-credential-1234567890'}),'sk-test-only-not-real-credential-1234567890');
-  assert.equal(apiKey(), 'sk-test-only-not-real-credential-1234567890'); assert.equal(credentialProblem(), null); assert.equal(credentialProblem({OPENAI_API_KEY:'sk-...example'}),'API_CREDENTIAL_MASKED'); assert.equal(credentialProblem({OPENAI_API_KEY:'NorthStar'}),'API_CREDENTIAL_FORMAT'); assert.equal(isEnabled(), false);
+  assert.equal(apiKey(), 'sk-test-only-not-real-credential-1234567890'); assert.equal(credentialProblem(), null); assert.equal(credentialProblem({OPENAI_API_KEY:'sk-...example'}),'API_CREDENTIAL_MASKED'); assert.equal(apiKey({OPENAI_API_KEY:' sk-any-opaque.token:example '}),'sk-any-opaque.token:example'); assert.equal(credentialSource({NORTHSTAR_PREVIEW2:'private-value',OPENAI_API_KEY:'platform-token'}),'NORTHSTAR_PREVIEW2'); assert.equal(isEnabled(), false);
   assert.equal((await verify(input({ treatment: 'arch' }))).status, 503);
   process.env.SMILE_AI_TEST_ENABLED = 'true'; let calls = 0;
   globalThis.fetch = async (url, options) => {
