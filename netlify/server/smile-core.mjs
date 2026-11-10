@@ -6,7 +6,15 @@ const GOALS = {
   aligners: 'Create an illustrative appearance concept of modestly improved alignment of existing visible teeth. Preserve their individual shape, shade, count and character. Do not whiten, replace teeth, add veneers, show aligners, or imply a precise orthodontic movement or bite correction.',
   veneers: 'Create an illustrative cosmetic veneer appearance concept with conservative changes to visible tooth shape, proportion and shade. Preserve tooth positions and count; do not simulate implants or extensive orthodontic repositioning.',
 };
-export function apiKey(env = process.env) { return (env.OPENAI_API_KEY || env.NorthStar_preview2 || env.NorthStar_Preview || '').trim(); }
+export function apiKey(env = process.env) {
+  const value = (env.OPENAI_API_KEY || env.NorthStar_preview2 || env.NorthStar_Preview || '').trim();
+  if (/^sk-[A-Za-z0-9_-]{20,}$/.test(value)) return value;
+  if (/[\*•…]/.test(value) || value.includes('...')) return value;
+  // Recover one complete secret when copied with quotes, an assignment or setup text.
+  // Never expose it, and never choose between multiple candidate credentials.
+  const candidates = value.match(/sk-[A-Za-z0-9_-]{20,}/g) || [];
+  return candidates.length === 1 ? candidates[0] : value;
+}
 export function credentialProblem(env = process.env) {
   const value = apiKey(env);
   if (!value) return 'API_CREDENTIAL_MISSING';
