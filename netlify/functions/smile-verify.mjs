@@ -1,12 +1,13 @@
-import { apiKey, editSmile, json, readLimitedJSON, sameOrigin } from '../server/smile-core.mjs';
+import { credentialProblem, editSmile, json, readLimitedJSON, sameOrigin } from '../server/smile-core.mjs';
 import { testPage } from '../server/smile-test-page.mjs';
 export default async function handler(request) {
   const enabled = process.env.SMILE_AI_TEST_ENABLED === 'true';
-  if (request.method === 'GET') return new Response(testPage(enabled), { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store, private', 'X-Robots-Tag': 'noindex, nofollow', 'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'" } });
+  if (request.method === 'GET') return new Response(testPage(enabled, enabled ? credentialProblem() : null), { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store, private', 'X-Robots-Tag': 'noindex, nofollow', 'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'" } });
   if (request.method !== 'POST') return json({ error: 'Method not allowed.' }, 405);
   if (!sameOrigin(request)) return json({ error: 'Use the NorthStar test page.' }, 403);
   if (!enabled) return json({ error: 'The fictional-image connection test is currently disabled.' }, 503);
-  if (!apiKey()) return json({ error: 'No API credential is available to this deployment.', diagnostic: 'API_CREDENTIAL_MISSING' }, 503);
+  const problem = credentialProblem();
+  if (problem) return json({ error: 'The stored credential is missing, masked, or is not in secret-key format.', diagnostic: problem }, 503);
   if (!request.headers.get('content-type')?.startsWith('application/json')) return json({ error: 'Use the test controls.' }, 415);
   if (Number(request.headers.get('content-length')) > 512) return json({ error: 'This endpoint does not accept photos.' }, 413);
   let input;
