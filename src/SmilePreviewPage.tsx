@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ChangeEvent } from 'react';
+import SmileCamera from './components/SmileCamera';
 import SEOHead from './components/SEOHead';
 import './styles/smilePreview.css';
 
@@ -18,7 +19,9 @@ export default function SmilePreviewPage() {
   const [showSample, setShowSample] = useState(true);
   const [loading, setLoading] = useState(false);
   const upload = useRef<HTMLInputElement>(null);
-  const camera = useRef<HTMLInputElement>(null);
+  const [cameraOpen, setCameraOpen] = useState(false);
+  const cameraTrigger = useRef<HTMLButtonElement>(null);
+  const closeCamera = () => { setCameraOpen(false); cameraTrigger.current?.focus(); };
   const revision = useRef(0);
   const selected = treatments.find(item => item.id === treatment)!;
   useEffect(() => () => { if (photo) URL.revokeObjectURL(photo); }, [photo]);
@@ -27,12 +30,16 @@ export default function SmilePreviewPage() {
   const clearPhoto = () => {
     revision.current++; setPhoto(null); setError(''); setConsent(false); setLoading(false); setShowSample(true);
     if (upload.current) upload.current.value = '';
-    if (camera.current) camera.current.value = '';
+    setCameraOpen(false);
   };
   const choosePhoto = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     event.target.value = '';
     if (!file) return;
+    setCameraOpen(false);
+    await acceptPhoto(file);
+  };
+  const acceptPhoto = async (file: File) => {
     const current = ++revision.current;
     setError('');
     if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) { setError('Please choose a JPG, PNG, or WebP image. On iPhone, use a screenshot if your photo is HEIC.'); return; }
@@ -57,14 +64,15 @@ export default function SmilePreviewPage() {
     <SEOHead title="Smile Preview — demonstration" description="Explore the NorthStar Smile Preview interface with three treatment choices and a fictional smile comparison." noindex />
     <header className="smile-header"><a href="/" className="smile-brand"><span aria-hidden="true">✦</span><span>NorthStar<small>IMPLANT DENTISTRY</small></span></a><a href="/contact/" className="smile-header-contact">Book a consultation <span aria-hidden="true">↗</span></a></header>
     <main>
-      <section className="smile-intro"><div className="smile-eyebrow">A LITTLE INSPIRATION. A NEW POSSIBILITY.</div><h1>Your smile.<br /><em>A new perspective.</em></h1><p>Explore what a smile transformation could look like.<br className="smile-desktop-break" /> Start with a treatment, then add your photo.</p><div className="smile-demo-badge"><span aria-hidden="true">●</span> Interface preview · live AI coming later</div></section>
+      <section className="smile-intro"><div className="smile-eyebrow">A LITTLE INSPIRATION. A NEW POSSIBILITY.</div><h1>Your smile.<br /><em>A new perspective.</em></h1><p>Explore what a smile transformation could look like.<br className="smile-desktop-break" /> Start with a treatment, then add your photo.</p><div className="smile-demo-badge"><span aria-hidden="true">●</span> Live camera & photo upload · AI preview coming later</div></section>
       <section className="smile-workspace" aria-label="Smile preview studio">
         <div className="smile-controls">
           <div className="smile-step"><span>1</span><h2>Choose your smile journey</h2></div>
           <fieldset className="smile-options"><legend className="smile-sr-only">Treatment choice</legend>{treatments.map(item => <label key={item.id} className={`smile-option ${treatment === item.id ? 'selected' : ''}`}><input type="radio" name="treatment" value={item.id} checked={treatment === item.id} onChange={() => setTreatment(item.id)} /><span className="smile-option-number">{item.number}</span><span><strong>{item.title}</strong><small>{item.subtitle}</small></span><span className="smile-radio" aria-hidden="true" /></label>)}</fieldset>
           <p className="smile-treatment-detail" aria-live="polite">{selected.detail}</p>
           <div className="smile-step"><span>2</span><h2>Add your smile photo</h2></div>
-          <div className="smile-upload-box"><span className="smile-camera-icon" aria-hidden="true">◎</span><strong>A clear photo is a great start</strong><p>Face the camera, smile with teeth visible, and use even, natural light. Avoid filters.</p><div className="smile-upload-actions"><button className="smile-button" onClick={() => upload.current?.click()} disabled={loading}>{loading ? 'Opening photo…' : photo ? 'Replace photo' : 'Choose a photo'} <span aria-hidden="true">↑</span></button><button className="smile-camera-button" onClick={() => camera.current?.click()} disabled={loading}>Take a photo</button></div><small>JPG, PNG or WebP · up to 10 MB<br />Camera capture depends on your device.</small><input ref={upload} type="file" accept="image/jpeg,image/png,image/webp" onChange={choosePhoto} hidden aria-label="Choose a smile photo" /><input ref={camera} type="file" accept="image/jpeg,image/png,image/webp" capture="user" onChange={choosePhoto} hidden aria-label="Take a smile photo" /></div>
+          <div className="smile-upload-box"><button ref={cameraTrigger} type="button" className="smile-camera-icon smile-camera-open" aria-label="Open front-facing camera" onClick={() => setCameraOpen(true)} disabled={loading || cameraOpen}><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M8 5 9.5 3h5L16 5h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><circle cx="12" cy="12" r="4"/></svg></button><strong>A clear photo is a great start</strong><p>Face the camera, smile with teeth visible, and use even, natural light. Avoid filters.</p><div className="smile-upload-actions"><button className="smile-button" onClick={() => upload.current?.click()} disabled={loading}>{loading ? 'Opening photo…' : photo ? 'Replace photo' : 'Choose a photo'} <span aria-hidden="true">↑</span></button><button className="smile-camera-button" onClick={() => setCameraOpen(true)} disabled={loading || cameraOpen}>Take a photo</button></div><small>JPG, PNG or WebP · up to 10 MB<br />Front camera on phones · webcam on laptops. Camera permission is required.</small><input ref={upload} type="file" accept="image/jpeg,image/png,image/webp" onChange={choosePhoto} hidden aria-label="Choose a smile photo" /></div>
+          {cameraOpen && <SmileCamera onCapture={file => { void acceptPhoto(file); }} onClose={closeCamera} />}
           {error && <p role="alert" className="smile-error">{error}</p>}
           <p className="smile-privacy"><span aria-hidden="true">◇</span> Private by design: in this preview, your photo stays in this browser and is never sent for AI processing.</p>
           <label className="smile-consent"><input type="checkbox" checked={consent} onChange={e => setConsent(e.target.checked)} /> <span>I am 18 or older, this is my photo, and I understand that a smile preview is illustrative and does not establish treatment suitability.</span></label>
