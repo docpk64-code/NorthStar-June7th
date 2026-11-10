@@ -45,3 +45,7 @@ References:
 - Public patient generation remains disabled. The sample-only diagnostic at `/.netlify/functions/smile-verify` accepts only a treatment choice and always uses the fixed, already-public fictional image; it rejects uploaded images, arbitrary URLs and custom prompts.
 - Diagnostics are enabled only while `SMILE_AI_TEST_ENABLED=true`; keep it false outside a supervised test and redeploy after changes. Native rate limits also apply.
 - After correcting the Production credential, redeploy, run the sample-only test, inspect its image and timing, then disable test mode again. Do not enable patient generation before the privacy and live verification steps above are complete.
+
+### Replacement credential retest
+
+The replacement was saved in Production as `NorthStar_preview2`; the server now accepts this alias. The retest reached OpenAI and was rejected as invalid. A subsequent server-only format check reported `API_CREDENTIAL_FORMAT`, meaning the saved text is not a complete conventional OpenAI secret-key string. No key value was revealed. No patient photo was sent and no image was produced. The owner needs to copy the actual secret value using OpenAI’s new-key dialog and replace the Production value directly. Sample test mode is disabled again after the check; patient generation remains off.
