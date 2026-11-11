@@ -9,7 +9,7 @@ export const languages = {
 
 export type WebsiteLanguage = keyof typeof languages;
 export const enabledLanguages = ['en', 'zh-Hans'] as const;
-export const translationProjectKey = import.meta.env?.VITE_WEGLOT_API_KEY?.trim();
+export const translationProjectKey = import.meta.env?.VITE_WEGLOT_PROJECT?.trim();
 const preferenceKey = 'northstar-website-language';
 const privatePaths = ['/patient-forms', '/contact', '/smile-preview', '/terms'];
 
