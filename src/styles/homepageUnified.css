@@ -112,7 +112,8 @@
 .pp-brand-orbit { flex:none; }
 .pp-orbit-logo-window { display:block; position:relative; width:230px; aspect-ratio:1140/410; overflow:hidden; mix-blend-mode:lighten; }
 .pp-orbit-logo-window img { display:block; position:absolute; width:155.6141%; max-width:none; height:auto; left:-28.0702%; top:-1.2195%; }
+.pp-footer-top .pp-orbit-logo-window { width:190px; }
 @media(max-width:700px) { .brand-preview .pp-nav-wrap { padding-top:10px; padding-bottom:10px; } .pp-orbit-logo-window { width:190px; } }
 
-.brand-preview .pp-header { background:#071521; }
+.brand-preview .pp-header, .brand-preview .pp-footer { background:#071521; }
 .pp-orbit-logo-window img { mix-blend-mode:lighten; }

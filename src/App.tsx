@@ -56,6 +56,16 @@ const locations = [
   { id: 'commack', name: 'Commack', address: '283 Commack Road, Suite 130', city: 'Commack, NY 11725' },
 ];
 
+function NorthStarWordmark() {
+  return (
+    <a className="pp-brand pp-brand-orbit" href="#top" aria-label="NorthStar Implant Dentistry home">
+      <span className="pp-orbit-logo-window">
+        <img src="/assets/northstar-orbit-wordmark-approved.png" alt="NorthStar Implant Dentistry" width="1774" height="887" />
+      </span>
+    </a>
+  );
+}
+
 export default function App() {
   const [open, setOpen] = useState(false);
   const [formState, handleSubmit] = useForm('xbdpbdkj');
@@ -67,7 +77,7 @@ export default function App() {
     <div className="pp-contactbar"><span>Briarwood · Manhattan · Commack · Brooklyn (opening Jan 4, 2027)</span><a href="tel:6313151400">631-315-1400</a><span>Mon–Sat 9am–8pm · Sunday by appointment</span></div>
     <header className="pp-header">
       <div className="pp-nav-wrap">
-        <a className="pp-brand pp-brand-orbit" href="#top" aria-label="NorthStar Implant Dentistry home"><span className="pp-orbit-logo-window"><img src="/assets/northstar-orbit-wordmark-approved.png" alt="NorthStar Implant Dentistry" width="1774" height="887" /></span></a>
+        <NorthStarWordmark />
         <button className="pp-menu-button" aria-expanded={open} aria-controls="pp-navigation" onClick={() => setOpen(!open)}>{open ? 'Close menu' : 'Menu ☰'}</button>
         <nav id="pp-navigation" className={open ? 'pp-nav open' : 'pp-nav'} aria-label="Main navigation">
           <SiteLink href="/about/" onClick={() => setOpen(false)}>About</SiteLink>
@@ -219,6 +229,19 @@ export default function App() {
       </div></section>
       <section className="pp-locations pp-section" id="locations"><div className="pp-shell"><p className="pp-eyebrow">Close to home</p><h2>Four locations. One NorthStar.</h2><div className="pp-location-grid">{locations.map(l=><div key={l.name}><h3><SiteLink href={`/locations/${l.id}/`}>{l.name} ↗</SiteLink></h3><p>{l.address}<br />{l.city}</p><a className="pp-text-link" href={'https://maps.google.com/?q='+encodeURIComponent(l.address+' '+l.city)}>Get directions ↗</a></div>)}</div><BrooklynNotice /></div></section>
     </main>
-    <footer className="pp-footer"><div className="pp-shell"><div className="pp-footer-top"><span className="pp-brand">NorthStar <small>IMPLANT DENTISTRY</small></span><p>Guiding patients one smile at a time.</p><a href="tel:6313151400">631-315-1400</a></div><div className="pp-footer-bottom"><span>© {new Date().getFullYear()} NorthStar Implant Dentistry, P.C. All rights reserved.</span><SiteLink href="/terms/">Terms of Use &amp; IP Notice</SiteLink><a href="#top">Back to top ↑</a></div></div></footer>
+    <footer className="pp-footer">
+      <div className="pp-shell">
+        <div className="pp-footer-top">
+          <NorthStarWordmark />
+          <p>Guiding patients one smile at a time.</p>
+          <a href="tel:6313151400">631-315-1400</a>
+        </div>
+        <div className="pp-footer-bottom">
+          <span>© {new Date().getFullYear()} NorthStar Implant Dentistry, P.C. All rights reserved.</span>
+          <SiteLink href="/terms/">Terms of Use &amp; IP Notice</SiteLink>
+          <a href="#top">Back to top ↑</a>
+        </div>
+      </div>
+    </footer>
   </div>;
 }
