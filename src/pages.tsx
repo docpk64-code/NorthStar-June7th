@@ -1,3 +1,4 @@
+import BoneGraftingVideo from './components/BoneGraftingVideo';
 import ProcedureTreatments from './components/ProcedureTreatments';
 import FullArchOptions from './components/FullArchOptions';
 import ClinicalWarningCards from './components/ClinicalWarningCards';
@@ -2315,39 +2316,7 @@ export function BoneGraftingPage() {
           Watch the video below for a closer look at the bone grafting process
           and what it means for your implant journey.
         </p>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            margin: '1.5rem 0',
-          }}
-        >
-          <div
-            style={{
-              position: 'relative',
-              width: '100%',
-              maxWidth: '400px',
-              aspectRatio: '9/16',
-            }}
-          >
-            <iframe
-              src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2817005775309255%2F&show_text=false&width=267&t=0"
-              style={{
-                width: '100%',
-                height: '100%',
-                border: 'none',
-                overflow: 'hidden',
-                borderRadius: '0.75rem',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
-                display: 'block',
-              }}
-              scrolling="no"
-              frameBorder="0"
-              allowFullScreen={true}
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            />
-          </div>
-        </div>
+        <BoneGraftingVideo />
       </div>
 
       <div className="page-section">

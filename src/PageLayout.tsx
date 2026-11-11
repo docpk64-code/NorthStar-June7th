@@ -1,3 +1,4 @@
+import LanguageSelector from './components/LanguageSelector';
 /**
  * PageLayout.tsx — Shared layout for all inner pages.
  * Uses custom navigate() instead of react-router-dom.
@@ -503,6 +504,7 @@ export function PageLayout({
             </li>
           ))}
         </ul>
+        <LanguageSelector />
         {/* Mobile hamburger */}
         <button
           className="page-nav-toggle"

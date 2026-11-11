@@ -1,0 +1,57 @@
+.ns-language-selector {
+  flex: 0 0 auto;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid #a58e5b;
+  border-radius: 0.4rem;
+  background: #16243c;
+  color: #fff6e0;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.ns-language-selector:focus-visible {
+  outline: 2px solid #f3d37a;
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  .ns-language-selector { font-size: 1rem; }
+}
+
+.ns-language-control {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.ns-language-status {
+  position: absolute;
+  top: calc(100% + 0.3rem);
+  right: 0;
+  z-index: 1;
+  width: max-content;
+  max-width: 12rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.35rem;
+  background: #16243c;
+  color: #fff6e0;
+  font-size: 0.8rem;
+}
+
+.brand-preview .pp-nav .ns-language-control {
+  align-self: flex-start;
+}
+
+@media (max-width: 768px) {
+  .page-nav:has(.ns-language-control) {
+    gap: 0.5rem;
+    padding-inline: 1rem;
+  }
+
+  .page-nav:has(.ns-language-control) .page-nav-brand {
+    min-width: 0;
+    white-space: normal;
+  }
+}

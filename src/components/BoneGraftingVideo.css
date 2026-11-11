@@ -1,0 +1,54 @@
+.bone-grafting-video {
+  width: min(100%, 400px);
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
+.bone-grafting-video-frame {
+  aspect-ratio: 9 / 16;
+  margin-bottom: 0.75rem;
+  border-radius: 0.75rem;
+  background: #16243c;
+  box-shadow: 0 8px 32px rgb(0 0 0 / 18%);
+}
+
+.bone-grafting-video-frame button,
+.bone-grafting-video-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: inherit;
+}
+
+.bone-grafting-video-frame button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.bone-grafting-video-frame button:focus-visible {
+  outline: 3px solid #c9a227;
+  outline-offset: 4px;
+}
+
+.bone-grafting-video-frame img {
+  display: block;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.bone-grafting-video-play {
+  padding: 0.65rem 1.2rem;
+  border-radius: 0.35rem;
+  background: #e5c875;
+  color: #16243c;
+  font: inherit;
+  font-weight: 700;
+}

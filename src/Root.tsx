@@ -1,3 +1,4 @@
+import { preferredLanguage } from './utils/websiteLanguage';
 /**
  * Root.tsx — Simple custom router using browser history API.
  * No react-router-dom needed. Works perfectly in StackBlitz.
@@ -96,7 +97,12 @@ const ROUTES: Record<string, React.ReactElement> = {
 
 export function navigate(path: string) {
   const url = new URL(path, window.location.origin);
-  window.history.pushState({}, '', pagePath(url.pathname) + url.search + url.hash);
+  const destination = pagePath(url.pathname) + url.search + url.hash;
+  if (preferredLanguage() !== 'en') {
+    window.location.assign(destination);
+    return;
+  }
+  window.history.pushState({}, '', destination);
   window.dispatchEvent(new PopStateEvent('popstate'));
 }
 
