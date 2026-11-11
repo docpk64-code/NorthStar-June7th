@@ -121,9 +121,14 @@ export default function App() {
             </div>
             <p className="nj-hint">Select a compass label to explore your options.</p>
           </div>
-          <div id="nj-detail" className="nj-detail" aria-live="polite" aria-atomic="true">
-            <div className={`nj-detail-image${direction === 0 ? ' nj-detail-image-about' : ''}`}>{selectedImage && <img key={selected.image} src={selectedImage} alt="" />}<span>{selected.eyebrow}</span></div>
-            <div className="nj-detail-copy" key={direction}><h2>{selected.title}</h2><p>{selected.text}</p><SiteLink className="pp-button" href={selected.href}>{selected.link} <span aria-hidden="true">↗</span></SiteLink></div>
+          <div id="nj-detail" className="nj-detail" data-direction={direction} aria-live="polite" aria-atomic="true">
+            {selectedImage && <div className="nj-detail-image"><img key={selected.image} src={selectedImage} alt="" /></div>}
+            <div className="nj-detail-copy" key={direction}>
+              <span className="nj-detail-eyebrow">{selected.eyebrow}</span>
+              <h2>{selected.title}</h2>
+              <p>{selected.text}</p>
+              <SiteLink className="pp-button" href={selected.href}>{selected.link} <span aria-hidden="true">↗</span></SiteLink>
+            </div>
           </div>
         </div>
         <div className="pp-shell nj-quick"><span>Already know your next step?</span><a href="#contact">Request a consultation ↗</a><a href="tel:6313151400">Call 631-315-1400</a><SiteLink href="/procedures/">All procedures →</SiteLink></div>

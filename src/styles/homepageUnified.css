@@ -14,9 +14,6 @@
 .brand-preview .nj-direction { left:auto; right:auto; top:auto; bottom:auto; transform:translate(-50%,-50%); padding:10px 12px; font-size:12px; max-width:140px; line-height:1.25; text-align:center; }
 .brand-preview .nj-detail { justify-self:center; }
 .brand-preview .nj-detail-image { height:160px; }
-.brand-preview .nj-detail-image img { object-position:center 25%; }
-.brand-preview .nj-detail-image-about img { object-fit:contain; object-position:right center; opacity:.9; }
-.brand-preview .nj-detail p { min-height:100px; }
 .brand-preview .nj-quick { padding-bottom:25px; }
 .brand-preview .nj-guide-section { border-top:1px solid #cbb17740; }
 /* Keep the live card components, dimensions, images, text and destinations. */
