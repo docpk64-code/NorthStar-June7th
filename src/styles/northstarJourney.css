@@ -30,23 +30,26 @@
 .nj-direction-2 { left:50%; bottom:0; transform:translateX(-50%); }
 .nj-direction-3 { left:0; top:50%; transform:translateY(-50%); }
 .journey-preview .nj-hint { color:#b5a176; font:italic 14px Georgia,serif; margin:14px 0 0; }
-.nj-detail {
+.nj-explorer {
   --detail-paper:#fffdf8;
   --detail-mat:#eee7db;
+}
+.nj-explorer[data-direction="1"], .nj-explorer[data-direction="3"] {
+  --detail-paper:#f9fcff;
+  --detail-mat:#e2eaf3;
+}
+.nj-explorer[data-direction="2"], .nj-explorer[data-direction="5"] {
+  --detail-paper:#fafcf9;
+  --detail-mat:#e5ebe3;
+}
+.nj-compass-face { fill:var(--detail-paper); }
+.nj-detail {
   width:100%; max-width:450px;
   border:1px solid #c9ae76;
   border-radius:14px;
   background:var(--detail-paper);
   color:#16243c;
   box-shadow:0 20px 60px #0003;
-}
-.nj-detail[data-direction="1"], .nj-detail[data-direction="3"] {
-  --detail-paper:#f9fcff;
-  --detail-mat:#e2eaf3;
-}
-.nj-detail[data-direction="2"], .nj-detail[data-direction="5"] {
-  --detail-paper:#fafcf9;
-  --detail-mat:#e5ebe3;
 }
 .nj-detail-image {
   height:148px;

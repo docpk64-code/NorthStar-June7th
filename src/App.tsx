@@ -94,26 +94,28 @@ export default function App() {
           <h2>Your smile. <em>Your direction.</em></h2>
           <p>Every journey starts somewhere. Where would you like yours to begin?</p>
         </div>
-        <div className="pp-shell nj-explorer">
+        <div className="pp-shell nj-explorer" data-direction={direction}>
           <div className="nj-compass-area">
             <p className="nj-coordinate">NORTHSTAR / FIND YOUR PATH</p>
             <div className="nj-compass" role="group" aria-label="Choose a care direction">
               <svg viewBox="0 0 500 500" aria-hidden="true" className="nj-instrument">
-                <defs><radialGradient id="nj-face"><stop offset="0%" stopColor="#142e3e"/><stop offset="100%" stopColor="#081722"/></radialGradient><linearGradient id="nj-gold" x1="0" x2="1"><stop stopColor="#987137"/><stop offset=".5" stopColor="#f7e7b5"/><stop offset="1" stopColor="#bb9854"/></linearGradient></defs>
+                <defs><linearGradient id="nj-gold" x1="0" x2="1"><stop stopColor="#987137"/><stop offset=".5" stopColor="#f7e7b5"/><stop offset="1" stopColor="#bb9854"/></linearGradient></defs>
                 <g transform="translate(250 250) scale(.76) translate(-250 -250)">
-                <circle cx="250" cy="250" r="209" fill="url(#nj-face)" stroke="#baa16b" strokeWidth="1"/>
+                <circle cx="250" cy="250" r="209" fill="#081722" stroke="#baa16b" strokeWidth="1"/>
                 <circle cx="250" cy="250" r="194" fill="none" stroke="#c6ae762f" strokeWidth="13"/>
+                <circle cx="250" cy="250" r="187" className="nj-compass-face" stroke="#baa16b" strokeWidth="1"/>
                 {Array.from({length: 72},(_, i)=><line key={i} x1="250" y1="45" x2="250" y2={i%6===0?'64':'53'} stroke={i%6===0?'#d9bd80':'#8c79554f'} strokeWidth={i%6===0?2:1} transform={`rotate(${i*5} 250 250)`}/>)}
-                <circle cx="250" cy="250" r="151" fill="none" stroke="#b99b5e55" strokeDasharray="2 8"/>
-                <path d="M250 90V410 M90 250H410" stroke="#d9bd8030"/>
+                <circle cx="250" cy="250" r="151" fill="none" stroke="#786445" strokeWidth="1.4" strokeLinecap="round" strokeDasharray="1 8"/>
+                <path d="M250 90V410" stroke="#a58d5f50"/>
+                <path d="M90 250H410" stroke="#826b46" strokeWidth="1.4"/>
                 <g className="nj-needle" style={{transform:`rotate(${selected.rotation}deg)`,transformOrigin:'250px 250px'}}>
-                  <path d="M250 65 L261 250 L250 272 L239 250Z" fill="url(#nj-gold)" stroke="#f4dfa9" strokeWidth=".8"/>
+                  <path d="M250 65 L261 250 L250 272 L239 250Z" fill="url(#nj-gold)" stroke="#967039" strokeWidth=".8"/>
                   <path d="M250 65 L250 272 L239 250Z" fill="#b58b42"/>
-                  <path d="M250 435 L239 250 L250 228 L261 250Z" fill="#6f929f" stroke="#b2c9d0" strokeWidth=".8"/>
+                  <path d="M250 435 L239 250 L250 228 L261 250Z" fill="#6f929f" stroke="#426172" strokeWidth=".8"/>
                   <path d="M250 435 L250 228 L261 250Z" fill="#294c60"/>
                 </g>
                 <circle cx="250" cy="250" r="16" fill="#071722" stroke="#d3b575" strokeWidth="2"/>
-                <circle cx="250" cy="250" r="6" fill="url(#nj-gold)"/>
+                <circle cx="250" cy="250" r="6" fill="#b48c48"/>
                 </g>
                 {directions.map((d,i)=><g key={d.label} transform={`rotate(${d.rotation} 250 250)`} className={`nj-rim-connector${i===direction?' selected':''}`}><line x1="250" y1="89" x2="250" y2="76"/><circle cx="250" cy="89" r="2.5"/></g>)}
               </svg>
@@ -121,7 +123,7 @@ export default function App() {
             </div>
             <p className="nj-hint">Select a compass label to explore your options.</p>
           </div>
-          <div id="nj-detail" className="nj-detail" data-direction={direction} aria-live="polite" aria-atomic="true">
+          <div id="nj-detail" className="nj-detail" aria-live="polite" aria-atomic="true">
             {selectedImage && <div className="nj-detail-image"><img key={selected.image} src={selectedImage} alt="" /></div>}
             <div className="nj-detail-copy" key={direction}>
               <span className="nj-detail-eyebrow">{selected.eyebrow}</span>
