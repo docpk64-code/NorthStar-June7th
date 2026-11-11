@@ -35,8 +35,6 @@ const SinusLiftsPage = lazy(() => import('./pages').then(m => ({ default: m.Sinu
 const ImplantPlacementPage = lazy(() => import('./pages').then(m => ({ default: m.ImplantPlacementPage })));
 const RidgePreservationPage = lazy(() => import('./pages').then(m => ({ default: m.RidgePreservationPage })));
 const RestorativeCoordPage = lazy(() => import('./pages').then(m => ({ default: m.RestorativeCoordPage })));
-const RemoteAnchorImplantPage = lazy(() => import('./pages').then(m => ({ default: m.RemoteAnchorImplantPage })));
-const WisdomTeethExtPage = lazy(() => import('./pages').then(m => ({ default: m.WisdomTeethExtPage })));
 const FullMouthReconPage = lazy(() => import('./pages').then(m => ({ default: m.FullMouthReconPage })));
 const OralMedPathologyPage = lazy(() => import('./pages').then(m => ({ default: m.OralMedPathologyPage })));
 const PreProstheticSurgPage = lazy(() => import('./pages').then(m => ({ default: m.PreProstheticSurgPage })));
@@ -81,8 +79,6 @@ const ROUTES: Record<string, React.ReactElement> = {
   '/procedure/implant-placement': <ImplantPlacementPage />,
   '/procedure/ridge-preservation': <RidgePreservationPage />,
   '/procedure/restorative-coordination': <RestorativeCoordPage />,
-  '/procedure/remote-anchorage-implant': <RemoteAnchorImplantPage />,
-  '/procedure/wisdom-teeth-extractions': <WisdomTeethExtPage />,
   '/procedure/full-mouth-reconstruction': <FullMouthReconPage />,
   '/procedure/oral-medicine-pathology': <OralMedPathologyPage />,
   '/procedure/pre-prosthetic-surgery': <PreProstheticSurgPage />,

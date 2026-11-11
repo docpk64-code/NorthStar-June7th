@@ -14,8 +14,6 @@ const treatments = [
 ];
 const additionalProcedures = [
   { title: 'Restorative Coordination', href: '/procedure/restorative-coordination/' },
-  { title: 'Remote Anchorage Implants', href: '/procedure/remote-anchorage-implant/' },
-  { title: 'Wisdom Teeth Extractions', href: '/procedure/wisdom-teeth-extractions/' },
   { title: 'Full Mouth Reconstruction', href: '/procedure/full-mouth-reconstruction/' },
   { title: 'Pre-Prosthetic Surgery', href: '/procedure/pre-prosthetic-surgery/' },
   { title: 'Maxillary Expansion — MARPE', href: '/procedure/maxillary-expansion-marpe/' },

@@ -706,7 +706,7 @@ export function WisdomTeethPage() {
   return (
     <PageLayout
       kicker="Surgical Expertise"
-      title="Wisdom Teeth"
+      title="Wisdom Teeth Removal"
       subtitle="Expert evaluation, comfort-focused planning, and skilled removal of symptomatic or impacted wisdom teeth."
     >
       <div className="page-section">
@@ -783,15 +783,17 @@ export function WisdomTeethPage() {
           precise position and orientation of each wisdom tooth and its
           proximity to important structures such as the inferior alveolar nerve
           in the lower jaw and the maxillary sinuses above the upper back teeth.
-          This imaging allows our surgeons to plan each extraction with maximum
-          safety and efficiency.
+          Your evaluation considers the position, depth, and orientation of
+          each tooth to determine whether removal is appropriate and to plan
+          the surgical approach for your individual anatomy.
         </p>
         <p>
           The procedure is performed under local anesthesia. IV sedation is
           available and highly recommended for patients who prefer to be relaxed
           and unaware during the surgery — many patients report having little to
           no memory of the procedure at all. Depending on the degree of
-          impaction, the tooth may be sectioned into smaller pieces for easier,
+          impaction, a small incision in the gum may be needed to access the
+          tooth. It may then be sectioned into smaller pieces for easier,
           less traumatic removal. The entire procedure typically takes between
           30 and 90 minutes depending on the number of teeth and complexity.
           Most patients go home the same day and are comfortable within a few
@@ -808,7 +810,9 @@ export function WisdomTeethPage() {
           your head elevated, and taking prescribed medications as directed will
           help manage discomfort effectively. A soft diet — including foods like
           yogurt, smoothies, mashed potatoes, and soup — is recommended for the
-          first several days. Avoid using straws, smoking, and vigorous rinsing,
+          first several days. Avoid hard foods while the surgical sites are
+          healing, and follow your written instructions for keeping the area
+          clean. Avoid using straws, smoking, and vigorous rinsing,
           all of which can dislodge the blood clot forming in the socket and
           increase the risk of dry socket.
         </p>
@@ -2762,164 +2766,6 @@ export function RestorativeCoordPage() {
     </PageLayout>
   );
 }
-export function RemoteAnchorImplantPage() {
-  return (
-    <PageLayout
-      kicker="Specialized Solutions"
-      title="Remote Anchorage Implant"
-      subtitle="Innovative implant options for patients with complex bone conditions or limited anatomy."
-    >
-      <div className="page-section">
-        <p className="page-kicker">Overview</p>
-        <h2>About This Procedure</h2>
-        <p>
-          Remote anchorage implants — which include zygomatic implants,
-          pterygoid implants, and other extra-maxillary techniques — are
-          advanced solutions designed for patients who have been told they
-          cannot receive traditional dental implants due to severe bone loss or
-          deficiency in the upper jaw. Rather than anchoring into the alveolar
-          ridge (the standard implant site), these specialized implants engage
-          remote areas of the skull and facial skeleton that retain dense,
-          reliable bone — such as the zygomatic bone (cheekbone) or the
-          pterygoid plates behind the upper jaw.
-        </p>
-        <p>
-          These techniques were developed to give hope to patients with complex
-          anatomical challenges — including those who have worn full dentures
-          for many years, experienced significant bone atrophy, undergone prior
-          failed implant surgeries, or have medical conditions that affect bone
-          density. At NorthStar, Dr. Kampf has specialized training in these
-          advanced techniques and has helped many patients achieve fixed,
-          functional teeth when other practices had no solutions to offer.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">The Process</p>
-        <h2>What to Expect</h2>
-        <p>
-          This procedure requires extensive pre-surgical planning using cone
-          beam CT imaging and 3D digital simulation to map the trajectory of
-          each implant through the facial skeleton to its remote anchorage site.
-          The surgery is typically performed under IV sedation or general
-          anesthesia and requires a highly skilled surgical team with specific
-          expertise in craniofacial anatomy.
-        </p>
-        <p>
-          Zygomatic implants, for example, pass through the upper jaw and anchor
-          in the dense bone of the cheekbone, completely bypassing the deficient
-          ridge. In many cases, a fixed provisional prosthesis can be attached
-          on the same day as surgery — giving patients functional teeth
-          immediately. Final restorations are typically placed after a healing
-          period of several months.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">Outcomes</p>
-        <h2>Results & Long-Term Care</h2>
-        <p>
-          Remote anchorage implants have demonstrated excellent long-term
-          success rates in patients with severe bone deficiency, offering a
-          life-changing alternative to removable dentures or no treatment at
-          all. Patients report dramatic improvements in chewing function,
-          speech, confidence, and quality of life. As with all implant
-          procedures, long-term success depends on maintaining excellent oral
-          hygiene around the implant prosthesis and attending regular
-          professional maintenance appointments.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">Ready to Learn More?</p>
-        <h2>Schedule a Consultation</h2>
-        <p>
-          If you have been told you are not a candidate for dental implants due
-          to insufficient bone, please do not give up. Remote anchorage implant
-          techniques may offer a path forward that other practices cannot
-          provide. Contact NorthStar Implant Dentistry to schedule a specialized
-          consultation and find out whether this innovative approach is right
-          for you.
-        </p>
-      </div>
-    </PageLayout>
-  );
-}
-export function WisdomTeethExtPage() {
-  return (
-    <PageLayout
-      kicker="Surgical Expertise"
-      title="Wisdom Teeth Extractions"
-      subtitle="Expert evaluation and surgical removal of symptomatic or impacted wisdom teeth."
-    >
-      <div className="page-section">
-        <p className="page-kicker">Overview</p>
-        <h2>About This Procedure</h2>
-        <p>
-          Wisdom teeth — also called third molars — are the last teeth to
-          develop, typically emerging between the ages of 17 and 25. Because the
-          modern jaw often lacks sufficient space to accommodate them, wisdom
-          teeth frequently become impacted, meaning they are unable to fully
-          erupt through the gum line. Impacted wisdom teeth can cause a range of
-          problems including pain, infection, damage to adjacent teeth, cyst
-          formation, and crowding of the existing dentition.
-        </p>
-        <p>
-          Even wisdom teeth that have partially erupted can be difficult to
-          clean and are prone to decay and gum disease. At NorthStar Implant
-          Dentistry, we use advanced 3D imaging to thoroughly evaluate the
-          position, depth, and orientation of each wisdom tooth before
-          recommending removal, ensuring a treatment plan that is safe, precise,
-          and appropriate for your individual anatomy.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">The Process</p>
-        <h2>What to Expect</h2>
-        <p>
-          Before surgery, cone beam CT imaging is obtained to map the exact
-          position of each wisdom tooth and its relationship to critical
-          structures such as the inferior alveolar nerve and the maxillary
-          sinuses. This detailed evaluation ensures that the surgical approach
-          is planned with maximum safety and efficiency.
-        </p>
-        <p>
-          The procedure is performed under local anesthesia, with IV sedation
-          available for patients who prefer to be fully relaxed and unaware
-          during the surgery. The surgeon makes a small incision in the gum if
-          necessary, carefully sections the tooth if needed for easier removal,
-          and extracts it with minimal impact to the surrounding bone and
-          tissue. Most patients are able to return home the same day and resume
-          normal activities within a few days. Soreness, swelling, and minor
-          bleeding are normal in the first 48 to 72 hours and are manageable
-          with prescribed medications and cold compresses.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">Outcomes</p>
-        <h2>Results & Long-Term Care</h2>
-        <p>
-          The vast majority of wisdom tooth extractions heal without
-          complication. Following post-operative instructions carefully —
-          including keeping the area clean, avoiding straws, smoking, and hard
-          foods — greatly reduces the risk of dry socket and promotes faster
-          healing. Most patients are back to their normal routine within three
-          to five days. Our team provides thorough post-operative instructions
-          and is available to answer any questions during your recovery.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">Ready to Learn More?</p>
-        <h2>Schedule a Consultation</h2>
-        <p>
-          If you are experiencing pain, swelling, or discomfort in the back of
-          your jaw — or if your dentist has recommended wisdom tooth removal —
-          contact NorthStar to schedule an evaluation. Our surgeons perform
-          wisdom tooth extractions routinely and with a high level of skill and
-          care, making the experience as comfortable and stress-free as
-          possible.
-        </p>
-      </div>
-    </PageLayout>
-  );
-}
 export function FullMouthReconPage() {
   return (
     <PageLayout
@@ -3398,18 +3244,13 @@ export function CantGetImplantsPage() {
   return (
     <PageLayout
       kicker="Don't Give Up on Your Smile"
-      title="Don't Give Up on Your Smile"
+      title="Remote Anchorage Implants"
       subtitle="Innovative surgical solutions for patients with severe bone loss or complex anatomy who have been told implants are not possible."
     >
       <div className="page-section">
-        <p className="page-kicker">Explore your options</p>
-        <h2>Remote Anchorage &amp; Sub-Periosteal Implants</h2>
+        <p className="page-kicker">Related Treatment</p>
+        <h2>Sub-Periosteal Implants</h2>
         <div className="page-card-grid">
-          <SiteLink href="/procedure/remote-anchorage-implant/" className="page-card">
-            <h3>Remote Anchorage Implants</h3>
-            <p>Explore implant approaches for patients with severe bone loss or complex anatomy.</p>
-            <span style={{ color: '#96701f', fontWeight: 600 }}>Explore Remote Anchorage →</span>
-          </SiteLink>
           <SiteLink href="/specialized/sub-periosteal-implant/" className="page-card">
             <h3>Sub-Periosteal Implants</h3>
             <p>Learn about custom implant frameworks designed to rest on the jawbone surface.</p>
@@ -4837,6 +4678,10 @@ export function CantGetImplantsPage() {
           comprehensive evaluation using cone beam CT imaging to assess your
           bone anatomy in full detail and determine which approach — or
           combination of approaches — is best suited to your situation.
+          Planning also considers your medical history, previous implant
+          treatment, denture use, and the position of each implant in relation
+          to the surrounding facial anatomy. 3D digital planning helps map
+          the intended implant paths before surgery.
         </p>
         <p>
           We believe every patient deserves a thorough, honest evaluation before
@@ -4845,6 +4690,34 @@ export function CantGetImplantsPage() {
           forward. In many cases, patients who came to us after being turned
           away elsewhere have gone on to receive fixed, permanent teeth they
           never thought were within reach.
+        </p>
+      </div>
+
+      <div className="page-section">
+        <p className="page-kicker">Treatment &amp; Recovery</p>
+        <h2>What to Expect After Planning</h2>
+        <p>
+          Your surgical and anesthesia plan is tailored to the procedure and
+          your medical history. Complex remote anchorage treatment may be
+          performed with IV sedation or general anesthesia, depending on your
+          needs and the surgical setting.
+        </p>
+        <p>
+          When implant stability and the treatment plan permit, a fixed
+          provisional set of teeth may be attached at the time of surgery.
+          Immediate teeth are not appropriate for every case. The final
+          restoration is planned after healing and reassessment, which may
+          take several months.
+        </p>
+      </div>
+      <div className="page-section">
+        <p className="page-kicker">Long-Term Care</p>
+        <h2>Maintaining Your Implant Restoration</h2>
+        <p>
+          Ongoing care includes cleaning around the implants and prosthesis,
+          following your individualized home-care instructions, and attending
+          regular professional maintenance appointments. These visits allow
+          the team to monitor the tissues, implants, and restoration over time.
         </p>
       </div>
 

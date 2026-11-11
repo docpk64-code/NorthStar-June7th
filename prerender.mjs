@@ -34,7 +34,6 @@ const ROUTES = [
   '/procedure/tooth-extractions', '/procedure/bone-grafting',
   '/procedure/sinus-lifts', '/procedure/implant-placement',
   '/procedure/ridge-preservation', '/procedure/restorative-coordination',
-  '/procedure/remote-anchorage-implant', '/procedure/wisdom-teeth-extractions',
   '/procedure/full-mouth-reconstruction', '/procedure/oral-medicine-pathology',
   '/procedure/pre-prosthetic-surgery', '/procedure/impacted-unerupted-teeth',
   '/procedure/maxillary-expansion-marpe', '/procedure/technology',
