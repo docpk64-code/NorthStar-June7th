@@ -187,8 +187,7 @@ export const caseStudies: CaseStudy[] = [
 export const featureCards = [
   {
     eyebrow: "Don't Give Up on Your Smile",
-    title:
-      "If you have been told you are not a good candidate for dental implants, there is hope and we have a solution: Remote anchorage implants and sub-periosteal implants",
+    title: 'Remote Anchorage Implants',
     imageSrc: ZYGOMATIC_IMPLANT_SRC,
     slug: '/specialized/cant-get-implants',
   },
@@ -196,7 +195,7 @@ export const featureCards = [
     eyebrow: 'We Can Help',
     title: 'Botched Smile or Failed Implants?',
     description:
-      'Not all implant outcomes are created equal. If you are suffering from failed implants, exposed components, ill-fitting restorations, or peri-implant infection, Dr. Kampf specializes in evaluating and correcting these complex cases.',
+      'If you are suffering from failed implants, exposed components, ill-fitting restorations, or peri-implant infection, Dr. Kampf specializes in evaluating and correcting these complex cases.',
     imageSrc: BOTCHED_SMILE_SRC,
     slug: '/specialized/botched-smile',
   },

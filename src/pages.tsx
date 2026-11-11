@@ -2161,8 +2161,8 @@ export function BoneGraftingPage() {
   return (
     <PageLayout
       kicker="Foundation Building"
-      title="Bone Grafting"
-      subtitle="Restoring bone volume and density to create a stable foundation for dental implants."
+      title="Bone & Sinus Grafting"
+      subtitle="Building and preserving bone for dental implants with bone grafting, socket preservation, and sinus augmentation."
     >
       <div className="page-section">
         <p className="page-kicker">Overview</p>
@@ -2265,6 +2265,45 @@ export function BoneGraftingPage() {
         </div>
       </div>
 
+      <div className="page-section" id="ridge-preservation">
+        <p className="page-kicker">Preserving Bone After Extraction</p>
+        <h2>Ridge &amp; Socket Preservation</h2>
+        <p>
+          Ridge preservation, also called socket preservation, is performed at
+          the time of a tooth extraction to help maintain the shape and volume
+          of the jawbone for a future implant. After the tooth is removed, the
+          socket is cleaned and prepared, graft material is placed into the
+          space left by the root, and a collagen membrane or similar covering
+          may be used to protect the site during healing.
+        </p>
+        <p>
+          Preserving the socket can help limit bone shrinkage and may reduce the
+          extent of additional grafting needed later. The gum tissue heals
+          before the underlying graft has fully matured, so surface healing
+          alone does not mean the site is ready for an implant. We reassess the
+          bone and plan implant timing around your individual healing progress.
+        </p>
+      </div>
+
+      <div className="page-section" id="sinus-augmentation">
+        <p className="page-kicker">Preparing the Upper Back Jaw</p>
+        <h2>Sinus Lifts &amp; Sinus Augmentation</h2>
+        <p>
+          A sinus lift, also called sinus augmentation, develops bone in the
+          upper jaw near the molars and premolars when there is not enough bone
+          height beneath the maxillary sinus to support an implant. After teeth
+          have been missing for some time, the supporting bone can shrink and
+          the sinus can extend downward, leaving less room for implant placement.
+        </p>
+        <p>
+          In a lateral-window sinus lift, a small opening provides access to
+          gently elevate the sinus lining and place graft material beneath it.
+          Some patients can have an implant placed at the same appointment;
+          others need the graft to heal first. Your 3D imaging, available bone,
+          and treatment goals help determine the approach and timing.
+        </p>
+      </div>
+
       <div className="page-section">
         <p className="page-kicker">Watch & Learn</p>
         <h2>Bone Grafting in Action</h2>
@@ -2362,6 +2401,17 @@ export function BoneGraftingPage() {
       </div>
 
       <div className="page-section">
+        <p className="page-kicker">Sinus-Specific Recovery</p>
+        <h2>Protecting the Sinus Graft</h2>
+        <p>
+          After sinus augmentation, you will also receive instructions to help
+          protect the sinus lining while it heals, including avoiding forceful
+          nose blowing and sneezing with your mouth closed. Follow the specific
+          precautions and follow-up schedule provided for your procedure.
+        </p>
+      </div>
+
+      <div className="page-section">
         <p className="page-kicker">Outcomes</p>
         <h2>Results & Long-Term Success</h2>
         <p>
@@ -2387,7 +2437,7 @@ export function BoneGraftingPage() {
 
       <div className="page-section">
         <p className="page-kicker">Ready to Take the Next Step?</p>
-        <h2>Schedule a Bone Grafting Consultation</h2>
+        <h2>Schedule a Bone &amp; Sinus Grafting Consultation</h2>
         <p>
           If you have been told you need a bone graft before implants — or if
           you are concerned about bone loss at the site of a missing tooth — we
