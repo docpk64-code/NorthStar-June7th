@@ -178,7 +178,7 @@ export default function App() {
         <SmilePreviewInvite />
 
         {/* ── Specialized Circumstances heading ── */}
-        <div style={{ background: '#ffffff', padding: '2rem 0 0' }}>
+        <div className="specialized-heading" style={{ background: '#ffffff' }}>
           <div className="section-shell">
             <p className="section-kicker" style={{ color: '#c59d3c', fontSize: 'clamp(1.5rem, 6vw, 3rem)', fontWeight: 700, fontStyle: 'italic', letterSpacing: '0.1em', textAlign: 'center' }}>
               SPECIALIZED CIRCUMSTANCES
