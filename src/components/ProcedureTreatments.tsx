@@ -11,12 +11,8 @@ const treatments = [
   { title: 'Bone & Sinus Grafting', href: '/procedure/bone-grafting/', image: 'bone-sinus-grafting', description: 'Bone grafting, socket preservation, and sinus augmentation to help build and maintain bone support for dental implants.' },
   { title: 'Dental Extractions', href: '/procedure/tooth-extractions/', image: 'extractions', description: 'Careful removal of damaged or problematic teeth, with attention to comfort, bone preservation, and healing.' },
   { title: 'Exposure of Impacted Teeth', href: '/procedure/impacted-unerupted-teeth/', image: 'impacted-teeth', description: 'Surgical management of impacted or unerupted teeth, coordinated with your orthodontic treatment when needed.' },
-];
-const additionalProcedures = [
-  { title: 'Restorative Coordination', href: '/procedure/restorative-coordination/' },
-  { title: 'Full Mouth Reconstruction', href: '/procedure/full-mouth-reconstruction/' },
-  { title: 'Pre-Prosthetic Surgery', href: '/procedure/pre-prosthetic-surgery/' },
-  { title: 'Maxillary Expansion — MARPE', href: '/procedure/maxillary-expansion-marpe/' },
+  { title: 'Full Mouth Reconstruction', href: '/procedure/full-mouth-reconstruction/', image: 'full-mouth-reconstruction', description: 'A coordinated treatment plan to restore oral health, chewing function, and the appearance of your smile.' },
+  { title: 'Maxillary Expansion (MARPE)', href: '/procedure/maxillary-expansion-marpe/', image: 'maxillary-expansion-marpe', description: 'Explore miniscrew-assisted palatal expansion, an orthodontic option for widening a narrow upper jaw.' },
 ];
 export default function ProcedureTreatments() {
   return <div className="ns-treatments">
@@ -40,11 +36,5 @@ export default function ProcedureTreatments() {
       </div>
     </section>
     <SmilePreviewInvite />
-    <section className="ns-additional-procedures" aria-labelledby="additional-procedures-title">
-      <h2 id="additional-procedures-title">Additional Procedures</h2>
-      <div className="ns-additional-procedure-links">
-        {additionalProcedures.map(procedure => <SiteLink key={procedure.href} href={procedure.href}><span>{procedure.title}</span><span aria-hidden="true">→</span></SiteLink>)}
-      </div>
-    </section>
   </div>;
 }
