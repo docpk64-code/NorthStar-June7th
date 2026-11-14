@@ -55,18 +55,19 @@
  .preserved-cards .signature-grid .feature-card {
    min-width:0;
    height:auto;
-   padding:.625rem;
+   min-height:8.75rem;
+   padding:.375rem .5rem;
    border-radius:.9rem;
    overflow-wrap:anywhere;
  }
- .preserved-cards .feature-card h2 { font-size:clamp(1rem,4.25vw,1.25rem); }
- .preserved-cards .feature-kicker { font-size:.625rem; letter-spacing:.08em; line-height:1.3; margin-bottom:.35rem; }
- .preserved-cards .feature-card > p:not(.feature-kicker) { font-size:.8125rem!important; line-height:1.4!important; }
+ .preserved-cards .feature-card h2 { font-size:clamp(1rem,4.25vw,1.25rem); margin-bottom:.25rem; }
+ .preserved-cards .feature-card > p { display:none; }
  .preserved-cards .feature-card > img {
    flex:none;
-   height:clamp(4.75rem,24vw,8rem);
+   height:clamp(3.25rem,14vw,4rem);
    margin-top:auto!important;
  }
+ .preserved-cards .feature-card > span { margin-top:.25rem!important; }
 }
 @media(max-width:700px) {
  .brand-preview .nb-banner { padding-top:22px; padding-bottom:30px; }
