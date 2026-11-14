@@ -14,35 +14,31 @@ import './styles/homepageUnified.css';
 import SmilePreviewInvite from './components/SmilePreviewInvite';
 import BrooklynNotice from './components/BrooklynNotice';
 
-const navigationItems = [
-  ...menuItems.filter(item => !['/hydrafacial', '/emface', '/dental-implants', '/full-arch', '/wisdom-teeth'].includes(item.href)),
+const homepageCardImages = [
+  ['/about', '/assets/about-card-north-star.png'],
+  ['/contact', '/assets/contact-scheduling-card.png'],
+  ['/patient-information', '/assets/patient-information-card.png'],
+  ['/procedures', '/assets/procedures-card-illustration.png'],
+  ['/technology', '/assets/technology-card-illustration.png'],
+];
+
+const treatmentCards = [
+  ...homepageCardImages.flatMap(([href, imageSrc]) => {
+    const item = menuItems.find(item => item.href === href);
+    return item ? [{ ...item, imageSrc }] : [];
+  }),
   {
     label: 'Facial Esthetics',
     shortLabel: 'Facial Esthetics',
     href: '/facial-esthetics',
     eyebrow: 'Skin & facial care',
     description: 'Explore HydraFacial and Emface facial treatment options at NorthStar.',
-    imageSrc: '/assets/facial-esthetics.svg',
+    imageSrc: '/assets/facial-esthetics-card.png',
   },
 ];
 
-const treatmentCards = navigationItems
-  .filter(item => !['/testimonials', '/sedation'].includes(item.href))
-  .map(item => item.href === '/procedures'
-    ? { ...item, imageSrc: '/assets/procedures-card-illustration.png' }
-    : item.href === '/about'
-      ? { ...item, imageSrc: '/assets/about-card-north-star.png' }
-      : item.href === '/patient-information'
-        ? { ...item, imageSrc: '/assets/patient-information-card.png' }
-        : item.href === '/technology'
-          ? { ...item, imageSrc: '/assets/technology-card-illustration.png' }
-          : item.href === '/contact'
-            ? { ...item, imageSrc: '/assets/contact-scheduling-card.png' }
-            : item.href === '/facial-esthetics'
-              ? { ...item, imageSrc: '/assets/facial-esthetics-card.png' }
-              : item);
 const directions = [
-  { label: 'About', title: 'Get to know NorthStar.', eyebrow: '01 / ABOUT NORTHSTAR', text: 'Meet Dr. Peter Kampf and our team, explore our approach to care, and find practical information to prepare for your visit.', link: 'About NorthStar', href: '/about/', image: '/about', rotation: 0 },
+  { label: 'About', title: 'Get to know NorthStar.', eyebrow: '01 / ABOUT NORTHSTAR', text: 'Meet Dr. Peter Kampf and our team and explore our approach to care.', link: 'About NorthStar', href: '/about/', image: '/about', rotation: 0 },
   { label: 'Procedures', title: 'Find a path for your smile.', eyebrow: '02 / PROCEDURES', text: 'Explore dental implants, full-arch solutions, wisdom teeth, and sedation options. Start with a conversation about your individual needs.', link: 'Explore procedures', href: '/procedures/', image: '/full-arch', rotation: 60 },
   { label: 'Sedation', title: 'Let’s talk about your comfort.', eyebrow: '03 / SEDATION OPTIONS', text: 'Learn about sedation and comfort options, preparation, and what to discuss with our team before your procedure.', link: 'Explore sedation options', href: '/sedation/', image: '/technology', rotation: 120 },
   { label: 'Technology', title: 'Thoughtful care. Precise planning.', eyebrow: '04 / TECHNOLOGY', text: 'Discover how imaging, digital planning, and surgical technology support an individualized approach to your treatment.', link: 'Explore our technology', href: '/technology/', image: '/testimonials', rotation: 180 },

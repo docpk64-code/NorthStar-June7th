@@ -23,15 +23,6 @@ export function AboutPage() {
       subtitle="A patient-centered surgical practice built on precision, comfort, and long-term outcomes."
     >
       <div className="page-section">
-        <p className="page-kicker">Patient resources</p>
-        <SiteLink href="/patient-information/" className="page-card">
-          <h2>Patient Information</h2>
-          <p>Prepare for your visit with information about what to bring, insurance, payment options, and your appointment.</p>
-          <span style={{ color: '#96701f', fontWeight: 600 }}>Explore Patient Information →</span>
-        </SiteLink>
-      </div>
-
-      <div className="page-section">
         <p className="page-kicker">Our Philosophy</p>
         <h2>Care Built Around You</h2>
         <p>
@@ -876,7 +867,7 @@ export function SedationPage() {
 
       <div className="page-section">
         <p className="page-kicker">Your Options</p>
-        <h2>Sedation Levels We Offer</h2>
+        <h2>Sedation &amp; Anesthesia Options</h2>
         <div className="page-card-grid">
           {[
             {
@@ -894,6 +885,10 @@ export function SedationPage() {
             {
               title: 'IV Sedation',
               body: 'Intravenous (IV) sedation delivers sedative medication directly into the bloodstream through a small catheter placed in the arm. It produces a deep state of relaxation in which most patients have little to no awareness or memory of the procedure — sometimes described as being "asleep" even though you are technically conscious and breathing on your own. IV sedation is ideal for complex surgeries, highly anxious patients, and full-arch procedures. A responsible adult must drive you home afterward.',
+            },
+            {
+              title: 'General Anesthesia',
+              body: 'With general anesthesia, you are unconscious during the procedure. A qualified anesthesia provider monitors you and supports your breathing as needed. Your care team evaluates whether this option is appropriate for your procedure and medical history and discusses the care setting, preparation, and recovery with you.',
             },
           ].map((card) => (
             <div key={card.title} className="page-card">

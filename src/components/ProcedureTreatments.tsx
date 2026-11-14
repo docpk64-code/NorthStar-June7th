@@ -6,7 +6,7 @@ const treatments = [
   { title: 'All-on-X Full Arch Implants', href: '/full-arch/', image: 'full-arch', description: 'Explore fixed, full-arch tooth replacement supported by strategically placed dental implants.' },
   { title: 'Dental Implants', href: '/dental-implants/', image: 'dental-implants', description: 'Replace missing teeth with implant-supported restorations designed for function and a natural appearance.' },
   { title: 'Wisdom Teeth Removal', href: '/wisdom-teeth/', image: 'wisdom-teeth', description: 'Evaluation and removal of problematic wisdom teeth, with comfort options and guidance through recovery.' },
-  { title: 'IV Sedation & Anesthesia', href: '/sedation/', image: 'sedation', description: 'Explore sedation and anesthesia options tailored to your procedure, medical history, and comfort needs.' },
+  { title: 'IV Sedation & Anesthesia', href: '/sedation/', image: 'sedation', description: 'Explore local anesthesia, nitrous oxide, oral sedation, IV sedation, and general anesthesia.' },
   { title: 'Oral Biopsy', href: '/procedure/oral-medicine-pathology/', image: 'oral-biopsy', description: 'Evaluation of oral lesions and biopsy procedures to support diagnosis and appropriate treatment.' },
   { title: 'Bone & Sinus Grafting', href: '/procedure/bone-grafting/', image: 'bone-sinus-grafting', description: 'Bone grafting, socket preservation, and sinus augmentation to help build and maintain bone support for dental implants.' },
   { title: 'Dental Extractions', href: '/procedure/tooth-extractions/', image: 'extractions', description: 'Careful removal of damaged or problematic teeth, with attention to comfort, bone preservation, and healing.' },

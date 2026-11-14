@@ -66,7 +66,7 @@ for (const route of routes) {
       assert.equal(document.querySelectorAll('nav[aria-label="Other offices"] a').length, 3);
     }
     if (route === '/about') {
-      assert(document.querySelector('.page-card[href="/patient-information/"]'));
+      assert(!document.querySelector('.page-card[href="/patient-information/"]'));
     }
     if (route === '/procedures') {
       for (const treatment of ['dental-implants', 'full-arch', 'wisdom-teeth', 'sedation']) {
