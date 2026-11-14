@@ -72,19 +72,19 @@
 @media print { .nj-shooting-star { display:none; } }
 
 /* Keep the complete uploaded Procedures illustration visible within its card. */
-.preserved-cards .care-card img[src="/assets/procedures-card-illustration.png"] { object-fit:contain!important; object-position:center; background:#dfeffe; }
+.preserved-cards .care-card img[src="/assets/homepage/procedures-card-illustration.webp"] { object-fit:contain!important; object-position:center; background:#dfeffe; }
 
 /* Keep the North Star visible in the About card image crop. */
-.preserved-cards .care-card img[src="/assets/about-card-north-star.png"] { object-position:60% 30%; }
+.preserved-cards .care-card img[src="/assets/homepage/about-card-north-star.webp"] { object-position:60% 30%; }
 
 /* Show the complete Patient Information illustration without cropping. */
-.preserved-cards .care-card img[src="/assets/patient-information-card.png"] { object-fit:contain!important; object-position:center; background:#fff; }
+.preserved-cards .care-card img[src="/assets/homepage/patient-information-card.webp"] { object-fit:contain!important; object-position:center; background:#fff; }
 
 /* Show the complete Technology illustration without cropping. */
-.preserved-cards .care-card img[src="/assets/technology-card-illustration.png"] { object-fit:contain!important; object-position:center; background:#fff; }
+.preserved-cards .care-card img[src="/assets/homepage/technology-card-illustration.webp"] { object-fit:contain!important; object-position:center; background:#fff; }
 
 /* Keep the phone, clock, and schedule visible together. */
-.preserved-cards .care-card img[src="/assets/contact-scheduling-card.png"] { object-fit:contain!important; object-position:center; background:#fff; }
+.preserved-cards .care-card img[src="/assets/homepage/contact-scheduling-card.webp"] { object-fit:contain!important; object-position:center; background:#fff; }
 
 /* Unpublished compass prototype: external labels and a slender instrument needle. */
 .brand-preview .nj-coordinate { margin-bottom:20px; }

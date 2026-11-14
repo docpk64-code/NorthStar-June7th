@@ -86,7 +86,7 @@ for (const route of routes) {
       assert.equal(document.querySelectorAll('.signature-grid .feature-card').length, 2);
       assert.equal(document.querySelectorAll('h1').length, 1);
       assert(document.querySelector('h1')!.textContent!.includes('NorthStar'));
-      assert(document.querySelector('img[src="/assets/northstar-celestial-logo.jpg"]'));
+      assert(document.querySelector('img[src^="/assets/homepage/northstar-celestial-logo-"][fetchpriority="high"]'));
       const destinations = ['/about/', '/procedures/', '/sedation/', '/technology/', '/contact/', '/facial-esthetics/'];
       for (let i = 0; i < destinations.length; i++) {
         await act(async () => (document.querySelectorAll('.nj-direction')[i] as HTMLButtonElement).click());

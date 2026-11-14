@@ -19,6 +19,8 @@ export default function CareCard({ item, isActive }: { item: MenuItem; isActive:
         <img
           src={item.imageSrc}
           alt={item.label}
+          loading="lazy"
+          decoding="async"
           style={{
             width: '100%',
             height: '100px',

@@ -6,7 +6,6 @@ import SEOHead from './components/SEOHead';
 import SiteLink from './components/SiteLink';
 import { menuItems, featureCards } from './data/menuData';
 import CareCard from './components/CareCard';
-import doctorPhoto from './assets/doctor-preview';
 import './styles/patientPreview.css';
 import './styles/northstarJourney.css';
 import './styles/northstarBrand.css';
@@ -14,12 +13,14 @@ import './styles/homepageUnified.css';
 import SmilePreviewInvite from './components/SmilePreviewInvite';
 import BrooklynNotice from './components/BrooklynNotice';
 
+const doctorPhoto = '/assets/homepage/dr-peter-kampf-balanced.webp';
+
 const homepageCardImages = [
-  ['/about', '/assets/about-card-north-star.png'],
-  ['/contact', '/assets/contact-scheduling-card.png'],
-  ['/patient-information', '/assets/patient-information-card.png'],
-  ['/procedures', '/assets/procedures-card-illustration.png'],
-  ['/technology', '/assets/technology-card-illustration.png'],
+  ['/about', '/assets/homepage/about-card-north-star.webp'],
+  ['/contact', '/assets/homepage/contact-scheduling-card.webp'],
+  ['/patient-information', '/assets/homepage/patient-information-card.webp'],
+  ['/procedures', '/assets/homepage/procedures-card-illustration.webp'],
+  ['/technology', '/assets/homepage/technology-card-illustration.webp'],
 ];
 
 const treatmentCards = [
@@ -33,7 +34,7 @@ const treatmentCards = [
     href: '/facial-esthetics',
     eyebrow: 'Skin & facial care',
     description: 'Explore HydraFacial and Emface facial treatment options at NorthStar.',
-    imageSrc: '/assets/facial-esthetics-card.png',
+    imageSrc: '/assets/homepage/facial-esthetics-card.webp',
   },
 ];
 
@@ -52,11 +53,19 @@ const locations = [
   { id: 'commack', name: 'Commack', address: '283 Commack Road, Suite 130', city: 'Commack, NY 11725' },
 ];
 
-function NorthStarWordmark() {
+function NorthStarWordmark({ lazy = false }: { lazy?: boolean }) {
   return (
     <a className="pp-brand pp-brand-orbit" href="#top" aria-label="NorthStar Implant Dentistry home">
       <span className="pp-orbit-logo-window">
-        <img src="/assets/northstar-orbit-wordmark-approved.png" alt="NorthStar Implant Dentistry" width="1774" height="887" />
+        <img
+          src="/assets/homepage/northstar-orbit-wordmark-approved-460.webp"
+          srcSet="/assets/homepage/northstar-orbit-wordmark-approved-460.webp 460w, /assets/homepage/northstar-orbit-wordmark-approved-720.webp 720w"
+          sizes={lazy ? '296px' : '(max-width: 700px) 296px, 358px'}
+          alt="NorthStar Implant Dentistry"
+          width="460"
+          height="230"
+          loading={lazy ? 'lazy' : 'eager'}
+        />
       </span>
     </a>
   );
@@ -92,7 +101,15 @@ export default function App() {
         <div className="nj-stars" aria-hidden="true">{Array.from({length: 30}, (_, i) => <i key={i} style={{left: `${(i * 37 + 7) % 100}%`, top: `${(i * 23 + 9) % 100}%`, opacity: .15 + (i % 5) * .13}} />)}<span className="nj-shooting-star nj-shooting-star-one" /><span className="nj-shooting-star nj-shooting-star-two" /></div>
         <div className="nb-banner pp-shell">
           <p className="nb-welcome">Welcome to</p>
-          <h1 id="journey-title" className="nb-logo-heading"><span className="unified-sr-only">NorthStar Implant Dentistry</span><span className="nb-logo-window"><img src="/assets/northstar-celestial-logo.jpg" alt="" width="1024" height="1024" /></span></h1>
+          <h1 id="journey-title" className="nb-logo-heading"><span className="unified-sr-only">NorthStar Implant Dentistry</span><span className="nb-logo-window"><img
+            src="/assets/homepage/northstar-celestial-logo-800.webp"
+            srcSet="/assets/homepage/northstar-celestial-logo-520.webp 520w, /assets/homepage/northstar-celestial-logo-800.webp 800w, /assets/homepage/northstar-celestial-logo-1024.webp 1024w"
+            sizes="(max-width: 370px) 115vw, (max-width: 700px) 420px, 509px"
+            alt=""
+            width="800"
+            height="800"
+            {...{ fetchpriority: 'high' }}
+          /></span></h1>
           <p className="nb-tagline">Guiding Patients One Smile at a Time.</p>
           <p className="nb-practice">Dr. Peter Kampf &amp; Associates <span aria-hidden="true">·</span> New York</p><div className="nb-actions"><a className="pp-button" href="#contact">Request a Consultation ↗</a><SiteLink className="nb-forms-link" href="/patient-forms/">Patient Forms →</SiteLink></div>
         </div>
@@ -130,7 +147,7 @@ export default function App() {
             <p className="nj-hint">Select a compass label to explore your options.</p>
           </div>
           <div id="nj-detail" className="nj-detail" aria-live="polite" aria-atomic="true">
-            {selectedImage && <div className="nj-detail-image"><img key={selected.image} src={selectedImage} alt="" /></div>}
+            {selectedImage && <div className="nj-detail-image"><img key={selected.image} src={selectedImage} alt="" loading="lazy" decoding="async" /></div>}
             <div className="nj-detail-copy" key={direction}>
               <span className="nj-detail-eyebrow">{selected.eyebrow}</span>
               <h2>{selected.title}</h2>
@@ -183,13 +200,13 @@ export default function App() {
               >
                 <p className="feature-kicker feature-kicker-flash" style={{ textAlign: 'center' }}>{f.eyebrow}</p>
                 <h2 style={{ textAlign: 'center' }}>{f.title}</h2>
-                {(f as any).description && (
+                {f.description && (
                   <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.82)', textAlign: 'center', margin: '0.5rem 0 0.75rem' }}>
-                    {(f as any).description}
+                    {f.description}
                   </p>
                 )}
-                {(f as any).imageSrc ? (
-                  <img src={(f as any).imageSrc} alt={f.title} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: '0.9rem', marginTop: 'auto', display: 'block' }} />
+                {f.imageSrc ? (
+                  <img src={f.imageSrc} alt={f.title} loading="lazy" decoding="async" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', borderRadius: '0.9rem', marginTop: 'auto', display: 'block' }} />
                 ) : (
                   <div style={{ width: '100%', aspectRatio: '4/3', borderRadius: '0.9rem', marginTop: 'auto', paddingTop: '1.2rem', background: 'linear-gradient(135deg,rgba(197,157,60,0.1) 0%,rgba(10,20,36,0.45) 100%)', border: '1px dashed rgba(197,157,60,0.35)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', color: 'rgba(197,157,60,0.6)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
@@ -209,13 +226,13 @@ export default function App() {
       </div>
       <section className="nj-universe nj-guide-section">
         <div className="pp-shell nj-guide">
-          <div className="nj-guide-image"><img src="/assets/hero-bg.jpg" alt="Polar bear cub following the North Star across a winter sky" width="500" height="677" loading="lazy"/></div>
+          <div className="nj-guide-image"><img src="/assets/homepage/hero-bg.webp" alt="Polar bear cub following the North Star across a winter sky" width="500" height="677" loading="lazy" decoding="async"/></div>
           <div className="nj-guide-copy"><p className="pp-eyebrow">A familiar star. A personal journey.</p><h2>You don’t need all the answers.<br /><em>Just a place to start.</em></h2><p>We’re here to listen, help you understand your options, and plan the next step together.</p><p className="nj-signature">Guiding patients one smile at a time.</p><div className="nj-guide-meta"><span>Briarwood</span><span>Manhattan</span><span>Commack</span><span>Brooklyn · Opening Jan 4, 2027</span></div></div>
         </div>
       </section>
       <section className="pp-doctor pp-section">
         <div className="pp-shell pp-doctor-grid">
-          <div className="pp-doctor-image"><img src={doctorPhoto} alt="Dr. Peter Kampf" loading="lazy" /></div>
+          <div className="pp-doctor-image"><img src={doctorPhoto} alt="Dr. Peter Kampf" width="760" height="1013" loading="lazy" decoding="async" /></div>
           <div><p className="pp-eyebrow">Meet your implant dentist</p><h2>Experience matters.<br />So does feeling heard.</h2><h3>Dr. Peter Kampf, DDS</h3><p>Dr. Kampf’s clinical focus includes dental implants and complex oral rehabilitation. Your consultation is an opportunity to discuss your goals, review your options, and ask questions about your care.</p><div className="pp-credentials"><span>NYU College of Dentistry, 1992</span><span>Postgraduate training at Columbia Presbyterian and Brookdale Medical Center</span></div><SiteLink className="pp-text-link" href="/about/">Meet Dr. Kampf &amp; the team →</SiteLink></div>
         </div>
       </section>
@@ -228,7 +245,7 @@ export default function App() {
     <footer className="pp-footer">
       <div className="pp-shell">
         <div className="pp-footer-top">
-          <NorthStarWordmark />
+          <NorthStarWordmark lazy />
           <p>Guiding patients one smile at a time.</p>
           <a href="tel:6313151400">631-315-1400</a>
         </div>

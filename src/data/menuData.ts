@@ -12,8 +12,6 @@ import {
   CARE_CARD_8_SRC,
   TESTIMONIAL_CARD_SRC,
   CONTACT_CARD_SRC,
-  ZYGOMATIC_IMPLANT_SRC,
-  BOTCHED_SMILE_SRC,
   BEFORE_TILE_6_SRC,
 } from '../assets/imagePaths';
 
@@ -188,7 +186,7 @@ export const featureCards = [
   {
     eyebrow: "Don't Give Up on Your Smile",
     title: 'Remote Anchorage Implants',
-    imageSrc: ZYGOMATIC_IMPLANT_SRC,
+    imageSrc: '/assets/homepage/zygomatic-implant.webp',
     slug: '/specialized/cant-get-implants',
   },
   {
@@ -196,7 +194,7 @@ export const featureCards = [
     title: 'Botched Smile or Failed Implants?',
     description:
       'If you are suffering from failed implants, exposed components, ill-fitting restorations, or peri-implant infection, Dr. Kampf specializes in evaluating and correcting these complex cases.',
-    imageSrc: BOTCHED_SMILE_SRC,
+    imageSrc: '/assets/homepage/botched-smile.webp',
     slug: '/specialized/botched-smile',
   },
 
