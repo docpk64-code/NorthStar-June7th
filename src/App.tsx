@@ -230,7 +230,7 @@ export default function App() {
           <div className="nj-guide-copy"><p className="pp-eyebrow">A familiar star. A personal journey.</p><h2>You don’t need all the answers.<br /><em>Just a place to start.</em></h2><p>We’re here to listen, help you understand your options, and plan the next step together.</p><p className="nj-signature">Guiding patients one smile at a time.</p><div className="nj-guide-meta"><span>Briarwood</span><span>Manhattan</span><span>Commack</span><span>Brooklyn · Opening Jan 4, 2027</span></div></div>
         </div>
       </section>
-      <section className="pp-doctor pp-section">
+      <section className="pp-doctor pp-section" id="meet-your-implant-dentist">
         <div className="pp-shell pp-doctor-grid">
           <div className="pp-doctor-image"><img src={doctorPhoto} alt="Dr. Peter Kampf" width="760" height="1013" loading="lazy" decoding="async" /></div>
           <div><p className="pp-eyebrow">Meet your implant dentist</p><h2>Experience matters.<br />So does feeling heard.</h2><h3>Dr. Peter Kampf, DDS</h3><p>Dr. Kampf’s clinical focus includes dental implants and complex oral rehabilitation. Your consultation is an opportunity to discuss your goals, review your options, and ask questions about your care.</p><div className="pp-credentials"><span>NYU College of Dentistry, 1992</span><span>Postgraduate training at Columbia Presbyterian and Brookdale Medical Center</span></div><SiteLink className="pp-text-link" href="/about/">Meet Dr. Kampf &amp; the team →</SiteLink></div>
