@@ -143,36 +143,10 @@ export function AboutPage() {
         </div>
         <div style={{ width: '100%', marginTop: '1.5rem' }}>
           <p>
-            Specializing in general and cosmetic dentistry, Dr. Agnes Nadrag is
-            among the highest-rated dentists in New York, serving the Manhattan
-            and Queens neighborhoods and surrounding areas. Her goal as a
-            practitioner is to ensure that each of her patients receives the
-            highest available standard of dental care.
-          </p>
-          <p>
-            Dr. Nadrag received her Doctor of Dental Surgery degree from New
-            York University's acclaimed College of Dentistry. She is now a
-            dental authority in New York and a member of prominent professional
-            organizations including the American Dental Association, the
-            American Association of Dental Examiners, and the International
-            Congress of Oral Implantologists.
-          </p>
-          <p>
-            As a certified dental practitioner, Dr. Nadrag's focus is always on
-            her patients. She strives to provide the best standard of care and
-            the highest quality dental options available — a commitment
-            reflected in her consistently outstanding five-star patient reviews.
-            Offering a full range of dental services, Dr. Nadrag covers
-            everything from preventive cleanings and tooth repair to complete
-            implant tooth replacement and custom smile design.
-          </p>
-          <p>
-            Dr. Nadrag places particular importance on using cutting-edge dental
-            technology and procedures to correct facial pain and dangerous
-            conditions such as sleep apnea. As a lifelong resident of New York
-            and a graduate of NYU, she is a local dentist who proudly serves her
-            neighborhood with a personalized, one-on-one approach — and is
-            fluent in English, Polish, and Romanian.
+            Dr. Agnes Nadrag, DDS, provides general and cosmetic dental care.
+            Her work includes preventive care, tooth repair, and cosmetic
+            treatment planning. She earned her DDS from New York University
+            College of Dentistry in 1993 and speaks English, Polish, and Romanian.
           </p>
 
           <p style={{ fontWeight: 700, marginTop: '1.2rem' }}>
@@ -274,12 +248,6 @@ export function AboutPage() {
             community.
           </p>
           <p>
-            In addition to her clinical work, Dr. Nelson served as an Associate
-            Professor in the Department of Oral Medicine and Pathology at New
-            York University College of Dentistry, where she contributed to the
-            education and mentorship of future dentists.
-          </p>
-          <p>
             Dr. Nelson shares a longstanding professional connection with Dr.
             Peter Kampf—both were classmates at NYU College of Dentistry,
             graduating in 1992. This shared foundation reflects a mutual
@@ -307,16 +275,6 @@ export function AboutPage() {
             <li>
               General Practice Residency — Flushing Hospital Medical Center,
               1992–1993
-            </li>
-          </ul>
-
-          <p style={{ fontWeight: 700, marginTop: '1rem' }}>
-            🎓 Academic Experience
-          </p>
-          <ul>
-            <li>
-              Associate Professor, Department of Oral Medicine &amp; Pathology —
-              New York University College of Dentistry (1994–1996)
             </li>
           </ul>
 
@@ -408,24 +366,17 @@ export function DentalImplantsPage() {
       <RestorativeCareSummary />
       <div className="page-section">
         <p className="page-kicker">What Is a Dental Implant?</p>
-        <h2>A Permanent Foundation for Your Smile</h2>
+        <h2>A Long-Term Option for Replacing Missing Teeth</h2>
         <p>
-          A dental implant is a small titanium post that is surgically placed
-          into the jawbone to replace the root of a missing tooth. Once it fuses
-          with the surrounding bone — a process called osseointegration — it
-          provides a stable, permanent anchor for a custom-made crown, bridge,
-          or full-arch prosthesis. The result is a replacement tooth that looks,
-          feels, and functions virtually identically to a natural tooth.
+          A dental implant is a post placed in the jawbone to support a
+          replacement tooth or teeth. As the bone heals around the implant,
+          the implant can support a crown, bridge, or denture. Implant-supported
+          teeth can help restore chewing and improve the appearance of your smile.
         </p>
         <p>
-          Implants are made from medical-grade titanium, a material that is
-          exceptionally biocompatible and has been used safely in dental and
-          orthopedic surgery for decades. Unlike traditional bridges, which
-          require grinding down adjacent healthy teeth, implants stand
-          completely on their own. Unlike dentures, they are fixed in place and
-          do not slip or require adhesives. With proper care, a well-placed
-          implant can last a lifetime — making it one of the most cost-effective
-          long-term investments in your oral health.
+          How long an implant and its restoration last varies. Daily cleaning
+          and regular dental visits help maintain the tissues around the implant
+          and allow your dentist to check the fit and condition of your replacement teeth.
         </p>
       </div>
 
@@ -462,7 +413,7 @@ export function DentalImplantsPage() {
         <p>
           The best way to determine whether implants are right for you is
           through a comprehensive consultation with our surgical team, which
-          includes 3D imaging to assess your bone and anatomy in detail. Even
+          may include 3D imaging to assess your bone and anatomy in detail. Even
           patients who have been told they are not candidates elsewhere may have
           options — including bone grafting or specialized remote anchorage
           techniques.
@@ -476,19 +427,19 @@ export function DentalImplantsPage() {
           {[
             {
               title: '1. Consultation',
-              body: 'Your journey begins with a comprehensive evaluation including a clinical examination, review of your medical and dental history, and cone beam CT (3D) imaging. This gives our surgeon a complete picture of your bone volume, anatomy, and overall oral health — and forms the foundation of your personalized treatment plan.',
+              body: 'Your journey begins with a comprehensive evaluation including a clinical examination, review of your medical and dental history, and cone beam CT (3D) imaging when indicated. This gives our surgeon a complete picture of your bone volume, anatomy, and overall oral health — and forms the foundation of your personalized treatment plan.',
             },
             {
               title: '2. Treatment Planning',
-              body: 'Using advanced digital planning software, your surgeon maps the ideal position, angulation, and depth of your implant on a virtual 3D model of your anatomy. In many cases, a custom surgical guide is fabricated from this plan to ensure millimeter-level precision during surgery.',
+              body: 'Using advanced digital planning software, your surgeon maps the ideal position, angulation, and depth of your implant on a virtual 3D model of your anatomy. When appropriate, a custom surgical guide can help transfer that plan to surgery.',
             },
             {
               title: '3. Implant Placement',
-              body: 'The surgical appointment is performed under local anesthesia with sedation options available. A small channel is made in the bone and the titanium implant is carefully seated into position. Most patients are surprised by how comfortable and efficient the procedure is. Any necessary bone grafting is completed at this stage if not done previously.',
+              body: 'The surgical appointment is performed under local anesthesia with sedation options available. A small channel is made in the bone and the titanium implant is carefully seated into position. Depending on the treatment plan, bone grafting may be done before or during implant placement.',
             },
             {
               title: '4. Healing (Osseointegration)',
-              body: 'Over the next three to six months, the implant gradually fuses with the surrounding bone in a process called osseointegration. During this time, you will wear a temporary restoration if needed and return for follow-up visits so our team can monitor your healing progress.',
+              body: 'Bone heals around the implant over time. Healing often takes several months and can vary with your anatomy, health, and whether grafting is needed. We’ll monitor your healing and discuss temporary teeth if they’re part of your plan.',
             },
             {
               title: '5. Final Restoration',
@@ -503,16 +454,38 @@ export function DentalImplantsPage() {
         </div>
       </div>
 
+      <section className="page-section">
+        <h2>Risks, alternatives, and ongoing care</h2>
+        <p>
+          Possible complications include infection, injury to nearby nerves or
+          teeth, problems with the sinus for some upper-jaw implants, and an
+          implant failing to heal or becoming loose later. Your dentist can
+          explain which risks are most relevant to your treatment plan.
+        </p>
+        <p>
+          Depending on which teeth are missing and the condition of your
+          remaining teeth, alternatives may include a tooth-supported bridge
+          or a removable partial or full denture. Ask how each option would
+          affect chewing, cleaning, and follow-up care.
+        </p>
+        <p>
+          After treatment, follow the cleaning instructions for your specific
+          restoration and return for regular exams and professional cleanings.
+          Contact the practice if an implant or replacement tooth feels loose
+          or painful.
+        </p>
+        <p>
+          <a href="https://www.fda.gov/medical-devices/dental-devices/dental-implants-what-you-should-know">FDA patient guide to implant benefits and risks</a>
+        </p>
+      </section>
+
       <div className="page-section">
         <p className="page-kicker">Ready to Begin?</p>
         <h2>Schedule Your Implant Consultation</h2>
         <p>
-          Whether you are missing one tooth or many, dental implants may be the
-          life-changing solution you have been looking for. Our team at
-          NorthStar Implant Dentistry brings together advanced surgical
-          training, state-of-the-art technology, and a genuine commitment to
-          patient care. Contact us today to schedule your consultation and take
-          the first step toward a permanent, confident smile.
+          At your consultation, we’ll discuss what you want to improve, review
+          your treatment options, and explain the likely timeline and costs.
+          <a href="/contact/#consultation"> Request a consultation →</a>
         </p>
       </div>
     </PageLayout>
