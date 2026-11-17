@@ -42,7 +42,7 @@ const directions = [
   { label: 'About', title: 'Get to know NorthStar.', eyebrow: '01 / ABOUT NORTHSTAR', text: 'Meet Dr. Peter Kampf and our team and explore our approach to care.', link: 'About NorthStar', href: '/about/', image: '/about', rotation: 0 },
   { label: 'Procedures', title: 'Find a path for your smile.', eyebrow: '02 / PROCEDURES', text: 'Explore dental implants, full-arch solutions, wisdom teeth, and sedation options. Start with a conversation about your individual needs.', link: 'Explore procedures', href: '/procedures/', image: '/full-arch', rotation: 60 },
   { label: 'Sedation', title: 'Let’s talk about your comfort.', eyebrow: '03 / SEDATION OPTIONS', text: 'Learn about sedation and comfort options, preparation, and what to discuss with our team before your procedure.', link: 'Explore sedation options', href: '/sedation/', image: '/technology', rotation: 120 },
-  { label: 'Technology', title: 'Thoughtful care. Precise planning.', eyebrow: '04 / TECHNOLOGY', text: 'Discover how imaging, digital planning, and surgical technology support an individualized approach to your treatment.', link: 'Explore our technology', href: '/technology/', image: '/testimonials', rotation: 180 },
+  { label: 'Technology', title: 'Thoughtful care. Precise planning.', eyebrow: '04 / TECHNOLOGY', text: 'Discover how imaging, digital planning, and surgical technology support an individualized approach to your treatment.', link: 'Explore our technology', href: '/technology/', image: '/technology', rotation: 180 },
   { label: 'Contact', title: 'Your next chapter starts here.', eyebrow: '05 / CONTACT & SCHEDULE', text: 'Find our offices in Briarwood, Manhattan, and Commack, plus Brooklyn opening January 4, 2027. Request a consultation with our team.', link: 'Contact NorthStar', href: '/contact/', image: '/contact', rotation: 240 },
   { label: 'Facial Esthetics', title: 'Care beyond your smile.', eyebrow: '06 / FACIAL ESTHETICS', text: 'Explore HydraFacial and Emface in one place, then discuss your facial treatment goals and options with our team.', link: 'Explore facial esthetics', href: '/facial-esthetics/', image: '/facial-esthetics', rotation: 300 },
 ];
@@ -78,7 +78,7 @@ export default function App() {
   const selected = directions[direction];
   const selectedImage = selected.image === '/about' ? doctorPhoto : selected.image === '/facial-esthetics' ? '/assets/facial-esthetics.svg' : menuItems.find(item => item.href.replace(/\/$/, '') === selected.image)?.imageSrc;
   return <div className="patient-preview journey-preview brand-preview" id="top">
-    <SEOHead title="NorthStar Implant Dentistry | New York Locations" description="Explore dental implants and full-arch treatment with Dr. Peter Kampf in Briarwood, Manhattan, and Commack. Brooklyn opens January 4, 2027." />
+    <SEOHead title="Dental Implants in Queens, Manhattan &amp; Commack" description="Explore dental implants and full-arch treatment with Dr. Peter Kampf in Briarwood, Manhattan, and Commack. Brooklyn opens January 4, 2027." />
     <div className="pp-contactbar"><span>Briarwood · Manhattan · Commack · Brooklyn (opening Jan 4, 2027)</span><a href="tel:6313151400">631-315-1400</a><span>Mon–Sat 9am–8pm · Sunday by appointment</span></div>
     <header className="pp-header">
       <div className="pp-nav-wrap">
@@ -110,6 +110,7 @@ export default function App() {
             height="800"
             {...{ fetchpriority: 'high' }}
           /></span></h1>
+          <p className="nb-services">Dental implants and full-arch care in Queens, Manhattan &amp; Commack.</p>
           <p className="nb-tagline">Guiding Patients One Smile at a Time.</p>
           <p className="nb-practice">Dr. Peter Kampf &amp; Associates <span aria-hidden="true">·</span> New York</p><div className="nb-actions"><a className="pp-button" href="#contact">Request a Consultation ↗</a><SiteLink className="nb-forms-link" href="/patient-forms/">Patient Forms →</SiteLink></div>
         </div>

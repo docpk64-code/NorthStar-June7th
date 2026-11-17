@@ -4,9 +4,9 @@ import FullArchOptions from './components/FullArchOptions';
 import ClinicalWarningCards from './components/ClinicalWarningCards';
 import BrooklynNotice from './components/BrooklynNotice';
 import SiteLink from './components/SiteLink';
+import { offices } from './data/offices';
 /**
  * pages/index.tsx — All 10 inner page components
- * Edit the placeholder text marked with [EDIT: ...] to add your real content.
  */
 
 import { navigate } from './Root';
@@ -25,15 +25,7 @@ export function AboutPage() {
       <div className="page-section">
         <p className="page-kicker">Our Philosophy</p>
         <h2>Care Built Around You</h2>
-        <p>
-          [EDIT: Introduce Dr. Kampf and the practice philosophy here. Describe
-          what sets NorthStar apart — the patient-first approach, the calm
-          environment, the commitment to transparent communication.]
-        </p>
-        <p>
-          [EDIT: Add a second paragraph about the team, years of experience, or
-          the types of patients you see most.]
-        </p>
+        <p>Dr. Peter Kampf and the NorthStar team begin with a conversation about your concerns and treatment goals. At your consultation, we review your options, explain the stages of care, and give you time to ask questions before deciding how to proceed.</p>
       </div>
 
       <div className="page-section" style={{ position: 'relative' }}>
@@ -66,78 +58,9 @@ export function AboutPage() {
           <h2>Dr. Peter Kampf</h2>
         </div>
         <div style={{ width: '100%', marginTop: '1.5rem' }}>
-          <p>
-            Dr. Peter R. Kampf is the founder of NorthStar Implant Dentistry and
-            one of the New York metropolitan area's most experienced and
-            versatile dental surgeons. With over three decades of clinical
-            practice, Dr. Kampf has built a reputation for exceptional surgical
-            skill, meticulous attention to detail, and a genuine commitment to
-            transforming the lives of his patients — one smile at a time.
-          </p>
-
-          <p>
-            Dr. Kampf graduated from the New York University College of
-            Dentistry in 1992, the same class as his longtime colleagues and
-            NorthStar associates Dr. Elisa Nelson and Dr. Agnes Nadrag.
-            Following dental school, he pursued advanced postgraduate training
-            as a post-doctoral fellow and resident in oral surgery and hospital
-            dentistry at the Columbia Presbyterian Medical Center — now
-            NewYork-Presbyterian / Columbia University Irving Medical Center —
-            one of the most prestigious academic medical institutions in the
-            United States. This rigorous hospital-based training gave Dr. Kampf
-            extensive experience in the medical and surgical management of
-            complex patients, knowledge that continues to inform his approach to
-            care. As research increasingly demonstrates the deep connection
-            between oral health and systemic conditions such as cardiovascular
-            disease, diabetes, and sleep disorders, Dr. Kampf's broad medical
-            foundation sets him apart from surgeons with purely dental training.
-          </p>
-
-          <p>
-            After Columbia, Dr. Kampf pursued additional advanced surgical
-            training at Brookdale Medical Center in Brooklyn, New York, where he
-            deepened his expertise in dental implants, bone grafting, bone
-            regenerative techniques, and full mouth reconstruction utilizing
-            multiple modalities of dental implants. This second residency
-            solidified his focus on implant surgery and complex oral
-            rehabilitation — the clinical foundation upon which NorthStar
-            Implant Dentistry was built.
-          </p>
-
-          <p>
-            Dr. Kampf's clinical interests span the full spectrum of advanced
-            implant dentistry and oral surgery. He has developed particular
-            expertise in complex and specialized implant solutions — including
-            zygomatic and remote anchorage implants for patients who have been
-            told they cannot receive conventional implants due to severe bone
-            loss. He is among a select group of practitioners nationwide with
-            the training and experience to offer these life-changing solutions
-            to patients who have been turned away elsewhere. His other areas of
-            focus include complex oral rehabilitation and full mouth
-            reconstruction, oral medicine, atypical facial pain, trigeminal
-            neuralgia, TMJ syndromes, and sleep apnea — reflecting a scope of
-            practice that goes far beyond routine implant placement.
-          </p>
-
-          <p>
-            Recognized by the American Academy of Implant Dentistry — whose
-            emblem he proudly wears on his lab coat — Dr. Kampf is a member of
-            this prestigious organization, which has been the credentialing
-            standard for implant dentistry since 1951. His membership reflects
-            not only his surgical credentials but his ongoing commitment to
-            advancing his knowledge and skills in a rapidly evolving field.
-          </p>
-
-          <p>
-            Beyond his surgical practice, Dr. Kampf brings a deeply human
-            dimension to his work. Patients consistently describe him as kind,
-            thorough, calm under pressure, and genuinely invested in their
-            well-being. He takes the time to listen, to explain, and to ensure
-            that every patient — regardless of the complexity of their situation
-            — feels informed, respected, and cared for. At NorthStar, his vision
-            is simple: to guide patients to the best possible outcomes with
-            honesty, precision, and compassion.
-          </p>
+          <p>Dr. Peter R. Kampf, DDS, founded NorthStar Implant Dentistry. He graduated from New York University College of Dentistry in 1992 with honors in Oral Medicine and Pathology.</p>
+          <p>Dr. Kampf completed a one-year fellowship in Oral and Maxillofacial Surgery at Columbia Presbyterian Hospital and a two-year fellowship in Implant Dentistry at Brookdale Medical Center.</p>
+          <p>His clinical focus includes dental implants, bone grafting, and complex oral rehabilitation. He evaluates advanced implant options for patients with severe bone loss and sees patients whose existing implants or restorations need reassessment.</p>
 
           <p style={{ fontWeight: 700, marginTop: '1.2rem' }}>
             🧾 Education & Training
@@ -308,11 +231,6 @@ export function AboutPage() {
             }}
           />
           <h2>Dr. Elisa Nelson</h2>
-          <p>
-            [EDIT: Add Dr. Nelson's biography here — education, training,
-            certifications, professional affiliations, and any personal details
-            that help patients connect.]
-          </p>
           <p
             style={{
               fontWeight: 700,
@@ -444,23 +362,12 @@ export function AboutPage() {
           />
           <h2>Dr. Carlos Garcia</h2>
         </div>
-        <div style={{ width: '100%', marginTop: '1.5rem' }}>
-          <p>
-            [EDIT: Add Dr. Garcia's biography here — education, training,
-            certifications, professional affiliations, and any personal details
-            that help patients connect.]
-          </p>
-        </div>
       </div>
 
       <div className="page-section">
         <p className="page-kicker">The Office</p>
         <h2>A Calm, Welcoming Environment</h2>
-        <p>
-          [EDIT: Describe the office setting at 139-12 84th Drive, Suite 1G,
-          Briarwood, NY. Talk about parking, accessibility, what patients
-          experience when they walk in.]
-        </p>
+        <p>Find office hours, addresses, and directions for <SiteLink href="/locations/">NorthStar’s locations</SiteLink>. Our scheduling team can help you choose an office and confirm the address before your visit.</p>
       </div>
     </PageLayout>
   );
@@ -480,6 +387,17 @@ export function ProceduresPage() {
 }
 
 // ─── Dental Implants ─────────────────────────────────────────────────────────
+function RestorativeCareSummary() {
+  return (
+    <section className="page-section">
+      <h2>Who provides your temporary and final teeth?</h2>
+      <p>NorthStar provides both implant surgery and your final teeth, whether you need a crown, a bridge, or a full-arch restoration. If your treatment plan calls for temporary teeth, we’ll explain what type is planned and when they may be fitted.</p>
+      <p>Before treatment, ask for an itemized estimate that shows what’s included for surgery, any temporary teeth, the final restoration, and follow-up visits.</p>
+      <SiteLink href="/procedure/restorative-coordination/">How NorthStar coordinates your implant care →</SiteLink>
+    </section>
+  );
+}
+
 export function DentalImplantsPage() {
   return (
     <PageLayout
@@ -487,6 +405,7 @@ export function DentalImplantsPage() {
       title="Dental Implants"
       subtitle="Modern implant treatment built around diagnostics, digital planning, long-term function, and everyday confidence."
     >
+      <RestorativeCareSummary />
       <div className="page-section">
         <p className="page-kicker">What Is a Dental Implant?</p>
         <h2>A Permanent Foundation for Your Smile</h2>
@@ -573,7 +492,7 @@ export function DentalImplantsPage() {
             },
             {
               title: '5. Final Restoration',
-              body: 'Once osseointegration is confirmed, you return to your restorative dentist for placement of the final crown, bridge, or prosthesis. NorthStar coordinates directly with your restorative provider throughout the process to ensure the final result fits perfectly and functions beautifully.',
+              body: 'Once the implant has healed and is ready to support your restoration, NorthStar fits and delivers the final crown, bridge, or prosthesis.',
             },
           ].map((card) => (
             <div key={card.title} className="page-card">
@@ -615,6 +534,7 @@ export function FullArchPage() {
         <p>Conventional implants, advanced anchorage techniques, and removable designs address different needs. The number and position of implants, need for grafting, and timing of temporary teeth depend on your examination, 3D imaging, and restorative plan.</p>
       </div>
 
+      <RestorativeCareSummary />
       <FullArchOptions />
 
       <div className="page-section">
@@ -659,7 +579,7 @@ export function FullArchPage() {
         <p>
           The process begins with a comprehensive consultation and 3D cone beam
           CT imaging to evaluate your bone volume, anatomy, and overall oral
-          health. Our surgical team works closely with your restorative dentist
+          health. NorthStar’s surgical and restorative teams work together
           to develop a coordinated treatment plan that defines implant
           positions, prosthesis design, and the overall timeline before any
           surgery takes place.
@@ -670,7 +590,7 @@ export function FullArchPage() {
           prosthesis is attached the same day. Over the following three to six
           months, osseointegration occurs as the implants fuse with the bone.
           Once confirmed, your final custom prosthesis is fabricated and
-          delivered by your restorative dentist. The timing of final teeth varies with your anatomy, healing, grafting needs, and restorative plan; your team will discuss an individualized timeline. Our team
+          delivered by NorthStar. The timing of final teeth varies with your anatomy, healing, grafting needs, and restorative plan; your team will discuss an individualized timeline. Our team
           supports you at every stage with detailed instructions, follow-up
           visits, and compassionate, attentive care.
         </p>
@@ -1130,9 +1050,7 @@ export function TechnologyPage() {
           generation ago.
         </p>
         <p>
-          This imaging is standard for all implant evaluations, bone grafting
-          assessments, wisdom tooth extractions, and complex surgical cases at
-          NorthStar. It forms the foundation of every treatment plan we create.
+          NorthStar uses CBCT when 3D imaging is clinically indicated, including to assess some cases involving impacted teeth, severe bone loss, or full-mouth reconstruction.
         </p>
       </div>
 
@@ -1201,154 +1119,12 @@ export function TechnologyPage() {
   );
 }
 
-// ─── Testimonials ─────────────────────────────────────────────────────────────
-export function TestimonialsPage() {
-  const testimonials = [
-    {
-      quote: '[EDIT: Paste real patient review here.]',
-      name: '[EDIT: Patient First Name]',
-      procedure: '[EDIT: Procedure type]',
-    },
-    {
-      quote: '[EDIT: Paste real patient review here.]',
-      name: '[EDIT: Patient First Name]',
-      procedure: '[EDIT: Procedure type]',
-    },
-    {
-      quote: '[EDIT: Paste real patient review here.]',
-      name: '[EDIT: Patient First Name]',
-      procedure: '[EDIT: Procedure type]',
-    },
-    {
-      quote: '[EDIT: Paste real patient review here.]',
-      name: '[EDIT: Patient First Name]',
-      procedure: '[EDIT: Procedure type]',
-    },
-    {
-      quote: '[EDIT: Paste real patient review here.]',
-      name: '[EDIT: Patient First Name]',
-      procedure: '[EDIT: Procedure type]',
-    },
-    {
-      quote: '[EDIT: Paste real patient review here.]',
-      name: '[EDIT: Patient First Name]',
-      procedure: '[EDIT: Procedure type]',
-    },
-  ];
-
-  return (
-    <PageLayout
-      kicker="Patient Trust"
-      title="Testimonials"
-      subtitle="Real stories from real patients about their experience at NorthStar Implant Dentistry."
-    >
-      <div className="page-section">
-        <p className="page-kicker">What Patients Say</p>
-        <h2>Voices from Our Community</h2>
-        <div className="page-card-grid">
-          {testimonials.map((t, i) => (
-            <div
-              key={i}
-              className="page-card"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.75rem',
-              }}
-            >
-              <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>
-                "{t.quote}"
-              </p>
-              <div>
-                <p style={{ fontWeight: 600, margin: 0, color: '#07111c' }}>
-                  — {t.name}
-                </p>
-                <p style={{ fontSize: '0.8rem', color: '#c59d3c', margin: 0 }}>
-                  {t.procedure}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="page-section">
-        <p className="page-kicker">Leave a Review</p>
-        <h2>Share Your Experience</h2>
-        <p>
-          Your feedback means the world to us and helps future patients make
-          informed decisions about their care. If you have been a patient at
-          NorthStar Implant Dentistry, we would be deeply grateful if you took a
-          moment to share your experience. You can leave a review on Google,
-          Healthgrades, or Yelp — links below.
-        </p>
-        <div
-          style={{
-            display: 'flex',
-            gap: '1rem',
-            flexWrap: 'wrap',
-            marginTop: '1rem',
-          }}
-        >
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              padding: '0.6rem 1.4rem',
-              background: '#c59d3c',
-              color: '#fff',
-              borderRadius: '0.4rem',
-              fontWeight: 600,
-              textDecoration: 'none',
-            }}
-          >
-            ⭐ Review on Google
-          </a>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              padding: '0.6rem 1.4rem',
-              background: '#f8f9fb',
-              color: '#c59d3c',
-              border: '1.5px solid #c59d3c',
-              borderRadius: '0.4rem',
-              fontWeight: 600,
-              textDecoration: 'none',
-            }}
-          >
-            ⭐ Review on Healthgrades
-          </a>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              padding: '0.6rem 1.4rem',
-              background: '#f8f9fb',
-              color: '#c59d3c',
-              border: '1.5px solid #c59d3c',
-              borderRadius: '0.4rem',
-              fontWeight: 600,
-              textDecoration: 'none',
-            }}
-          >
-            ⭐ Review on Yelp
-          </a>
-        </div>
-      </div>
-    </PageLayout>
-  );
-}
-
 // ─── Contact ─────────────────────────────────────────────────────────────────
 export function ContactPage() {
   const [formState, handleFormspreeSubmit] = useForm('xbdpbdkj');
+  const activeOffices = offices.filter(office => !office.comingSoon);
+  const requestedOffice = new URLSearchParams(window.location.search).get('office');
+  const preferredOffice = activeOffices.find(office => office.id === requestedOffice);
 
   return (
     <PageLayout
@@ -1356,13 +1132,12 @@ export function ContactPage() {
       title="Contact & Schedule"
       subtitle="Reach out to schedule a consultation or ask questions about implants, wisdom teeth, sedation, or any of our services."
     >
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)',
-          gap: '1.5rem',
-        }}
-      >
+      <style>{`
+        .ns-contact-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; }
+        #consultation { scroll-margin-top:7rem; }
+        @media (max-width:700px) { .ns-contact-grid { grid-template-columns:1fr; } }
+      `}</style>
+      <div className="ns-contact-grid">
         {/* Info column */}
         <div>
           <div className="page-section">
@@ -1371,10 +1146,10 @@ export function ContactPage() {
             {[
               {
                 id: 'briarwood', name: 'Briarwood, NY',
-                address: '139-12 84th Drive, Suite 1G, Briarwood, NY',
+                address: '139-12 84th Drive, Suite 1G, Briarwood, NY 11435',
                 phone: '631-315-1400',
                 tel: '6313151400',
-                maps: 'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY',
+                maps: 'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY+11435',
               },
               {
                 id: 'manhattan', name: 'New York, NY',
@@ -1436,6 +1211,7 @@ export function ContactPage() {
                 </a>
               </div>
             ))}
+            <p>Call <a href="tel:6313151400">631-315-1400</a> for scheduling at any NorthStar office.</p>
             <p>
               <strong>Hours:</strong>
               <br />
@@ -1513,7 +1289,7 @@ export function ContactPage() {
         </div>
 
         {/* Form column */}
-        <div className="page-section">
+        <div className="page-section" id="consultation">
           <p className="page-kicker">Get in Touch</p>
           <h2>Request a Consultation</h2>
 
@@ -1639,6 +1415,13 @@ export function ContactPage() {
                   }}
                 />
               </label>
+              <label style={{ display: 'grid', gap: '0.3rem', fontSize: '0.88rem', color: '#4a5668' }}>
+                Preferred office
+                <select name="location" key={preferredOffice?.id} defaultValue={preferredOffice?.name ?? ''} style={{ padding: '0.7rem 1rem', borderRadius: '0.6rem', border: '1px solid #dde3ed', fontSize: '0.95rem' }}>
+                  <option value="">No preference</option>
+                  {activeOffices.map(office => <option key={office.id} value={office.name}>{office.name}</option>)}
+                </select>
+              </label>
               <label
                 style={{
                   display: 'grid',
@@ -1702,10 +1485,10 @@ export function LocationsPage() {
     {
       id: 'briarwood', name: 'Briarwood, NY',
       address: '139-12 84th Drive, Suite 1G',
-      city: 'Briarwood, NY',
+      city: 'Briarwood, NY 11435',
       phone: '631-315-1400',
       tel: '6313151400',
-      maps: 'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY',
+      maps: 'https://maps.google.com/?q=139-12+84th+Drive+Suite+1G+Briarwood+NY+11435',
       parking: 'Accessible by E and F subway lines (Briarwood/Van Wyck Blvd station). Public parking garage available nearby.',
       hours: 'Mon-Sat: 9am-8pm | Sunday: By appointment',
     },
@@ -2018,64 +1801,6 @@ export function PatientFormsPage() {
 }
 
 // ─── Procedure Detail Pages ───────────────────────────────────────────────────
-export function ProcedureDetailPage({
-  title,
-  kicker,
-  subtitle,
-}: {
-  title: string;
-  kicker: string;
-  subtitle: string;
-}) {
-  return (
-    <PageLayout kicker={kicker} title={title} subtitle={subtitle}>
-      <div className="page-section">
-        <p className="page-kicker">Overview</p>
-        <h2>About This Procedure</h2>
-        <p>
-          [EDIT: Provide a detailed overview of {title}. Explain what the
-          procedure involves, who it is for, and what patients can expect.]
-        </p>
-        <p>
-          [EDIT: Add additional context — clinical indications, ideal
-          candidates, and how this procedure fits within NorthStar's overall
-          treatment philosophy.]
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">The Process</p>
-        <h2>What to Expect</h2>
-        <p>
-          [EDIT: Walk the patient through the procedure step by step — from the
-          initial consultation and diagnosis through surgery, recovery, and
-          follow-up care.]
-        </p>
-        <p>
-          [EDIT: Address common patient concerns such as pain management,
-          downtime, and timeline to full recovery.]
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">Outcomes</p>
-        <h2>Results & Long-Term Care</h2>
-        <p>
-          [EDIT: Describe expected outcomes, success rates, and long-term
-          maintenance considerations for this procedure.]
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">Ready to Learn More?</p>
-        <h2>Schedule a Consultation</h2>
-        <p>
-          [EDIT: Invite patients to book a consultation to discuss this
-          procedure. Reinforce NorthStar's commitment to personalized care and
-          transparent communication.]
-        </p>
-      </div>
-    </PageLayout>
-  );
-}
-
 export function ToothExtractionsPage() {
   return (
     <PageLayout
@@ -2544,8 +2269,8 @@ export function ImplantPlacementPage() {
           seated into position. The gum tissue is then closed around the
           implant. Most patients are surprised by how minimal the discomfort is.
           A healing period of three to six months follows, during which the
-          implant fuses with the bone. Once integration is confirmed, your
-          restorative dentist will attach the final crown or prosthesis.
+          implant fuses with the bone. Once integration is confirmed,
+          NorthStar will fit the final crown or prosthesis.
         </p>
       </div>
       <div className="page-section">
@@ -2567,9 +2292,8 @@ export function ImplantPlacementPage() {
         <p>
           Whether you are missing a single tooth or multiple teeth, dental
           implants may be the ideal solution for restoring your smile and
-          quality of life. NorthStar Implant Dentistry specializes in the full
-          scope of implant care — from evaluation and surgical placement to
-          coordination with your restorative dentist. Schedule a consultation
+          quality of life. NorthStar Implant Dentistry provides evaluation,
+          surgical placement, and the final implant restoration. Schedule a consultation
           today and take the first step toward a permanent, natural-looking
           smile.
         </p>
@@ -2658,75 +2382,21 @@ export function RestorativeCoordPage() {
     <PageLayout
       kicker="Team-Based Care"
       title="Restorative Coordination"
-      subtitle="Seamless collaboration with your restorative dentist for comprehensive implant outcomes."
+      subtitle="NorthStar provides implant surgery and your final replacement teeth."
     >
-      <div className="page-section">
-        <p className="page-kicker">Overview</p>
-        <h2>About This Procedure</h2>
-        <p>
-          Successful implant dentistry is a team effort. At NorthStar Implant
-          Dentistry, we specialize in the surgical component of implant care —
-          including extraction, bone grafting, and implant placement — while
-          working closely with your restorative dentist, who is responsible for
-          designing and delivering the final crown, bridge, or full-arch
-          prosthesis that attaches to the implant.
-        </p>
-        <p>
-          This collaborative model ensures that every aspect of your treatment
-          is thoughtfully planned and executed. Before surgery even begins, we
-          communicate directly with your restorative dentist to align on implant
-          positioning, angulation, and timing so that the final restoration fits
-          perfectly and functions beautifully. If you do not have a restorative
-          dentist, we are happy to provide referrals to trusted providers in our
-          network.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">The Process</p>
-        <h2>What to Expect</h2>
-        <p>
-          The implant process is divided into two phases. The surgical phase is
-          performed at NorthStar and includes any necessary extractions, bone
-          grafting, and the placement of the implant itself. After a healing
-          period — typically three to six months — during which the implant
-          fuses with the bone, you return to your restorative dentist for the
-          second phase: the placement of the abutment and final prosthetic crown
-          or bridge.
-        </p>
-        <p>
-          Throughout this process, NorthStar maintains open communication with
-          your restorative dentist, sharing imaging, surgical reports, and
-          healing updates. We also provide detailed records and impressions to
-          ensure precise fabrication of your final restoration. This seamless
-          hand-off between surgical and restorative care is central to the
-          NorthStar approach.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">Outcomes</p>
-        <h2>Results & Long-Term Care</h2>
-        <p>
-          When the surgical and restorative phases are carefully coordinated,
-          the result is an implant restoration that looks, feels, and functions
-          like a natural tooth. Proper planning prevents complications such as
-          implants placed at incorrect angles, crowns that do not fit well, or
-          bite issues that can strain the implant over time. Long-term success
-          depends on maintaining excellent oral hygiene and attending regular
-          check-ups with both your surgeon and restorative dentist.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">Ready to Learn More?</p>
-        <h2>Schedule a Consultation</h2>
-        <p>
-          Whether you are coming to us with your own restorative dentist or
-          starting fresh, NorthStar will ensure your care is coordinated and
-          cohesive from start to finish. We believe that great outcomes come
-          from great teamwork — and we take pride in being a surgical partner
-          you and your dentist can trust completely. Contact us to begin your
-          implant journey.
-        </p>
-      </div>
+      <section className="page-section">
+        <h2>One treatment plan from surgery to final teeth</h2>
+        <p>NorthStar plans your implant surgery around the crown, bridge, or full-arch restoration you’ll receive. The team coordinates implant placement and the design of your final teeth from the start.</p>
+      </section>
+      <section className="page-section">
+        <h2>Temporary teeth and healing</h2>
+        <p>If temporary teeth are part of your plan, we’ll discuss the type of restoration and when it can be fitted. NorthStar checks your healing and confirms when you’re ready for the final restoration.</p>
+      </section>
+      <section className="page-section">
+        <h2>Fitting your final teeth</h2>
+        <p>NorthStar fits and delivers your final teeth, checks how they fit and meet when you bite, and explains how to care for them. If you already have a dentist, we can coordinate with their office as needed.</p>
+        <p>Explore <SiteLink href="/dental-implants/">dental implants</SiteLink> or <SiteLink href="/full-arch/">full-arch treatment</SiteLink> to learn what the process may involve.</p>
+      </section>
     </PageLayout>
   );
 }
@@ -2753,7 +2423,7 @@ export function FullMouthReconPage() {
           sequenced series of treatments — which may include extractions, bone
           grafting, implant placement, gum therapy, and restorative work —
           designed as a unified plan with a clear endpoint. At NorthStar, we
-          work collaboratively with your restorative dentist to ensure that
+          coordinate the surgical and restorative phases so that
           every phase is executed in the right order, with the right techniques,
           to achieve a result that is not only beautiful but structurally sound
           and built to last.
@@ -2928,11 +2598,10 @@ export function PreProstheticSurgPage() {
           the work performed.
         </p>
         <p>
-          Following surgery, your restorative dentist or prosthodontist will
-          coordinate the timing of prosthesis fabrication to ensure the tissue
-          has healed and stabilized before impressions are taken. Close
-          communication between our surgical team and your restorative provider
-          ensures a smooth transition from surgery to the final prosthesis.
+          After surgery, the team checks how the tissue is healing and determines
+          when impressions can be taken for the planned prosthesis. If another
+          dentist is already involved in your care, NorthStar can coordinate
+          the timing with that office.
         </p>
       </div>
       <div className="page-section">
@@ -3120,88 +2789,6 @@ export function MaxillaryExpansionPage() {
     </PageLayout>
   );
 }
-export function ProcedureTechnologyPage() {
-  return (
-    <PageLayout
-      kicker="Digitally Guided Care"
-      title="Technology at NorthStar"
-      subtitle="State-of-the-art imaging and digital planning tools that support precise, predictable outcomes."
-    >
-      <div className="page-section">
-        <p className="page-kicker">Our Approach</p>
-        <h2>Technology-Driven Precision</h2>
-        <p>
-          At NorthStar Implant Dentistry, we believe that the best surgical
-          outcomes begin with the best information. We invest in advanced
-          diagnostic and planning technology not because it is impressive, but
-          because it directly improves the safety, accuracy, and predictability
-          of every procedure we perform. Our technology-driven approach means
-          fewer surprises, better outcomes, and a more comfortable experience
-          for our patients.
-        </p>
-        <p>
-          From the moment you arrive for your consultation, our team uses
-          cutting-edge tools to gather a complete picture of your oral anatomy,
-          plan your treatment with digital precision, and execute procedures
-          with guided accuracy — all in service of one goal: delivering results
-          you can trust.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">Imaging</p>
-        <h2>Cone Beam CT (3D Imaging)</h2>
-        <p>
-          Our in-office cone beam computed tomography (CBCT) scanner produces
-          detailed three-dimensional images of your teeth, bone, nerves,
-          sinuses, and surrounding structures in a single low-radiation scan.
-          Unlike traditional 2D X-rays, CBCT imaging allows us to evaluate bone
-          volume and density in all three dimensions, identify the precise
-          location of anatomical structures that must be protected during
-          surgery, and plan implant placement with digital precision before the
-          patient ever enters the operating room.
-        </p>
-        <p>
-          This level of diagnostic detail is essential for complex cases —
-          including sinus lifts, bone grafting, zygomatic implants, impacted
-          teeth, and full mouth reconstruction — where anatomical awareness is
-          critical to surgical safety.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">Planning & Guidance</p>
-        <h2>Digital Surgical Planning & Guided Surgery</h2>
-        <p>
-          Using specialized implant planning software, our surgeons digitally
-          simulate each procedure on a virtual model of your anatomy before
-          performing it in the real world. Implant position, angulation, depth,
-          and diameter are all optimized virtually, ensuring that the final
-          placement is ideal for the restorative outcome your dentist is
-          planning.
-        </p>
-        <p>
-          In many cases, a surgical guide is fabricated from this digital plan —
-          a custom appliance that fits precisely over your teeth and directs the
-          drill to the exact planned position during surgery. Guided surgery
-          significantly reduces the margin of error and increases procedural
-          efficiency, resulting in faster surgeries, less tissue trauma, and
-          more predictable healing.
-        </p>
-      </div>
-      <div className="page-section">
-        <p className="page-kicker">Ready to Learn More?</p>
-        <h2>Experience the NorthStar Difference</h2>
-        <p>
-          When you choose NorthStar, you are choosing a practice that combines
-          surgical expertise with the most advanced tools available to modern
-          implant dentistry. We welcome you to come in, meet our team, and see
-          our technology firsthand. Contact us to schedule your consultation
-          today.
-        </p>
-      </div>
-    </PageLayout>
-  );
-}
-
 // ─── Specialized Circumstances Detail Pages ───────────────────────────────────
 
 export function CantGetImplantsPage() {
@@ -3211,6 +2798,14 @@ export function CantGetImplantsPage() {
       title="Remote Anchorage Implants"
       subtitle="Innovative surgical solutions for patients with severe bone loss or complex anatomy who have been told implants are not possible."
     >
+      <div className="page-section">
+        <h2>Can I get dental implants if I have severe bone loss?</h2>
+        <p>Some patients with severe upper-jaw bone loss may still have implant options. The examination, 3D imaging, and plan for the replacement teeth help determine whether conventional implants with grafting, zygomatic implants, or a removable option is appropriate.</p>
+        <p><SiteLink href="/about/">Meet Dr. Peter Kampf</SiteLink>, who evaluates complex implant cases at NorthStar.</p>
+        <p><a href="https://pubmed.ncbi.nlm.nih.gov/37698775/">Clinical reference: 2023 International Team for Implantology consensus on zygomatic implants</a>.</p>
+        <p><SiteLink href="/full-arch/">Explore full-arch options</SiteLink> or <SiteLink href="/contact/">request an evaluation</SiteLink>.</p>
+      </div>
+
       <div className="page-section">
         <p className="page-kicker">Related Treatment</p>
         <h2>Sub-Periosteal Implants</h2>
@@ -3233,8 +2828,8 @@ export function CantGetImplantsPage() {
           patients do not realize is that a no from one provider is not
           necessarily the final answer. Advances in implant surgery over the
           past two decades have opened the door to solutions that did not exist
-          a generation ago, and NorthStar Implant Dentistry specializes in
-          exactly these cases.
+          a generation ago, and NorthStar Implant Dentistry
+          evaluates patients with these concerns.
         </p>
         <p>
           The most common reason patients are told they cannot receive
@@ -4708,29 +4303,12 @@ export function BotchedSmilePage() {
       title="Botched Smile or Failed Implants?"
       subtitle="Expert evaluation and corrective care for patients suffering from poor implant outcomes, failed restorations, or dental work gone wrong."
     >
-      <div className="page-section">
-        <p className="page-kicker">You Are Not Alone</p>
-        <h2>When Dental Work Goes Wrong</h2>
-        <p>
-          Not all dental implants and restorations are created equal. As implant
-          dentistry has grown in popularity, so too has the number of patients
-          who have received substandard care — implants placed at incorrect
-          angles, crowns that don't fit properly, prostheses that fail
-          prematurely, gum tissue that recedes to expose metal components, or
-          infections that were never properly addressed. The result can be pain,
-          embarrassment, difficulty eating, and a profound loss of confidence.
-        </p>
-        <p>
-          If you are living with a smile that was supposed to improve your life
-          but has instead caused you ongoing problems, you are not alone — and
-          you are not without options. At NorthStar Implant Dentistry, Dr. Kampf
-          has extensive experience evaluating and correcting failed implant
-          cases and compromised restorations. We understand both the physical
-          and emotional toll of a botched outcome, and we approach every
-          corrective case with sensitivity, thoroughness, and a commitment to
-          getting it right.
-        </p>
-      </div>
+      <section className="page-section">
+        <h2>What happens when a dental implant fails?</h2>
+        <p>The next step is to find out whether the problem involves the crown or bridge, a connecting component, or the implant and surrounding tissue. An examination and imaging as needed can help the team discuss whether repair, treatment of the surrounding tissue, or implant removal is appropriate.</p>
+        <p><a href="https://pubmed.ncbi.nlm.nih.gov/37271498/">Clinical reference: European Federation of Periodontology guideline on peri-implant disease</a>.</p>
+        <p><SiteLink href="/about/">Meet Dr. Peter Kampf</SiteLink> or <SiteLink href="/contact/">request an implant evaluation</SiteLink>.</p>
+      </section>
 
       <div className="page-section">
         <p className="page-kicker">Common Problems We See</p>
@@ -5167,7 +4745,7 @@ export function HydraFacialPage() {
           </a>
         </div>
         <p style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#4a5668' }}>
-          139-12 84th Drive, Suite 1G, Briarwood, NY &nbsp;·&nbsp; 333 East 34th Street, Suite M1, New York, NY &nbsp;·&nbsp; 283 Commack Road, Suite 130, Commack, NY &nbsp;·&nbsp; Brooklyn: 32 Court Street, Suite 301, Brooklyn, NY 11201 (opening January 4, 2027)
+          139-12 84th Drive, Suite 1G, Briarwood, NY 11435 &nbsp;·&nbsp; 333 East 34th Street, Suite M1, New York, NY &nbsp;·&nbsp; 283 Commack Road, Suite 130, Commack, NY &nbsp;·&nbsp; Brooklyn: 32 Court Street, Suite 301, Brooklyn, NY 11201 (opening January 4, 2027)
         </p>
       </div>
 
@@ -5416,7 +4994,7 @@ export function TermsPage() {
     >
       <div className="page-section">
         <p className="page-kicker">Last Updated</p>
-        <p>[EDIT: insert publish date]</p>
+        <p><time dateTime="2026-11-17">November 17, 2026</time></p>
       </div>
 
       <div className="page-section">
@@ -5510,9 +5088,7 @@ export function TermsPage() {
         <p>
           NorthStar Implant Dentistry, P.C.
           <br />
-          [EDIT: practice mailing address]
-          <br />
-          [EDIT: email address]
+          <SiteLink href="/contact/">Contact the practice</SiteLink>
           <br />
           <a href="tel:6313151400" style={{ color: '#f3d37a' }}>
             631-315-1400

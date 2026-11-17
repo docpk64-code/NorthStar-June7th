@@ -19,7 +19,6 @@ const menuItems = [
   { label: 'Sedation', href: '/sedation' },
   { label: 'Patient Info', href: '/patient-information' },
   { label: 'Technology', href: '/technology' },
-  { label: 'Testimonials', href: '/testimonials' },
   { label: 'Contact', href: '/contact' },
   { label: 'Locations', href: '/locations' },
 ];
@@ -387,6 +386,7 @@ export function PageLayout({
   subtitle,
   description,
   ctaLabel = 'Book a Consultation',
+  ctaHref = '/contact/',
 }: {
   children: React.ReactNode;
   kicker: string;
@@ -394,6 +394,7 @@ export function PageLayout({
   subtitle: string;
   description?: string;
   ctaLabel?: string;
+  ctaHref?: string;
 }) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -563,13 +564,13 @@ export function PageLayout({
         <p className="page-hero-kicker">{kicker}</p>
         <h1 className="page-hero-title">{title}</h1>
         <p className="page-hero-subtitle">{subtitle}</p>
-        <SiteLink
+        <a
           className="page-hero-cta"
-          href={'/contact'}
+          href={ctaHref}
           aria-label={ctaLabel + ' with NorthStar Implant Dentistry'}
         >
           {ctaLabel}
-        </SiteLink>
+        </a>
       </div>
 
       {/* ── Page body ── */}

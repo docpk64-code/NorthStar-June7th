@@ -10,7 +10,6 @@ import {
   CARE_CARD_6_SRC,
   CARE_CARD_7_SRC,
   CARE_CARD_8_SRC,
-  TESTIMONIAL_CARD_SRC,
   CONTACT_CARD_SRC,
   BEFORE_TILE_6_SRC,
 } from '../assets/imagePaths';
@@ -89,15 +88,6 @@ export const menuItems: MenuItem[] = [
     description:
       'Learn how imaging and digital planning support your treatment evaluation.',
     imageSrc: CARE_CARD_8_SRC,
-  },
-  {
-    label: 'Testimonials',
-    shortLabel: 'Reviews',
-    href: '/testimonials',
-    eyebrow: 'Patient trust',
-    description:
-      'Find patient feedback information and learn how to share your experience with our team.',
-    imageSrc: TESTIMONIAL_CARD_SRC,
   },
   {
     label: 'Contact & Schedule',
@@ -193,29 +183,11 @@ export const featureCards = [
     eyebrow: 'We Can Help',
     title: 'Botched Smile or Failed Implants?',
     description:
-      'If you are suffering from failed implants, exposed components, ill-fitting restorations, or peri-implant infection, Dr. Kampf specializes in evaluating and correcting these complex cases.',
+      'If you are suffering from failed implants, exposed components, ill-fitting restorations, or peri-implant infection, Dr. Kampf evaluates these concerns and discusses corrective treatment options.',
     imageSrc: '/assets/homepage/botched-smile.webp',
     slug: '/specialized/botched-smile',
   },
 
-];
-
-export const testimonials = [
-  {
-    quote:
-      '"The consultation felt calm, precise, and reassuring. Every step of the implant process was explained clearly."',
-    label: 'Implant consultation',
-  },
-  {
-    quote:
-      '"NorthStar made a complicated treatment plan feel organized. The digital workflow and communication stood out immediately."',
-    label: 'Full-arch planning',
-  },
-  {
-    quote:
-      '"I appreciated how much attention they gave to comfort options and recovery expectations before the procedure."',
-    label: 'Sedation discussion',
-  },
 ];
 
 // ─── Constants ────────────────────────────────────────────────────────────────

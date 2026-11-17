@@ -1,3 +1,5 @@
 # Netlify normalizes trailing slashes; do not add slash-only redirect rules.
 # Prerendered directory index files take priority over this fallback.
+/procedure/technology  /technology/  301
+/procedure/technology/  /technology/  301
 /*  /404.html  404

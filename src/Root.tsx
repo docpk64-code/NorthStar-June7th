@@ -26,7 +26,6 @@ const WisdomTeethPage = lazy(() => import('./pages').then(m => ({ default: m.Wis
 const SedationPage = lazy(() => import('./pages').then(m => ({ default: m.SedationPage })));
 const PatientInfoPage = lazy(() => import('./pages').then(m => ({ default: m.PatientInfoPage })));
 const TechnologyPage = lazy(() => import('./pages').then(m => ({ default: m.TechnologyPage })));
-const TestimonialsPage = lazy(() => import('./pages').then(m => ({ default: m.TestimonialsPage })));
 const ContactPage = lazy(() => import('./pages').then(m => ({ default: m.ContactPage })));
 const LocationsPage = lazy(() => import('./pages').then(m => ({ default: m.LocationsPage })));
 const PatientFormsPage = lazy(() => import('./pages').then(m => ({ default: m.PatientFormsPage })));
@@ -41,7 +40,6 @@ const OralMedPathologyPage = lazy(() => import('./pages').then(m => ({ default: 
 const PreProstheticSurgPage = lazy(() => import('./pages').then(m => ({ default: m.PreProstheticSurgPage })));
 const ImpactedTeethPage = lazy(() => import('./pages').then(m => ({ default: m.ImpactedTeethPage })));
 const MaxillaryExpansionPage = lazy(() => import('./pages').then(m => ({ default: m.MaxillaryExpansionPage })));
-const ProcedureTechnologyPage = lazy(() => import('./pages').then(m => ({ default: m.ProcedureTechnologyPage })));
 const CantGetImplantsPage = lazy(() => import('./pages').then(m => ({ default: m.CantGetImplantsPage })));
 const BotchedSmilePage = lazy(() => import('./pages').then(m => ({ default: m.BotchedSmilePage })));
 const SubPeriostealImplantPage = lazy(() => import('./pages').then(m => ({ default: m.SubPeriostealImplantPage })));
@@ -67,7 +65,6 @@ const ROUTES: Record<string, React.ReactElement> = {
   '/patient-forms/consent/all-on-x': <ConsentPage slug="all-on-x" />,
   '/patient-forms/consent/subperiosteal': <ConsentPage slug="subperiosteal" />,
   '/technology': <TechnologyPage />,
-  '/testimonials': <TestimonialsPage />,
   '/contact': <ContactPage />,
   '/locations': <LocationsPage />,
   '/locations/briarwood': <OfficePage officeId="briarwood" />,
@@ -85,7 +82,6 @@ const ROUTES: Record<string, React.ReactElement> = {
   '/procedure/pre-prosthetic-surgery': <PreProstheticSurgPage />,
   '/procedure/impacted-unerupted-teeth': <ImpactedTeethPage />,
   '/procedure/maxillary-expansion-marpe': <MaxillaryExpansionPage />,
-  '/procedure/technology': <ProcedureTechnologyPage />,
   '/specialized/cant-get-implants': <CantGetImplantsPage />,
   '/specialized/botched-smile': <BotchedSmilePage />,
   '/specialized/sub-periosteal-implant': <SubPeriostealImplantPage />,

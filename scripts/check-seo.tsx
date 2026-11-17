@@ -65,6 +65,11 @@ for (const route of routes) {
       assert.equal(document.querySelectorAll('iframe[title^="Map of NorthStar"]').length, 1);
       assert.equal(document.querySelectorAll('nav[aria-label="Other offices"] a').length, 3);
     }
+    assert(!document.body.textContent?.includes('[EDIT:'), path);
+    assert(!document.querySelector('a[href="/testimonials/"], a[href="/procedure/technology/"]'), path);
+    if (route === '/dental-implants' || route === '/full-arch') {
+      assert(document.querySelector('a[href="/procedure/restorative-coordination/"]'));
+    }
     if (route === '/about') {
       assert(!document.querySelector('.page-card[href="/patient-information/"]'));
     }
@@ -106,6 +111,22 @@ assert.equal(document.querySelector('h1')!.textContent, 'Dental Implants');
 await act(async () => document.querySelector<HTMLAnchorElement>('.page-nav-links a[href="/full-arch/"]')!.click());
 await settle();
 assert.equal(document.querySelector('h1')!.textContent, 'Full-Arch Solutions');
+for (const [office, selected] of [
+  ['briarwood', 'Briarwood, Queens'],
+  ['manhattan', 'Manhattan'],
+  ['commack', 'Commack, Long Island'],
+  ['brooklyn', ''],
+]) {
+  await act(async () => {
+    window.history.replaceState({}, '', `/contact/?office=${office}#consultation`);
+    root.render(<Root key={office} />);
+  });
+  await settle();
+  assert.equal(document.querySelector<HTMLSelectElement>('select[name="location"]')?.value, selected);
+  assert.equal(document.querySelector('link[rel="canonical"]')?.getAttribute('href'), 'https://northstarimplants.com/contact/');
+}
+assert(!sitemap.includes('/testimonials/') && !sitemap.includes('/procedure/technology/'));
+assert(redirects.includes('/procedure/technology/  /technology/  301'));
 await act(async () => navigate('/this-page-does-not-exist'));
 await settle();
 assert.equal(document.querySelector('h1')!.textContent, 'Page not found');

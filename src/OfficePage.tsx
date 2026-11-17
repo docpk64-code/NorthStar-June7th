@@ -4,10 +4,12 @@ import { offices, officePath, mapUrl, type OfficeId } from './data/offices';
 
 export default function OfficePage({ officeId }: { officeId: OfficeId }) {
   const office = offices.find(item => item.id === officeId)!;
+  const consultationHref = office.comingSoon ? '/contact/#consultation' : `/contact/?office=${office.id}#consultation`;
   return <PageLayout kicker={office.comingSoon ? 'New location · Coming soon' : 'Dr. Peter Kampf & Associates'}
     title={office.comingSoon ? 'Brooklyn Office — Coming Soon' : `Dental Implants in ${office.name}`}
     subtitle={office.intro}
     description={office.comingSoon ? 'NorthStar Implant Dentistry is coming to 32 Court Street, Suite 301, Brooklyn, NY 11201. Opening January 4, 2027. Contact our team for appointment information.' : `Visit NorthStar Implant Dentistry in ${office.name} at ${office.street}, ${office.city}, NY ${office.zip}. Hours, map and appointments: 631-315-1400.`}
+    ctaHref={consultationHref}
     ctaLabel={office.comingSoon ? 'Ask About Brooklyn' : 'Request a Consultation'}>
     <style>{`
       .office-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1.5rem; align-items:start; }
@@ -28,7 +30,7 @@ export default function OfficePage({ officeId }: { officeId: OfficeId }) {
         <address style={{ fontStyle: 'normal', lineHeight: 1.8 }}>{office.street}<br />{office.city}, NY {office.zip}</address>
         <p><strong>{office.comingSoon ? 'Practice phone' : 'Appointments'}:</strong><br /><a href="tel:6313151400">631-315-1400</a></p>
         {!office.comingSoon && <><h3>Office hours</h3><p>Monday–Saturday: 9am–8pm<br />Sunday: By appointment</p><p>Please call to confirm appointment availability before visiting.</p></>}
-        <div className="office-actions"><SiteLink href="/contact/">{office.comingSoon ? 'Ask about opening updates' : 'Request an appointment'}</SiteLink><a href={mapUrl(office)} target="_blank" rel="noreferrer">{office.comingSoon ? 'View planned location' : 'Get directions'}</a></div>
+        <div className="office-actions"><a href={consultationHref}>{office.comingSoon ? 'Ask about opening updates' : 'Request an appointment'}</a><a href={mapUrl(office)} target="_blank" rel="noreferrer">{office.comingSoon ? 'View planned location' : 'Get directions'}</a></div>
       </section>
       <section className="page-section office-page-section">
         <h2>{office.comingSoon ? 'Future Brooklyn location' : `Getting to our ${office.id === 'briarwood' ? 'Briarwood' : office.id === 'commack' ? 'Commack' : 'Manhattan'} office`}</h2>
