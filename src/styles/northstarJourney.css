@@ -42,7 +42,6 @@
   --detail-paper:#fafcf9;
   --detail-mat:#e5ebe3;
 }
-.nj-compass-face { fill:var(--detail-paper); }
 .nj-detail {
   width:100%; max-width:450px;
   border:1px solid #c9ae76;

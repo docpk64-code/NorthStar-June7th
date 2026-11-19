@@ -142,29 +142,66 @@ export default function App() {
             <p className="nj-coordinate">NORTHSTAR / FIND YOUR PATH</p>
             <div className="nj-compass" role="group" aria-label="Choose a care direction">
               <svg viewBox="0 0 500 500" aria-hidden="true" className="nj-instrument">
-                <defs><linearGradient id="nj-gold" x1="0" x2="1"><stop stopColor="#987137"/><stop offset=".5" stopColor="#f7e7b5"/><stop offset="1" stopColor="#bb9854"/></linearGradient></defs>
+                <defs>
+                  <linearGradient id="nj-bezel" x1="15%" y1="0%" x2="83%" y2="100%">
+                    <stop stopColor="#f0d399" />
+                    <stop offset=".29" stopColor="#be9b60" />
+                    <stop offset=".54" stopColor="#6f512d" />
+                    <stop offset=".78" stopColor="#a57f49" />
+                    <stop offset="1" stopColor="#4c3825" />
+                  </linearGradient>
+                  <radialGradient id="nj-dial" cx="36%" cy="27%" r="79%">
+                    <stop stopColor="#a89978" />
+                    <stop offset=".54" stopColor="#8e7f61" />
+                    <stop offset=".86" stopColor="#75674f" />
+                    <stop offset="1" stopColor="#64563f" />
+                  </radialGradient>
+                  <pattern id="nj-grain" width="31" height="9" patternUnits="userSpaceOnUse">
+                    <path d="M0 1H31M5 6H25" stroke="#f0ddb6" strokeOpacity=".15" strokeWidth=".6" />
+                    <path d="M0 3.5H21M17 8H31" stroke="#2a2118" strokeOpacity=".19" strokeWidth=".65" />
+                  </pattern>
+                  <linearGradient id="nj-gold" x1="0%" x2="100%">
+                    <stop stopColor="#9a6a29" />
+                    <stop offset=".53" stopColor="#ffecc0" />
+                    <stop offset="1" stopColor="#d0a25c" />
+                  </linearGradient>
+                  <radialGradient id="nj-pivot" cx="35%" cy="24%" r="78%">
+                    <stop stopColor="#fae0a4" />
+                    <stop offset=".52" stopColor="#b68b49" />
+                    <stop offset="1" stopColor="#624320" />
+                  </radialGradient>
+                </defs>
                 <g transform="translate(250 250) scale(.76) translate(-250 -250)">
-                <circle cx="250" cy="250" r="209" fill="#081722" stroke="#baa16b" strokeWidth="1"/>
-                <circle cx="250" cy="250" r="194" fill="none" stroke="#c6ae762f" strokeWidth="13"/>
-                <circle cx="250" cy="250" r="187" className="nj-compass-face" stroke="#baa16b" strokeWidth="1"/>
-                {Array.from({length: 72},(_, i)=><line key={i} x1="250" y1="45" x2="250" y2={i%6===0?'64':'53'} stroke={i%6===0?'#d9bd80':'#8c79554f'} strokeWidth={i%6===0?2:1} transform={`rotate(${i*5} 250 250)`}/>)}
-                <circle cx="250" cy="250" r="151" fill="none" stroke="#786445" strokeWidth="1.4" strokeLinecap="round" strokeDasharray="1 8"/>
-                <path d="M250 90V410" stroke="#a58d5f50"/>
-                <path d="M90 250H410" stroke="#826b46" strokeWidth="1.4"/>
-                <g className="nj-needle" style={{transform:`rotate(${selected.rotation}deg)`,transformOrigin:'250px 250px'}}>
-                  <path d="M250 65 L261 250 L250 272 L239 250Z" fill="url(#nj-gold)" stroke="#967039" strokeWidth=".8"/>
-                  <path d="M250 65 L250 272 L239 250Z" fill="#b58b42"/>
-                  <path d="M250 435 L239 250 L250 228 L261 250Z" fill="#6f929f" stroke="#426172" strokeWidth=".8"/>
-                  <path d="M250 435 L250 228 L261 250Z" fill="#294c60"/>
-                </g>
-                <circle cx="250" cy="250" r="16" fill="#071722" stroke="#d3b575" strokeWidth="2"/>
-                <circle cx="250" cy="250" r="6" fill="#b48c48"/>
+                  <circle cx="250" cy="253" r="209" fill="#100e0e" stroke="#2f261e" strokeWidth="3" />
+                  <circle cx="250" cy="249" r="208" fill="url(#nj-bezel)" stroke="#c5a36d" />
+                  <circle cx="250" cy="250" r="201" fill="#29251f" stroke="#211b14" strokeWidth="2" />
+                  <circle cx="250" cy="250" r="189" fill="#4e402e" stroke="#c4a371" />
+                  <circle cx="250" cy="250" r="183" fill="url(#nj-dial)" stroke="#362e21" strokeWidth="2" />
+                  <circle cx="250" cy="250" r="182" fill="url(#nj-grain)" />
+                  <path d="M79 250a171 171 0 0 1 342 0" fill="none" stroke="#ddcaa0" strokeOpacity=".32" />
+                  <path d="M79 250a171 171 0 0 0 342 0" fill="none" stroke="#3a3023" strokeOpacity=".44" />
+                  {Array.from({length: 72}, (_, i) => (
+                    <line key={i} x1="250" y1="53" x2="250" y2={i % 6 === 0 ? '65' : '59'}
+                      stroke={i % 6 === 0 ? '#e1c58e' : '#958361'} strokeWidth={i % 6 === 0 ? 1.8 : .8}
+                      transform={`rotate(${i * 5} 250 250)`} />
+                  ))}
+                  <circle cx="250" cy="250" r="151" fill="none" stroke="#514331" strokeWidth="1.4" strokeLinecap="round" strokeDasharray="1 8" />
+                  <path d="M250 90V410M90 250H410" stroke="#52442f" strokeOpacity=".63" />
+                  <g className="nj-needle" style={{transform:`rotate(${selected.rotation}deg)`,transformOrigin:'250px 250px'}}>
+                    <path d="M250 72L262 250L250 430L238 250Z" fill="#251b10" opacity=".38" transform="translate(3 3)" />
+                    <path d="M250 72L262 250L250 272L238 250Z" fill="url(#nj-gold)" stroke="#695027" strokeWidth="1" />
+                    <path d="M250 72L250 272L238 250Z" fill="#af813d" />
+                    <path d="M250 430L238 250L250 228L262 250Z" fill="#668797" stroke="#263f4c" strokeWidth="1" />
+                    <path d="M250 430L250 228L262 250Z" fill="#344f5d" />
+                  </g>
+                  <circle cx="250" cy="250" r="16" fill="#272018" stroke="#d8b679" strokeWidth="1.8" />
+                  <circle cx="250" cy="250" r="10" fill="url(#nj-pivot)" stroke="#614827" strokeWidth="1.2" />
                 </g>
                 {directions.map((d,i)=><g key={d.label} transform={`rotate(${d.rotation} 250 250)`} className={`nj-rim-connector${i===direction?' selected':''}`}><line x1="250" y1="89" x2="250" y2="76"/><circle cx="250" cy="89" r="2.5"/></g>)}
               </svg>
               {directions.map((d, i) => <button key={d.label} className={`nj-direction nj-direction-${i}${i===direction?' selected':''}`} aria-pressed={i===direction} aria-controls="nj-detail" style={{left:`${50+34.8*Math.sin(d.rotation*Math.PI/180)}%`,top:`${50-34.8*Math.cos(d.rotation*Math.PI/180)}%`,transform:i===0?'translate(-50%,-100%)':i===3?'translate(-50%,0)':i<3?'translate(0,-50%)':'translate(-100%,-50%)'}} onClick={()=>setDirection(i)}><span className="nj-direction-dot" aria-hidden="true"/><span>{d.label}</span></button>)}
             </div>
-            <p className="nj-hint">Select a compass label to explore your options.</p>
+            <p className="nj-hint">Choose a topic for a preview and a link to its page.</p>
           </div>
           <div id="nj-detail" className="nj-detail" aria-live="polite" aria-atomic="true">
             {selectedImage && <div className="nj-detail-image"><img key={selected.image} src={selectedImage} alt="" loading="lazy" decoding="async" /></div>}

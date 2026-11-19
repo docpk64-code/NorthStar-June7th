@@ -187,7 +187,13 @@
 
 /* Prototype refinement: attach the menu visually to the instrument rim. */
 .brand-preview .nj-direction { min-height:36px; padding:6px 8px; font-size:13px; border:1px solid #b69d6340; border-radius:4px; background:#0b2030cc; }
-.brand-preview .nj-direction:hover,.brand-preview .nj-direction.selected { background:#142d3e; border-color:#c9ab6b; }
+.brand-preview .nj-direction:hover { background:#142d3e; border-color:#c9ab6b; }
+.brand-preview .nj-direction.selected {
+  background:linear-gradient(#254052,#142a39);
+  border-color:#dfbd7e;
+  color:#fff0ce;
+  box-shadow:inset 0 1px #f1d6a12b,0 3px 9px #0004;
+}
 .brand-preview .nj-direction-dot { display:none; }
 .brand-preview .nj-direction span:last-child { padding-bottom:0; border-bottom:0; }
 .nj-rim-connector { stroke:#b99b5e99; fill:#b99b5e; stroke-width:1; }
