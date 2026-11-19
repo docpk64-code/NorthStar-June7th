@@ -98,7 +98,7 @@ for (const route of routes) {
       assert(document.querySelector('aside[aria-label="Brooklyn office coming soon"]')!.textContent!.includes('January 4, 2027'));
       assert.equal(document.querySelectorAll('.signature-grid .feature-card').length, 2);
       assert.equal(document.querySelectorAll('h1').length, 1);
-      assert(document.querySelector('h1')!.textContent!.includes('NorthStar'));
+      assert.equal(document.querySelector('h1')!.textContent, 'Dental implants, from surgery to final teeth.');
       assert(document.querySelector('img[src^="/assets/homepage/northstar-celestial-logo-"][fetchpriority="high"]'));
       const destinations = ['/about/', '/procedures/', '/sedation/', '/technology/', '/contact/', '/facial-esthetics/'];
       for (let i = 0; i < destinations.length; i++) {

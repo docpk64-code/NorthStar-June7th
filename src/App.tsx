@@ -100,32 +100,37 @@ export default function App() {
     </header>
     <main>
       <section className="nj-universe" aria-labelledby="journey-title">
-        <div className="nj-stars" aria-hidden="true">{Array.from({length: 30}, (_, i) => <i key={i} style={{left: `${(i * 37 + 7) % 100}%`, top: `${(i * 23 + 9) % 100}%`, opacity: .15 + (i % 5) * .13}} />)}<span className="nj-shooting-star nj-shooting-star-one" /><span className="nj-shooting-star nj-shooting-star-two" /></div>
-        <div className="nb-banner pp-shell">
-          <p className="nb-welcome">Welcome to</p>
-          <h1 id="journey-title" className="nb-logo-heading"><span className="unified-sr-only">NorthStar Implant Dentistry</span><span className="nb-logo-window"><img
-            src="/assets/homepage/northstar-celestial-logo-800.webp"
-            srcSet="/assets/homepage/northstar-celestial-logo-520.webp 520w, /assets/homepage/northstar-celestial-logo-800.webp 800w, /assets/homepage/northstar-celestial-logo-1024.webp 1024w"
-            sizes="(max-width: 700px) 305px, 433px"
-            alt=""
-            width="800"
-            height="800"
-            {...{ fetchpriority: 'high' }}
-          /></span></h1>
-          <p className="nb-services">Dental implants and full-arch care in Queens, Manhattan &amp; Commack.</p>
-          <p className="nb-tagline">Guiding Patients One Smile at a Time.</p>
-          <p className="nb-practice">Dr. Peter Kampf &amp; Associates <span aria-hidden="true">·</span> New York</p>
-          <div className="nb-actions">
-            <a className="pp-button" href="#contact">Request a Consultation</a>
-            <SiteLink className="nb-treatment-link" href="/dental-implants/">Dental Implants</SiteLink>
-            <SiteLink className="nb-treatment-link" href="/full-arch/">Full-Arch Implants</SiteLink>
-          </div>
-          <p className="nb-restoration">NorthStar provides implant surgery and your final teeth.</p>
-          <div className="nb-patient-links">
-            <a href="#locations">Choose an Office</a>
-            <SiteLink href="/implant-cost-financing/">Cost &amp; Financing</SiteLink>
-            <SiteLink href="/implant-treatment-examples/">Treatment Examples</SiteLink>
-            <SiteLink href="/patient-forms/">Patient Forms</SiteLink>
+        <div className="nj-stars" aria-hidden="true">{Array.from({length: 30}, (_, i) => <i key={i} style={{left: `${(i * 37 + 7) % 100}%`, top: `${(i * 23 + 9) % 100}%`, opacity: .15 + (i % 5) * .13}} />)}</div>
+        <div className="nb-hero">
+          <div className="nb-banner pp-shell">
+            <div className="nb-emblem">
+              <div className="nb-logo-window">
+                <img
+                  src="/assets/homepage/northstar-celestial-logo-800.webp"
+                  srcSet="/assets/homepage/northstar-celestial-logo-520.webp 520w, /assets/homepage/northstar-celestial-logo-800.webp 800w, /assets/homepage/northstar-celestial-logo-1024.webp 1024w"
+                  sizes="(max-width: 700px) 225px, 350px"
+                  alt="NorthStar Implant Dentistry"
+                  width="800"
+                  height="800"
+                  {...{ fetchpriority: 'high' }}
+                />
+              </div>
+              <span className="nb-star-glint" aria-hidden="true" />
+            </div>
+            <h1 id="journey-title" className="nb-headline">Dental implants,<br /> from surgery to final teeth.</h1>
+            <p className="nb-services">Implant and full-arch care in Queens, Manhattan &amp; Commack.</p>
+            <div className="nb-actions">
+              <a className="pp-button" href="#contact">Request a Consultation</a>
+              <SiteLink className="nb-treatment-link" href="/dental-implants/">Dental Implants</SiteLink>
+              <SiteLink className="nb-treatment-link" href="/full-arch/">Full-Arch Implants</SiteLink>
+            </div>
+            <p className="nb-tagline">Guiding Patients One Smile at a Time.</p>
+            <div className="nb-patient-links">
+              <a href="#locations">Choose an Office</a>
+              <SiteLink href="/implant-cost-financing/">Cost &amp; Financing</SiteLink>
+              <SiteLink href="/implant-treatment-examples/">Treatment Examples</SiteLink>
+              <SiteLink href="/patient-forms/">Patient Forms</SiteLink>
+            </div>
           </div>
         </div>
         <div className="pp-shell nj-heading nb-direction-heading">
