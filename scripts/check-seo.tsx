@@ -69,6 +69,11 @@ for (const route of routes) {
     assert(!document.querySelector('a[href="/testimonials/"], a[href="/procedure/technology/"]'), path);
     if (route === '/dental-implants' || route === '/full-arch') {
       assert(document.querySelector('a[href="/procedure/restorative-coordination/"]'));
+      assert(document.querySelector('.implant-start a[href="/implant-cost-financing/"]'));
+      assert.deepEqual(
+        [...document.querySelectorAll('.implant-office-links a')].map(link => link.getAttribute('href')),
+        ['briarwood', 'manhattan', 'commack'].map(id => `/contact/?office=${id}#consultation`),
+      );
     }
     if (route === '/about') {
       assert(!document.querySelector('.page-card[href="/patient-information/"]'));
@@ -82,6 +87,9 @@ for (const route of routes) {
     if (route === '/') {
       assert.equal(document.querySelectorAll('a.care-card-link[href]').length, 6);
       assert(document.querySelector('a.care-card-link[href="/procedures/"]'));
+      for (const href of ['/dental-implants/', '/full-arch/']) {
+        assert(document.querySelector(`.nb-actions a[href="${href}"]`));
+      }
       for (const treatment of ['dental-implants', 'full-arch', 'wisdom-teeth', 'sedation', 'testimonials']) {
         assert(!document.querySelector(`a.care-card-link[href="/${treatment}/"]`));
       }
@@ -110,7 +118,7 @@ assert.equal(window.location.pathname, '/dental-implants/');
 assert.equal(document.querySelector('h1')!.textContent, 'Dental Implants');
 await act(async () => document.querySelector<HTMLAnchorElement>('.page-nav-links a[href="/full-arch/"]')!.click());
 await settle();
-assert.equal(document.querySelector('h1')!.textContent, 'Full-Arch Solutions');
+assert.equal(document.querySelector('h1')!.textContent, 'Full-Arch Dental Implants');
 for (const [office, selected] of [
   ['briarwood', 'Briarwood, Queens'],
   ['manhattan', 'Manhattan'],

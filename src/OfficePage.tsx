@@ -1,10 +1,10 @@
 import { PageLayout } from './PageLayout';
 import SiteLink from './components/SiteLink';
-import { offices, officePath, mapUrl, type OfficeId } from './data/offices';
+import { offices, officePath, mapUrl, officeConsultationPath, type OfficeId } from './data/offices';
 
 export default function OfficePage({ officeId }: { officeId: OfficeId }) {
   const office = offices.find(item => item.id === officeId)!;
-  const consultationHref = office.comingSoon ? '/contact/#consultation' : `/contact/?office=${office.id}#consultation`;
+  const consultationHref = office.comingSoon ? '/contact/#consultation' : officeConsultationPath(office.id);
   return <PageLayout kicker={office.comingSoon ? 'New location · Coming soon' : 'Dr. Peter Kampf & Associates'}
     title={office.comingSoon ? 'Brooklyn Office — Coming Soon' : `Dental Implants in ${office.name}`}
     subtitle={office.intro}
@@ -39,9 +39,10 @@ export default function OfficePage({ officeId }: { officeId: OfficeId }) {
         <p>{office.planning}</p>
       </section>
     </div>
-    {!office.comingSoon ? <>
-      <section className="page-section office-page-section"><p className="page-kicker">Plan your care</p><h2>A conversation about your next step</h2>
-        <p>Whether you are considering replacing one tooth or exploring a broader treatment plan, start by telling our team what you would like to address. Ask about the consultation process and which office is appropriate for the care you need. Treatment recommendations and the location of any procedure are confirmed individually.</p>
+    {'consultation' in office ? <>
+      <section className="page-section office-page-section"><p className="page-kicker">Plan your care</p><h2>Implant consultations in {office.name}</h2>
+        <p>{office.consultation}</p>
+        <p>Our team will confirm where to go for your evaluation, procedure, and follow-up when scheduling. <SiteLink href="/implant-cost-financing/">Learn what your treatment estimate can include.</SiteLink></p>
         <p>Explore our practice’s information on <SiteLink href="/dental-implants/">dental implants</SiteLink>, <SiteLink href="/full-arch/">full-arch solutions</SiteLink>, <SiteLink href="/wisdom-teeth/">wisdom teeth</SiteLink>, and <SiteLink href="/sedation/">sedation options</SiteLink> before your visit.</p>
         <SiteLink href="/about/">Learn about Dr. Peter Kampf and our practice →</SiteLink>
       </section>

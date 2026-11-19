@@ -86,8 +86,10 @@ export default function App() {
         <button className="pp-menu-button" aria-expanded={open} aria-controls="pp-navigation" onClick={() => setOpen(!open)}>{open ? 'Close menu' : 'Menu ☰'}</button>
         <nav id="pp-navigation" className={open ? 'pp-nav open' : 'pp-nav'} aria-label="Main navigation">
           <SiteLink href="/about/" onClick={() => setOpen(false)}>About</SiteLink>
+          <SiteLink href="/dental-implants/" onClick={() => setOpen(false)}>Dental Implants</SiteLink>
+          <SiteLink href="/full-arch/" onClick={() => setOpen(false)}>Full-Arch Implants</SiteLink>
           <SiteLink href="/procedures/" onClick={() => setOpen(false)}>Procedures</SiteLink>
-          <SiteLink href="/smile-preview/" onClick={() => setOpen(false)}>Smile Preview · Demo</SiteLink>
+          <SiteLink href="/implant-cost-financing/" onClick={() => setOpen(false)}>Cost &amp; Financing</SiteLink>
           <SiteLink href="/facial-esthetics/" onClick={() => setOpen(false)}>Facial Esthetics</SiteLink>
           <SiteLink href="/patient-forms/" onClick={() => setOpen(false)}>Patient Forms</SiteLink>
           <a href="#locations" onClick={() => setOpen(false)}>Locations</a>
@@ -104,7 +106,7 @@ export default function App() {
           <h1 id="journey-title" className="nb-logo-heading"><span className="unified-sr-only">NorthStar Implant Dentistry</span><span className="nb-logo-window"><img
             src="/assets/homepage/northstar-celestial-logo-800.webp"
             srcSet="/assets/homepage/northstar-celestial-logo-520.webp 520w, /assets/homepage/northstar-celestial-logo-800.webp 800w, /assets/homepage/northstar-celestial-logo-1024.webp 1024w"
-            sizes="(max-width: 370px) 115vw, (max-width: 700px) 420px, 509px"
+            sizes="(max-width: 700px) 305px, 433px"
             alt=""
             width="800"
             height="800"
@@ -112,7 +114,19 @@ export default function App() {
           /></span></h1>
           <p className="nb-services">Dental implants and full-arch care in Queens, Manhattan &amp; Commack.</p>
           <p className="nb-tagline">Guiding Patients One Smile at a Time.</p>
-          <p className="nb-practice">Dr. Peter Kampf &amp; Associates <span aria-hidden="true">·</span> New York</p><div className="nb-actions"><a className="pp-button" href="#contact">Request a Consultation ↗</a><SiteLink className="nb-forms-link" href="/patient-forms/">Patient Forms →</SiteLink></div>
+          <p className="nb-practice">Dr. Peter Kampf &amp; Associates <span aria-hidden="true">·</span> New York</p>
+          <div className="nb-actions">
+            <a className="pp-button" href="#contact">Request a Consultation</a>
+            <SiteLink className="nb-treatment-link" href="/dental-implants/">Dental Implants</SiteLink>
+            <SiteLink className="nb-treatment-link" href="/full-arch/">Full-Arch Implants</SiteLink>
+          </div>
+          <p className="nb-restoration">NorthStar provides implant surgery and your final teeth.</p>
+          <div className="nb-patient-links">
+            <a href="#locations">Choose an Office</a>
+            <SiteLink href="/implant-cost-financing/">Cost &amp; Financing</SiteLink>
+            <SiteLink href="/implant-treatment-examples/">Treatment Examples</SiteLink>
+            <SiteLink href="/patient-forms/">Patient Forms</SiteLink>
+          </div>
         </div>
         <div className="pp-shell nj-heading nb-direction-heading">
           <h2>Your smile. <em>Your direction.</em></h2>
@@ -176,8 +190,6 @@ export default function App() {
           </div>
         </section>
 
-        <SmilePreviewInvite />
-
         {/* ── Specialized Circumstances heading ── */}
         <div className="specialized-heading" style={{ background: '#ffffff' }}>
           <div className="section-shell">
@@ -223,7 +235,7 @@ export default function App() {
             ))}
           </div>
         </section>
-
+        <SmilePreviewInvite />
       </div>
       <section className="nj-universe nj-guide-section">
         <div className="pp-shell nj-guide">
@@ -237,11 +249,11 @@ export default function App() {
           <div><p className="pp-eyebrow">Meet your implant dentist</p><h2>Experience matters.<br />So does feeling heard.</h2><h3>Dr. Peter Kampf, DDS</h3><p>Dr. Kampf’s clinical focus includes dental implants and complex oral rehabilitation. Your consultation is an opportunity to discuss your goals, review your options, and ask questions about your care.</p><div className="pp-credentials"><span>NYU College of Dentistry, 1992</span><span>Postgraduate training at Columbia Presbyterian and Brookdale Medical Center</span></div><SiteLink className="pp-text-link" href="/about/">Meet Dr. Kampf &amp; the team →</SiteLink></div>
         </div>
       </section>
-      <section className="pp-journey"><div className="pp-shell"><p className="pp-eyebrow">Your first step, made simple</p><h2>Know what comes next.</h2><div className="pp-steps"><div><span>01 / CONNECT</span><h3>Tell us what you need.</h3><p>Request a consultation and choose your preferred office.</p></div><div><span>02 / UNDERSTAND</span><h3>Explore your options.</h3><p>Meet with the team for an evaluation and a discussion of your goals.</p></div><div><span>03 / PLAN</span><h3>Make an informed choice.</h3><p>Review your proposed care, timing, and fees before deciding.</p></div></div></div></section>
+      <section className="pp-journey"><div className="pp-shell"><p className="pp-eyebrow">Your first step, made simple</p><h2>Know what comes next.</h2><div className="pp-steps"><div><span>01 / CONNECT</span><h3>Tell us what you need.</h3><p>Request a consultation and choose your preferred office.</p></div><div><span>02 / UNDERSTAND</span><h3>Explore your options.</h3><p>Meet with the team for an evaluation and a discussion of your goals.</p></div><div><span>03 / PLAN</span><h3>Make an informed choice.</h3><p>Review your proposed care, timing, and fees before deciding. <SiteLink href="/implant-cost-financing/">See what your estimate can include.</SiteLink></p></div></div></div></section>
       <section className="pp-section" id="contact"><div className="pp-shell pp-contact-grid"><div><p className="pp-eyebrow">Let’s talk about your smile</p><h2>Your next chapter<br />starts here.</h2><p>Send a consultation request or call our team. We’ll contact you to discuss scheduling.</p><a className="pp-phone" href="tel:6313151400">631-315-1400</a><p>Monday–Saturday: 9am–8pm<br />Sunday: By appointment</p><div className="pp-resource-links"><SiteLink href="/patient-forms/">Patient forms →</SiteLink><SiteLink href="/patient-information/">Prepare for your visit →</SiteLink></div></div>
         <div className="pp-form-panel"><h3>Request a consultation</h3>{activeLanguage() !== 'en' ? <SiteLink className="pp-button" href="/contact/">Open the consultation form (English)</SiteLink> : formState.succeeded ? <div role="status"><h3>Thank you for reaching out.</h3><p>Your request has been sent. Our team will contact you to discuss scheduling. Your appointment is not yet confirmed.</p></div> : <form onSubmit={handleSubmit}><div className="pp-fields"><label>First name<input name="firstName" autoComplete="given-name" required /></label><label>Last name<input name="lastName" autoComplete="family-name" required /></label></div><div className="pp-fields"><label>Email<input name="email" type="email" autoComplete="email" required /></label><label>Phone<input name="phone" type="tel" autoComplete="tel" /></label></div><label>Preferred location<select name="location" defaultValue="" required><option value="" disabled>Select an office</option>{locations.map(l=><option key={l.name}>{l.name}</option>)}<option>No preference</option></select></label><label>How can we help?<textarea name="message" rows={3} placeholder="Tell us what you would like to discuss." /></label><p className="pp-form-note">Please avoid including sensitive medical information in this form.</p><ValidationError errors={formState.errors} /><button className="pp-button" disabled={formState.submitting} type="submit">{formState.submitting ? 'Sending…' : 'Send Consultation Request'}</button><p className="pp-form-note">Submitting this form requests a callback, not a confirmed appointment.</p></form>}</div>
       </div></section>
-      <section className="pp-locations pp-section" id="locations"><div className="pp-shell"><p className="pp-eyebrow">Close to home</p><h2>Four locations. One NorthStar.</h2><div className="pp-location-grid">{locations.map(l=><div key={l.name}><h3><SiteLink href={`/locations/${l.id}/`}>{l.name} ↗</SiteLink></h3><p>{l.address}<br />{l.city}</p><a className="pp-text-link" href={'https://maps.google.com/?q='+encodeURIComponent(l.address+' '+l.city)}>Get directions ↗</a></div>)}</div><BrooklynNotice /></div></section>
+      <section className="pp-locations pp-section" id="locations"><div className="pp-shell"><p className="pp-eyebrow">Close to home</p><h2>Choose your NorthStar office.</h2><div className="pp-location-grid">{locations.map(l=><div key={l.name}><h3><SiteLink href={`/locations/${l.id}/`}>{l.name} ↗</SiteLink></h3><p>{l.address}<br />{l.city}</p><a className="pp-text-link" href={'https://maps.google.com/?q='+encodeURIComponent(l.address+' '+l.city)}>Get directions ↗</a></div>)}</div><BrooklynNotice /></div></section>
     </main>
     <footer className="pp-footer">
       <div className="pp-shell">

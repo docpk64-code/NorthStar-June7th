@@ -17,6 +17,8 @@ const IntakePage = lazy(() => import('./IntakePage'));
 const ConsentPage = lazy(() => import('./ConsentPage'));
 const HipaaPage = lazy(() => import('./HipaaPage'));
 const OfficePage = lazy(() => import('./OfficePage'));
+const ImplantFinancingPage = lazy(() => import('./ImplantPatientPages').then(m => ({ default: m.ImplantFinancingPage })));
+const ImplantExamplesPage = lazy(() => import('./ImplantPatientPages').then(m => ({ default: m.ImplantExamplesPage })));
 
 const AboutPage = lazy(() => import('./pages').then(m => ({ default: m.AboutPage })));
 const ProceduresPage = lazy(() => import('./pages').then(m => ({ default: m.ProceduresPage })));
@@ -55,6 +57,8 @@ const ROUTES: Record<string, React.ReactElement> = {
   '/procedures': <ProceduresPage />,
   '/dental-implants': <DentalImplantsPage />,
   '/full-arch': <FullArchPage />,
+  '/implant-cost-financing': <ImplantFinancingPage />,
+  '/implant-treatment-examples': <ImplantExamplesPage />,
   '/wisdom-teeth': <WisdomTeethPage />,
   '/sedation': <SedationPage />,
   '/patient-information': <PatientInfoPage />,

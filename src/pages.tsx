@@ -1,6 +1,8 @@
 import BoneGraftingVideo from './components/BoneGraftingVideo';
 import ProcedureTreatments from './components/ProcedureTreatments';
 import FullArchOptions from './components/FullArchOptions';
+import ImplantConsultationLinks from './components/ImplantConsultationLinks';
+import { useEffect } from 'react';
 import ClinicalWarningCards from './components/ClinicalWarningCards';
 import BrooklynNotice from './components/BrooklynNotice';
 import SiteLink from './components/SiteLink';
@@ -347,11 +349,22 @@ export function ProceduresPage() {
 // ─── Dental Implants ─────────────────────────────────────────────────────────
 function RestorativeCareSummary() {
   return (
+    <section className="page-section implant-start">
+      <h2>NorthStar provides implant surgery and your final teeth</h2>
+      <p>Our team plans and provides your implant surgery and final crown, bridge, or full-arch restoration. If your plan includes temporary teeth, we’ll explain what kind and when they may be fitted.</p>
+      <p>Ask for a written estimate showing what’s included for surgery, temporary and final teeth, and follow-up visits. Review <SiteLink href="/implant-cost-financing/">cost and financing</SiteLink>, see <SiteLink href="/implant-treatment-examples/">treatment examples</SiteLink>, or read <SiteLink href="/procedure/restorative-coordination/">how NorthStar coordinates your care</SiteLink>.</p>
+      <h3>Request a consultation at your preferred office</h3>
+      <p>Choose an office and our team will call you to discuss scheduling.</p>
+      <ImplantConsultationLinks />
+    </section>
+  );
+}
+
+function ImplantOfficeInformation() {
+  return (
     <section className="page-section">
-      <h2>Who provides your temporary and final teeth?</h2>
-      <p>NorthStar provides both implant surgery and your final teeth, whether you need a crown, a bridge, or a full-arch restoration. If your treatment plan calls for temporary teeth, we’ll explain what type is planned and when they may be fitted.</p>
-      <p>Before treatment, ask for an itemized estimate that shows what’s included for surgery, any temporary teeth, the final restoration, and follow-up visits.</p>
-      <SiteLink href="/procedure/restorative-coordination/">How NorthStar coordinates your implant care →</SiteLink>
+      <h2>Plan your visit to NorthStar</h2>
+      <p>Check office details, hours, and directions for <SiteLink className="implant-guide-link" href="/locations/briarwood/">Briarwood, Queens</SiteLink>, <SiteLink className="implant-guide-link" href="/locations/manhattan/">Manhattan</SiteLink>, or <SiteLink className="implant-guide-link" href="/locations/commack/">Commack, Long Island</SiteLink>.</p>
     </section>
   );
 }
@@ -361,7 +374,9 @@ export function DentalImplantsPage() {
     <PageLayout
       kicker="Precision Restoration"
       title="Dental Implants"
-      subtitle="Modern implant treatment built around diagnostics, digital planning, long-term function, and everyday confidence."
+      subtitle="Explore implant options for a missing tooth, several teeth, or a full arch in Queens, Manhattan, and Commack."
+      ctaLabel="Request a Consultation"
+      ctaHref="/contact/#consultation"
     >
       <RestorativeCareSummary />
       <div className="page-section">
@@ -481,13 +496,14 @@ export function DentalImplantsPage() {
 
       <div className="page-section">
         <p className="page-kicker">Ready to Begin?</p>
-        <h2>Schedule Your Implant Consultation</h2>
+        <h2>Request an Implant Consultation</h2>
         <p>
           At your consultation, we’ll discuss what you want to improve, review
           your treatment options, and explain the likely timeline and costs.
-          <a href="/contact/#consultation"> Request a consultation →</a>
+          <a className="implant-guide-link" href="/contact/#consultation"> Request a consultation</a>
         </p>
       </div>
+      <ImplantOfficeInformation />
     </PageLayout>
   );
 }
@@ -496,10 +512,14 @@ export function DentalImplantsPage() {
 export function FullArchPage() {
   return (
     <PageLayout
-      kicker="Complete Smile Support"
-      title="Full-Arch Solutions"
-      subtitle="Rebuild stability, chewing power, and quality of life with full-arch implant-supported restorations."
+      kicker="All-on-X and implant-supported teeth"
+      title="Full-Arch Dental Implants"
+      subtitle="Explore fixed implant bridges and removable implant-retained dentures for a full set of upper or lower teeth."
+      description="Compare All-on-X and other full-arch dental implant options. NorthStar provides surgery and the final teeth. Consultations in Queens, Manhattan, and Commack."
+      ctaLabel="Request a Consultation"
+      ctaHref="/contact/#consultation"
     >
+      <RestorativeCareSummary />
       <div className="page-section">
         <p className="page-kicker">What Is Full-Arch?</p>
         <h2>Restoring an Entire Arch of Teeth</h2>
@@ -507,8 +527,8 @@ export function FullArchPage() {
         <p>Conventional implants, advanced anchorage techniques, and removable designs address different needs. The number and position of implants, need for grafting, and timing of temporary teeth depend on your examination, 3D imaging, and restorative plan.</p>
       </div>
 
-      <RestorativeCareSummary />
       <FullArchOptions />
+      <ImplantOfficeInformation />
 
       <div className="page-section">
         <p className="page-kicker">Benefits of a Fixed Bridge</p>
@@ -571,15 +591,14 @@ export function FullArchPage() {
 
       <div className="page-section">
         <p className="page-kicker">Is Full-Arch Right for You?</p>
-        <h2>Schedule a Consultation</h2>
+        <h2>Request a Full-Arch Consultation</h2>
         <p>
           Full-arch implant restoration can be life-changing for patients who
           are struggling with failing teeth, ill-fitting dentures, or
           significant tooth loss. NorthStar Implant Dentistry has the surgical
           expertise, advanced technology, and collaborative care model to guide
-          you through this process with confidence and precision. Contact us to
-          schedule your consultation and find out whether full-arch is the right
-          solution for you.
+          you through this process with confidence and precision.
+          <a className="implant-guide-link" href="/contact/#consultation"> Request a consultation</a> to discuss your options.
         </p>
       </div>
     </PageLayout>
@@ -1099,11 +1118,19 @@ export function ContactPage() {
   const requestedOffice = new URLSearchParams(window.location.search).get('office');
   const preferredOffice = activeOffices.find(office => office.id === requestedOffice);
 
+  useEffect(() => {
+    if (window.location.hash !== '#consultation') return;
+    const frame = requestAnimationFrame(() => document.getElementById('consultation')?.scrollIntoView?.());
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <PageLayout
       kicker="Start Here"
       title="Contact & Schedule"
-      subtitle="Reach out to schedule a consultation or ask questions about implants, wisdom teeth, sedation, or any of our services."
+      subtitle="Request a callback about an appointment or ask us about implants, wisdom teeth, sedation, or our other services."
+      ctaLabel="Go to the Consultation Form"
+      ctaHref="#consultation"
     >
       <style>{`
         .ns-contact-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; }
@@ -1265,6 +1292,7 @@ export function ContactPage() {
         <div className="page-section" id="consultation">
           <p className="page-kicker">Get in Touch</p>
           <h2>Request a Consultation</h2>
+          <p>{preferredOffice ? `Selected office: ${preferredOffice.name}, ${preferredOffice.street}. You can choose a different office below.` : 'Choose your preferred office below.'} Our team will contact you to discuss scheduling.</p>
 
           {formState.succeeded ? (
             <div style={{ textAlign: 'center', padding: '2rem 0' }}>
@@ -2768,8 +2796,10 @@ export function CantGetImplantsPage() {
   return (
     <PageLayout
       kicker="Don't Give Up on Your Smile"
-      title="Remote Anchorage Implants"
-      subtitle="Innovative surgical solutions for patients with severe bone loss or complex anatomy who have been told implants are not possible."
+      title="Dental Implants for Severe Bone Loss"
+      subtitle="If you’ve been told there isn’t enough bone for conventional implants, ask about an evaluation for grafting, remote anchorage implants, and other options."
+      ctaLabel="Request a Consultation"
+      ctaHref="/contact/#consultation"
     >
       <div className="page-section">
         <h2>Can I get dental implants if I have severe bone loss?</h2>
@@ -4273,8 +4303,10 @@ export function BotchedSmilePage() {
   return (
     <PageLayout
       kicker="We Can Help"
-      title="Botched Smile or Failed Implants?"
-      subtitle="Expert evaluation and corrective care for patients suffering from poor implant outcomes, failed restorations, or dental work gone wrong."
+      title="Failed Dental Implants & Second Opinions"
+      subtitle="Request an evaluation for a loose implant or bridge, pain around an implant, exposed components, or a restoration that no longer fits."
+      ctaLabel="Request a Second Opinion"
+      ctaHref="/contact/#consultation"
     >
       <section className="page-section">
         <h2>What happens when a dental implant fails?</h2>

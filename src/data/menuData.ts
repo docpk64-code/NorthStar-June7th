@@ -175,13 +175,13 @@ export const caseStudies: CaseStudy[] = [
 export const featureCards = [
   {
     eyebrow: "Don't Give Up on Your Smile",
-    title: 'Remote Anchorage Implants',
+    title: 'Dental Implants for Severe Bone Loss',
     imageSrc: '/assets/homepage/zygomatic-implant.webp',
     slug: '/specialized/cant-get-implants',
   },
   {
     eyebrow: 'We Can Help',
-    title: 'Botched Smile or Failed Implants?',
+    title: 'Failed Dental Implants & Second Opinions',
     description:
       'If you are suffering from failed implants, exposed components, ill-fitting restorations, or peri-implant infection, Dr. Kampf evaluates these concerns and discusses corrective treatment options.',
     imageSrc: '/assets/homepage/botched-smile.webp',

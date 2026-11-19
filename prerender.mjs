@@ -29,6 +29,7 @@ const ROUTES = [
   '/', '/smile-preview',
   '/locations/briarwood', '/locations/manhattan', '/locations/commack', '/locations/brooklyn',
   '/about', '/procedures', '/dental-implants', '/full-arch', '/wisdom-teeth',
+  '/implant-cost-financing', '/implant-treatment-examples',
   '/sedation', '/patient-information', '/patient-forms', '/patient-forms/hipaa', '/patient-forms/new-patient', '/patient-forms/consent/oral-surgery', '/patient-forms/consent/all-on-x', '/patient-forms/consent/subperiosteal', '/technology',
   '/contact', '/locations',
   '/procedure/tooth-extractions', '/procedure/bone-grafting',

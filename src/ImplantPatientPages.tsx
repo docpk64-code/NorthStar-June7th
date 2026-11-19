@@ -1,0 +1,96 @@
+import { PageLayout } from './PageLayout';
+import ImplantConsultationLinks from './components/ImplantConsultationLinks';
+import SiteLink from './components/SiteLink';
+
+export function ImplantFinancingPage() {
+  return (
+    <PageLayout
+      kicker="Patient information"
+      title="Dental Implant Cost & Financing"
+      subtitle="Understand what goes into a dental implant estimate and what to ask about insurance and payment options."
+      description="Learn how NorthStar estimates dental implant and full-arch treatment costs, what your written estimate can include, and how to discuss insurance and financing."
+      ctaLabel="Request a Consultation"
+      ctaHref="/contact/#consultation"
+    >
+      <section className="page-section implant-start">
+        <h2>What goes into your estimate?</h2>
+        <p>The cost depends on how many teeth you need to replace, the type of restoration, and whether your plan includes procedures such as extractions or bone grafting. NorthStar provides both implant surgery and the final restoration.</p>
+        <p>Ask for a written, itemized estimate that shows which of these services your plan includes:</p>
+        <ul>
+          <li>Evaluation, imaging, and treatment planning</li>
+          <li>Extractions, grafting, implant surgery, and anesthesia or sedation, when applicable</li>
+          <li>Temporary teeth, if planned, and the final crown, bridge, or full-arch restoration</li>
+          <li>Follow-up visits included in the estimate and any separately billed maintenance</li>
+        </ul>
+        <p>Explore <SiteLink href="/dental-implants/">dental implants</SiteLink> or <SiteLink href="/full-arch/">full-arch implants</SiteLink> to see how treatment is planned.</p>
+      </section>
+      <section className="page-section">
+        <h2>Insurance and financing</h2>
+        <p>Coverage depends on your plan and the services you need. Bring your insurance information so our team can help you review benefits and estimated out-of-pocket costs before treatment.</p>
+        <p>Ask about third-party financing if you’d prefer to pay over time. Availability and terms depend on the provider and its approval. Review the total repayment cost, interest, and payment schedule before choosing an option.</p>
+      </section>
+      <section className="page-section">
+        <h2>Request a consultation by office</h2>
+        <p>Choose your preferred office and our team will contact you about scheduling. You can also <a className="implant-guide-link" href="tel:6313151400">call 631-315-1400</a>.</p>
+        <ImplantConsultationLinks />
+      </section>
+    </PageLayout>
+  );
+}
+
+const examples = [
+  {
+    topic: 'Full-arch implants',
+    title: 'Replacing a full set of teeth',
+    concern: 'Several teeth in one arch are missing or failing, or a removable denture is difficult to wear.',
+    review: 'The consultation can compare a fixed implant bridge with a removable implant-retained denture. Ask when temporary teeth may be fitted and when the final restoration would follow.',
+    link: 'Compare full-arch options',
+    href: '/full-arch/',
+  },
+  {
+    topic: 'Implant second opinions',
+    title: 'When an implant or bridge feels loose',
+    concern: 'An existing implant-supported tooth or bridge moves, feels uncomfortable, or has a change in fit.',
+    review: 'The evaluation looks at the restoration, the connecting parts, and the implant and surrounding tissue to determine what can be repaired or needs further treatment.',
+    link: 'See published clinical examples',
+    href: '/specialized/botched-smile/',
+  },
+  {
+    topic: 'Severe bone loss',
+    title: 'When there isn’t enough bone for conventional implants',
+    concern: 'A patient has been told they may have too little upper-jaw bone to support a conventional implant plan.',
+    review: 'An examination and 3D imaging can help evaluate whether grafting, a different anchorage approach, or a removable option may fit the patient’s needs.',
+    link: 'Explore options for severe bone loss',
+    href: '/specialized/cant-get-implants/',
+  },
+];
+
+export function ImplantExamplesPage() {
+  return (
+    <PageLayout
+      kicker="Patient education"
+      title="Implant Treatment Examples"
+      subtitle="Explore common reasons patients seek implant care and the options NorthStar may discuss during an evaluation."
+      ctaLabel="Request a Consultation"
+      ctaHref="/contact/#consultation"
+    >
+      <section aria-labelledby="implant-examples-title">
+        <div className="page-section implant-start">
+          <h2 id="implant-examples-title">What we look at in an implant consultation</h2>
+          <p>These educational scenarios show what an evaluation can cover. The implant second-opinion page also contains credited examples from published clinical articles.</p>
+        </div>
+        <div className="implant-case-grid">
+          {examples.map(example => (
+            <article className="page-section" key={example.href}>
+              <p className="implant-case-topic">{example.topic}</p>
+              <h3>{example.title}</h3>
+              <p>{example.concern}</p>
+              <p>{example.review}</p>
+              <SiteLink className="implant-guide-link" href={example.href}>{example.link}</SiteLink>
+            </article>
+          ))}
+        </div>
+      </section>
+    </PageLayout>
+  );
+}
