@@ -12,6 +12,7 @@ export default function FullArchOptions(){return <section className="page-sectio
  <p className="page-kicker">One goal. More than one path.</p>
  <h2 id="fa-options-title">Compare your full-arch options</h2>
  <p className="fa-options-lead">The right solution depends on your bone, facial support, health, ability to clean the restoration, and preference for fixed or removable teeth. These four approaches help explain the conversation—not a preset treatment plan.</p>
+ <p><a className="implant-guide-link" href="/implant-treatment-examples/#before-after">View the Before &amp; After gallery</a> for cases treated by Dr. Peter Kampf.</p>
  <div className="fa-option-grid">{options.map(option=><article className={`fa-option fa-option--${option.id}`} key={option.id}>
   <div className="fa-option-top"><span>{option.type}</span><span className="fa-option-number" aria-hidden="true">{option.number}</span></div>
   <figure><div className="fa-illustration"><img src={`/assets/full-arch/${option.image}`} alt={option.alt} loading="lazy" width={2047} height={2047}/></div><figcaption>Illustrative implant arrangement</figcaption></figure>

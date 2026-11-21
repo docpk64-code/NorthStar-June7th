@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { PageLayout } from './PageLayout';
 import ImplantConsultationLinks from './components/ImplantConsultationLinks';
 import SiteLink from './components/SiteLink';
@@ -65,7 +66,15 @@ const examples = [
   },
 ];
 
+const chosenGalleryPositions = [1, 6, 8, 9];
+
 export function ImplantExamplesPage() {
+  useEffect(() => {
+    if (window.location.hash !== '#before-after') return;
+    const frame = requestAnimationFrame(() => document.getElementById('before-after')?.scrollIntoView?.());
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <PageLayout
       kicker="Patient education"
@@ -74,6 +83,26 @@ export function ImplantExamplesPage() {
       ctaLabel="Request a Consultation"
       ctaHref="/contact/#consultation"
     >
+      <section className="page-section implant-start before-after-gallery" id="before-after" aria-labelledby="before-after-title">
+        <h2 id="before-after-title">Before &amp; After</h2>
+        <p>Before-and-after cases treated by Dr. Peter Kampf. Individual results vary.</p>
+        <div className="before-after-cases">
+          {chosenGalleryPositions.map((position, index) => (
+            <figure className="before-after-case" key={position}>
+              <img
+                src={`/images/case-gallery/chosen-case-${position}.webp`}
+                alt={`Case ${index + 1}: pretreatment photo above, post-treatment photo below`}
+                width={1013}
+                height={1080}
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Case {index + 1}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <p className="before-after-credit">Photos originally published in the <a className="implant-guide-link" href="https://www.chosenimplantstudio.com/smile-gallery">Chosen Implant Studio Smile Gallery</a>.</p>
+      </section>
       <section aria-labelledby="implant-examples-title">
         <div className="page-section implant-start">
           <h2 id="implant-examples-title">What we look at in an implant consultation</h2>

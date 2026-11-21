@@ -1,3 +1,4 @@
+import './styles/beforeAfter.css';
 import LanguageSelector from './components/LanguageSelector';
 import { activeLanguage } from './utils/websiteLanguage';
 import { useState } from 'react';
@@ -216,6 +217,13 @@ export default function App() {
         <div className="pp-shell nj-quick"><span>Already know your next step?</span><a href="#contact">Request a consultation ↗</a><a href="tel:6313151400">Call 631-315-1400</a><SiteLink href="/procedures/">All procedures →</SiteLink></div>
       </section>
       <div className="preserved-cards">
+        <section className="before-after-teaser" aria-labelledby="before-after-preview-title">
+          <div>
+            <h2 id="before-after-preview-title">Before &amp; After</h2>
+            <p>Explore before-and-after cases treated by Dr. Peter Kampf.</p>
+          </div>
+          <a href="/implant-treatment-examples/#before-after">View the Before &amp; After gallery</a>
+        </section>
         {/* ── Care map ── */}
         <section className="services-section" id="treatments">
           <div className="section-shell">
