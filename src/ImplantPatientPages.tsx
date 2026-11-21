@@ -66,7 +66,10 @@ const examples = [
   },
 ];
 
-const chosenGalleryPositions = [1, 6, 8, 9];
+const chosenGalleryCases = [
+  { number: 1, position: 1 },
+  { number: 3, position: 8 },
+];
 
 export function ImplantExamplesPage() {
   useEffect(() => {
@@ -87,17 +90,17 @@ export function ImplantExamplesPage() {
         <h2 id="before-after-title">Before &amp; After</h2>
         <p>Before-and-after cases treated by Dr. Peter Kampf. Individual results vary.</p>
         <div className="before-after-cases">
-          {chosenGalleryPositions.map((position, index) => (
+          {chosenGalleryCases.map(({ number, position }) => (
             <figure className="before-after-case" key={position}>
               <img
                 src={`/images/case-gallery/chosen-case-${position}.webp`}
-                alt={`Case ${index + 1}: pretreatment photo above, post-treatment photo below`}
+                alt={`Case ${number}: pretreatment photo above, post-treatment photo below`}
                 width={1013}
                 height={1080}
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption>Case {index + 1}</figcaption>
+              <figcaption>Case {number}</figcaption>
             </figure>
           ))}
         </div>
