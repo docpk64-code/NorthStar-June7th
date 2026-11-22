@@ -66,15 +66,22 @@ const examples = [
   },
 ];
 
+const northStarCasePhotos = [
+  { label: 'Before', file: 'northstar-case-4-before.webp', description: 'Retracted view of the teeth before treatment', height: 1105 },
+  { label: 'After', file: 'northstar-case-4-after.webp', description: 'Smile after treatment', height: 810 },
+];
+
 const chosenGalleryCases = [
   { number: 1, position: 1 },
+  { number: 2, position: 11 },
   { number: 3, position: 8 },
 ];
 
 export function ImplantExamplesPage() {
   useEffect(() => {
-    if (window.location.hash !== '#before-after') return;
-    const frame = requestAnimationFrame(() => document.getElementById('before-after')?.scrollIntoView?.());
+    const { hash } = window.location;
+    if (hash !== '#before-after' && hash !== '#case-4') return;
+    const frame = requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView?.());
     return () => cancelAnimationFrame(frame);
   }, []);
 
@@ -103,8 +110,24 @@ export function ImplantExamplesPage() {
               <figcaption>Case {number}</figcaption>
             </figure>
           ))}
+          <figure className="before-after-case" id="case-4">
+            {northStarCasePhotos.map(({ label, file, description, height }) => (
+              <div key={label}>
+                <span className="before-after-photo-label">{label}</span>
+                <img
+                  src={`/images/case-gallery/${file}`}
+                  alt={description}
+                  width={1200}
+                  height={height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+            <figcaption>Case 4</figcaption>
+          </figure>
         </div>
-        <p className="before-after-credit">Photos originally published in the <a className="implant-guide-link" href="https://www.chosenimplantstudio.com/smile-gallery">Chosen Implant Studio Smile Gallery</a>.</p>
+        <p className="before-after-credit">Cases 1–3 were originally published in the <a className="implant-guide-link" href="https://www.chosenimplantstudio.com/smile-gallery">Chosen Implant Studio Smile Gallery</a>.</p>
       </section>
       <section aria-labelledby="implant-examples-title">
         <div className="page-section implant-start">

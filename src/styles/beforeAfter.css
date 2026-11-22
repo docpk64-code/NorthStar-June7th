@@ -50,6 +50,14 @@
   color:#10243a;
   font-weight:700;
 }
+.before-after-photo-label {
+  display:block;
+  padding:.5rem 1rem;
+  background:#10243a;
+  color:#f7e6bf;
+  font-weight:700;
+}
+#case-4 { scroll-margin-top:8rem; }
 .before-after-credit { font-size:.9rem; }
 @media (max-width:600px) {
   .before-after-cases { grid-template-columns:1fr; }
