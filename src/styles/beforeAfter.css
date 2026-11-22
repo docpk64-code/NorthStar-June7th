@@ -65,12 +65,39 @@
   color:#10243a;
   font-weight:700;
 }
+.before-after-photo-pair {
+  /* Match the dimensions and divider of the gallery's composite photos. */
+  aspect-ratio:1013 / 1080;
+  display:grid;
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:calc(17 / 1080 * 100%);
+}
+.before-after-photo {
+  position:relative;
+  overflow:hidden;
+}
+.before-after-photo img {
+  height:100%;
+  object-fit:cover;
+}
 .before-after-photo-label {
-  display:block;
-  padding:.5rem 1rem;
+  position:absolute;
+  top:0;
+  left:0;
+  display:flex;
+  align-items:center;
+  width:40%;
+  height:21%;
+  padding-inline:5%;
   background:#10243a;
   color:#f7e6bf;
+  font-size:.875rem;
   font-weight:700;
+  text-transform:uppercase;
+}
+.before-after-photo:last-child .before-after-photo-label {
+  background:#edc77e;
+  color:#10243a;
 }
 #case-4 { scroll-margin-top:8rem; }
 .before-after-credit { font-size:.9rem; }

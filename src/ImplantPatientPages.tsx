@@ -111,19 +111,21 @@ export function ImplantExamplesPage() {
             </figure>
           ))}
           <figure className="before-after-case" id="case-4">
-            {northStarCasePhotos.map(({ label, file, description, height }) => (
-              <div key={label}>
-                <span className="before-after-photo-label">{label}</span>
-                <img
-                  src={`/images/case-gallery/${file}`}
-                  alt={description}
-                  width={1200}
-                  height={height}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            ))}
+            <div className="before-after-photo-pair">
+              {northStarCasePhotos.map(({ label, file, description, height }) => (
+                <div className="before-after-photo" key={label}>
+                  <span className="before-after-photo-label" aria-hidden="true">{label}</span>
+                  <img
+                    src={`/images/case-gallery/${file}`}
+                    alt={description}
+                    width={1200}
+                    height={height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
             <figcaption>Case 4</figcaption>
           </figure>
         </div>
