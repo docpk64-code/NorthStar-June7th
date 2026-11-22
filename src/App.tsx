@@ -222,7 +222,7 @@ export default function App() {
             <h2 id="before-after-preview-title">Before &amp; After</h2>
             <p>Explore before-and-after cases treated by Dr. Peter Kampf.</p>
           </div>
-          <a href="/implant-treatment-examples/#before-after">View the Before &amp; After gallery</a>
+          <a href="/implant-treatment-examples/#before-after">View the gallery</a>
         </section>
         {/* ── Care map ── */}
         <section className="services-section" id="treatments">

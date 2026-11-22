@@ -7,24 +7,38 @@
   align-items:center;
   justify-content:space-between;
   gap:1rem 2rem;
-  border:1px solid #dccba5;
+  border:1px solid #344964;
+  border-inline-start:4px solid #dfb76b;
   border-radius:1rem;
-  background:#fbf8f0;
+  background:linear-gradient(110deg,#10243a,#203853);
+  box-shadow:0 10px 24px rgba(16,36,58,.16);
 }
 .before-after-teaser h2 {
-  color:#10243a;
+  color:#fff7e7;
   font:400 clamp(1.8rem,3vw,2.6rem)/1.1 Georgia,serif;
   margin:0 0 .45rem;
 }
-.before-after-teaser p { margin:0; color:#46576b; }
+.patient-preview .before-after-teaser p { margin:0; color:#dee7f0; }
+#before-after-preview-title { scroll-margin-top:10rem; }
 .before-after-teaser a {
   display:inline-flex;
   align-items:center;
+  justify-content:center;
   min-height:44px;
-  color:#654614;
+  padding:.65rem 1.1rem;
+  border-radius:.5rem;
+  background:#edc77e;
+  color:#10243a;
   font-weight:700;
-  text-decoration:underline;
-  text-underline-offset:.2em;
+  text-align:center;
+  text-decoration:none;
+}
+.before-after-teaser a:hover {
+  background:#ffe2a6;
+}
+.before-after-teaser a:focus-visible {
+  outline:2px solid #fff7e7;
+  outline-offset:4px;
 }
 .before-after-gallery { scroll-margin-top:8rem; }
 .before-after-cases {
@@ -60,5 +74,6 @@
 #case-4 { scroll-margin-top:8rem; }
 .before-after-credit { font-size:.9rem; }
 @media (max-width:600px) {
+  .before-after-teaser a { width:100%; }
   .before-after-cases { grid-template-columns:1fr; }
 }
