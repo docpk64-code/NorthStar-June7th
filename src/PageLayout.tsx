@@ -399,6 +399,15 @@ export function PageLayout({
 }) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  React.useEffect(() => {
+    const { hash } = window.location;
+    if (!hash) return;
+    const target = document.getElementById(hash.slice(1));
+    if (!target?.closest('.page-body')) return;
+    const frame = requestAnimationFrame(() => target.scrollIntoView?.());
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   // Lazy image observer
   React.useEffect(() => {
     const imgs = document.querySelectorAll('img[loading="lazy"]');

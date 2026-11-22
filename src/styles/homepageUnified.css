@@ -25,7 +25,7 @@
   text-wrap:balance;
 }
 .brand-preview .nb-tagline { color:#dec58f; margin:1.3rem 0 .35rem; font-size:clamp(1rem,1.8vw,1.2rem); }
-.brand-preview .nb-services { color:#e0e8ee; font-size:clamp(.95rem,1.5vw,1.125rem); line-height:1.5; margin:1rem auto 0; text-wrap:balance; }
+.brand-preview .nb-services { max-width:62ch; color:#e0e8ee; font-size:clamp(.95rem,1.5vw,1.125rem); line-height:1.5; margin:1rem auto 0; text-wrap:pretty; }
 .nb-actions { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.65rem; margin-top:1.25rem; }
 .brand-preview .nb-treatment-link {
   display:inline-flex;
@@ -50,6 +50,36 @@
   text-decoration:underline;
   text-underline-offset:.22em;
 }
+.nb-implant-questions { margin:1rem auto 0; gap:0 clamp(1rem,2vw,1.75rem); }
+.brand-preview .nb-implant-questions a { color:#e0e8ee; }
+.nb-implant-concerns { width:min(960px,calc(100% - 2rem)); margin:0 auto 1.5rem; }
+.brand-preview .nb-implant-concerns h2 {
+  margin:0 0 .9rem;
+  color:#182c40;
+  font:400 clamp(1.55rem,3vw,2.1rem)/1.15 Georgia,serif;
+  text-align:center;
+  text-wrap:balance;
+}
+.nb-implant-concern-links {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));
+  gap:.65rem;
+}
+.brand-preview .nb-implant-concern-links a {
+  display:flex;
+  align-items:center;
+  min-height:44px;
+  padding:.75rem 1rem;
+  border:1px solid #dfd1b5;
+  border-radius:.5rem;
+  background:#faf7f0;
+  color:#182c40;
+  line-height:1.4;
+  text-decoration:underline;
+  text-underline-offset:.2em;
+}
+.brand-preview .nb-implant-concern-links a:hover { background:#f2ead9; }
+#first-implant-visit, #temporary-teeth, #treatment-comfort { scroll-margin-top:8rem; }
 .brand-preview .pp-journey a { text-decoration:underline; text-underline-offset:.18em; }
 .brand-preview .nj-explorer { padding-top:16px; padding-bottom:36px; gap:65px; }
 .brand-preview .nj-compass { width:100%; max-width:460px; }

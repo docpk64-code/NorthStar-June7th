@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { PageLayout } from './PageLayout';
 import ImplantConsultationLinks from './components/ImplantConsultationLinks';
 import SiteLink from './components/SiteLink';
@@ -8,11 +7,16 @@ export function ImplantFinancingPage() {
     <PageLayout
       kicker="Patient information"
       title="Dental Implant Cost & Financing"
-      subtitle="Understand what goes into a dental implant estimate and what to ask about insurance and payment options."
+      subtitle="Find out what to ask about your first visit, what goes into a treatment estimate, and how insurance and financing may help."
       description="Learn how NorthStar estimates dental implant and full-arch treatment costs, what your written estimate can include, and how to discuss insurance and financing."
       ctaLabel="Request a Consultation"
       ctaHref="/contact/#consultation"
     >
+      <section className="page-section implant-start" id="first-implant-visit" aria-labelledby="first-implant-visit-title">
+        <h2 id="first-implant-visit-title">What will my first visit cost?</h2>
+        <p>Before booking, <a href="tel:6313151400">call 631-315-1400</a> to confirm the consultation fee, what it covers, and whether any recommended 3D imaging would be billed separately.</p>
+        <p>Bring the questions you most want answered. At the evaluation, we’ll talk about what’s getting in the way of eating or smiling, review your oral health, and explain which options may fit. You can ask about temporary teeth, how many visits to plan for, and what information we still need to prepare a written estimate.</p>
+      </section>
       <section className="page-section implant-start">
         <h2>What goes into your estimate?</h2>
         <p>The cost depends on how many teeth you need to replace, the type of restoration, and whether your plan includes procedures such as extractions or bone grafting. NorthStar provides both implant surgery and the final restoration.</p>
@@ -78,13 +82,6 @@ const chosenGalleryCases = [
 ];
 
 export function ImplantExamplesPage() {
-  useEffect(() => {
-    const { hash } = window.location;
-    if (hash !== '#before-after' && hash !== '#case-4') return;
-    const frame = requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView?.());
-    return () => cancelAnimationFrame(frame);
-  }, []);
-
   return (
     <PageLayout
       kicker="Patient education"
@@ -95,7 +92,7 @@ export function ImplantExamplesPage() {
     >
       <section className="page-section implant-start before-after-gallery" id="before-after" aria-labelledby="before-after-title">
         <h2 id="before-after-title">Before &amp; After</h2>
-        <p>Before-and-after cases treated by Dr. Peter Kampf. Individual results vary.</p>
+        <p>See how dental treatment can refresh the appearance of a smile. These cases were treated by Dr. Peter Kampf. Individual results vary.</p>
         <div className="before-after-cases">
           {chosenGalleryCases.map(({ number, position }) => (
             <figure className="before-after-case" key={position}>

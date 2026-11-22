@@ -88,7 +88,13 @@ for (const route of routes) {
       assert.equal(document.querySelectorAll('a.care-card-link[href]').length, 6);
       assert(document.querySelector('a.care-card-link[href="/procedures/"]'));
       for (const href of ['/dental-implants/', '/full-arch/']) {
+        assert(document.querySelector(`#pp-navigation a[href="${href}"]`));
+      }
+      for (const href of ['#contact', '/implant-treatment-examples/#before-after']) {
         assert(document.querySelector(`.nb-actions a[href="${href}"]`));
+      }
+      for (const href of ['/implant-cost-financing/#first-implant-visit', '/full-arch/#temporary-teeth', '/sedation/#treatment-comfort']) {
+        assert(document.querySelector(`.nb-implant-questions a[href="${href}"]`));
       }
       for (const treatment of ['dental-implants', 'full-arch', 'wisdom-teeth', 'sedation', 'testimonials']) {
         assert(!document.querySelector(`a.care-card-link[href="/${treatment}/"]`));
@@ -98,7 +104,7 @@ for (const route of routes) {
       assert(document.querySelector('aside[aria-label="Brooklyn office coming soon"]')!.textContent!.includes('January 4, 2027'));
       assert.equal(document.querySelectorAll('.signature-grid .feature-card').length, 2);
       assert.equal(document.querySelectorAll('h1').length, 1);
-      assert.equal(document.querySelector('h1')!.textContent, 'Dental implants, from surgery to final teeth.');
+      assert.equal(document.querySelector('h1')!.textContent, 'Eat comfortably. Smile with confidence again.');
       assert(document.querySelector('img[src^="/assets/homepage/northstar-celestial-logo-"][fetchpriority="high"]'));
       const destinations = ['/about/', '/procedures/', '/sedation/', '/technology/', '/contact/', '/facial-esthetics/'];
       for (let i = 0; i < destinations.length; i++) {

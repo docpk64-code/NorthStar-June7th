@@ -118,18 +118,20 @@ export default function App() {
               </div>
               <span className="nb-star-glint" aria-hidden="true" />
             </div>
-            <h1 id="journey-title" className="nb-headline">Dental implants,<br /> from surgery to final teeth.</h1>
-            <p className="nb-services">Implant and full-arch care in Queens, Manhattan &amp; Commack.</p>
+            <h1 id="journey-title" className="nb-headline">Eat comfortably.<br /> Smile with confidence again.</h1>
+            <p className="nb-services">If loose dentures or missing teeth make you think twice about what you eat or when you smile, we can help you explore your options. NorthStar provides dental implant care from surgery through your final teeth, with a smile designed to look natural and complement your face.</p>
             <div className="nb-actions">
-              <a className="pp-button" href="#contact">Request a Consultation</a>
-              <SiteLink className="nb-treatment-link" href="/dental-implants/">Dental Implants</SiteLink>
-              <SiteLink className="nb-treatment-link" href="/full-arch/">Full-Arch Implants</SiteLink>
+              <a className="pp-button" href="#contact">Request an Implant Consultation</a>
+              <a className="nb-treatment-link" href="/implant-treatment-examples/#before-after">See Real Patient Results</a>
             </div>
+            <nav className="nb-patient-links nb-implant-questions" aria-label="Common questions about implant treatment">
+              <a href="/implant-cost-financing/#first-implant-visit">What will my first visit cost?</a>
+              <a href="/full-arch/#temporary-teeth">How soon can I get teeth?</a>
+              <a href="/sedation/#treatment-comfort">How will you keep me comfortable?</a>
+            </nav>
             <p className="nb-tagline">Guiding Patients One Smile at a Time.</p>
             <div className="nb-patient-links">
               <a href="#locations">Choose an Office</a>
-              <SiteLink href="/implant-cost-financing/">Cost &amp; Financing</SiteLink>
-              <SiteLink href="/implant-treatment-examples/">Treatment Examples</SiteLink>
               <SiteLink href="/patient-forms/">Patient Forms</SiteLink>
             </div>
           </div>
@@ -217,6 +219,14 @@ export default function App() {
         <div className="pp-shell nj-quick"><span>Already know your next step?</span><a href="#contact">Request a consultation ↗</a><a href="tel:6313151400">Call 631-315-1400</a><SiteLink href="/procedures/">All procedures →</SiteLink></div>
       </section>
       <div className="preserved-cards">
+        <section className="nb-implant-concerns" aria-labelledby="implant-concerns-title">
+          <h2 id="implant-concerns-title">What’s getting in the way of your smile?</h2>
+          <div className="nb-implant-concern-links">
+            <SiteLink href="/full-arch/">My denture moves when I eat or talk.</SiteLink>
+            <SiteLink href="/specialized/cant-get-implants/">I was told I don’t have enough bone for implants.</SiteLink>
+            <SiteLink href="/specialized/botched-smile/">My implant or bridge feels loose or keeps breaking.</SiteLink>
+          </div>
+        </section>
         <section className="before-after-teaser" aria-labelledby="before-after-preview-title">
           <div>
             <h2 id="before-after-preview-title">Before &amp; After</h2>

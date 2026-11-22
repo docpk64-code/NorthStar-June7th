@@ -752,18 +752,19 @@ export function SedationPage() {
     <PageLayout
       kicker="Comfort-First Approach"
       title="Sedation Options"
-      subtitle="Safe, transparent, and calming sedation options so every patient can receive the care they need — comfortably."
+      subtitle="Learn how NorthStar plans for comfort during treatment and supports you through recovery."
     >
-      <div className="page-section">
-        <p className="page-kicker">Why Sedation?</p>
-        <h2>Making Dental Surgery More Comfortable</h2>
+      <div className="page-section" id="treatment-comfort">
+        <h2>How will you keep me comfortable?</h2>
         <p>
-          Dental anxiety is more common than most people realize — and it should
-          never be a barrier to receiving the care you need. At NorthStar
-          Implant Dentistry, we take patient comfort seriously and offer a range
-          of sedation options to ensure that every procedure, from a simple
-          extraction to complex implant surgery, can be performed in a calm,
-          relaxed, and pain-free environment.
+          If you’re worried about pain or have had a difficult dental visit, tell
+          us what concerns you most. We’ll explain how we numb the treatment
+          area, whether sedation may be appropriate for you, and what sensations
+          you might notice during the procedure.
+        </p>
+        <p>
+          Before you go home, we’ll review what to expect during recovery, how to
+          manage discomfort, and when to call the office for help.
         </p>
         <p>
           Sedation is recommended for patients who experience dental anxiety or
@@ -784,7 +785,7 @@ export function SedationPage() {
           {[
             {
               title: 'Local Anesthesia',
-              body: 'Local anesthesia is administered by injection at the surgical site, completely numbing the area being treated. It is used in all surgical procedures at NorthStar and ensures you feel no pain during the operation. Patients remain fully awake and alert. For patients undergoing straightforward procedures without significant anxiety, local anesthesia alone may be sufficient.',
+              body: 'Local anesthesia numbs the treatment area while you stay awake. You may still feel pressure or movement. Tell your care team if you feel pain or need a pause.',
             },
             {
               title: 'Nitrous Oxide',
