@@ -241,3 +241,8 @@
 
 .brand-preview .pp-header, .brand-preview .pp-footer { background:#071521; }
 .pp-orbit-logo-window img { mix-blend-mode:lighten; }
+
+/* Readable gold labels on the homepage's light sections. */
+.brand-preview .pp-doctor .pp-eyebrow,
+.brand-preview #contact .pp-eyebrow,
+.brand-preview .pp-locations .pp-eyebrow { color:#80601f; }

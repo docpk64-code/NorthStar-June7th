@@ -238,7 +238,7 @@ export default function App() {
         <section className="services-section" id="treatments">
           <div className="section-shell">
             <div className="section-heading" style={{ maxWidth: '100%' }}>
-              <p className="section-kicker" style={{ color: '#c59d3c', fontSize: '1.54rem', fontWeight: 700, letterSpacing: '0.1em', whiteSpace: 'normal', textAlign: 'left' }}>
+              <p className="section-kicker" style={{ color: '#80601f', fontSize: '1.54rem', fontWeight: 700, letterSpacing: '0.1em', whiteSpace: 'normal', textAlign: 'left' }}>
                 EXPLORE NORTHSTAR
               </p>
             </div>
@@ -253,7 +253,7 @@ export default function App() {
         {/* ── Specialized Circumstances heading ── */}
         <div className="specialized-heading" style={{ background: '#ffffff' }}>
           <div className="section-shell">
-            <p className="section-kicker" style={{ color: '#c59d3c', fontSize: 'clamp(1.5rem, 6vw, 3rem)', fontWeight: 700, fontStyle: 'italic', letterSpacing: '0.1em', textAlign: 'center' }}>
+            <p className="section-kicker" style={{ color: '#80601f', fontSize: 'clamp(1.5rem, 6vw, 3rem)', fontWeight: 700, fontStyle: 'italic', letterSpacing: '0.1em', textAlign: 'center' }}>
               SPECIALIZED CIRCUMSTANCES
             </p>
           </div>
@@ -288,7 +288,7 @@ export default function App() {
                     Add Photo
                   </div>
                 )}
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#c59d3c', fontWeight: 600, fontSize: '0.88rem', marginTop: '1rem' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#80601f', fontWeight: 600, fontSize: '0.88rem', marginTop: '1rem' }}>
                   Learn More →
                 </span>
               </SiteLink>
