@@ -1,0 +1,434 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>NorthStar Private Article Writer</title><style>
+*{box-sizing:border-box}body{margin:0;background:#eef2f6;color:#172b43;font:16px/1.6 system-ui,sans-serif}header{background:#172b43;color:white;padding:1.5rem max(1rem,calc((100vw - 1240px)/2))}header p{margin:.5rem 0 0;color:#e0e7ef}h1{font-family:Georgia,serif;font-size:1.9rem;margin:0}main{max-width:1280px;margin:auto;padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}section{background:white;border:1px solid #cdd7e2;border-radius:.75rem;padding:1.5rem}label{display:block;font-weight:600;margin:.9rem 0 .3rem}input,textarea,select{font:inherit;width:100%;padding:.65rem;border:1px solid #8b9bac;border-radius:.4rem;background:white;color:#172b43}textarea{min-height:6rem;resize:vertical}#body{min-height:24rem}.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1rem}button,.filelabel{font:inherit;font-weight:600;padding:.7rem .95rem;border:1px solid #172b43;border-radius:.4rem;background:#172b43;color:white;cursor:pointer;margin:0}button.secondary,.filelabel{color:#172b43;background:white}.note{font-size:.9rem;color:#526173}#status{padding:.7rem 0;min-height:3rem;color:#4c3b13}.error{color:#922b21!important}#preview h2{font-family:Georgia,serif;line-height:1.3}#preview a{color:#173f6d;overflow-wrap:anywhere}.takeaway{padding:1rem;border-left:3px solid #a47b29;background:#f3f6f9}.draft{background:#fff8e6;border:1px solid #ac8430;padding:.8rem;border-radius:.4rem}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #a47b29;outline-offset:3px}#preview{overflow-wrap:anywhere}#file{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}@media(max-width:800px){main{grid-template-columns:1fr;padding:1rem}section{padding:1.1rem}}
+</style></head><body><header><h1>NorthStar Article Writer</h1><p>Write privately on this device. Preview and export a draft for review.</p></header><main><section aria-labelledby="editor-title"><h2 id="editor-title">Your draft</h2><p class="note">This file makes no network requests. Browser storage is local to this browser and is not a backup. Export your draft to keep a durable copy. Do not enter patient information.</p><label for="saved">Open a starter or saved draft</label><select id="saved"></select><div class="actions"><button type="button" id="new" class="secondary">New article</button><label class="filelabel" for="file">Import draft JSON</label><input type="file" id="file" accept="application/json,.json"></div><form id="writer"><label for="title">Article title</label><input id="title" required maxlength="160"><label for="slug">Page name in the URL</label><input id="slug" required pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="my-article-topic"><p class="note">Lowercase words separated by hyphens. Existing published URLs should stay stable.</p><label for="category">Topic</label><select id="category"><option>Implant Facts</option><option>Full-Arch Treatment</option><option>Healing &amp; Maintenance</option><option>Oral &amp; General Health</option><option>Treatment Decisions</option></select><label for="summary">Short card description</label><textarea id="summary" required maxlength="300"></textarea><label for="lede">Opening paragraph</label><textarea id="lede" required></textarea><label for="takeaway">Key point</label><textarea id="takeaway" required></textarea><label for="body">Article sections</label><p class="note">Begin each section with ## and a heading. Separate paragraphs with a blank line. Begin list items with - and a space. Plain text only.</p><textarea id="body" required spellcheck="true"></textarea><label for="sources">Sources</label><p class="note">One per line: Source name | https://example.org/article</p><textarea id="sources" required></textarea><label for="treatment">Related NorthStar page</label><select id="treatment"><option value="/dental-implants/">Dental implants</option><option value="/full-arch/">Full-arch treatment</option><option value="/implant-cost-financing/">Cost &amp; financing</option><option value="/contact/">Contact NorthStar</option></select><div class="actions"><button type="submit">Export draft JSON</button><button type="button" id="export-all" class="secondary">Export all drafts</button></div><p id="status" role="status" aria-live="polite"></p></form></section><section aria-labelledby="preview-title"><h2 id="preview-title">Article preview</h2><p class="draft">Draft · Clinical review pending · Exporting does not publish to the website.</p><article id="preview"></article></section></main><script>
+'use strict';
+const starters=[
+  {
+    "slug": "what-permanent-teeth-means",
+    "title": "What Does “Permanent Teeth” Really Mean?",
+    "summary": "Understand the difference between fixed teeth, final materials, and a restoration that still needs care.",
+    "category": "Implant Facts",
+    "lede": "“Permanent” sounds reassuring. In implant dentistry, it is worth asking exactly what the word describes: how the teeth attach, what they are made from, or which stage of treatment you have reached. These are different questions.",
+    "takeaway": "Fixed teeth still need daily cleaning, professional monitoring, and a clear plan for repairs or replacement.",
+    "sections": [
+      {
+        "heading": "Three parts of an implant restoration",
+        "paragraphs": [
+          "The implant supports the replacement tooth or teeth. A connecting component, often called an abutment, joins the restoration to the implant. A crown, bridge, or denture forms the part you see and use. Ask your dentist to show you these parts on your own treatment plan."
+        ],
+        "sourceIndices": [
+          1
+        ]
+      },
+      {
+        "heading": "Fixed describes how you wear the teeth",
+        "paragraphs": [
+          "A fixed bridge stays in your mouth during everyday use. Your dental team may remove a screw-retained restoration when clinically necessary. An implant-retained removable denture is a different design: you remove it for cleaning. Make sure the estimate identifies which type you are considering."
+        ],
+        "sourceIndices": [
+          2
+        ]
+      },
+      {
+        "heading": "Final material does not mean healing is finished",
+        "paragraphs": [
+          "A restoration may be made from zirconia or another planned final material while the implants and tissues are still healing. Delivery of teeth and completion of biological healing are separate milestones. Ask what restrictions apply and how the team will check your progress."
+        ],
+        "sourceIndices": [
+          1,
+          3
+        ]
+      },
+      {
+        "heading": "Questions to take to your consultation",
+        "paragraphs": [
+          "Ask what “permanent” means in the proposal you are reviewing. At NorthStar, the plan includes both surgery and the final teeth. The prototype stage is an opportunity to review the design before final fabrication."
+        ],
+        "sourceIndices": [],
+        "items": [
+          "Which teeth will I receive first, and which are my final restoration?",
+          "What material is proposed, and why?",
+          "What cleaning, follow-up, and repair costs should I expect?"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "American Dental Association: Dental implants",
+        "url": "https://www.mouthhealthy.org/all-topics-a-z/implants"
+      },
+      {
+        "label": "American College of Prosthodontists: Maintenance of full-arch implant restorations",
+        "url": "https://www.prosthodontics.org/about-acp/position-statement-maintenance-of-full-arch-implant-restorations/"
+      },
+      {
+        "label": "FDA: Dental implants — what you should know",
+        "url": "https://www.fda.gov/medical-devices/dental-devices/dental-implants-what-you-should-know"
+      }
+    ],
+    "treatment": {
+      "label": "Explore full-arch treatment",
+      "href": "/full-arch/"
+    },
+    "related": [
+      "why-we-use-smile-prototypes",
+      "cleaning-under-an-implant-bridge",
+      "understanding-your-implant-estimate"
+    ],
+    "status": "draft"
+  },
+  {
+    "slug": "why-we-use-smile-prototypes",
+    "title": "Why We Test Your Smile Before Making the Final Teeth",
+    "summary": "How a prototype helps you discuss appearance, speech, lip support, and bite.",
+    "category": "Full-Arch Treatment",
+    "lede": "A smile can look appealing on a screen and still need refinement in your mouth. NorthStar uses a prototype stage so you and your dentist can evaluate the design together before your final full-arch teeth are made.",
+    "takeaway": "The prototype gives your feedback a specific place in the treatment process.",
+    "sections": [
+      {
+        "heading": "What are we checking?",
+        "paragraphs": [
+          "The trial stage can help assess the smile line, tooth display, lip support, speech, and how the teeth meet. Clinical consensus guidance for full-arch upper-jaw rehabilitation recommends a trial restoration to evaluate appearance, function, and hygiene access before the definitive restoration."
+        ],
+        "sourceIndices": [
+          1
+        ]
+      },
+      {
+        "heading": "What should you tell us?",
+        "paragraphs": [
+          "Describe the details that matter to you. Are the teeth too visible or not visible enough? Does the appearance feel like you? Are particular sounds difficult? Is there a contact that feels different when you close? Your dentist will assess what can be changed within the clinical plan."
+        ],
+        "sourceIndices": []
+      },
+      {
+        "heading": "A healing bridge has instructions of its own",
+        "paragraphs": [
+          "When implant stability and the treatment plan allow, a fixed healing bridge may be possible on surgery day. Other patients need a different sequence. During healing, follow the prescribed diet and care instructions; a fixed bridge is not permission to return immediately to unrestricted chewing."
+        ],
+        "sourceIndices": [
+          1
+        ]
+      },
+      {
+        "heading": "How the prototype informs the final teeth",
+        "paragraphs": [
+          "NorthStar reviews healing, clinical fit, and the agreed design before final fabrication. The goal is to incorporate the refinements into the final restoration. The material and timing are individualized, and future adjustments or repairs may still be needed. Bring your questions to the review visit rather than waiting until delivery."
+        ],
+        "sourceIndices": [],
+        "items": [
+          "Ask which features you can evaluate during your trial stage.",
+          "Ask how requested changes will be recorded and reviewed.",
+          "Ask when the final design decision is expected in your case."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "2026 global consensus: Rehabilitation of the edentulous maxilla",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12930121/"
+      }
+    ],
+    "treatment": {
+      "label": "See NorthStar’s full-arch process",
+      "href": "/full-arch/#prototype-smile"
+    },
+    "related": [
+      "what-permanent-teeth-means",
+      "cleaning-under-an-implant-bridge",
+      "understanding-your-implant-estimate"
+    ],
+    "status": "draft"
+  },
+  {
+    "slug": "cleaning-under-an-implant-bridge",
+    "title": "How Do You Clean Under an Implant Bridge?",
+    "summary": "A practical starting point for a cleaning routine tailored to your restoration.",
+    "category": "Healing & Maintenance",
+    "lede": "A fixed implant bridge stays in place during daily use. Its underside still needs attention. Ask for an in-person demonstration using your own restoration so you can see where to clean and which tools fit.",
+    "takeaway": "A useful cleaning plan combines accessible bridge contours, a routine you can perform, and professional follow-up.",
+    "sections": [
+      {
+        "heading": "Start with your treatment stage",
+        "paragraphs": [
+          "Instructions for a newly placed implant or healing bridge may differ from those for a mature final restoration. Follow your surgical team’s directions. Ask when you should start using each cleaning aid and whether any areas need special protection."
+        ],
+        "sourceIndices": [
+          1
+        ]
+      },
+      {
+        "heading": "Have the team demonstrate the tools",
+        "paragraphs": [
+          "Depending on your bridge, your dentist or hygienist may recommend an interdental brush, suitable floss or threader, or a water irrigator. Tool choice, sizing, and technique depend on the available access. Ask the team to watch you demonstrate the routine back to them. Do not force a tool into a space or try to unscrew the bridge yourself."
+        ],
+        "sourceIndices": [
+          2
+        ]
+      },
+      {
+        "heading": "Design matters as well as effort",
+        "paragraphs": [
+          "A bridge should be shaped to allow cleaning around the implant connections and beneath the replacement teeth. If you consistently cannot reach an area, show your team. More pressure or more products may not solve an access problem; the restoration and your technique both need assessment."
+        ],
+        "sourceIndices": [
+          2
+        ]
+      },
+      {
+        "heading": "Keep your maintenance visits",
+        "paragraphs": [
+          "Home cleaning does not replace professional checks. The team examines the tissues, restoration, and bite and recommends the follow-up interval for you. Contact your dental provider if an implant feels loose or painful. Also report persistent bleeding, swelling, or a change in how the bridge feels rather than relying on this article to diagnose it."
+        ],
+        "sourceIndices": [
+          1,
+          2
+        ],
+        "items": [
+          "Which tools and sizes fit my bridge?",
+          "Can I demonstrate my cleaning technique at the next visit?",
+          "When is my next professional maintenance appointment?"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "FDA: Dental implants — what you should know",
+        "url": "https://www.fda.gov/medical-devices/dental-devices/dental-implants-what-you-should-know"
+      },
+      {
+        "label": "American College of Prosthodontists: Maintenance of full-arch implant restorations",
+        "url": "https://www.prosthodontics.org/about-acp/position-statement-maintenance-of-full-arch-implant-restorations/"
+      }
+    ],
+    "treatment": {
+      "label": "Explore full-arch care",
+      "href": "/full-arch/"
+    },
+    "related": [
+      "what-permanent-teeth-means",
+      "diabetes-and-dental-implants",
+      "smoking-vaping-and-implant-treatment"
+    ],
+    "status": "draft"
+  },
+  {
+    "slug": "diabetes-and-dental-implants",
+    "title": "Diabetes and Dental Implants: Questions to Discuss",
+    "summary": "Why blood sugar, gum health, and coordination with your medical team belong in the conversation.",
+    "category": "Oral & General Health",
+    "lede": "Having diabetes is a reason for an individual assessment, not a conclusion about your implant options. Bring your health information and questions so your dental and medical teams can discuss a plan suited to you.",
+    "takeaway": "Implant planning should consider diabetes control, oral health, and your ability to follow the treatment and maintenance plan.",
+    "sections": [
+      {
+        "heading": "Why your mouth is part of the discussion",
+        "paragraphs": [
+          "Diabetes is associated with a higher likelihood of gum disease and can slow healing. Dry mouth and other oral problems may also occur. Gum disease may make blood sugar harder to manage. These connections support coordinated care; they do not mean implant treatment treats or cures diabetes."
+        ],
+        "sourceIndices": [
+          1
+        ]
+      },
+      {
+        "heading": "Can someone with diabetes receive implants?",
+        "paragraphs": [
+          "The ADA describes implant placement as generally safe and reliable in patients with properly controlled diabetes. Suitability still depends on the person and the proposed treatment. Your dentist may discuss blood sugar information, existing gum disease, and whether input from your medical clinician is needed before surgery. There is no single eligibility answer for everyone."
+        ],
+        "sourceIndices": [
+          2
+        ]
+      },
+      {
+        "heading": "Prepare for the conversation",
+        "paragraphs": [
+          "Bring an up-to-date medication list and the diabetes information your treating team requests. Discuss how eating, appointment timing, and recovery might fit your medical plan. Ask who will coordinate any necessary instructions. Do not stop or change medication on the basis of a website article."
+        ],
+        "sourceIndices": []
+      },
+      {
+        "heading": "Think beyond surgery day",
+        "paragraphs": [
+          "Daily oral care and follow-up remain part of the plan. Tell the team about changes in your diabetes management and any mouth symptoms. If you smoke or vape, include that information too. At NorthStar, the consultation is the place to discuss how your general health and oral condition affect the proposed stages of care."
+        ],
+        "sourceIndices": [],
+        "items": [
+          "What health information should I bring before planning treatment?",
+          "Does gum disease need treatment first?",
+          "Who should I contact with questions about meals or medicines around surgery?"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "NIDCR: Diabetes and oral health",
+        "url": "https://www.nidcr.nih.gov/health-info/diabetes"
+      },
+      {
+        "label": "American Dental Association: Diabetes",
+        "url": "https://www.ada.org/resources/ada-library/oral-health-topics/diabetes"
+      }
+    ],
+    "treatment": {
+      "label": "Discuss dental implant options",
+      "href": "/dental-implants/"
+    },
+    "related": [
+      "cleaning-under-an-implant-bridge",
+      "smoking-vaping-and-implant-treatment",
+      "understanding-your-implant-estimate"
+    ],
+    "status": "draft"
+  },
+  {
+    "slug": "smoking-vaping-and-implant-treatment",
+    "title": "Smoking, Vaping, and Implant Treatment",
+    "summary": "What to tell your team and why an honest discussion helps with planning.",
+    "category": "Oral & General Health",
+    "lede": "Tell your implant team about cigarettes, cigars, vaping, nicotine products, and cannabis use. An accurate history helps the team assess the treatment plan and discuss appropriate support without guesswork.",
+    "takeaway": "Discuss product use early and ask for an individualized plan before surgery.",
+    "sections": [
+      {
+        "heading": "Smoking matters for implant care",
+        "paragraphs": [
+          "The FDA warns that smoking may interfere with healing and reduce long-term implant success. It is one of the factors to discuss alongside the examination, health history, and oral condition. It does not let a website predict a specific patient’s outcome."
+        ],
+        "sourceIndices": [
+          1
+        ]
+      },
+      {
+        "heading": "Vaping is a separate question",
+        "paragraphs": [
+          "Vaping aerosol is not simply harmless water vapor. Products and exposures vary, and the ADA notes that the evidence about vaping and dental health is still developing. We should not assume that changing to vaping removes the concerns relevant to surgery, or that vaping carries exactly the same implant risks as cigarettes."
+        ],
+        "sourceIndices": [
+          2
+        ]
+      },
+      {
+        "heading": "Bring useful details",
+        "paragraphs": [
+          "Tell the team what you use, how often you use it, and whether you are trying to stop. Include products marketed as nicotine-free and any prescribed or over-the-counter cessation aids. Ask which instructions apply to your planned surgery and recovery. This article does not set a universal stop-and-restart interval or replace your clinician’s advice."
+        ],
+        "sourceIndices": []
+      },
+      {
+        "heading": "Ask for support and a plan",
+        "paragraphs": [
+          "If you want help quitting, ask your dentist or medical clinician about suitable support. Tell the team if following the agreed plan is difficult so that they can reassess with you. Keep scheduled healing and maintenance visits, and report changes in product use."
+        ],
+        "sourceIndices": [
+          2
+        ],
+        "items": [
+          "How does my product use affect the proposed treatment?",
+          "What instructions apply before surgery and during recovery?",
+          "Which cessation resources are appropriate for me?"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "FDA: Dental implants — what you should know",
+        "url": "https://www.fda.gov/medical-devices/dental-devices/dental-implants-what-you-should-know"
+      },
+      {
+        "label": "American Dental Association: Vaping",
+        "url": "https://www.mouthhealthy.org/all-topics-a-z/vaping"
+      }
+    ],
+    "treatment": {
+      "label": "Discuss your implant treatment plan",
+      "href": "/dental-implants/"
+    },
+    "related": [
+      "diabetes-and-dental-implants",
+      "cleaning-under-an-implant-bridge",
+      "why-we-use-smile-prototypes"
+    ],
+    "status": "draft"
+  },
+  {
+    "slug": "understanding-your-implant-estimate",
+    "title": "What Should Your Dental Implant Estimate Include?",
+    "summary": "Compare the whole treatment plan, from evaluation through final teeth and maintenance.",
+    "category": "Treatment Decisions",
+    "lede": "A headline price is easier to compare when you know what it covers. Ask for a written estimate tied to your proposed treatment, with the planned stages, inclusions, and items that could change.",
+    "takeaway": "Compare the services and terms behind the price, and ask about the complete path to final teeth.",
+    "sections": [
+      {
+        "heading": "Identify the restoration you are buying",
+        "paragraphs": [
+          "Does the plan replace one tooth, several teeth, or a full arch? Is the restoration fixed or removable? Ask which material is proposed and whether the estimate covers temporary teeth, the prototype stage, and the final restoration. NorthStar provides both implant surgery and final teeth; your written plan should explain the proposed sequence."
+        ],
+        "sourceIndices": []
+      },
+      {
+        "heading": "Work through the stages",
+        "paragraphs": [
+          "Use the estimate as a conversation guide. Ask which services are included and which would be billed separately. Record the answer before making a decision."
+        ],
+        "sourceIndices": [],
+        "items": [
+          "Evaluation, imaging, and planning",
+          "Extractions, grafting, implant surgery, and sedation or anesthesia when planned",
+          "Temporary teeth, design trials, and final teeth",
+          "Included follow-up and separately billed maintenance",
+          "Terms for adjustments, repairs, remakes, and changes to the plan"
+        ]
+      },
+      {
+        "heading": "Separate treatment cost from payment terms",
+        "paragraphs": [
+          "If financing is offered, review the interest, fees, payment schedule, and total repayment amount. Understand any promotional deadline and what happens if the balance remains afterward. A monthly payment is not the same as the total treatment cost. Ask the lender to clarify terms you do not understand."
+        ],
+        "sourceIndices": [
+          1
+        ]
+      },
+      {
+        "heading": "Leave with the questions answered",
+        "paragraphs": [
+          "Ask which parts of the estimate depend on examination findings or healing. Discuss alternatives, and keep a copy of the documents you agree to. If comparing providers, use the same questions for each proposal. The purpose is to understand your care and obligations before committing, rather than infer value from a price alone."
+        ],
+        "sourceIndices": [],
+        "items": [
+          "What is included in the quoted amount?",
+          "What circumstances could change it?",
+          "When are payments due, and what cancellation terms apply?"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "American Dental Association: Dental care financing plans",
+        "url": "https://www.mouthhealthy.org/dental-care/financing-plans"
+      }
+    ],
+    "treatment": {
+      "label": "Explore cost and financing questions",
+      "href": "/implant-cost-financing/"
+    },
+    "related": [
+      "what-permanent-teeth-means",
+      "why-we-use-smile-prototypes",
+      "diabetes-and-dental-implants"
+    ],
+    "status": "draft"
+  }
+]
+;
+const key='northstar.education.drafts.v1', $=id=>document.getElementById(id), form=$('writer');let bank=[],active='',saveTimer;const fields=['title','slug','category','summary','lede','takeaway','body','sources','treatment'];
+function status(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error)}
+try{const stored=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(stored))bank=stored.filter(a=>a&&typeof a.slug==='string'&&typeof a.title==='string')}catch{status('Browser storage is unavailable or could not be read. Export JSON to save your work.',true)}
+for(const a of starters)if(!bank.some(b=>b.slug===a.slug))bank.push(a);
+function options(){const select=$('saved');select.replaceChildren();for(const a of bank){const o=document.createElement('option');o.value=a.slug;o.textContent=a.title;select.append(o)}select.value=active}
+function bodyText(a){return a.sections.map(s=>'## '+s.heading+'\n\n'+s.paragraphs.join('\n\n')+(s.items?.length?'\n\n'+s.items.map(t=>'- '+t).join('\n'):'')).join('\n\n')}
+function load(a){active=a.slug;for(const f of ['title','slug','category','summary','lede','takeaway'])$(f).value=a[f]||'';$('body').value=bodyText(a);$('sources').value=a.sources.map(s=>s.label+' | '+s.url).join('\n');$('treatment').value=a.treatment.href;options();render();status('Draft opened. Changes save in this browser when storage is available. Export a copy before closing.')}
+function parse(){const sources=$('sources').value.split('\n').filter(s=>s.trim()).map(line=>{const i=line.indexOf('|');if(i<1)throw Error('Each source needs a name, |, and an HTTPS URL.');const url=line.slice(i+1).trim();if(new URL(url).protocol!=='https:')throw Error('Source links must use HTTPS.');return {label:line.slice(0,i).trim(),url}});const sections=[];let current=null;for(const line of $('body').value.split('\n')){if(line.startsWith('## ')){current={heading:line.slice(3).trim(),paragraphs:[],items:[],sourceIndices:sources.map((_,i)=>i+1)};sections.push(current)}else if(line.trim()){if(!current){current={heading:'What to know',paragraphs:[],items:[],sourceIndices:sources.map((_,i)=>i+1)};sections.push(current)}if(line.startsWith('- '))current.items.push(line.slice(2));else current.paragraphs.push(line.trim())}}return {slug:$('slug').value.trim(),title:$('title').value.trim(),category:$('category').value,summary:$('summary').value.trim(),lede:$('lede').value.trim(),takeaway:$('takeaway').value.trim(),sections,sources,treatment:{label:$('treatment').selectedOptions[0].textContent,href:$('treatment').value},related:starters.map(a=>a.slug).filter(s=>s!==$('slug').value).slice(0,3),status:'draft'}}
+function add(parent,tag,text,cls){const el=document.createElement(tag);el.textContent=text;if(cls)el.className=cls;parent.append(el);return el}
+function render(){const p=$('preview');p.replaceChildren();add(p,'h2',$('title').value||'Your article title');add(p,'p',$('summary').value);add(p,'p',$('lede').value);add(p,'p',$('takeaway').value,'takeaway');let a;try{a=parse()}catch(e){add(p,'p',e.message,'note');return}for(const s of a.sections){add(p,'h3',s.heading);s.paragraphs.forEach(t=>add(p,'p',t));if(s.items.length){const ul=add(p,'ul','');s.items.forEach(t=>add(ul,'li',t))}}add(p,'h3','Sources');const ol=add(p,'ol','');for(const s of a.sources){const li=add(ol,'li',''),link=add(li,'a',s.label);link.href=s.url;link.target='_blank';link.rel='noopener noreferrer'}}
+function persist(){try{const a=parse();if(!a.slug||!a.title)return;if(!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(a.slug))throw Error('Use lowercase words and hyphens for the URL name.');if(bank.some(b=>b.slug===a.slug&&b.slug!==active))throw Error('That URL name already belongs to another draft.');const i=bank.findIndex(b=>b.slug===active);if(i<0)bank.push(a);else bank[i]=a;active=a.slug;localStorage.setItem(key,JSON.stringify(bank));options();status('Saved in this browser. Export JSON for a durable backup.')}catch(e){status(e.message+' Your current text is still on screen.',true)}}
+function download(value,name){const blob=new Blob([JSON.stringify(value,null,2)+'\n'],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+form.addEventListener('input',()=>{render();clearTimeout(saveTimer);saveTimer=setTimeout(persist,500)});form.addEventListener('change',()=>{render();persist()});form.addEventListener('submit',e=>{e.preventDefault();try{const a=parse();if(!a.sections.length)throw Error('Add at least one article section.');if(!a.sources.length)throw Error('Add at least one source.');persist();download(a,a.slug+'-draft.json');status('Draft exported. It has not been published.')}catch(e){status(e.message,true)}});$('saved').addEventListener('change',()=>{clearTimeout(saveTimer);load(bank.find(a=>a.slug===$('saved').value))});$('new').addEventListener('click',()=>{clearTimeout(saveTimer);active='';form.reset();$('saved').value='';render();status('New draft. Give it a unique title and URL name.')});$('export-all').addEventListener('click',()=>{clearTimeout(saveTimer);persist();download(bank,'northstar-article-drafts.json')});$('file').addEventListener('change',async()=>{try{const parsed=JSON.parse(await $('file').files[0].text());const list=Array.isArray(parsed)?parsed:[parsed];for(const a of list){if(!a||typeof a.slug!=='string'||typeof a.title!=='string'||!Array.isArray(a.sections)||!Array.isArray(a.sources)||!a.treatment)throw Error('The file is not a NorthStar article draft.');for(const s of a.sources)if(new URL(s.url).protocol!=='https:')throw Error('Imported source URLs must use HTTPS.');if(!/^\/(?!\/)/.test(a.treatment.href))throw Error('The related page must be a NorthStar path.')}for(const a of list){if(bank.some(b=>b.slug===a.slug)&&!confirm('Replace the existing local draft: '+a.title+'? Export a backup first if needed.'))throw Error('Import cancelled; no drafts were replaced.')}for(const a of list){a.status='draft';delete a.reviewedBy;delete a.reviewedAt;delete a.publishedAt;delete a.updatedAt;const i=bank.findIndex(b=>b.slug===a.slug);if(i>=0)bank[i]=a;else bank.push(a)}localStorage.setItem(key,JSON.stringify(bank));load(list[0]);status('Imported as a draft. No publishing or clinical review is implied.')}catch(e){status('Could not import: '+e.message,true)}finally{$('file').value=''}});options();load(bank[0]);
+</script></body></html>

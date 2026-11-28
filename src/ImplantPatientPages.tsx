@@ -1,3 +1,4 @@
+import { EducationRelated } from './components/EducationCards';
 import { PageLayout } from './PageLayout';
 import ImplantConsultationLinks from './components/ImplantConsultationLinks';
 import SiteLink from './components/SiteLink';
@@ -34,6 +35,7 @@ export function ImplantFinancingPage() {
         <p>Coverage depends on your plan and the services you need. Bring your insurance information so our team can help you review benefits and estimated out-of-pocket costs before treatment.</p>
         <p>Ask about third-party financing if you’d prefer to pay over time. Availability and terms depend on the provider and its approval. Review the total repayment cost, interest, and payment schedule before choosing an option.</p>
       </section>
+      <EducationRelated slugs={['understanding-your-implant-estimate']} />
       <section className="page-section">
         <h2>Request a consultation by office</h2>
         <p>Choose your preferred office and our team will contact you about scheduling. You can also <a className="implant-guide-link" href="tel:6313151400">call 631-315-1400</a>.</p>

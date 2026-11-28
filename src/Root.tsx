@@ -11,6 +11,10 @@ import App from './App';
 import SEOHead from './components/SEOHead';
 import { routeKey, pagePath } from './utils/urls';
 
+import { articles, articlePath } from './data/education';
+const EducationLibraryPage = lazy(() => import('./EducationPages').then(m => ({ default: m.EducationLibraryPage })));
+const EducationArticlePage = lazy(() => import('./EducationPages').then(m => ({ default: m.EducationArticlePage })));
+
 const SmilePreviewPage = lazy(() => import('./SmilePreviewPage'));
 
 const IntakePage = lazy(() => import('./IntakePage'));
@@ -54,6 +58,7 @@ const ROUTES: Record<string, React.ReactElement> = {
   '/': <App />,
   '/smile-preview': <SmilePreviewPage />,
   '/about': <AboutPage />,
+  '/education': <EducationLibraryPage />,
   '/procedures': <ProceduresPage />,
   '/dental-implants': <DentalImplantsPage />,
   '/full-arch': <FullArchPage />,
@@ -137,7 +142,8 @@ export default function Root() {
     return () => window.removeEventListener('popstate', onPopState);
   }, [onPopState]);
 
-  const page = ROUTES[path] ?? <NotFound />;
+  const article = articles.find(a => routeKey(articlePath(a.slug)) === path);
+  const page = ROUTES[path] ?? (article ? <EducationArticlePage slug={article.slug} /> : <NotFound />);
   return <Suspense key={path} fallback={<PageFallback />}>{page}</Suspense>;
 }function NotFound() {
   return <main style={{ padding: '4rem 2rem', fontFamily: 'sans-serif', color: '#07111c', background: '#fff', minHeight: '100vh' }}>

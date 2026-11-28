@@ -16,6 +16,7 @@ const menuItems = [
   { label: 'Dental Implants', href: '/dental-implants' },
   { label: 'Full-Arch Implants', href: '/full-arch' },
   { label: 'Cost & Financing', href: '/implant-cost-financing' },
+  { label: 'Facts & Education', href: '/education/' },
   { label: 'Wisdom Teeth', href: '/wisdom-teeth' },
   { label: 'Sedation', href: '/sedation' },
   { label: 'Patient Info', href: '/patient-information' },
@@ -388,12 +389,14 @@ export function PageLayout({
   description,
   ctaLabel = 'Book a Consultation',
   ctaHref = '/contact/',
+  noindex = false,
 }: {
   children: React.ReactNode;
   kicker: string;
   title: string;
   subtitle: string;
   description?: string;
+  noindex?: boolean;
   ctaLabel?: string;
   ctaHref?: string;
 }) {
@@ -478,7 +481,7 @@ export function PageLayout({
   return (
     <div className="page-root">
       <style>{pageStyles}</style>
-      <SEOHead title={title} description={description || subtitle} />
+      <SEOHead title={title} description={description || subtitle} noindex={noindex} />
 
       {/* ── Click-to-call bar ── */}
       <div className="page-call-bar" role="banner" aria-label="Contact bar">

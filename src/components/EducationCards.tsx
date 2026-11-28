@@ -1,0 +1,8 @@
+import SiteLink from './SiteLink';
+import { articles, articlePath, readingMinutes, type EducationArticle } from '../data/education';
+import '../styles/education.css';
+export function EducationCard({article:a}:{article:EducationArticle}){
+ return <article className="edu-card"><p className="edu-category">{a.category}</p><h3><SiteLink href={articlePath(a.slug)}>{a.title}</SiteLink></h3><p>{a.summary}</p><div className="edu-card-bottom"><span>{readingMinutes(a)} min read</span><SiteLink href={articlePath(a.slug)} aria-label={`Read: ${a.title}`}>Read article</SiteLink></div></article>;
+}
+export function EducationHome(){if(!articles.length)return null;return <section className="edu-home pp-section" aria-labelledby="edu-home-title"><div className="pp-shell"><div className="edu-heading"><div><p className="pp-eyebrow">Facts &amp; Education</p><h2 id="edu-home-title">Good questions. Clear answers.</h2><p>Short reads to help you understand implants, your options, and the connection between oral and general health.</p></div><SiteLink className="edu-browse" href="/education/">Browse all articles</SiteLink></div><div className="edu-grid">{articles.slice(0,3).map(a=><EducationCard key={a.slug} article={a}/>)}</div></div></section>}
+export function EducationRelated({slugs}:{slugs:string[]}){const picks=articles.filter(a=>slugs.includes(a.slug));if(!picks.length)return null;return <section className="page-section edu-related"><p className="page-kicker">Facts &amp; Education</p><h2>Explore the questions behind your care.</h2><div className="edu-grid">{picks.map(a=><EducationCard key={a.slug} article={a}/>)}</div><SiteLink className="edu-browse" href="/education/">Browse the Learning Center</SiteLink></section>}

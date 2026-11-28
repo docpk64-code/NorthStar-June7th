@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "postbuild": "node scripts/ensure-prerender-browser.mjs && node prerender.mjs",
     "preview": "vite preview",
-    "test:seo": "node --import tsx scripts/check-seo.tsx"
+    "test:seo": "node --import tsx scripts/check-seo.tsx",
+    "prebuild": "node scripts/sync-education-sitemap.mjs"
   },
   "dependencies": {
     "@formspree/react": "^2.0.0",

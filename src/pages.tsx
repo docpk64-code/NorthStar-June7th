@@ -1,5 +1,6 @@
 import BoneGraftingVideo from './components/BoneGraftingVideo';
 import ProcedureTreatments from './components/ProcedureTreatments';
+import { EducationRelated } from './components/EducationCards';
 import FullArchOptions from './components/FullArchOptions';
 import FullArchPrototype from './components/FullArchPrototype';
 import ImplantConsultationLinks from './components/ImplantConsultationLinks';
@@ -504,6 +505,7 @@ export function DentalImplantsPage() {
           <a className="implant-guide-link" href="/contact/#consultation"> Request a consultation</a>
         </p>
       </div>
+      <EducationRelated slugs={['diabetes-and-dental-implants', 'smoking-vaping-and-implant-treatment']} />
       <ImplantOfficeInformation />
     </PageLayout>
   );
@@ -529,6 +531,7 @@ export function FullArchPage() {
       </div>
 
       <FullArchPrototype />
+      <EducationRelated slugs={['why-we-use-smile-prototypes', 'what-permanent-teeth-means', 'cleaning-under-an-implant-bridge']} />
       <FullArchOptions />
       <ImplantOfficeInformation />
 

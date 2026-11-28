@@ -19,7 +19,8 @@ window.matchMedia = () => ({ matches: false, addEventListener() {}, removeEventL
 const { createRoot } = await import('react-dom/client');
 const { default: Root, navigate } = await import('../src/Root');
 const root = createRoot(document.getElementById('root')!);
-const routes = [...readFileSync('src/Root.tsx', 'utf8').matchAll(/^  '([^']+)':/gm)].map(m => m[1]);
+const { articles, articlePath } = await import('../src/data/education');
+const routes = [...readFileSync('src/Root.tsx', 'utf8').matchAll(/^  '([^']+)':/gm)].map(m => m[1]).concat(articles.map(a => articlePath(a.slug).replace(/\/$/, '')));
 const sitemap = readFileSync('public/sitemap.xml', 'utf8');
 const redirects = readFileSync('public/_redirects', 'utf8');
 const pathFor = (route: string) => route === '/' ? '/' : route + '/';
@@ -37,6 +38,17 @@ for (const route of routes) {
       root.render(<Root key={path} />);
     });
     await settle();
+    if (route === '/education' || route.startsWith('/education/')) {
+      const article = articles.find(a => articlePath(a.slug).replace(/\/$/, '') === route);
+      const draftOnly = article ? article.status !== 'published' : articles.every(a => a.status !== 'published');
+      assert.equal(document.querySelector('meta[name="robots"]')?.getAttribute('content'), draftOnly ? 'noindex, follow' : 'index, follow');
+      assert.equal(document.querySelectorAll('link[rel="canonical"]').length, draftOnly ? 0 : 1);
+      assert.equal(document.querySelectorAll('#schema-education').length, article?.status === 'published' ? 1 : 0);
+      if (draftOnly) assert(document.querySelector('.edu-review'));
+      if (route === '/education') assert.equal(document.querySelectorAll('.edu-card').length, articles.length);
+      else {assert.equal(document.querySelectorAll('.edu-article').length, 1); assert(document.querySelector('.edu-sources a'));}
+      continue;
+    }
     if (route === '/smile-preview') {
       assert.equal(document.querySelectorAll('link[rel="canonical"]').length, 0, path);
       assert.equal(document.querySelector('meta[name="robots"]')?.getAttribute('content'), 'noindex, follow', path);
@@ -104,7 +116,7 @@ for (const route of routes) {
       assert(document.querySelector('aside[aria-label="Brooklyn office coming soon"]')!.textContent!.includes('January 4, 2027'));
       assert.equal(document.querySelectorAll('.signature-grid .feature-card').length, 2);
       assert.equal(document.querySelectorAll('h1').length, 1);
-      assert.equal(document.querySelector('h1')!.textContent, 'Eat comfortably. Smile with confidence again.');
+      assert.equal(document.querySelector('h1')!.textContent, 'Smile with Confidence and Eat Comfortably.');
       assert(document.querySelector('img[src^="/assets/homepage/northstar-celestial-logo-"][fetchpriority="high"]'));
       const destinations = ['/about/', '/procedures/', '/sedation/', '/technology/', '/contact/', '/facial-esthetics/'];
       for (let i = 0; i < destinations.length; i++) {
@@ -115,9 +127,35 @@ for (const route of routes) {
 
     }
   }
-  assert.equal(sitemap.includes('https://northstarimplants.com' + pathFor(route) + '</loc>'), route !== '/smile-preview', route);
+  assert.equal(sitemap.includes('https://northstarimplants.com' + pathFor(route) + '</loc>'), route === '/education' ? articles.some(a => a.status === 'published') : route.startsWith('/education/') ? articles.some(a => a.status === 'published' && articlePath(a.slug) === pathFor(route)) : route !== '/smile-preview', route);
   assert(!redirects.includes('301!'), 'Slash-only forced redirects can loop on Netlify');
 }
+await act(async () => navigate('/education/'));
+await settle();
+await act(async () => (document.querySelector('.edu-filters button:last-child') as HTMLButtonElement).click());
+assert.equal(document.querySelectorAll('.edu-card').length, 1);
+const { Simulate } = await import('react-dom/test-utils');
+await act(async () => Simulate.change(document.querySelector('.edu-search input')!, { target: { value: 'no matching phrase xyz' } } as any));
+assert.equal(document.querySelectorAll('.edu-card').length, 0);
+assert(document.querySelector('.edu-empty'));
+await act(async () => (document.querySelector('.edu-empty button') as HTMLButtonElement).click());
+assert.equal(document.querySelectorAll('.edu-card').length, 6);
+const originalArticle = articles[0];
+const draft = {...originalArticle, status: 'published', publishedAt: '2026-11-27', reviewedBy: undefined, reviewedAt: undefined};
+articles[0] = draft;
+await act(async () => navigate(articlePath(draft.slug)));
+await settle();
+assert.equal(document.querySelector('meta[name="robots"]')?.getAttribute('content'), 'index, follow');
+const articleGraph = JSON.parse(document.querySelector('#schema-education')!.textContent!)['@graph'];
+assert.equal(articleGraph[0]['@type'], 'Article');
+assert.equal(articleGraph[0].author['@type'], 'Organization');
+assert.equal(articleGraph[0].datePublished, '2026-11-27');
+assert(!document.body.textContent?.includes('Clinically reviewed by'));
+articles[0] = originalArticle;
+await act(async () => navigate('/education/unknown-article/'));
+await settle();
+assert.equal(document.querySelector('h1')!.textContent, 'Page not found');
+assert.equal(document.querySelectorAll('#schema-education').length, 0);
 await act(async () => navigate('/dental-implants'));
 await settle();
 assert.equal(window.location.pathname, '/dental-implants/');

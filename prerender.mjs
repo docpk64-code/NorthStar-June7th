@@ -25,7 +25,10 @@ const MIME = {
   '.woff2': 'font/woff2', '.woff': 'font/woff', '.mp3': 'audio/mpeg',
 };
 
+const educationArticles = JSON.parse(readFileSync(resolve(__dirname, 'src/data/education.json'), 'utf8'));
 const ROUTES = [
+  '/education',
+  ...educationArticles.filter(a => a.status === 'published').map(a => '/education/' + a.slug),
   '/', '/smile-preview',
   '/locations/briarwood', '/locations/manhattan', '/locations/commack', '/locations/brooklyn',
   '/about', '/procedures', '/dental-implants', '/full-arch', '/wisdom-teeth',
