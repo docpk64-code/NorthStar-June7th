@@ -44,6 +44,22 @@ export default function FullArchPrototype() {
       </table>
       <p className="prototype-source">Nuvia summary based on its <a href={nuviaSource} target="_blank" rel="noopener noreferrer">published dentist explanation</a> and <a href={nuviaFaq} target="_blank" rel="noopener noreferrer">process FAQs</a>, reviewed November 27, 2026. Confirm current details with each provider.</p>
     </div>
+    <div className="prototype-expectations" aria-labelledby="prototype-gap-title">
+      <h3 id="prototype-gap-title">Why we prefer to refine the design before the final teeth</h3>
+      <p>Nuvia’s FAQ describes adding material if a gap develops during healing. A later addition can be a useful treatment, but closing a space is not always the same as designing the final restoration around healed tissues. That is one reason NorthStar includes a prototype stage.</p>
+      <ul>
+        <li><strong>An added material creates a junction.</strong> If composite resin is bonded to zirconia, the result includes a bond between two materials. Bond durability depends on the materials, surface preparation, and aging; that junction needs monitoring.</li>
+        <li><strong>Surface finish and cleaning access still matter.</strong> Pink composite can discolor, and its surface finish affects staining. Any addition must be carefully shaped and polished so that the restoration remains accessible for cleaning. Simply filling a gap is not the whole design task.</li>
+        <li><strong>A gap repair does not address every design concern.</strong> We also need to assess tooth position, lip support, speech, and bite. Prototyping gives you and your dentist a dedicated opportunity to review those features and incorporate refinements before final fabrication.</li>
+      </ul>
+      <p><strong>Our preference is to plan the final contours with you after assessing healing, rather than rely on a later addition as the main solution.</strong> Adjustments or repairs may still be appropriate with either approach. Some clearance beneath an implant bridge may be intentional for cleaning; every space does not need to be closed.</p>
+      <p className="prototype-source">The material and method used for a particular gap correction should be confirmed with the treating provider. The bonding and staining concerns above apply when resin is added to zirconia; they do not establish Nuvia’s repair protocol or complication rate.</p>
+      <details className="fa-references"><summary>Evidence behind these design considerations</summary><ul>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12930121/" target="_blank" rel="noopener noreferrer">Clinical consensus on trial restorations, speech, lip support, and cleaning access</a></li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12693697/" target="_blank" rel="noopener noreferrer">Laboratory study of gingiva-colored composite bonding and artificial aging</a></li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7321486/" target="_blank" rel="noopener noreferrer">Laboratory study of gingiva-colored composite surface finish and color stability</a></li>
+      </ul><p className="prototype-source">Laboratory findings describe material behavior under test conditions, not comparative patient outcomes for NorthStar and Nuvia.</p></details>
+    </div>
     <div className="prototype-expectations"><h3>Room for refinement as you heal.</h3><p>Gums and bone change after extractions and implant surgery. A prototype helps us evaluate and refine the restoration as treatment progresses. Both approaches require healing, diet instructions, home care, and follow-up. Neither a material nor a delivery date guarantees implant success, a particular appearance, or a restoration that never needs adjustment.</p><p>For your case, we’ll explain the expected stages, material choices, timing, and fees. NorthStar provides both your implant surgery and final teeth.</p><a className="prototype-cta" href="/contact/#consultation">Discuss your full-arch smile</a></div>
   </section>;
 }
