@@ -1,6 +1,7 @@
 import BoneGraftingVideo from './components/BoneGraftingVideo';
 import ProcedureTreatments from './components/ProcedureTreatments';
 import FullArchOptions from './components/FullArchOptions';
+import FullArchPrototype from './components/FullArchPrototype';
 import ImplantConsultationLinks from './components/ImplantConsultationLinks';
 import { useEffect } from 'react';
 import ClinicalWarningCards from './components/ClinicalWarningCards';
@@ -527,6 +528,7 @@ export function FullArchPage() {
         <p>Conventional implants, advanced anchorage techniques, and removable designs address different needs. The number and position of implants, need for grafting, and timing of temporary teeth depend on your examination, 3D imaging, and restorative plan.</p>
       </div>
 
+      <FullArchPrototype />
       <FullArchOptions />
       <ImplantOfficeInformation />
 
@@ -582,8 +584,9 @@ export function FullArchPage() {
           implants are placed, and — in qualifying cases — a provisional
           prosthesis is attached the same day. Over the following three to six
           months, osseointegration occurs as the implants fuse with the bone.
-          Once confirmed, your final custom prosthesis is fabricated and
-          delivered by NorthStar. The timing of final teeth varies with your anatomy, healing, grafting needs, and restorative plan; your team will discuss an individualized timeline. Our team
+          During the prototype stage, you and your dentist evaluate the smile design,
+          speech, and bite, and review any refinements. After the clinical and design
+          reviews, your final custom prosthesis is fabricated and delivered by NorthStar. The timing of final teeth varies with your anatomy, healing, grafting needs, and restorative plan; your team will discuss an individualized timeline. Our team
           supports you at every stage with detailed instructions, follow-up
           visits, and compassionate, attentive care.
         </p>
