@@ -71,7 +71,8 @@
       "cleaning-under-an-implant-bridge",
       "understanding-your-implant-estimate"
     ],
-    "status": "draft"
+    "status": "published",
+    "publishedAt": "2026-11-27"
   },
   {
     "slug": "why-we-use-smile-prototypes",
@@ -134,7 +135,8 @@
       "cleaning-under-an-implant-bridge",
       "understanding-your-implant-estimate"
     ],
-    "status": "draft"
+    "status": "published",
+    "publishedAt": "2026-11-27"
   },
   {
     "slug": "cleaning-under-an-implant-bridge",
@@ -206,7 +208,8 @@
       "diabetes-and-dental-implants",
       "smoking-vaping-and-implant-treatment"
     ],
-    "status": "draft"
+    "status": "published",
+    "publishedAt": "2026-11-27"
   },
   {
     "slug": "diabetes-and-dental-implants",
@@ -273,7 +276,8 @@
       "smoking-vaping-and-implant-treatment",
       "understanding-your-implant-estimate"
     ],
-    "status": "draft"
+    "status": "published",
+    "publishedAt": "2026-11-27"
   },
   {
     "slug": "smoking-vaping-and-implant-treatment",
@@ -342,7 +346,8 @@
       "cleaning-under-an-implant-bridge",
       "why-we-use-smile-prototypes"
     ],
-    "status": "draft"
+    "status": "published",
+    "publishedAt": "2026-11-27"
   },
   {
     "slug": "understanding-your-implant-estimate",
@@ -410,6 +415,7 @@
       "why-we-use-smile-prototypes",
       "diabetes-and-dental-implants"
     ],
-    "status": "draft"
+    "status": "published",
+    "publishedAt": "2026-11-27"
   }
 ]
