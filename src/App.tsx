@@ -119,8 +119,8 @@ export default function App() {
               </div>
               <span className="nb-star-glint" aria-hidden="true" />
             </div>
-            <h1 id="journey-title" className="nb-headline" style={{ fontSize: 'clamp(1.75rem, 3.5vw, 3rem)' }}>Smile with confidence and eat comfortably.</h1>
-            <p className="nb-services">Dental implant care from surgery to final teeth, a smile designed to look natural and complement your face.</p>
+            <h1 id="journey-title" className="nb-headline" style={{ fontSize: 'clamp(1.65rem, 3.2vw, 2.8rem)', fontWeight: 600, lineHeight: 1.15, letterSpacing: '-0.025em' }}>Smile with Confidence and Eat Comfortably.</h1>
+            <p className="nb-services">Dental implant care from <strong style={{ color: '#f3d37a', fontWeight: 600 }}>Surgery to Final Teeth</strong> — a smile designed to look natural and complement your face.</p>
             <div className="nb-actions">
               <a className="pp-button" href="#contact">Request an Implant Consultation</a>
               <a className="nb-treatment-link" href="/implant-treatment-examples/#before-after">See Real Patient Results</a>
